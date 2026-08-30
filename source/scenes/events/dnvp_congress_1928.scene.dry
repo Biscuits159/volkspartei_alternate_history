@@ -12,11 +12,13 @@ A leadership vote is being held at the <span style="color: #3F7BC1;">**DNVP**</s
 
 The right wing of the party rallied behind Alfred Hugenberg, an industrialist and head of a media empire. The moderate wing supports Oskar Hergt.
 
-- @hergt_lead: Oskar Hergt
-- @hugenberg_lead: Alfred Hugenberg
+- @resultsdnvp: The party votes...
 
-@hergt_lead
-on-arrival: dnvp_leader = "Hergt"; dnvp_ideology = "Moderate"; dvp_left += 1; dnvp_relation += 5 if dvp_ideology = "Left";
+@resultsdnvp
+go-to: hergt if pro_republic >= 65; hugenberg if pro_republic < 65
+
+@hergt
+on-arrival: dnvp_leader = "Hergt"; dnvp_ideology = "Moderate"; dvp_right += 1; dnvp_relation += 5 if dvp_ideology = "Left";
 face-image: img/portraits/HergtOskar.jpg
 
 Hergt is elected to lead the <span style="color: #3F7BC1;">**DNVP**</span>. In response, Hugenberg and his faction have left <span style="color: #3F7BC1;">**DNVP**</span> to form their own party.
@@ -29,8 +31,8 @@ go-to: dnf_formed
 
 Hugenberg has created a new party.
 
-@hugenberg_lead
-on-arrival: dnvp_leader = "Hugenberg"; dnvp_ideology = "Radical"; workers_dnvp -= 2; pro_republic -= 2; dvp_right += 1; dnvp_relation -= 5 if dvp_ideology = "Left";
+@hugenberg
+on-arrival: dnvp_leader = "Hugenberg"; dnvp_ideology = "Radical"; workers_dnvp -= 2; pro_republic -= 2; dvp_left += 1; dnvp_relation -= 5 if dvp_ideology = "Left";
 face-image: img/portraits/HugenbergAlfred.jpg
 
-Hugenberg is elected <span style="color: #3F7BC1;">**DNVP**</span> chairman.
+Hugenberg is elected chairman, single-handedly shifting our party away from the <span style="color: #3F7BC1;">**DNVP**</span>.

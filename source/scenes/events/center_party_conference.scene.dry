@@ -21,15 +21,11 @@ on-arrival: z_leader = "Kaas"; z_ideology = "Right";
 choose-if: not prussia_leader = "Stegerwald" and pro_republic < 65
 face-image: img/portraits/KaasLudwig.jpg
 
-Ludwig Kaas has been selected as the chairman of the <span style="color: #000000;">**Center Party**</span>. He seems to represent a rightward turn from Marx, and will preside over a <span style="color: #000000;">**Center Party**</span> less inclined to compromise with the left.
+Ludwig Kaas has been selected as the chairman of the <span style="color: #000000;">**Center Party**</span>. He seems to represent a rightward turn from Marx, and will preside over a <span style="color: #000000;">**Center Party**</span> less inclined to compromise with the left, though he is committed to the constitutional order.
 
 @z_joos
 unavailable-subtitle: Joos doesn't have enough support.
-<<<<<<< HEAD
-on-arrival: z_leader = "Joos"; z_ideology = "Left"; z_relation -= 2 if dvp_ideology = "Right"; workers_z += 3; catholics_z -= 3
-=======
-on-arrival: z_leader = "Joos"; z_ideology = "Left"; z_relation -= 2 if dvp_ideology = "Right"; workers_z += 3
->>>>>>> parent of 9ba25cad (v0.0.1)
+on-arrival: z_leader = "Joos"; z_ideology = "Left"; workers_z += 3; catholics_z -= 3
 choose-if: not prussia_leader = "Stegerwald" and pro_republic >= 65
 face-image: img/portraits/JoosJoseph.jpg
 
@@ -38,7 +34,7 @@ Joseph Joos has been selected as the chairman of the <span style="color: #000000
 @z_stegerwald
 unavailable-subtitle: Stegerwald lacks the influence necessary to have a real chance.
 choose-if: prussia_leader = "Stegerwald"
-on-arrival: z_leader = "Stegerwald"; z_ideology = "Right"
+on-arrival: z_leader = "Stegerwald"; z_ideology = "Right"; workers_z += 5; catholics_z -= 5
 face-image: img/portraits/StegerwaldAdam.jpg
 
 Adam Stegerwald has been elected as the chairman of the <span style="color: #000000;">**Center Party**</span>. He seems to represent a rightward turn from Marx, despite his trade union background, and will preside over a <span style="color: #000000;">**Center Party**</span> less inclined to compromise with the left. He views the <span style="color: #000000;">**Center Party**</span> as a prototype for a Christian, democratic, German, and social party, and aims to transform it according to the principles laid out in his proposed "Essen program" eight years prior.

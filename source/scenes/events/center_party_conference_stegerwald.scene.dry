@@ -15,17 +15,17 @@ Jakob Kaiser, a rising star on the left, who supports a united Christian union, 
 - @z_kaiser: The Center Party elects Jakob Kaiser as the party chair.
 
 @z_stegerwald
-on-arrival: z_leader = "Stegerwald"; z_ideology = "Right";
+on-arrival: z_leader = "Stegerwald"; z_ideology = "Right"; workers_z += 3; catholics_z -= 3
 face-image: img/portraits/StegerwaldAdam.jpg
 
 Stegerwald will continue to evolve the <span style="color: #000000;">Center Party</span> into a <span style="color: #000000;">Christian</span>, <span style="color: #586593;">democratic</span>, <span style="color: #000000;">German</span>, and <span style="color: #c00000;">social</span> party. [? if dnvp_ideology == "Radical": Now taking the <span style="color: #3E88B3;">**DNVP**</span>'s place on the German right. ?]
 
-[? if dnvp_ideology == "Moderate": There are already rumors of a merger with <span style="color: #3E88B3;">**DNVP**</span>'s place on the German right. ?]
+[? if dnvp_ideology == "Moderate": There are already rumors of a merger with the moderate <span style="color: #3E88B3;">**DNVP**</span>?]
 
 @z_kaiser
-unavailable-subtitle: Joos doesn't have enough support.
-on-arrival: z_leader = "Joos"; z_ideology = "Left"; z_relation -= 2 if dvp_ideology = "Right"; workers_z += 3; catholics_z -= 3
-choose-if: not prussia_leader = "Stegerwald" and pro_republic >= 65
+unavailable-subtitle: Kaiser doesn't have enough support.
+on-arrival: z_leader = "Joos"; z_ideology = "Left"; workers_z += 3; dvp_left += 2
+choose-if: pro_republic >= 80
 face-image: img/portraits/JoosJoseph.jpg
 
-Joseph Joos has been selected as the chairman of the <span style="color: #000000;">**Center Party**</span>. He has long been a friend of the <span style="color: #E3000F;">**SPD**</span>, and will be more inclined to collaborate with them compared to Kaas. He also increases the appeal of the <span style="color: #000000;">**Center Party**</span> to the working class.
+Suprisingly, Jakob Kaiser has been selected as the chairman of the <span style="color: #000000;">**Center Party**</span>. As a progressive with left-wing views on nationalizations and ardent anti-nazism shifts the entie political landscape to the left.

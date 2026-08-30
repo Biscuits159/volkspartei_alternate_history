@@ -1,0 +1,30 @@
+title: <span style="color: #3F7BC1;">**DNVP**</span> Leadership Vote
+subtitle: Hugenberg has angered his party.
+view-if: dnvp_leader = "Hugenberg" and year = 1929 and month = 12
+max-visits: 1
+tags: event
+face-image: img/portraits/KVP_logo.jpg
+new-page: true
+
+= <span style="color: #3F7BC1;">**DNVP**</span> Congress
+
+Factions withitn the <span style="color: #3F7BC1;">**DNVP**</span> have clashed with one another increasingly often under Hugenberg's leadership. His attemps to assert control over the party and the fallout from the Young Plan have made a party slip virtually inevitable.
+
+- @resultsdnvp: The congress unfolds...
+
+@resultsdnvp
+go-to: hugenberg if young_plan_signatures >= 10; treviranus if young_plan_signatures < 10
+
+@treviranus
+on-arrival: dnvp_leader = "Treviiranus";  dnvp_ideology = "Moderate"; dvp_right += 1
+face-image: img/portraits/TreviranusGottfried.jpg
+go-to: dnf_formed.scene.dry
+
+Hugenberg's all-or-nothing strategy and the decline in support for the <span style="color: #3F7BC1;">**DNVP**</span> have convinced the party to oust him. Replacing Hugenberg is Gottfried Treviranus, a member of the Young Conservatives, in favor of constructive participation within the Republic. As a response, Hugenberg has threatened to leave the party and form his own.
+
+@hugenberg
+on-arrival: pro_republic -= 5; dvp_left += 1
+face-image: img/portraits/HugenbergAlfred.jpg
+go-to: kvp_formed
+
+Hugenberg has managed to consolidate power within his party, even the combined votes of moderates and agrarians were unable to oust him. The anti-Hugenberg forces have scattered all over the political right, with committed nationalist forming the <span style="color: #455B95;">**Konservative Volkspartei**</span>.
