@@ -273,9 +273,9 @@ WIP
 - @lambach: Walther Lambach will lead our party.
 
 @lemmer
-subtitle: Lemmer is a prominent labor leader.
+subtitle: Lemmer is a prominent labor leader. <span style="color: #E0B0FF;">**Progressives**</span> + <span style="color: #DCCA4A;">**Democrats**</span> + <span style="color: #6D5298;">**Labor**</span> ([+ progressive_influence + democratic_influence + labor_influence +]%)
 unavailable-subtitle: Lemmer isn’t seen as a viable candidate, with the party viewing him as too left-wing. He has endorsed Dietrich or Thiel.
-#choose-if: 
+choose-if: progressive_influence + democratic_influence + labor_influence >= 50
 on-arrival: dvp_leader = "Lemmer"
 face-image: img/portraits/LemmerErnst.jpg
 
@@ -283,9 +283,9 @@ Ernst Lemmer has managed to, with the backing of Thiel’s unions, and the forme
   
 
 @dietrich
-subtitle: Dietrich was the former leader of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>'s business wing.
+subtitle: Dietrich was the former leader of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>'s business wing. <span style="color: #E0B0FF;">**Progressives**</span> + <span style="color: #DCCA4A;">**Democrats**</span> + <span style="color: #98C22C;">**Liberals**</span> ([+ progressive_influence + democratic_influence + liberal_influence +]%)
 unavailable-subtitle: The party prefers a former <span style="color: #C0A054;">**DVP**</span> member than Dietrich, with the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> not holding enough sway. Dietrich has endorsed Curtius.
-#choose-if: 
+choose-if: progressive_influence + democratic_influence + liberal_influence >= 50
 on-arrival: dvp_leader = "Dietrich"
 face-image: img/portraits/DietrichHermann.jpg
 
@@ -293,7 +293,7 @@ Hermann Dietrich has been elected as the leader of the <span style="color: var(-
   
 
 @luther
-subtitle: WIP.
+subtitle: The former Chancellor is always available as a compromise candidate.
 unavailable-subtitle: Luther sees no need to run, currently.
 #choose-if: 
 on-arrival: dvp_leader = "Luther"
@@ -303,9 +303,9 @@ Hans Luther, [? if not president = "Luther": president of the Reichsbank?][? if 
   
 
 @curtius
-subtitle: Curtius belongs to the Stresemannite wing of our party.
+subtitle: Curtius belongs to the Stresemannite wing of our party. <span style="color: #98C22C;">**Liberals**</span> + <span style="color: #6D5298;">**Labor**</span> [? if peoples_conservatives_dvp: + <span style="color: #0087DC;">**People's Conservatives**</span>] ([+ liberal_influence + labor_influence + peoples_conservative_influence +]%)
 unavailable-subtitle: Curtius prefers Thiel or Dietrich currently, with the former <span style="color: #C0A054;">**DVP**</span> too weak to push him, anyways.
-#choose-if: 
+choose-if: liberal_influence + labor_influence + peoples_conservative_influence >= 50
 on-arrival: dvp_leader = "Curtius"
 face-image: img/portraits/CurtiusJulius.jpg
 
@@ -313,9 +313,9 @@ Julius Curtius, Stresemann’s successor, has been elected as the leader of the 
   
 
 @thiel
-subtitle: Thiel is a prominent labor leader.
+subtitle: Thiel is a prominent labor leader. <span style="color: #DCCA4A;">**Democrats**</span> + <span style="color: #98C22C;">**Liberals**</span> + <span style="color: #6D5298;">**Labor**</span> ([+ democratic_influence + liberal_influence + labor_influence +]%)
 unavailable-subtitle: The unions aren’t willing to run Thiel, and he prefers to work behind the scenes at the moment, anyways. He has endorsed Curtius.
-#choose-if: 
+choose-if: democratic_influence + liberal_influence + labor_influence >= 50
 on-arrival: dvp_leader = "Thiel"
 face-image: img/portraits/ThielOtto.jpg
 
@@ -323,9 +323,9 @@ Otto Thiel, close ally of Stresemann and former <span style="color: #C0A054;">**
   
 
 @raumer
-subtitle: Raumer is backed by industrialists.
+subtitle: Raumer is backed by industrialists. <span style="color: #C0A054;">**Industrialists:**</span> [? if peoples_conservatives_dvp: + <span style="color: #0087DC;">**People's Conservatives**</span>] [? if christian_socials_dvp: + <span style="color: #8ED8E4;">**Christian Socials**</span>] ([+ industrialist_influence + peoples_conservative_influence + christian_socials_influence +]%)
 unavailable-subtitle: The party doesn’t view Raumer seriously, with what’s left of the industrialists being too scattered to push him, anyhow.
-#choose-if: 
+choose-if: industrialist_influence + peoples_conservative_influence + christian_socials_influence >= 50
 on-arrival: dvp_leader = "Raumer"
 face-image: img/portraits/RaumerHans.jpg
 
@@ -333,10 +333,10 @@ In a shock upset, Hans Raumer has been elected as the <span style="color: var(--
   
 
 @treviranus
-subtitle: Treviranus is the leader of People's Conservatives.
+subtitle: Treviranus is the leader of People's Conservatives. <span style="color: #98C22C;">**Liberals**</span> [? if peoples_conservatives_dvp: + <span style="color: #0087DC;">**People's Conservatives**</span>] [? if christian_socials_dvp: + <span style="color: #8ED8E4;">**Christian Socials**</span>] ([+ peoples_conservative_influence + christian_socials_influence + liberal_influence +]%)
 unavailable-subtitle: Trevarinus prefers Curtius or Luther.
 view-if: peoples_conservatives_dvp
-#choose-if: 
+choose-if: liberal_influence + peoples_conservative_influence + christian_socials_influence >= 50
 on-arrival: dvp_leader = "Treviranus"
 face-image: img/portraits/TreviranusGottfried.jpg
 
@@ -344,10 +344,10 @@ Gottfried Treviranus, dissenting <span style="color: #3F7BC1;">**DNVP**</span> m
   
 
 @lambach
-subtitle: Walther Lambach is the leader of Christian Socials.
+subtitle: Walther Lambach is the leader of Christian Socials. <span style="color: #6D5298;">**Labor**</span> [? if peoples_conservatives_dvp: + <span style="color: #0087DC;">**People's Conservatives**</span>] [? if christian_socials_dvp: + <span style="color: #8ED8E4;">**Christian Socials**</span>] ([+ peoples_conservative_influence + christian_socials_influence + labor_influence +]%)
 unavailable-subtitle: Lambach’s unions don’t have enough influence amongst the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. He has endorsed Thiel or Trevarinus.
 view-if: christian_socials_dvp
-#choose-if: 
+choose-if: labor_influence + peoples_conservative_influence + christian_socials_influence >= 50
 on-arrival: dvp_leader = "Lambach"
 face-image: img/portraits/LambachWalther.jpg
 
