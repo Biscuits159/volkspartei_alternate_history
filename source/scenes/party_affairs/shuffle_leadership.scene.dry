@@ -65,16 +65,6 @@ Raumer has been removed as an advisor. The Industrialist faction disapproves.
 
 # liberal
 
-
-@remove_severing
-title: Remove Severing
-view-if: severing_advisor = 1
-tags: remove_advisor
-on-arrival: severing_advisor = 0; liberal_dissent += 5; n_advisors -= 1
-go-to: rm_main
-
-Severing has been removed as an advisor. The Liberal faction disapproves.
-
 @remove_luther
 title: Remove Luther
 view-if: luther_advisor = 1
@@ -202,15 +192,6 @@ Lejeune-Jung has been removed as an advisor. The People's Conservative faction d
 
 # nationalist
 
-@remove_levi
-title: Remove Levi
-view-if: levi_advisor = 1
-tags: remove_advisor
-on-arrival: levi_advisor = 0; left_dissent += 5; n_advisors -= 1
-go-to: rm_main
-
-Levi has been removed as an advisor. The Nationalist faction disapproves.
-
 @remove_seeckt
 title: Remove Seeckt
 view-if: seeckt_advisor = 1
@@ -228,25 +209,6 @@ on-arrival: hugo_advisor = 0; nationalist_dissent += 3; n_advisors -= 1
 go-to: rm_main
 
 Hugo has been removed as an advisor. The Nationalist faction disapproves.
-
-@remove_seydewitz
-title: Remove Seydewitz
-view-if: seydewitz_advisor = 1
-tags: remove_advisor
-on-arrival: seydewitz_advisor = 0; left_dissent += 3; n_advisors -= 1
-go-to: rm_main
-
-Seydewitz has been removed as an advisor. The Nationalist faction disapproves.
-
-@remove_siemsen
-title: Remove Siemsen
-view-if: siemsen_advisor = 1
-tags: remove_advisor
-on-arrival: siemsen_advisor = 0; left_dissent += 3; n_advisors -= 1
-go-to: rm_main
-
-Siemsen has been removed as an advisor. The Nationalist faction disapproves.
-
 
 
 
@@ -354,17 +316,6 @@ Bauser has been removed as an advisor. The Special Interest faction disapproves.
 
 
 ## nonfactional
-
-@remove_baade
-title: Remove Baade
-view-if: baade_advisor = 1
-tags: remove_advisor
-on-arrival: baade_advisor = 0; n_advisors -= 1
-go-to: rm_main
-
-Baade has been removed as an advisor.
-
-#The Reformist faction disapproves.
 
 
 @remove_moldenhauer
@@ -505,19 +456,6 @@ Hans Raumer is now an advisor.
 # liberal
 
 
-@add_severing
-title: Carl Severing
-subtitle: Carl Severing is a one-time Prussian interior minister and police reformer. {!<br><br>!}[? if difficulty < 0 : Actions - Prussian Bulwark, Police Affairs ?]
-is-card: true
-card-image: img/portraits/SeveringCarl.jpg
-tags: liberal_advisor
-view-if: severing_advisor = 0 and n_advisors < 4
-on-arrival: severing_advisor = 1; n_advisors += 1; liberal_strength += 5
-go-to: advisor_menu
-
-Carl Severing is now an advisor.
-
-
 @add_luther
 title: Hans Luther
 subtitle: Hans Luther is a prominent politician and banker, who has served as Chancellor in 1925-1926. {!<br><br>!}[? if difficulty < 0 : Actions - Monetary Policy[?if not lvp_formed and not nfvp_formed:, Support a united liberal party ?] ?]
@@ -628,17 +566,6 @@ Paul Lejeune-Jung is now an advisor.
 
 # nationalist
 
-@add_levi
-title: Paul Levi
-subtitle: Paul Levi is a former KPD leader who was purged for criticizing Communist policies. {!<br><br>!}[? if difficulty < 0 : Actions - Building the Left, Cooperation with the KPD ?]
-is-card: true
-card-image: img/portraits/LeviPaul.jpg
-view-if: levi_advisor = 0 and levi_dead = 0 and n_advisors < 4 and nationalists_dvp
-on-arrival: levi_advisor = 1; n_advisors += 1; left_strength += 5
-go-to: advisor_menu
-tags: nationalist_advisor
-
-Paul Levi is now an advisor.
 
 @add_seeckt
 title: Hans von Seeckt
@@ -663,30 +590,6 @@ go-to: advisor_menu
 tags: nationalist_advisor
 
 Otto Hugo is now an advisor.
-
-@add_seydewitz
-title: Max Seydewitz
-subtitle: Max Seydewitz is a former leader of the youth wing, current supporter of the left wing of the SPD, and advocates for class struggle. {!<br><br>!}[? if difficulty < 0 : Actions - Rally for Class Struggle, Socialist Youth, Against Toleration ?]
-is-card: true
-card-image: img/portraits/SeydewitzMax.jpg
-view-if: seydewitz_advisor = 0 and n_advisors < 4 and nationalists_dvp
-on-arrival: seydewitz_advisor = 1; n_advisors += 1; left_strength += 5
-go-to: advisor_menu
-tags: nationalist_advisor
-
-Max Seydewitz is now an advisor.
-
-@add_siemsen
-title: Anna Siemsen
-subtitle: Anna Siemsen is an and educational reform advocate and pacifist, who was one of the few German women to receive a PhD in the pre-war period. {!<br><br>!}[? if difficulty < 0 : Actions - Rally for Pacifism, Educational Curriculum, Educational Structure ?]
-is-card: true
-card-image: img/portraits/SiemsenAnna.jpg
-view-if: siemsen_advisor = 0 and n_advisors < 4 and nationalists_dvp
-on-arrival: siemsen_advisor = 1; n_advisors += 1; left_strength += 5
-go-to: advisor_menu
-tags: nationalist_advisor
-
-Anna Siemsen is now an advisor.
 
 
 
@@ -875,18 +778,6 @@ Adolf Bauser is now an advisor.
 
 
 # Nonfactional advisors
-
-@add_baade
-title: Fritz Baade
-subtitle: Fritz Baade is one of the few agricultural policy experts in the SPD. {!<br><br>!}[? if difficulty < 0 : Actions - Agricultural Policy, Rural Campaigning, Addressing the Economic Crisis ?]
-is-card: true
-card-image: img/portraits/BaadeFritz.jpg
-view-if: baade_advisor = 0 and n_advisors < 4
-on-arrival: baade_advisor = 1; n_advisors += 1
-go-to: advisor_menu
-tags: nonfactional_advisor
-
-Fritz Baade is now an advisor.
 
 
 @add_heinze
