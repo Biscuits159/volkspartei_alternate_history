@@ -22,18 +22,10 @@ Stegerwald will continue to evolve the <span style="color: #000000;">Center Part
 
 [? if dnvp_ideology == "Moderate": There are already rumors of a merger with <span style="color: #3E88B3;">**DNVP**</span>'s place on the German right. ?]
 
-@z_joos
+@z_kaiser
 unavailable-subtitle: Joos doesn't have enough support.
 on-arrival: z_leader = "Joos"; z_ideology = "Left"; z_relation -= 2 if dvp_ideology = "Right"; workers_z += 3, catholics_z -= 3
 choose-if: not prussia_leader = "Stegerwald" and pro_republic >= 65
 face-image: img/portraits/JoosJoseph.jpg
 
 Joseph Joos has been selected as the chairman of the <span style="color: #000000;">**Center Party**</span>. He has long been a friend of the <span style="color: #E3000F;">**SPD**</span>, and will be more inclined to collaborate with them compared to Kaas. He also increases the appeal of the <span style="color: #000000;">**Center Party**</span> to the working class.
-
-@z_stegerwald
-unavailable-subtitle: Stegerwald lacks the influence necessary to have a real chance.
-choose-if: prussia_leader = "Stegerwald"
-on-arrival: z_leader = "Stegerwald"; z_ideology = "Right"; new_middle_z -= 5; old_middle_z -= 3; catholics_z -= 5; workers_z += 5
-face-image: img/portraits/StegerwaldAdam.jpg
-
-Adam Stegerwald has been elected as the chairman of the <span style="color: #000000;">**Center Party**</span>. He seems to represent a rightward turn from Marx, despite his trade union background, and will preside over a <span style="color: #000000;">**Center Party**</span> less inclined to compromise with the left. He views the <span style="color: #000000;">**Center Party**</span> as a prototype for a Christian, democratic, German, and social party, and aims to transform it according to the principles laid out in his proposed "Essen program" eight years prior.
