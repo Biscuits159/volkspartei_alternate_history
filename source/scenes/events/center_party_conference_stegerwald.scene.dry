@@ -24,7 +24,7 @@ Stegerwald will continue to evolve the <span style="color: #000000;">Center Part
 
 @z_kaiser
 unavailable-subtitle: Joos doesn't have enough support.
-on-arrival: z_leader = "Joos"; z_ideology = "Left"; z_relation -= 2 if dvp_ideology = "Right"; workers_z += 3, catholics_z -= 3
+on-arrival: z_leader = "Joos"; z_ideology = "Left"; z_relation -= 2 if dvp_ideology = "Right"; workers_z += 3; catholics_z -= 3
 choose-if: not prussia_leader = "Stegerwald" and pro_republic >= 65
 face-image: img/portraits/JoosJoseph.jpg
 
