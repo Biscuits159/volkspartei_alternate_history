@@ -18,7 +18,7 @@ go-to: hugenberg if young_plan_signatures >= 10; treviranus if young_plan_signat
 @treviranus
 on-arrival: dnvp_leader = "Treviiranus";  dnvp_ideology = "Moderate"; dvp_right += 1
 face-image: img/portraits/TreviranusGottfried.jpg
-go-to: dnf_formed.scene.dry
+go-to: dnf_formed
 
 Hugenberg's all-or-nothing strategy and the decline in support for the <span style="color: #3F7BC1;">**DNVP**</span> have convinced the party to oust him. Replacing Hugenberg is Gottfried Treviranus, a member of the Young Conservatives, in favor of constructive participation within the Republic. As a response, Hugenberg has threatened to leave the party and form his own.
 
