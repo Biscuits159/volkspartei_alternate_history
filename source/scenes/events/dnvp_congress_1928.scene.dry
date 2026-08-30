@@ -12,12 +12,10 @@ A leadership vote is being held at the <span style="color: #3F7BC1;">**DNVP**</s
 
 The right wing of the party rallied behind Alfred Hugenberg, an industrialist and head of a media empire. The moderate wing supports Oskar Hergt.
 
-- @resultsdnvp: The party votes...
+- @hergt_lead: Oskar Hergt
+- @hugenberg_lead: Alfred Hugenberg
 
-@resultsdnvp
-go-to: hugenberg if pro_republic < 65; triumvirate if pro_republic < 75 and pro_republic >= 65; hergt if pro_republic >= 75
-
-@hergt
+@hergt_lead
 on-arrival: dnvp_leader = "Hergt"; dnvp_ideology = "Moderate"; dvp_left += 1; dnvp_relation += 5 if dvp_ideology = "Left";
 face-image: img/portraits/HergtOskar.jpg
 
@@ -31,13 +29,7 @@ go-to: dnf_formed
 
 Hugenberg has created a new party.
 
-@triumvirate
-on-arrival: dnvp_leader = "Triumvirate"; dnvp_ideology = "Radical"; dvp_left += 1; dnvp_relation += 5 if dvp_ideology = "Left";
-face-image: img/portraits/WestarpKuno.jpg
-
-Both Hergt and Hugenberg lack a majority and the party is now seeking a compromise. Some undecided party members propose a triumvirate between Westarp, Hugenberg and moderate politician, Westarp is not enthusiastic of such an arrangement, but has accepted for the sake of party unity.
-
-@hugenberg
+@hugenberg_lead
 on-arrival: dnvp_leader = "Hugenberg"; dnvp_ideology = "Radical"; workers_dnvp -= 2; pro_republic -= 2; dvp_right += 1; dnvp_relation -= 5 if dvp_ideology = "Left";
 face-image: img/portraits/HugenbergAlfred.jpg
 
