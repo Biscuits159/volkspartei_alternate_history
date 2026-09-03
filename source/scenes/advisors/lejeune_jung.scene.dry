@@ -19,7 +19,7 @@ Paul Lejeune-Jung was one of the few high-profile catholics from the <span style
 title: Europabund Negotiations
 subtitle: Lejeune-Jung is a proponent of European federalism.
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-choose-if: advisor_action_timer == 0; europabund = 0
+choose-if: advisor_action_timer == 0; europabund == 0
 on-arrival: advisor_action_timer = 6; eb_progress += 1
 
 Lejeune-Jung meets with representatives of French farmers and industrialists to negotiate a common European market.
