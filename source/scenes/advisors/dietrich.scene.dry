@@ -8,11 +8,31 @@ new-page: true
 
 = Hermann Dietrich
 
-WIP
+Dietrich is a founding member of the <span style="color: #DCCA4A;">**DDP**</span>. He is an advocate for the peasantry and rural middle classes.
 
+- @agriculture
+- @building_the_democrats
 - @lautenbach_economic_plan
 - @snap_election
 - @root: Return to main
+
+@agriculture
+title: Agricultural Policy
+subtitle: Dietrich can help us outline our economic policy.
+choose-if: advisor_action_timer <= 0 and dvp_in_government and agriculture_minister_party == dvp_name
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if not dvp_in_government: The <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> is not in government. ?] [? if agriculture_minister_party != dvp_name: The <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> does not control the Agriculture Ministry. ?]
+on-arrival: advisor_action_timer = 6; agricultural_policy_timer -= 6; last_advisor_action = 1
+go-to: agricultural_policy
+
+
+@building_the_democrats
+title: Building the Democrats
+subtitle: Strengthen the position of the democrats within the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 6; democratic_strength += 10; democratization += 1; democratic_dissent -= 10; industrialist_dissent += 10
+
+We have increased the strength of the democratic faction with the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>.
 
 
 @lautenbach_economic_plan
@@ -22,6 +42,7 @@ choose-if: advisor_action_timer = 0 and lautenbach_plan_adopted = 0 and black_th
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?] [? if lautenbach_plan_adopted > 0 : We have already adopted Lautenbach's economic plan. ?] [? if black_thursday_seen == 0 : We are not currently in an economic crisis. ?]
 on-arrival: advisor_action_timer = 6
 go-to: crisis_program.support_lautenbach
+
 
 @snap_election
 title: Snap Election

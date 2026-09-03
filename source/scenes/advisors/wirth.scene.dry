@@ -7,6 +7,38 @@ new-page: true
 
 = Joseph Wirth
 
-WIP
+Wirth is a former Chancellor and figure of the <span style="color: #000000;">Center</span>'s left. He is a devout republican and wishes to strengthen democracy within Germany.
 
+- @catholics_rally
+- @rally_for_the_republic
+- @spd_relations
 - @root: Return to main
+
+@catholics_rally
+title: Organizing Catholics
+subtitle: Being a devoted Catholic and former <span style="color: #000000;">Center</span> member, he's particularly effective in winning votes from the <span style="color: #000000;">**Center**</span>.
+choose-if: advisor_action_timer == 0 
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+on-arrival: advisor_action_timer = 6; pro_republic += 4; catholics_dvp += 6*(1-dissent)
+
+Wirth helps us rally the Catholic demographic away from the <span style="color: #000000;">**Center Party**</span>.
+
+
+@rally_for_the_republic
+title: Rally for the Republic
+subtitle: Rally our party and the German people to defend the Republic.
+choose-if: advisor_action_timer == 0 
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+on-arrival: advisor_action_timer = 6; pro_republic += 8; democratization += 1; workers_dvp += 2*(1-dissent) if democratization >= 4; new_middle_dvp += 4*(1-dissent) if democratization >= 4; old_middle_dvp += 4*(1-dissent) if democratization >= 4; rural_dvp += 2*(1-dissent) if democratization >= 4;
+
+Wirth helps us to rally the people in defense of the Republic.
+
+
+@spd_relations
+title: <span style="color: #E3000F;">**SPD**</span> relations
+subtitle: Wirth can reach out to the social democrats.
+choose-if: advisor_action_timer == 0 
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+on-arrival: advisor_action_timer = 6; spd_relation += 7*(1-dissent); industrialist_dissent += 10
+
+As a commited republican and still member of the Reichsbanenr, Wirth uses his connections to the <span style="color: #E3000F;">**SPD**</span>'s center and reformist wing to increase our realtions.

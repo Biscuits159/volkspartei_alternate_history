@@ -9,9 +9,19 @@ new-page: true
 
 Otto Thiel is a politician and unionist affiliated with the DHV, the right-wing trade union federation.
 
+- @labor_affairs
 - @white_collar
 - @union_unity
 - @root: Return to main
+
+@labor_affairs
+title: Labor Policy
+subtitle: Enact labor policies.
+choose-if: advisor_action_timer = 0 and dvp_in_government and labor_minister_party = dvp_name
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if not dvp_in_government : The <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> is not currently in government. ?][? if justice_minister_party != dvp_name : We do not have the Justice Ministry. ?]
+on-arrival: advisor_action_timer = 6; labor_rights_timer -= 6; last_advisor_action = 1
+go-to: labor_rights
+
 
 @white_collar
 title: Organizing white-collar workers
@@ -21,6 +31,7 @@ unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +
 on-arrival: advisor_action_timer = 6; new_middle_dvp += 3*(1-dissent); workers_dvp += 1*(1-dissent);
 
 We have increased our organizing among white-collar workers.
+
 
 @union_unity
 title: Union-party coordination

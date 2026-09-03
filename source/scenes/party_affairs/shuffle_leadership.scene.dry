@@ -119,6 +119,16 @@ go-to: rm_main
 
 Zu Dohna-Schlodien has been removed as an advisor. The Liberal faction disapproves.
 
+@remove_heinze
+title: Remove Heinze
+view-if: heinze_advisor = 1
+tags: remove_advisor
+on-arrival: heinze_advisor = 0; liberal_dissent += 5; n_advisors -= 1
+go-to: rm_main
+
+Heinze has been removed as an advisor. The Liberal faction disapproves.
+
+
 
 # labor
 
@@ -315,29 +325,14 @@ go-to: rm_main
 Bauser has been removed as an advisor. The Special Interest faction disapproves.
 
 
-## nonfactional
-
-
 @remove_moldenhauer
 title: Remove Moldenhauer
 view-if: moldenhauer_advisor = 1
-on-arrival: moldenhauer_advisor = 0; n_advisors -= 1
+on-arrival: moldenhauer_advisor = 0; special_interest_dissent += 5; n_advisors -= 1
 tags: remove_advisor
 go-to: rm_main
 
 Moldenhauer has been removed as an advisor.
-
-@remove_heinze
-title: Remove Heinze
-view-if: heinze_advisor = 1
-tags: remove_advisor
-on-arrival: heinze_advisor = 0; n_advisors -= 1
-go-to: rm_main
-
-Heinze has been removed as an advisor. 
-
-
-
 
 
 ####################### adding advisors
@@ -362,7 +357,6 @@ frequency: 1
 - @democratic: Add Democrats
 - @progressive: Add Progressives
 - @special_interest: Add Special Interest advisors
-- @nonfactional: Add non-factional advisors
 - @rm_main: Remove advisors instead.
 - @remove_none: Stop changing advisors.
 
@@ -401,11 +395,6 @@ view-if: (progressives_dvp or social_catholics_dvp) and n_advisors < 4
 
 - #progressive_advisor
 
-@nonfactional
-view-if: n_advisors < 4
-
-- #nonfactional_advisor
-
 @special_interest
 view-if: special_interest_dvp and n_advisors < 4
 
@@ -416,7 +405,7 @@ view-if: special_interest_dvp and n_advisors < 4
 
 @add_scholz
 title: Ernst Scholz
-subtitle: Ernst Scholz is the leader of our faction in Reichstag. {!<br><br>!}[? if difficulty < 0 : Actions -  Clear the Agenda, Party Discipline, Emergency Fundraising ?]
+subtitle: Ernst Scholz is the leader of our faction in Reichstag. Actions - Relly Against Socialism, Against the <span style="color: #E3000F;">**SPD**</span> and the <span style="color: #8B0000;">**KPD**</span>, Against Toleration
 is-card: true
 card-image: img/portraits/ScholzErnst.jpg
 tags: industrialist_advisor
@@ -429,7 +418,7 @@ Ernst Scholz is now an advisor.
 
 @add_jarres
 title: Karl Jarres
-subtitle: WIP. {!<br><br>!}[? if difficulty < 0 : Actions -  Clear the Agenda, Party Discipline, Emergency Fundraising ?]
+subtitle: Karl Jarres is a prominent lawyer and our candidate for president in 1925. Actions - Police Affairs, Defend Taming, Snap Elections
 is-card: true
 card-image: img/portraits/JarresKarl.jpg
 tags: industrialist_advisor
@@ -442,7 +431,7 @@ Karl Jarres is now an advisor.
 
 @add_raumer
 title: Hans Raumer
-subtitle: WIP. {!<br><br>!}[? if difficulty < 0 : Actions -  Clear the Agenda, Party Discipline, Emergency Fundraising ?]
+subtitle: Hans Raumer is a member from our party's right wing and a representative from Germany's industry. Actions - Party Discipline, Build up Industrialists, Industrialist Funding
 is-card: true
 card-image: img/portraits/RaumerHans.jpg
 tags: industrialist_advisor
@@ -455,10 +444,9 @@ Hans Raumer is now an advisor.
 
 # liberal
 
-
 @add_luther
 title: Hans Luther
-subtitle: Hans Luther is a prominent politician and banker, who has served as Chancellor in 1925-1926. {!<br><br>!}[? if difficulty < 0 : Actions - Monetary Policy[?if not lvp_formed and not nfvp_formed:, Support a united liberal party ?] ?]
+subtitle: Hans Luther is a prominent politician and banker, who has served as Chancellor in 1925-1926. Actions - Monetary Policy, Support a united liberal party
 is-card: true
 card-image: img/portraits/LutherHans.jpg
 tags: liberal_advisor
@@ -471,7 +459,7 @@ Hans Luther is now an advisor.
 
 @add_stresemann
 title: Gustav Stresemann
-subtitle: Stresemann is a former [? if chancellor = "Stresemann": and current ?] Chancellor. {!<br><br>!}[? if difficulty < 0 : Actions - Negotiating with the Coalition, Defending Toleration ?]
+subtitle: Stresemann is a former [? if chancellor = "Stresemann": and current ?] Chancellor. Actions - Foreign Affairs, Negotiating with the Coalition, Defending Toleration
 is-card: true
 card-image: img/portraits/StresemannGustav.jpg
 tags: liberal_advisor
@@ -484,7 +472,7 @@ Gustav Stresemann is now an advisor.
 
 @add_rheinbaben
 title: Rochus von Rheinbaben
-subtitle: WIP. {!<br><br>!}[? if difficulty < 0 : Actions - Media ?]
+subtitle: Rheinbaben is a politician and activist often tasked with reaching out to other non-socialist republican parties. Actions - Media, Support a united liberal party, Negotiating with minor parties
 is-card: true
 card-image: img/portraits/RheinbabenRochus.jpg
 tags: liberal_advisor
@@ -497,7 +485,7 @@ Rochus von Rheinbaben is now an advisor.
 
 @add_curtius
 title: Julius Curtius
-subtitle: WIP {!<br><br>!}[? if difficulty < 0 : Actions - International Relations, Foreign Policy, Party Discipline ?]
+subtitle: Julius Curtius is one of our foreign policy leaders and a close ally of Stresemann. Actions - International Relations, Foreign Affairs, Negotiating with the Coalition
 is-card: true
 card-image: img/portraits/CurtiusJulius.jpg
 tags: liberal_advisor
@@ -508,38 +496,49 @@ go-to: advisor_menu
 Julius Curtius is now an advisor.
 
 
-@add_kardorff
-title: Siegfried Kardorff
-subtitle: WIP. {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
+#@add_kardorff
+#title: Siegfried Kardorff
+#subtitle: WIP. {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
+#is-card: true
+#card-image: img/portraits/KardorffSiegfried.jpg
+#view-if: kardorff_advisor = 0 and n_advisors < 4 and liberals_dvp
+#on-arrival: kardorff_advisor = 1; n_advisors += 1; liberal_strength += 5
+#go-to: advisor_menu
+#tags: liberal_advisor
+
+#Siegfried Kardorff is now an advisor.
+
+
+#@add_dohna_schlodien
+#title: Alexander zu Dohna-Schlodien
+#subtitle: WIP. {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
+#is-card: true
+#card-image: img/portraits/DohnaSchlodienAlexander.jpg
+#view-if: dohna_schlodien_advisor = 0 and n_advisors < 4 and liberals_dvp
+#on-arrival: dohna_schlodien_advisor = 1; n_advisors += 1; liberal_strength += 5
+#go-to: advisor_menu
+#tags: liberal_advisor
+
+#Alexander zu Dohna-Schlodien is now an advisor.
+
+@add_moldenhauer
+title: Paul Moldenhauer
+subtitle: Paul Moldenhauer is an economist and politician. He is a professor at the University of Cologne. Actions - Defending Toleration, Fiscal Policy
 is-card: true
-card-image: img/portraits/KardorffSiegfried.jpg
-view-if: kardorff_advisor = 0 and n_advisors < 4 and liberals_dvp
-on-arrival: kardorff_advisor = 1; n_advisors += 1; liberal_strength += 5
+card-image: img/portraits/MoldenhauerPaul.jpg
+view-if: moldenhauer_advisor = 0 and n_advisors < 4
+on-arrival: moldenhauer_advisor = 1; n_advisors += 1; liberal_strength += 5
 go-to: advisor_menu
 tags: liberal_advisor
 
-Siegfried Kardorff is now an advisor.
-
-
-@add_dohna_schlodien
-title: Alexander zu Dohna-Schlodien
-subtitle: WIP. {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
-is-card: true
-card-image: img/portraits/DohnaSchlodienAlexander.jpg
-view-if: dohna_schlodien_advisor = 0 and n_advisors < 4 and liberals_dvp
-on-arrival: dohna_schlodien_advisor = 1; n_advisors += 1; liberal_strength += 5
-go-to: advisor_menu
-tags: liberal_advisor
-
-Alexander zu Dohna-Schlodien is now an advisor.
-
+Paul Moldenhauer is now an advisor.
 
 
 # peoples conservative
 
 @add_treviranus
 title: Gottfried Treviranus
-subtitle: WIP. {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
+subtitle: Gottfried Treviranus was a member of the <span style="color: #3f7bc1;">**DNVP**</span>'s moderate wing, who advocate for continuation and normalization of the Republic. Actions - Criticize the National Opposition, Rally for the Republic, Build the People's Conservative
 is-card: true
 card-image: img/portraits/TreviranusGottfried.jpg
 view-if: treviranus_advisor = 0 and n_advisors < 4
@@ -552,7 +551,7 @@ Gottfried Treviranus is now an advisor.
 
 @add_lejeune_jung
 title: Paul Lejeune-Jung
-subtitle: WIP. {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
+subtitle: Paul Lejeune-Jung was one of the few high-profile catholics from the <span style="color: #3f7bc1;">**DNVP**</span> and a member of its moderate wing. Actions - Europabund Negotiations, Foreign Affairs, Economic Policy, Organizing Catholics
 is-card: true
 card-image: img/portraits/LejeuneJungPaul.jpg
 view-if: lejeune_jung_advisor = 0 and n_advisors < 4
@@ -566,10 +565,9 @@ Paul Lejeune-Jung is now an advisor.
 
 # nationalist
 
-
 @add_seeckt
 title: Hans von Seeckt
-subtitle: WIP. {!<br><br>!}[? if difficulty < 0 : Actions - Building the Right, Military affairs, Against Toleration ?]
+subtitle: Hans von Seeckt was the chief of staff the Reichswehr, who modernized and reorganized our army. Actions - Military affairs, Anti-Semitic Campaign, Against Toleration, Addressing the Economic Crisis
 is-card: true
 card-image: img/portraits/SeecktHans.jpg
 view-if: seeckt_advisor = 0 and n_advisors < 4 and nationalists_dvp
@@ -579,9 +577,10 @@ tags: nationalist_advisor
 
 Hans von Seeckt is now an advisor.
 
+
 @add_hugo
 title: Otto Hugo
-subtitle: Otto Hugo is a prominent member of the right wing in the <span style="color: var(--dvp-color);">**DVP**</span>, known for his nationalist views and cooperative stance towards far-right groups. {!<br><br>!}[? if difficulty < 0 : Actions - Building the Left, Cooperation with the KPD, Against Toleration ?]
+subtitle: Otto Hugo is a prominent member of the right wing in the <span style="color: var(--dvp-color);">**DVP**</span>, known for his nationalist views and cooperative stance towards far-right groups. Actions - Building the Right, Cooperation with the <span style="color: #954B00;">**NSDAP**</span>, Rally for Nationalism
 is-card: true
 card-image: img/portraits/HugoOtto.jpg
 view-if: hugo_advisor = 0 and n_advisors < 4 and nationalists_dvp
@@ -592,12 +591,11 @@ tags: nationalist_advisor
 Otto Hugo is now an advisor.
 
 
-
 # labor
 
 @add_bechly
 title: Hans Bechly
-subtitle: Hans Bechly is the leader of the DHV, the German National Association of Commercial Employees. {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
+subtitle: Hans Bechly is the leader of the DHV, the German National Association of Commercial Employees. Actions - Organizing Workers, Union-Party Coordination
 is-card: true
 card-image: img/portraits/BechlyHans.jpg
 tags: labor_advisor
@@ -607,9 +605,10 @@ go-to: advisor_menu
 
 Hans Bechly is now an advisor.
 
+
 @add_thiel
 title: Otto Thiel
-subtitle: Otto Thiel is a politician and unionist affiliated with the DHV, the right-wing trade union federation. {!<br><br>!}[? if difficulty < 0 : Actions - Organizing White-Collar Workers, Union-Party Coordination, Addressing the Economic Crisis ?]
+subtitle: Otto Thiel is a politician and unionist affiliated with the DHV, the right-wing trade union federation. Actions - Labor Affaris, Organizing White-Collar Workers, Union-Party Coordination
 is-card: true
 card-image: img/portraits/ThielOtto.jpg
 tags: labor_advisor
@@ -619,9 +618,10 @@ go-to: advisor_menu
 
 Otto Thiel is now an advisor.
 
+
 @add_baltrusch
 title: Friedrich Baltrusch
-subtitle: Friedrich Baltrusch is WIP. {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
+subtitle: Friedrich Baltrusch is one of the leaders of the Young German Order and a close assocaite of the <span style="color: #000000;">**Center**</span>'s Adam Stegerwald. Actions - Organizing Workers, Union-Party Coordination, <span style="color: #000000;">**Center**</span> relations
 is-card: true
 card-image: img/portraits/BaltruschFriedrich.jpg
 tags: labor_advisor
@@ -631,36 +631,38 @@ go-to: advisor_menu
 
 Friedrich Baltrusch is now an advisor.
 
-@add_behrens
-title: Franz Behrens
-subtitle: WIP. {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
-is-card: true
-card-image: img/portraits/BehrensFranz.jpg
-tags: labor_advisor
-view-if: behrens_advisor = 0 and n_advisors < 4 and labor_dvp and christian_socials_dvp
-on-arrival: behrens_advisor = 1; n_advisors += 1; labor_strength += 5
-go-to: advisor_menu
 
-Franz Behrens is now an advisor.
+#@add_behrens
+#title: Franz Behrens
+#subtitle: WIP. {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
+#is-card: true
+#card-image: img/portraits/BehrensFranz.jpg
+#tags: labor_advisor
+#view-if: behrens_advisor = 0 and n_advisors < 4 and labor_dvp and christian_socials_dvp
+#on-arrival: behrens_advisor = 1; n_advisors += 1; labor_strength += 5
+#go-to: advisor_menu
 
-@add_imbusch
-title: Heinrich Imbusch
-subtitle: WIP. {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
-is-card: true
-card-image: img/portraits/ImbuschHeinrich.jpg
-tags: labor_advisor
-view-if: imbusch_advisor = 0 and n_advisors < 4 and labor_dvp and social_catholics_dvp
-on-arrival: imbusch_advisor = 1; n_advisors += 1; labor_strength += 5
-go-to: advisor_menu
+#Franz Behrens is now an advisor.
 
-Heinrich Imbusch is now an advisor.
+
+#@add_imbusch
+#title: Heinrich Imbusch
+#subtitle: WIP. {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
+#is-card: true
+#card-image: img/portraits/ImbuschHeinrich.jpg
+#tags: labor_advisor
+#view-if: imbusch_advisor = 0 and n_advisors < 4 and labor_dvp and social_catholics_dvp
+#on-arrival: imbusch_advisor = 1; n_advisors += 1; labor_strength += 5
+#go-to: advisor_menu
+
+#Heinrich Imbusch is now an advisor.
 
 
 # democratic leaders
 
 @add_dietrich
 title: Hermann Dietrich
-subtitle: WIP {!<br><br>!}[? if difficulty < 0 : Actions - Addressing the Economic Crisis ?]
+subtitle: Dietrich is a founding member of the <span style="color: #DCCA4A;">**DDP**</span>. Actions - Agriculture Affairs, Building the Democrats, Addressing the Economic Crisis
 is-card: true
 card-image: img/portraits/DietrichHermann.jpg
 view-if: dietrich_advisor = 0 and n_advisors < 4 and democrats_dvp
@@ -670,9 +672,10 @@ tags: democratic_advisor
 
 Hermann Dietrich is now an advisor.
 
+
 @add_gessler
 title: Otto Gessler
-subtitle: WIP {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
+subtitle: Otto Gessler is a prominent figure from the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> and longtime Minister of Defence. Actions - Military Affairs, Police Affairs
 is-card: true
 card-image: img/portraits/GesslerOtto.jpg
 view-if: gessler_advisor = 0 and n_advisors < 4 and democrats_dvp
@@ -687,7 +690,7 @@ Otto Gessler is now an advisor.
 
 @add_erkelenz
 title: Anton Erkelenz
-subtitle: WIP {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
+subtitle: Anton Erkelenz is a member of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> situated firmly in the party's left. Actions - Rally the Progressives, Campaign Among Workers, <span style="color: #E3000F;">**SPD**</span> Relations
 is-card: true
 card-image: img/portraits/ErkelenzAnton.jpg
 tags: progressive_advisor
@@ -697,9 +700,10 @@ go-to: advisor_menu
 
 Anton Erkelenz is now an advisor.
 
+
 @add_wirth
 title: Joseph Wirth
-subtitle: WIP {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
+subtitle: Wirth is a former Chancellor and figure of the <span style="color: #000000;">Center</span>'s left. Actions - Organizing Catholics, Rally for the Republic, <span style="color: #E3000F;">**SPD**</span> Relations
 is-card: true
 card-image: img/portraits/WirthJoseph.jpg
 tags: progressive_advisor
@@ -712,22 +716,22 @@ Joseph Wirth is now an advisor.
 
 # Special Interest advisors
 
-@add_kubler
-title: Konrad Kübler
-subtitle: WIP {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
-is-card: true
-card-image: img/portraits/KublerKonrad.jpg
-tags: special_interest_advisor
-view-if: kubler_advisor = 0 and n_advisors < 4 and dbp_dvp = 1
-on-arrival: kubler_advisor = 1; n_advisors += 1; special_interest_strength += 5
-go-to: advisor_menu
+#@add_kubler
+#title: Konrad Kübler
+#subtitle: WIP {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
+#is-card: true
+#card-image: img/portraits/KublerKonrad.jpg
+#tags: special_interest_advisor
+#view-if: kubler_advisor = 0 and n_advisors < 4 and dbp_dvp = 1
+#on-arrival: kubler_advisor = 1; n_advisors += 1; special_interest_strength += 5
+#go-to: advisor_menu
 
-Konrad Kübler is now an advisor.
+#Konrad Kübler is now an advisor.
 
 
 @add_schiele
 title: Martin Schiele
-subtitle: WIP {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
+subtitle: Martin Schiele is a nationalist and former <span style="color: #3f7bc1;">**DNVP**</span> member and a well-known representative for German farmers. Actions - Agricultural Affairs, Rural Campaigning
 is-card: true
 card-image: img/portraits/SchieleMartin.jpg
 tags: special_interest_advisor
@@ -740,7 +744,7 @@ Martin Schiele is now an advisor.
 
 @add_colosser
 title: Otto Colosser
-subtitle: WIP {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
+subtitle: Otto Colosser is a prominent politician within the Wirtschaftspartei and their chief propagandist. Actions - Media, Middle Class Campaigning
 is-card: true
 card-image: img/portraits/ColosserOtto.jpg
 tags: special_interest_advisor
@@ -751,56 +755,40 @@ go-to: advisor_menu
 Otto Colosser is now an advisor.
 
 
-@add_drewitz
-title: Hermann Drewitz
-subtitle: WIP {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
-is-card: true
-card-image: img/portraits/DrewitzHermann.jpg
-tags: special_interest_advisor
-view-if: drewitz_advisor = 0 and n_advisors < 4 and wp_dvp
-on-arrival: drewitz_advisor = 1; n_advisors += 1; special_interest_strength += 5
-go-to: advisor_menu
+#@add_drewitz
+#title: Hermann Drewitz
+#subtitle: WIP {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
+#is-card: true
+#card-image: img/portraits/DrewitzHermann.jpg
+#tags: special_interest_advisor
+#view-if: drewitz_advisor = 0 and n_advisors < 4 and wp_dvp
+#on-arrival: drewitz_advisor = 1; n_advisors += 1; special_interest_strength += 5
+#go-to: advisor_menu
 
-Hermann Drewitz is now an advisor.
-
-
-@add_bauser
-title: Adolf Bauser
-subtitle: WIP {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
-is-card: true
-card-image: img/portraits/BauserAdolf.jpg
-tags: special_interest_advisor
-view-if: bauser_advisor = 0 and n_advisors < 4 and vrp_dvp
-on-arrival: bauser_advisor = 1; n_advisors += 1; special_interest_strength += 5
-go-to: advisor_menu
-
-Adolf Bauser is now an advisor.
+#Hermann Drewitz is now an advisor.
 
 
-# Nonfactional advisors
+#@add_bauser
+#title: Adolf Bauser
+#subtitle: WIP {!<br><br>!}[? if difficulty < 0 : Actions - WIP ?]
+#is-card: true
+#card-image: img/portraits/BauserAdolf.jpg
+#tags: special_interest_advisor
+#view-if: bauser_advisor = 0 and n_advisors < 4 and vrp_dvp
+#on-arrival: bauser_advisor = 1; n_advisors += 1; special_interest_strength += 5
+#go-to: advisor_menu
+
+#Adolf Bauser is now an advisor.
 
 
 @add_heinze
 title: Rudolf Heinze
-subtitle: Rudolf Heinze is a renowned legal scholar and long-time <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> justice minister. {!<br><br>!}[? if difficulty < 0 : Actions - Judicial Affairs, Constitutional Reform ?]
+subtitle: Rudolf Heinze is a renowned legal scholar and long-time <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> justice minister. Actions - Judicial Affairs, Constitutional Reform
 is-card: true
 card-image: img/portraits/HeinzeRudolf.jpg
+tags: special_interest_advisor
 view-if: heinze_advisor = 0 and n_advisors < 4
-on-arrival: heinze_advisor = 1; n_advisors += 1
+on-arrival: heinze_advisor = 1; n_advisors += 1; special_interest_strength += 5
 go-to: advisor_menu
-tags: nonfactional_advisor
 
 Rudolf Heinze is now an advisor.
-
-
-@add_moldenhauer
-title: Paul Moldenhauer
-subtitle: Paul Moldenhauer is an economist and politician. He is a professor at the University of Cologne. {!<br><br>!}[? if difficulty < 0 : Actions - Defending Toleration, Fiscal Policy ?]
-is-card: true
-card-image: img/portraits/MoldenhauerPaul.jpg
-view-if: moldenhauer_advisor = 0 and n_advisors < 4
-on-arrival: moldenhauer_advisor = 1; n_advisors += 1
-go-to: advisor_menu
-tags: nonfactional_advisor
-
-Paul Moldenhauer is now an advisor.

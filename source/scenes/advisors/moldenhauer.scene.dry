@@ -1,6 +1,6 @@
 title: Paul Moldenhauer
 is-pinned-card: true
-tags: advisor
+tags: advisor, liberal
 card-image: img/portraits/MoldenhauerPaul.jpg
 view-if: moldenhauer_advisor = 1
 new-page: true
@@ -19,9 +19,10 @@ title: Defending Toleration
 subtitle: Moldenhauer supports cooperation with the bourgeois parties.
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if not dvp_toleration: The <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> is not in toleration. ?]
 choose-if: spd_in_government = 0 and spd_toleration = 1 and advisor_action_timer = 0
-on-arrival: advisor_action_timer = 6; left_dissent -= 10; neorevisionist_dissent -= 8; center_dissent -= 5
+on-arrival: advisor_action_timer = 6; nationalist_dissent -= 10; industrialist_dissent -= 8; labor_dissent -= 5
 
 We have reduced dissent among the anti-toleration factions.
+
 
 @finance_ministry_
 title: Fiscal Policy

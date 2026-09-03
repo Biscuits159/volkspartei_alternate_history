@@ -7,8 +7,9 @@ new-page: true
 
 = Otto Colosser
 
-WIP
+Otto Colosser is a prominent politician within the Wirtschaftspartei and their chief propagandist.
 
+- @media_
 - @colosser_campaign
 - @root: Return to main
 
@@ -17,4 +18,16 @@ title: Campaign
 subtitle: Colosser is a skilled agitator. He can get us more support among the middle class.
 choose-if: advisor_action_timer <= 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: new_middle_dvp += 6; old_middle_dvp += 8
+on-arrival: advisor_action_timer = 6; new_middle_dvp += 6*(1-dissent); old_middle_dvp += 8*(1-dissent)
+
+Colosser campaigns for our party among both the new and old middle classes.
+
+
+@media_
+title: Media
+subtitle: Manage our party's newspapers and media.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+on-arrival: advisor_action_timer = 6; media_timer -= 6; last_advisor_action = 1
+go-to: media
+

@@ -7,19 +7,38 @@ new-page: true
 
 = Anton Erkelenz
 
-WIP
+Anton Erkelenz is a member of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> situated firmly in the party's left. He advocates for liberalism and the workers' movement to be brought together.
 
-- @emergency_fundraising
+- @build_up_progressives
+- @campaign_among_workers
+- @SPD_relation
 - @root: Return to main
 
-@emergency_fundraising
-title: Emergency Fundraising
-subtitle: An emergency infusion of resources.
+@build_up_progressives
+title: Rally the progressives
+subtitle: Push the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> to adopt a more progressive stance.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 6; resources += dues
-#view-if: difficulty < 1
+on-arrival: advisor_action_timer = 6; progressive_strength += 10; democratization += 1; progressive_dissent -= 10; peoples_conservative_dissent += 8; industrialist_dissent += 8
 
-# Schumacher's emergency fundraising is available on all difficulties.
+We have increase the strength of the progressives within our party. The industrialists and [? if peoples_conservatives_dvp: and People's Conservatives ?] factions are dissastified.
+ 
 
-We have gained +[+ dues +] resources.
+@campaign_among_workers
+title: Campaign among the working class
+subtitle: This is the <span style="color: #E3000F;">**SPD**</span>'s domain, and challenging their dominance will not be easy.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+on-arrival: advisor_action_timer = 6; workers_dvp += 4*(1-dissent)
+
+We manage to rally the a few of the workers to our cause.
+
+
+@SPD_relation
+title: Relations with the <span style="color: #E3000F;">**SPD**</span>.
+subtitle: Improve our standing with the <span style="color: #E3000F;">**socialists**</span>.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+on-arrival: advisor_action_timer = 6; spd_relation += 6*(1 - dissent); industrialist_dissent += 15
+
+We reach out to the <span style="color: #E3000F;">**SPD**</span>'s reformist wing, who welcomes our efforts. The Industrialists are up in arms at us.

@@ -1,6 +1,6 @@
 title: Rudolf Heinze
 is-pinned-card: true
-tags: advisor
+tags: advisor, special_interest
 card-image: img/portraits/HeinzeRudolf.jpg
 view-if: heinze_advisor = 1
 new-page: true 

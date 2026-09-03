@@ -7,7 +7,7 @@ new-page: true
 
 = Hans Bechly
 
-Bechly is a leader of the DHV.
+Bechly is a leader of the DHV, the German National Retail Clerks Association.
 
 - @organizing
 - @union_unity
@@ -22,11 +22,12 @@ on-arrival: advisor_action_timer = 6; workers_dvp += 1*(1-dissent); new_middle_d
 
 We have increased our organizing among the workers.
 
+
 @union_unity
 title: Union-party coordination
-subtitle: Reduce dissent among the unions.
+subtitle: Shift the party towards the liberal unions.
 choose-if: advisor_action_timer <= 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 6; labor_dissent -= 5; labor_strength += 5
+on-arrival: advisor_action_timer = 6; labor_strength += 10; labor_dissent -= 8; industrialist_dissent += 5
 
 We have reduced tensions with the Labor faction, and increased its strength in the party.

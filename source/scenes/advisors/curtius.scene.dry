@@ -11,8 +11,8 @@ Julius Curtius is one of our foreign policy leaders and a close ally of Stresema
 
 - @curtius_international
 - @curtius_foreign
-- @party_discipline
-- @snap_election
+- @coalition
+- @end_game
 - @root: Return to main
 
 @curtius_international
@@ -23,6 +23,7 @@ choose-if: advisor_action_timer == 0
 on-arrival: advisor_action_timer = 6; international_relations_timer -= 12; last_advisor_action = 1
 go-to: international_relations
 
+
 @curtius_foreign
 title: Foreign Policy
 subtitle: As Foreign Minister, Curtius can set our foreign policy.
@@ -32,21 +33,20 @@ on-arrival: advisor_action_timer = 6; foreign_policy_timer -= 8; last_advisor_ac
 go-to: foreign_policy
 
 
-@party_discipline
-title: Party Discipline
-subtitle: Reduce dissent across the party.
-choose-if: advisor_action_timer = 0
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 6; liberal_dissent -= 10; labor_dissent -= 10; industrialist_dissent -= 5; nationalist_dissent -= 5; neorevisionist_dissent -= 5
+@coalition
+title: Negotiating with the Coalition
+subtitle: Curtis can improve our relationships with our coalition partners.
+choose-if: advisor_action_timer <= 0 and dvp_in_government = 1
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if not dvp_in_government: The <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> is not in government. ?]
+on-arrival: advisor_action_timer = 6; coalition_dissent -= 1 if spd_in_government = 1 and coalition_dissent > 0; z_relation += 5*(1-dissent); ddp_relation += 5*(1-dissent); spd_relation += 5*(1-dissent)
 
-We have enforced party discipline to reduce dissent across all factions.
+We have improved our relations with the Z, [+ ddp_name +], and SPD, and reduced tensions with the coalition.
 
 
-@snap_election
-title: Snap Election
-subtitle: Call a snap election.
-unavailable-subtitle: [? if chancellor != "Curtius" : Curtius must be Chancellor or President. ?][? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-choose-if: advisor_action_timer == 0 and chancellor == "Curtius"
-on-arrival: advisor_action_timer = 6; next_election_time = time + 3 if next_election_time > time+3; next_election_month = month + 3 if next_election_time >= time + 3; next_election_year = year if next_election_time >= time+3; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12;
-
-We have called for new elections, set for [+ next_election_month : month +] [+ next_election_year +].
+@end_game
+title: End the game.
+view-if: year >= 1935
+choose-if: year >= 1935
+subtitle: We can end the game now.
+unavailable-subtitle: Curtis wants to keep playing.
+go-to: 1935_end

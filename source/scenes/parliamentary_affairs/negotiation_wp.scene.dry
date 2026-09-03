@@ -22,7 +22,7 @@ go-to: negotiation_others
 subtitle: -2 budget
 unavailable-subtitle: -2 budget - [? if finance_minister_party != dvp_name: The <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> does not have the Finance Ministry ?][? if upper_tax_rates < -5: Tax rates are already too low. ?]
 choose-if: finance_minister_party = dvp_name and budget >= 2 and upper_tax_rates >= -5
-on-arrival: wp_relation += 5
+on-arrival: wp_relation += 5*(1-dissent)
 go-to: fiscal_policy.cut_rich
 
 

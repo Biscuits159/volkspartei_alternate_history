@@ -7,11 +7,12 @@ new-page: true
 
 = Rochus von Rheinbaben
 
-WIP.
+Baron Rochus von Rheinbaben is a politician and activist often tasked with reaching out to other non-socialist republican parties.
 
 - @media_
+- @build_support_liberal_peoples_party: Build support for a united liberal party
+- @negotiate_minor_parties
 - @root: Return to main
-
 
 @media_
 title: Media
@@ -20,3 +21,21 @@ choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 on-arrival: advisor_action_timer = 6; media_timer -= 6; last_advisor_action = 1
 go-to: media
+
+
+@build_support_liberal_peoples_party
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?] [? if ddp_relation < 50: Our relations with [+ ddp_name +] are not good enough. ?]
+view-if: not lvp_formed and not nfvp_formed
+choose-if: advisor_action_timer == 0 and ddp_relation >= 50
+on-arrival: advisor_action_timer = 6; liberal_peoples_party_timer = 6; liberal_peoples_party_progress += 1; liberal_strength += 5; nationalist_strength -= 5; nationalist_dissent += 5; dvp_left += 1; ddp_relation += 3; ddp_right += 1; dnvp_relation -= 2; dnvp_relation -= 5 if dnvp_leader = "Hugenberg"
+
+We are pushing forward proposals for a united liberal party against the nationalists within our party. We are also building ties with [+ ddp_name +] organizations.
+
+
+@negotiate_minor_parties
+title: Negotiate with small bourgeois parties
+subtitle: Reach out to the minor bourgeois parties
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+on-arrival: advisor_action_timer = 6; wp_relation += 4*(1-dissent); dbp_relation += 4*(1-dissent); cnblp_relation += 4*(1-dissent)
+

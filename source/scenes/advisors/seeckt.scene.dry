@@ -7,21 +7,12 @@ new-page: true
 
 = Hans von Seeckt
 
-WIP.
+Hans von Seeckt was the chief of staff to Field Marshall August von Mackensen and, later, the Reichswehr. He modernized and reorganized our army, using clever tricks to get around the liminations of Versailles.
 
 - @building_the_right
-- @military_affairs
-- @against_toleration
+- @anti-semitic_campaign
+- @schacht_plan
 - @root: Return to main
-
-@building_the_right
-title: Building the Right
-subtitle: Push the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> to the right.
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-choose-if: advisor_action_timer = 0
-on-arrival: advisor_action_timer = 6; nationalist_strength += 6; nationalist_dissent -= 8; liberal_dissent += 2; dvp_right += 2
-
-We have increased the strength of the nationalist faction with the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>.
 
 @military_affairs
 title: Military affairs
@@ -31,14 +22,21 @@ unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +
 on-arrival: advisor_action_timer = 6; last_advisor_action = 1
 go-to: military_policy
 
-@against_toleration
-title: Against toleration
-view-if: not constructive_vonc
-subtitle: Break our current toleration arrangement, and bring down the government via a no-confidence vote.
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?] [? if dvp_toleration == 0 : The <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> is not currently in toleration. ?]
-choose-if: advisor_action_timer == 0 and dvp_toleration
-on-arrival: advisor_action_timer = 6; next_election_time = time + 3 if next_election_time > time+3; next_election_month = month + 3 if next_election_time >= time + 3; next_election_year = year if next_election_time >= time + 3; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12; dvp_toleration = 0; nationalist_strength += 8; pro_republic -= 4; new_middle_dvp -= 3; rural_dvp -= 3; old_middle_dvp -= 3; catholics_dvp -= 3; liberal_dissent += 8
 
-We have grown tired of the burdens of toleration, and have called a vote of no confidence in the current minority government.
+@anti-semitic_campaign
+title: Campaign for antisemitism
+subtitle: Let us use the stab-in-the-back to our advantage.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer = 0
+on-arrival: advisor_action_timer = 6; old_middle_dvp += 3*(1-dissent); rural_dvp += 2*(1-dissent); nationalism += 2*(1-dissent); pro_republic -= 2*(1-dissent); nationalist_strength += 5*(1-dissent)
 
-New elections have been set for [+ next_election_month : month +] [+ next_election_year +].
+We use the sporadic antisemitism to our advantage, challenging the <span style="color: #3f7bc1;">**DNVP**</span> and the <span style="color: #954B00;">**nazis**</span>.
+
+
+@schacht_plan
+title: Support Schacht's economic plan
+subtitle: Call for a mass remilitarization plan.
+choose-if: advisor_action_timer = 0 and schacht_plan_adopted = 0 and black_thursday_seen = 1
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?] [? if lautenbach_plan_adopted > 0 : We have already adopted Lautenbach's economic plan. ?] [? if black_thursday_seen == 0 : We are not currently in an economic crisis. ?]
+on-arrival: advisor_action_timer = 6
+go-to: crisis_program.support_schacht

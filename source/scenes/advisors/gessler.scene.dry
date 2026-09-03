@@ -8,10 +8,29 @@ new-page: true
 
 = Otto Gessler
 
-WIP
+Otto Gessler is a prominent figure from the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> and longtime Minister of Defence.
 
+- @military_affairs
+- @police_affairs
 - @snap_election
 - @root: Return to main
+
+@military_affairs
+title: Military Affairs
+subtitle: We can set our military policy.
+choose-if: advisor_action_timer == 0 and spd_in_government and reichswehr_minister_party == dvp_name
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if not dvp_in_government : The <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> is not in government. ?][? if reichswehr_minister_party != dvp_name: The <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> does not have the Reichswehr ministry. ?]
+on-arrival: advisor_action_timer = 6; last_advisor_action = 1
+go-to: military_policy
+
+
+@police_affairs
+title: Police Affairs 
+subtitle: We can set our police policy. 
+choose-if: advisor_action_timer == 0 and dvp_in_government and interior_minister_party == dvp_name
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if not dvp_in_government: The <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> is not in government. ?][? if interior_minister_party != dvp_name: The <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> does not have the Interior ministry. ?]
+on-arrival: advisor_action_timer = 6; police_timer -= 6; last_advisor_action = 1
+go-to: police
 
 
 @snap_election

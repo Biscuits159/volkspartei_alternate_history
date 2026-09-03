@@ -7,42 +7,40 @@ new-page: true
 
 = Hans Raumer
 
-WIP.
+Hans Raumer is a member from our party's right wing and a representative from Germany's industry. He briefly served as Minister of Economics under Stresemann.
 
-- @clear_agenda
 - @party_discipline
-- @end_game
+- @industrialist_funding
+- @build_up_industrialists
 - @root: Return to main
 
-@clear_agenda
-title: Clear the agenda
-subtitle: Removes all cards from the hand.
-choose-if: advisor_action_timer = 0
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: {!
-Q.advisor_action_timer = 6;
-if (Q.difficulty >= 0) {
-    window.dendryUI.dendryEngine.state.currentHands['main'] = [];
-} else {
-    window.dendryUI.dendryEngine.state.currentHands['main.main_easy'] = [];
-}
-!}
-
-All items from our agenda have been cleared.
 
 @party_discipline
 title: Party Discipline
 subtitle: Reduce dissent across the party.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 6; nationalist_dissent -= 5; labor_dissent -= 5; industrialist_dissent -= 10; liberal_dissent -= 10; neorevisionist_dissent -= 5
+on-arrival: advisor_action_timer = 6; nationalist_dissent -= 5; labor_dissent -= 5; industrialist_dissent -= 10; liberal_dissent -= 10
 
 We have enforced party discipline to reduce dissent across all factions.
 
 
-@end_game
-title: End the game.
-choose-if: year >= 1935
-subtitle: We can end the game now.
-unavailable-subtitle: Raumer wants to keep playing.
-go-to: 1935_end
+@industrialist_funding
+title: Industrialist Funding
+subtitle: Request more resources from the industry.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+on-arrival: advisor_action_timer = 6; resources += 3; industrialist_strength += 5
+
+We have requested more funding from the industrialists, they have raise d their influence within the party in doing so.
+
+
+@build_up_industrialists
+title: Advocate for the industrialists
+subtitle: Increase the influence of Germany's industries within the party.
+choose-if: advisor_action_timer = 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+on-arrival: advisor_action_timer = 6; industrialist_strength += 10; industrialist_dissent -= 10; liberal_dissent += 8; labor_dissent += 8
+
+The industrialists have always been our main interest group and the party must be reminded of this. The liberal and labor factions are displeased.
+

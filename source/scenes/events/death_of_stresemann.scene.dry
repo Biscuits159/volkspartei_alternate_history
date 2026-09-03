@@ -8,6 +8,8 @@ new-page: true
 on-arrival: {!
 Q.no_stresemann = 1;
 if (Q.foreign_minister == "Stresemann") Q.foreign_minister = "Curtius";
+if (Q.economic_minister == "Curtius") Q.economic_minister = "Krohne";
+n_advisors -= 1 if stresemann_advisor == 1; stresemann_advisor = 0
 
 Q.stresemann_survive_points = 0;
 if (Q.lvp_formed || Q.nfvp_formed) Q.stresemann_survive_points += 1;

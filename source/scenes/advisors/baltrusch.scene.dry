@@ -7,6 +7,36 @@ new-page: true
 
 = Friedrich Baltrusch
 
-Baltrusch is WIP.
+Friedrich Baltrusch is one of the leaders of the Young German Order and a close assocaite of the <span style="color: #000000;">**Center**</span>'s Adam Stegerwald.
 
+- @organizing
+- @union_unity
+- @Improve_relations_center
 - @root: Return to main
+
+@organizing
+title: Organizing workers
+subtitle: Improve our standing among the workers.
+choose-if: advisor_action_timer <= 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+on-arrival: advisor_action_timer = 6; workers_dvp += 1*(1-dissent); new_middle_dvp += 3*(1-dissent); labor_strength += 2
+
+We have increased our organizing among the workers.
+
+@union_unity
+title: Union-party coordination
+subtitle: Shift the party towards the liberal unions.
+choose-if: advisor_action_timer <= 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+on-arrival: advisor_action_timer = 6; labor_strength += 10; labor_dissent -= 8; industrialist_dissent += 5
+
+We have reduced tensions with the Labor faction, and increased its strength in the party.
+
+@Improve_relations_center
+title: <span style="color: #000000;">**Center Party**</span> relations
+subtitle: Improve our relations with the <span style="color: #000000;">**Center Party**</span>.
+choose-if: advisor_action_timer <= 0
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+on-arrival: advisor_action_timer = 6; z_relation += 5*(1 - dissent); z_relation += 4*(1 - dissent) if z_leader = "Stegerwald"
+
+Baltrusch has used his connections to improve our standing with the <span style="color: #000000;">**Center Party**</span>.

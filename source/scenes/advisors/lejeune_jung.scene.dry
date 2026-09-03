@@ -7,26 +7,47 @@ new-page: true
 
 = Paul Lejeune-Jung
 
-WIP.
+Paul Lejeune-Jung was one of the few high-profile catholics from the <span style="color: #3f7bc1;">**DNVP**</span> and a member of its moderate wing. He is an economist and a foreign policy expert, who advocates for increased supranational cooperation among European States.
 
-- @rally_catholics
+- @eb_negotiation
+- @lejeune-jung_foreign
 - @economic_policy
+- @organizing_catholics
 - @root: Return to main
+
+@eb_negotiation
+title: Europabund Negotiations
+subtitle: Lejeune-Jung is a proponent of European federalism.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer == 0; europabund = 0
+on-arrival: advisor_action_timer = 6; eb_progress += 1
+
+Lejeune-Jung meets with representatives of French farmers and industrialists to negotiate a common European market.
+
+
+@lejeune-jung_foreign
+title: Foreign Policy
+subtitle: We can set our foreign policy.
+unavailable-subtitle: [? if not dvp_in_government: The <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> is not in government. ?] [? if foreign_minister_party != dvp_name : The <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> does not control the Foreign Ministry. ?][? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
+choose-if: advisor_action_timer == 0 and dvp_in_government and foreign_minister_party == dvp_name
+on-arrival: advisor_action_timer = 6; foreign_policy_timer -= 8; last_advisor_action = 1
+go-to: foreign_policy
+
 
 @economic_policy
 title: Economic Policy
-subtitle: As Economic Minister, Lejeune-Jung can enact economic policies.
-unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if dvp_in_government = 0: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> not in government: ?][? if economic_minister_party != dvp_name: The <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> does not control the Economic Ministry. ?][? if foreign_minister != "Lejeune-Jung" : Lejeune-Jung is not the Economic Minister. ?][? if not economic_plan: We have not adopted any Economic Plan yet. ?]
+subtitle: We can enact economic policies.
+unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?][? if dvp_in_government = 0: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> not in government: ?][? if economic_minister_party != dvp_name: The <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> does not control the Economic Ministry. ?][? if not economic_plan: We have not adopted any Economic Plan yet. ?]
 choose-if: advisor_action_timer == 0 and dvp_in_government and economic_minister_party == dvp_name and economic_minister = "Lejeune-Jung" and economic_plan > 0
 on-arrival: advisor_action_timer = 6; economic_policy_timer = 0; last_advisor_action = 1
 go-to: economic_policy
 
 
-@rally_catholics
-title: Rally catholics
+@organizing_catholics
+title: Organizing Catholics
 subtitle: Lejeune-Jung's strategies are aimed at catholic voters.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0: [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: catholics_dvp += 2*(1-dissent); advisor_action_timer = 6
+on-arrival: catholics_dvp += 5*(1-dissent); advisor_action_timer = 6
 
-WIP.
+Lejeune-Jung, one of the few high-profile catholics from the <span style="color: #3f7bc1;">**DNVP**</span>, helps us expand our reach among political catholics.
