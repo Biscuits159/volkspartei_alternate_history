@@ -246,13 +246,13 @@ on-arrival: {!
 
 WIP
 
-- @lemmer: Ernst Lemmer will lead our party.
-- @dietrich: Hermann Dietrich will lead our party.
-- @luther: Hans Luther will lead our party.
-- @curtius: Julius Curtius will lead our party.
-- @thiel: Otto Thiel will lead our party.
-- @raumer: Hans Raumer will lead our party.
-- @treviranus: Gottfried Treviranus will lead our party.
+- @lemmer
+- @dietrich
+- @luther
+- @curtius
+- @thiel
+- @raumer
+- @treviranus
 
 @lemmer
 subtitle: Lemmer is a prominent labor leader. <span style="color: #E0B0FF;">**Progressives**</span> + <span style="color: #DCCA4A;">**Democrats**</span> + <span style="color: #6D5298;">**Labor**</span> ([+ progressive_influence + democratic_influence + labor_influence +]%)

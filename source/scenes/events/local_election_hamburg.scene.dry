@@ -451,7 +451,6 @@ Walther Dauch was chosen.
 @petersen
 title: Carl Wilhelm Petersen, the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> candidate.
 subtitle: He is the incumbent.
-view-if: dvp_hamburg
 view-if: (dvp_hamburg and (nfvp_formed or lvp_formed)) or in_weimar_coalition_hamburg or in_grand_coalition_hamburg or in_bourgeois_coalition
 on-arrival: hamburg_leader = "Petersen"; hamburg_leader_party = ddp_name if ddp_exist; hamburg_leader_party = dvp_name if lvp_formed or nfvp_formed; pro_republic += 1
 face-image: img/portraits/PetersenCarl.jpg
