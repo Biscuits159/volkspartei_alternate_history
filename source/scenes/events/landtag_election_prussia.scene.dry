@@ -544,41 +544,37 @@ title: The coalition will choose the Minister-President.
 
 WIP
 
-- @stendel: Ernst Stendel
 - @braun: Otto Braun
 - @fischbeck: Otto Fischbeck
 - @stegerwald: Adam Stegerwald
 
-@stendel
-view-if: dvp_prussia
-choose-if: in_dvp_majority_prussia or in_bourgeois_coalition_prussia or ((in_weimar_coalition_prussia or in_grand_coalition_prussia) and (dvp_pl + ddp_pl) > spd_pl)
-unavailable-subtitle: The <span style="color: #E3000F;">**SPD**</span> can prevent him from becoming the Minister-President.
-on-arrival: prussia_leader = "Stendel"; prussia_leader_party = dvp_name;
-face-image: img/portraits/StendelErnst.jpg
-
-Ernst Stendel was chosen.
-
 @fischbeck
+title: Ernst Stendel, the [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?][? if !ddp_exist: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> ?] candidate.
+subtitle: A member of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> who briefly served as Prussian Minister of Trade.
 view-if: (dvp_prussia and (lvp_formed or nfvp_formed)) or in_grand_coalition_prussia or in_weimar_coalition_prussia or in_bourgeois_coalition_prussia
 choose-if: in_dvp_majority_prussia or in_bourgeois_coalition_prussia or (in_grand_coalition_prussia and (dvp_pl + ddp_pl) > spd_pl) or (in_weimar_coalition_prussia and dvp_prussia and (dvp_pl + ddp_pl) > spd_pl) or (in_weimar_coalition_prussia and not dvp_prussia and ddp_pl > spd_pl)
 unavailable-subtitle: The <span style="color: #E3000F;">**SPD**</span> can prevent him from becoming the Minister-President.
-on-arrival: prussia_leader = "Fischbeck"; prussia_leader_party = ddp_name if ddp_exist; prussia_leader_party = dvp_name if lvp_formed or nfvp_formed;
+on-arrival: prussia_leader = "Fischbeck"; prussia_leader_party = ddp_name if ddp_exist; prussia_leader_party = dvp_name if lvp_formed or nfvp_formed; old_middle_dvp += 2*(1-dissent); new_middle_dvp += 4*(1-dissent); pro_republic += 3*(1-dissent)
 face-image: img/portraits/FischbeckOtto.jpg
 
 Otto Fischbeck was chosen.
 
 @stegerwald
+title: Adam Stegerwald, the <span style="color: #000000;">**Center**</span> candidate.
+subtitle: He is a very high-profile member of the <span style="color: #000000;">**Center**</span> and giving him the position might tip the scales in his favor within the party.
 view-if: in_grand_coalition_prussia or in_bourgeois_coalition_prussia or in_weimar_coalition_prussia
 choose-if: in_bourgeois_coalition_prussia or (in_grand_coalition_prussia and ((dvp_pl + z_pl) > spd_pl or (spd_pl < 30 and spd_relation > 45))) or (in_weimar_coalition_prussia and dvp_prussia and ((dvp_pl + z_pl) > spd_pl or (spd_pl < 30 and spd_relation > 45))) or (in_weimar_coalition_prussia and not dvp_prussia and (z_pl) > spd_pl)
 unavailable-subtitle: The <span style="color: #E3000F;">**SPD**</span> can prevent him from becoming the Minister-President.
-on-arrival: prussia_leader = "Stegerwald"; prussia_leader_party = "Z"
+on-arrival: prussia_leader = "Stegerwald"; prussia_leader_party = "Z"; catholics_z += 4; pro_republic += 3
 face-image: img/portraits/StegerwaldAdam.jpg
 
 Adam Stegerwald was chosen.
 
 @braun
+title: Otto Braun, the <span style="color: #E3000F;">**SPD**</span> candidate.
+subtitle: The "Red Tsar" of Prussia is the expected choice.
 view-if: in_grand_coalition_prussia or in_weimar_coalition_prussia
-on-arrival: prussia_leader = "Braun"; prussia_leader_party = "SPD"
+on-arrival: prussia_leader = "Braun"; prussia_leader_party = "SPD"; workers_spd += 4; unemployed_spd += 2; socialism += 2; pro_republic += 3
 face-image: img/portraits/BraunOtto.jpg
 
 Otto Braun was chosen.

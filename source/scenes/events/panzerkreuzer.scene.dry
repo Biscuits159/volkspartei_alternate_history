@@ -9,42 +9,68 @@ new-page: true
 
 = Panzerkreuzer
 
-The Reichswehr Ministry is demanding the construction of a new battlecruiser, as part of Germany's rearmament. We enthusiastically support this initiative as do our coalition partners bar the <span style="color: #E3000F;">**SPD**</span>. While many of the <span style="color: #E3000F;">**SPD**</span>'s members are vehemently against new military spending, this vote may be necessary to preserve the coalition. The <span style="color: #E3000F;">**SPD**</span> campaigned on food for children instead of battlecruisers. Will they really betray our campaign promises?
+The Reichswehr Ministry is demanding the construction of a new battlecruiser, as part of Germany's rearmament. We enthusiastically support this initiative as do our coalition partners bar the <span style="color: #E3000F;">**SPD**</span>. The <span style="color: #E3000F;">**SPD**</span> campaigned on food for children instead of battlecruisers, it is uncertain if they will betray their campaign promises. Only the <span style="color: #8B0000;">**KPD**</span> is sure to vote against, as the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> will likely yield to right-wing pressure.
 
-- @vote_yes: The <span style="color: #E3000F;">**SPD**</span> votes yes, for constructing the battlecruiser.
+- @vote_two: The <span style="color: #E3000F;">**SPD**</span> abstains from the vote.
+- @vote_yes
 - @vote_no: The <span style="color: #E3000F;">**SPD**</span> votes no, against constructing the battlecruiser.
-- @abstain: The <span style="color: #E3000F;">**SPD**</span> abstains from the vote.
+
+@vote_two
+title: Why not two battlecruisers?
+choose-if: in_bourgeois_coalition == 1 and z_relation >= 50 and DNVP_relation >= 50
+unavailable-subtitle: Our coalition partners will not allow this.
+on-arrival: nationalist_strength += 10; panzerkreuzer_funded = 1; ddp_cohesion -= 1; workers_dvp -= 5; reichswehr_loyalty += 0.07 if reichswehr_loyalty < 1; reichswehr_strength += 20; west_relation -= 1; nationalism += 3*(1-dissent); spd_relation -= 8*(1-dissent)
+
+Remilitarisation and restoring our lost prestige are the priorities of this government, and a capable fleet is critical to this goal. The <span style="color: #E3000F;">**SPD**</span> marshall every resource to change the outcome of the vote, to no avail. The Western Powers raise alarm at our policy.
+
 
 @vote_yes
+title: We will vote yes, for constructing the battlecruiser, naturally.
 on-arrival: liberal_strength += 5; panzerkreuzer_funded = 1; coalition_dissent -= 1 if in_grand_coalition; workers_spd -= 3; ddp_cohesion -= 1
 
 <span style="color: #E3000F;">**SPD**</span>'s grassroots party members are shocked by their intransigence! Many party branches have begun agitating against the cabinet, and our Reichstag members even plan a full vote on the proposal, contravening the government's decision.
 
 The campaign against the battlecruiser fails, with only the dissident <span style="color: #E3000F;">**SPD**</span> and <span style="color: #8B0000;">**KPD**</span> members voting against. The ship will be built.
 
+
 @vote_no
-on-arrival: spd_relation -= 3; coalition_dissent += 1 if in_grand_coalition; pacifism += 1; nationalism -= 5*(1-dissent); coalition_dissent += 1; ddp_cohesion -= 1
-go-to: vote_no_chancellor if chancellor_party = "SPD"; vote_no_pass if chancellor_party != "SPD"
+title: We will vote no.
+subtitle: What are we doing?
+choose-if: (liberal_strength + labor_strength) > 1.5*(industrialist_strength + nationalist_strength) and in_grand_coalition == 1
+unavailable-subtitle: The party will not allow this.
+on-arrival: nationalist_dissent += 10; industrialist_dissent += 5; ddp_cohesion += 1
+go-to: nevermind; convince_ddp
 
-@vote_no_chancellor
-go-to: braun if chancellor = "Braun"; muller if chancellor = "Müller"
+Not building the battlecruiser would severely alienate our industrialist and nationalist factions. Still, even with our dissenting members, if we can convince the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>, we might just scrape enough votes to kill the project.
 
-@braun
-on-arrival: spd_relation -= 3; panzerkreuzer_funded = 0; nationalism -= 3*(1-dissent); panzerkreuzer_failed = 1; workers_spd += 5*(1-dissent); ddp_cohesion += 1
+- @nevermind
+- @convince_ddp
 
-We and our coalition partners are shocked by <span style="color: #E3000F;">**SPD**</span>'s intransigence! However, Chancellor Braun manages to persuade our cabinet ministers to drop the plan to vote on the battlecruiser. The ship will not be built!
+@nevermind
+title: Nevermind, we will vote for building the ship.
+on-arrival: liberal_strength += 5; panzerkreuzer_funded = 1; coalition_dissent -= 1 if in_grand_coalition; workers_spd -= 3; ddp_cohesion -= 1
 
-@muller
-on-arrival: panzerkreuzer_funded = 1
+<span style="color: #E3000F;">**SPD**</span>'s grassroots party members are shocked by their intransigence! Many party branches have begun agitating against the cabinet, and our Reichstag members even plan a full vote on the proposal, contravening the government's decision.
 
-We and our coalition partners are shocked by <span style="color: #E3000F;">**SPD**</span>'s intransigence! Despite Chancellor Müller's rejection of the proposal, bourgeois parties bring the matter to a Reichstag vote, which easily passes, with only the <span style="color: #E3000F;">**SPD**</span> and <span style="color: #8B0000;">**KPD**</span> voting against. The ship will be built.
+The campaign against the battlecruiser fails, with only the dissident <span style="color: #E3000F;">**SPD**</span> and <span style="color: #8B0000;">**KPD**</span> members voting against. The ship will be built.
 
-@vote_no_pass
-on-arrival: panzerkreuzer_funded = 1
+@convince_ddp
+title: Let us campaign against building the ship.
+subtitle: -1 resource
+choose-if: resources >= 1
+unavailable-subtitle: Not enough resources.
+on-arrival: resources -= 1; liberal_strength += 10; labor_strength += 5; nationalist_dissent += 50; industrialist_dissent += 20; ddp_cohesion += 1; ddp_relation += 5*(1-dissent); spd_relation += 8*(1-dissent)
+go-to: not_built if (kpd_r + spd_r + ddp_r + dvp_r*(liberal_strength + labor_strength)/100) >= 50; built if (kpd_r + spd_r + ddp_r + dvp_r*(liberal_strength + labor_strength)/100) < 50
 
-We and our coalition partners are shocked by <span style="color: #E3000F;">**SPD**</span>'s intransigence! Chancellor [+ chancellor +] brings the matter to a Reichstag vote, which passes with all parties in favor except the <span style="color: #E3000F;">**SPD**</span> and <span style="color: #8B0000;">**KPD**</span>. The ship will be built.
+We rush a campaign through the Reichstag, emphasizing fiscal responsibility, relations with the West, or even arguing that the budget saved could be redirected as tax cuts for businesses. We have convinced the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> to vote against building the ship, we can also expect the <span style="color: #E3000F;">**SPD**</span> to unanimously vote no. The <span style="color: #000000;">**Center**</span>'s party discipline ensures they will vote yes, however.
 
-@abstain
-on-arrival: panzerkreuzer_funded = 1; ddp_cohesion -= 1
+@not_built
+on-arrival: panzerkreuzer_funded = 0; workers_spd += 5; workers_dvp += 3*(1-dissent); ddp_cohesion += 1; z_relation -= 5; DNVP_relation -= 10; spd_relation += 5*(1-dissent); nationalism -= 2*(1-dissent); dvp_left += 2
 
-We and our coalition partners are shocked by <span style="color: #E3000F;">**SPD**</span>'s intransigence! Despite their abstention, the vote in the Reichstag goes through, with all parties in favor except the <span style="color: #E3000F;">**SPD**</span> and <span style="color: #8B0000;">**KPD**</span>. The ship will be built.
+We did it! The ship will not be built, we have prevailed against Germany's militarism, the <span style="color: #E3000F;">**SPD**</span> is grateful that they were able to keep their campaign promisses and pacifism is starting to gain ground within the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>. Unfortunately, the right-wing parties are furious at our actions.
+
+@built
+on-arrival: liberal_strength += 5; panzerkreuzer_funded = 1; ddp_cohesion -= 1
+
+Despite our efforts, the battlecruiser will be built.
+

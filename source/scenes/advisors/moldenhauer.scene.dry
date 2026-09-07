@@ -12,6 +12,7 @@ Paul Moldenhauer, born in 1876 in Cologne, is an economist and politician. He is
 
 - @toleration
 - @finance_ministry_
+- @end_game
 - @root: Return to main
 
 @toleration
@@ -31,3 +32,13 @@ unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +
 choose-if: advisor_action_timer == 0 and dvp_in_government == 1 and finance_minister_party == dvp_name
 on-arrival: advisor_action_timer = 6; fiscal_policy_timer -= 6; last_advisor_action = 1
 go-to: fiscal_policy
+
+
+@end_game
+title: End the game.
+view-if: year >= 1935
+choose-if: year >= 1935
+subtitle: We can end the game now.
+unavailable-subtitle: Moldenhauer wants to keep playing.
+go-to: 1935_end
+

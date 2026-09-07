@@ -433,31 +433,39 @@ WIP
 - @leopold: Josef Leopold
 
 @straffner
+title: Sepp Straffner, the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> candidate.
+subtitle: He is a former member of the National Council and a politician in the pan-German and National Liberal <span style="color: #3F7BC1;">**Greater German People's Party**</span>.
 view-if: dvp_austria
 choose-if: in_dvp_majority_austria or (in_grand_coalition_austria and (dvp_al + ddp_al > spd_al) and (dvp_al + ddp_al > z_al)) or (in_bourgeois_coalition_austria and (dvp_al + ddp_al > z_al))
 unavailable-subtitle: We lack enough influence to appoint our Minister-President.
-on-arrival: austria_leader = "Straffner"; austria_leader_party = dvp_name;
+on-arrival: austria_leader = "Straffner"; austria_leader_party = dvp_name; old_middle_dvp += 4*(1-dissent); new_middle_dvp += 2*(1-dissent); pro_republic += 3*(1-dissent)
 face-image: img/portraits/StraffnerSepp.jpg
 
 Sepp Straffner was elected.
 
 @miklas
+title: Wilhelm Miklas, the <span style="color: #69A2BE;">**CSP**</span> candidate.
+subtitle: He was the President of Austria since 1928 and is an opponent of German nationalism.
 view-if: in_grand_coalition_austria or in_bourgeois_coalition_austria
-on-arrival: austria_leader = "Miklas"; austria_leader_party = "CSP"
+on-arrival: austria_leader = "Miklas"; austria_leader_party = "CSP"; catholics_z += 4; pro_republic += 3
 face-image: img/portraits/MiklasWilhelm.jpg
 
 Wilhelm Miklas was elected.
 
 @renner
+title: Karl Renner, the <span style="color: #E3000F;">**SPD**</span> candidate.
+subtitle: He is a longtime member of the <span style="color: #E3000F;">**SPO**</span> and was briefly Chancellor from 1918 to 1920.
 view-if: in_grand_coalition_austria
-on-arrival: austria_leader = "Renner"; austria_leader_party = "SPD"
+on-arrival: austria_leader = "Renner"; austria_leader_party = "SPD"; workers_spd += 4; unemployed_spd += 2; socialism += 2; pro_republic += 3
 face-image: img/portraits/RennerKarl.jpg
 
 Karl Renner was elected.
 
 @leopold
+title: Josef Leopold, <span style="color: #954B00;">**NSDAP**</span> candidate.
+subtitle: Although a <span style="color: #954B00;">**nazi**</span>, he supported an independent Austria rather than a union with Germany.
 view-if: in_far_right_coalition_austria
-on-arrival: austria_leader = "Leopold"; austria_leader_party = "NSDAP"
+on-arrival: austria_leader = "Leopold"; austria_leader_party = "NSDAP"; rural_nsdap += 4; old_middle_nsdap += 2; nationalism += 2; pro_republic -= 3
 
 Josef Leopold was elected.
 

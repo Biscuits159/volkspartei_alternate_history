@@ -1,0 +1,30 @@
+title: <span style="color: #3F7BC1;">**DNVP**</span> Leadership Vote
+subtitle: The <span style="color: #3F7BC1;">**DNVP**</span> decides their fate...
+view-if: dnvp_leader = "Triumvirate" and year = 1929 and month = 11
+max-visits: 1
+tags: event
+face-image: img/portraits/HergtOskar.jpg
+new-page: true
+
+= <span style="color: #3F7BC1;">**DNVP**</span> Congress
+
+The internal dissent that has always plagued the <span style="color: #3F7BC1;">**DNVP**</span> seems to have only grown stronger in tha past year. Hugenberg has alienated most of the party's moderates and, with the fallout of the Young Plan, it seems a party split is inevitable.
+
+- @resultsdnvp: The congress unfolds...
+
+@resultsdnvp
+go-to: hugenberg if young_plan_signatures >= 10 and pro_republic < 70; treviranus if young_plan_signatures < 10 or pro_republic >= 70
+
+@hugenberg
+on-arrival: dnvp_leader = "Hugenberg"; dnvp_ideology = "Radical"; workers_dnvp -= 2; pro_republic -= 2; dvp_left += 1
+face-image: img/portraits/HugenbergAlfred.jpg
+go-to: kvp_formed
+
+With the Young Plan reaching the 10% threshold and Hugenberg expanding his influence throughout the previous year, he is able to sway a majority of the party to his side. In response, the moderates within the party have left to form the Konservative Volkspartei.
+
+@treviranus
+on-arrival: dnvp_leader = "Treviranus"; dnvp_tory_democracy = 1; rural_dnf += 3; rural_dnvp -= 3; new_middle_dnvp += 3; workers_dnvp += 1; catholics_dnvp += 3; pro_republic += 5; dvp_left += 1; dnvp_relation += 10 if dvp_ideology = "Left"; dnvp_relation -= 5 if dvp_ideology = "Right";
+face-image: img/portraits/TreviranusGottfried.jpg
+go-to: dnf_formed
+
+Gottfried Treviranus has been elected as leader of the <span style="color: #3F7BC1;">**DNVP**</span>, he is a member of the Young Conservative faction and supportive of transforming the party into a constructive conservative force. The defeat of the radical right and national conservative forces within the <span style="color: #3F7BC1;">**DNVP**</span> helps pave the way for Treviranus' vision of a Christian Democratic, albeit nationalist party.

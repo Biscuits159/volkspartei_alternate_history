@@ -7,7 +7,7 @@ new-page: true
 
 = <span style="color: #00A2DE;">**Nationalfortschrittliche Volkspartei**</span> formed
 
-Over the past few months, Gustav Stressermann and Hans Luther have been engaged in protracted negotiations over the future of the german bourgeoise movement with Koch-Weser of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> [?if dnvp_leader="Hugenberg": and some of the more republican elements of the <span style="color: #3F7BC1;">**DNVP**</span>, following the election of the reactionary Alfred Huegenberg to their leadership?]. Despite Stressermann’s declining health, the formation of the Bourgeoise Group has enabled our parties to move closer together. Now, the german bourgoisie finally have a united party to represent their interests - the <span style="color: #00A2DE;">**NFVP**</span>. Many small bourgeoise parties have been intrigued st this development, with the possiblity of merging with them now closer than ever before.
+Over the past few months, Gustav Stressermann and Hans Luther have been engaged in protracted negotiations over the future of the german bourgeoise movement with Koch-Weser of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> [?if dnvp_leader="Hugenberg": and some of the more republican elements of the <span style="color: #3F7BC1;">**DNVP**</span>, following the election of the reactionary Alfred Hugenberg to their leadership?]. Despite Stressermann’s declining health, the formation of the Bourgeoise Group has enabled our parties to move closer together. Now, the german bourgoisie finally have a united party to represent their interests - the <span style="color: #00A2DE;">**NFVP**</span>. Many small bourgeoise parties have been intrigued by this development, with the possiblity of merging with them now closer than ever before.
 
 - @leader: We now much select an interim leader for our new party until we hold our first party congress.
 
@@ -21,7 +21,7 @@ We must select an interim leader to lead our party until our first congress, in 
 
 @dietrich
 subtitle: Dietrich was the former leader of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>'s business wing.
-on-arrival: dvp_leader = "Dietrich"
+on-arrival: dvp_leader = "Dietrich"; democratic_strength += 10; democratization += 1; democratic_dissent -= 5
 face-image: img/portraits/DietrichHermann.jpg
 go-to: nfvp_formed
 
@@ -30,7 +30,7 @@ Supported by the party’s newly integrated Democrats and Progressives, along wi
 
 @curtius
 subtitle: Curtius belongs to the Stresemannite wing of our party.
-on-arrival: dvp_leader = "Curtius"
+on-arrival: dvp_leader = "Curtius"; liberal_strength += 10; democratization += 1; liberal_dissent -= 5
 face-image: img/portraits/CurtiusJulius.jpg
 go-to: nfvp_formed
 
@@ -39,7 +39,7 @@ With assistance from our Liberal Wing[?if peoples_conservatives_dvp:, along with
 
 @thiel
 subtitle: Thiel is a prominent labor leader.
-on-arrival: dvp_leader = "Thiel"
+on-arrival: dvp_leader = "Thiel"; labor_strength += 10; labor_dissent -= 5
 face-image: img/portraits/ThielOtto.jpg
 go-to: nfvp_formed
 

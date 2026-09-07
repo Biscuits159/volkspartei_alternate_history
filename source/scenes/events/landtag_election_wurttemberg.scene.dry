@@ -451,26 +451,32 @@ WIP
 - @bolz: Eugen Bolz
 
 @bickes
+title: Theodor Bickes, the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> candidate.
+subtitle: He is a founding member of our party in Württemberg.
 view-if: dvp_wurttemberg
 choose-if: in_dvp_majority_wurttemberg or ((in_grand_coalition_wurttemberg or in_bourgeois_coalition_wurttemberg) and (dvp_wl + ddp_wl) > z_wl) or (in_weimar_coalition_wurttemberg and dvp_wurttemberg and (dvp_wl + ddp_wl) > z_wl)
 unavailable-subtitle: The <span style="color: #000000;">**Center Party**</span> can prevent him from becoming the Minister-President.
-on-arrival: wurttemberg_leader = "Bickes"; wurttemberg_leader_party = dvp_name
+on-arrival: wurttemberg_leader = "Bickes"; wurttemberg_leader_party = dvp_name; old_middle_dvp += 4*(1-dissent); new_middle_dvp += 2*(1-dissent); pro_republic += 3*(1-dissent)
 face-image: img/portraits/BickesTheodor.jpg
 
 Theodor Bickes was chosen.
 
 @maier
+title: Reinhold Maier, the [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?][? if !ddp_exist: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> ?] candidate.
+subtitle: He is an influent figure of the regional <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>.
 view-if: (dvp_wurttemberg and (nfvp_formed or lvp_formed)) or in_weimar_coalition_wurttemberg or in_grand_coalition_wurttemberg or in_bourgeois_coalition_wurttemberg
 choose-if: in_dvp_majority_wurttemberg or ((in_grand_coalition_wurttemberg or in_bourgeois_coalition_wurttemberg) and (dvp_wl + ddp_wl) > z_wl) or (in_weimar_coalition_wurttemberg and dvp_wurttemberg and (dvp_wl + ddp_wl) > z_wl) or (in_weimar_coalition_wurttemberg and not dvp_wurttemberg and ddp_wl > z_wl)
 unavailable-subtitle: The <span style="color: #000000;">**Center Party**</span> can prevent him from becoming the Minister-President.
-on-arrival: wurttemberg_leader = "Maier"; wurttemberg_leader_party = ddp_name if ddp_exist; wurttemberg_leader_party = dvp_name if lvp_formed or nfvp_formed
+on-arrival: wurttemberg_leader = "Maier"; wurttemberg_leader_party = ddp_name if ddp_exist; wurttemberg_leader_party = dvp_name if lvp_formed or nfvp_formed; old_middle_dvp += 2*(1-dissent); new_middle_dvp += 4*(1-dissent); pro_republic += 3*(1-dissent)
 face-image: img/portraits/MaierReinhold.jpg
 
 Reinhold Maier was chosen.
 
 @bolz
+title: Eugen Bolz, the <span style="color: #000000;">**Center**</span> candidate.
+subtitle: With the <span style="color: #000000;">**Center Party**</span> historically hostile to the <span style="color: #E3000F;">**SPD**</span>, they also often choose the Minister-President.
 view-if: in_weimar_coalition_wurttemberg or in_grand_coalition_wurttemberg or in_bourgeois_coalition_wurttemberg
-on-arrival: wurttemberg_leader = "Bolz"; wurttemberg_leader_party = "Z"
+on-arrival: wurttemberg_leader = "Bolz"; wurttemberg_leader_party = "Z"; catholics_z += 4; pro_republic += 3
 face-image: img/portraits/BolzEugen.jpg
 
 Eugen Bolz was chosen.

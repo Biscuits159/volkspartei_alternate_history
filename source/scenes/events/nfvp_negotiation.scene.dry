@@ -1,5 +1,5 @@
 title: Negotiations with <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>
-view-if: year == 1929 and month >= 9 and ddp_exist and supported_front_1929
+view-if: year >= 1930 and ddp_exist and supported_front_1929
 on-arrival: {!
 Q.nfvp_formation_points = 0;
 if (Q.ddp_relation >= 65) {
@@ -51,18 +51,18 @@ Our negotiations for a unified republican right wing party have finally succeede
 
 @nfvp_peoples_conservatives
 
-Now Stresemann will negotiate with <span style="color: #0087DC;">People's Conservative</span> faction of <span style="color: #3F7BC1;">**DNVP**</span>.
+Now Curtis will negotiate with <span style="color: #0087DC;">People's Conservative</span> faction of the <span style="color: #3F7BC1;">**DNVP**</span>.
 
 - @nfvp_peoples_conservatives_success: The <span style="color: #0087DC;">People's Conservatives</span> agree to form a new party!
 - @nfvp_peoples_conservatives_fail: The <span style="color: #0087DC;">People's Conservatives</span> refuse!
 
 @nfvp_peoples_conservatives_fail
-view-if: not (dnvp_ideology = "Radical")
+view-if: not kvp_formed
 
-trevvy will not join us...
+Unfortunately for us, the <span style="color: #0087DC;">People's Conservatives</span> are still commited to their position within the <span style="color: #3F7BC1;">**DNVP**</span>.
   
 @nfvp_peoples_conservatives_success
-view-if: dnvp_ideology = "Radical"
+view-if: kvp_formed
 on-arrival: nfvp_peoples_conservatives_success = 1
 
-trevvy will join us. the christian socials too. wholesome
+Since the <span style="color: #0087DC;">People's Conservatives</span> have left the <span style="color: #3F7BC1;">**DNVP**</span> due to Hugenberg's rabid policies, their commitment to their party of origin has been significantly weakened, with most even agreeing to join out party.

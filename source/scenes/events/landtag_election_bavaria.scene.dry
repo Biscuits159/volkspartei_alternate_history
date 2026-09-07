@@ -429,47 +429,45 @@ title: The coalition will choose the Minister-President.
 
 WIP
 
-- @beyer: Otto Beyer
 - @hamm: Eduard Hamm
 - @held: Heinrich Held
 - @vogel: Hans Vogel
 - @epp: Franz Ritter von Epp
 
-@beyer
-view-if: dvp_bavaria
-choose-if: in_dvp_majority_bavaria or in_grand_coalition_bavaria or (in_bourgeois_coalition_bavaria and (dvp_bl + ddp_bl) > z_bl) or (in_right_coalition_bavaria and (dvp_bl > z_bl))
-unavailable-subtitle: The <span style="color: #69A2BE;">**BVP**</span> can prevent him from becoming the Minister-President.
-on-arrival: bavaria_leader = "Beyer"; bavaria_leader_party = dvp_name;
-face-image: img/portraits/BeyerOtto.jpg
-
-Otto Beyer was elected.
-
 @hamm
+title: Eduard Hamm, the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> candidate.
+subtitle: He is a lawyer and former <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> politician who served on several government positions, including as Economics Minister for Wilhelm Marx.
 view-if: (dvp_bavaria and (lvp_formed or nfvp_formed)) or in_grand_coalition_bavaria or in_bourgeois_coalition_bavaria
 choose-if: in_dvp_majority_bavaria or in_grand_coalition_bavaria or ((in_bourgeois_coalition_bavaria or (in_right_coalition_bavaria and (lvp_formed or nfvp_formed))) and (dvp_bl + ddp_bl) > z_bl)
 unavailable-subtitle: The <span style="color: #69A2BE;">**BVP**</span> can prevent him from becoming the Minister-President.
-on-arrival: bavaria_leader = "Hamm"; bavaria_leader_party = ddp_name if ddp_exist; bavaria_leader_party = dvp_name if lvp_formed or nfvp_formed;
+on-arrival: bavaria_leader = "Hamm"; bavaria_leader_party = ddp_name if ddp_exist; bavaria_leader_party = dvp_name if lvp_formed or nfvp_formed; old_middle_dvp += 4*(1-dissent); new_middle_dvp += 2*(1-dissent); pro_republic += 3*(1-dissent)
 face-image: img/portraits/HammEduard.jpg
 
 Eduard Hamm was elected.
 
 @held
+title: Eduard Hamm, the <span style="color: #69A2BE;">**BVP**</span> candidate.
+subtitle: The Minister-President since 1924 remains the natural choice.
 view-if: in_bourgeois_coalition_bavaria or in_right_coalition_bavaria
-on-arrival: bavaria_leader = "Held"; bavaria_leader_party = "BVP"
+on-arrival: bavaria_leader = "Held"; bavaria_leader_party = "BVP"; catholics_z += 4
 face-image: img/portraits/HeldHeinrich.jpg
 
 Heinrich Held was elected.
 
 @vogel
+title: Hans Vogel, the <span style="color: #E3000F;">**SPD**</span> candidate.
+subtitle: He is a well-known socialist politician in Bavaria [? if year >= 1931: and Chairman of the <span style="color: #E3000F;">**SPD**</span> ?].
 view-if: in_grand_coalition_bavaria
-on-arrival: bavaria_leader = "Vogel"; bavaria_leader_party = "SPD"
+on-arrival: bavaria_leader = "Vogel"; bavaria_leader_party = "SPD"; workers_spd += 4; unemployed_spd += 2; socialism += 2; pro_republic += 3
 face-image: img/portraits/VogelHans.jpg
 
 Hans Vogel was elected.
 
 @epp
+title: Franz Ritter von Epp, <span style="color: #954B00;">**NSDAP**</span> candidate.
+subtitle: He was a commanding officer in the Freikorps and the Reichswehr. Though initially a member of the <span style="color: #69A2BE;">**BVP**</span>, he later joined the <span style="color: #954B00;">**NSDAP**</span>.
 view-if: in_far_right_coalition_bavaria
-on-arrival: bavaria_leader = "Epp"; bavaria_leader_party = "NSDAP"
+on-arrival: bavaria_leader = "Epp"; bavaria_leader_party = "NSDAP"; rural_nsdap += 4; old_middle_nsdap += 2; nationalism += 2; pro_republic -= 3
 face-image: img/portraits/EppFranz.jpg
 
 Franz Ritter von Epp was elected.

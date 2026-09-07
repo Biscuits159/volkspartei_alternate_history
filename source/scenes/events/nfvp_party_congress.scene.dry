@@ -20,8 +20,6 @@ Ernst Lemmer’s coalition is rather small; the former <span style="color: #DCCA
 
 [? if peoples_conservatives_dvp: Gottfried Treviranus is not set to command a large amount of influence, as the People’s Conservatives and Christian Socials are quite the small groups within the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. The Liberals may be preoccupied with Dietrich, Curtius and Thiel, but if the People’s Conservatives and Christian Socials manage to grow their influence, former <span style="color: #C0A054;">**DVP**</span> Liberals could see Treviranus as a potential ally. ?]
 
-[? if christian_socials_dvp: Walther Lambach, leader of the Cristian Social corporatist movement, and former controversial <span style="color: #3F7BC1;">**DNVP**</span> member, is largely viewed as a relatively minor candidate, with most of his unions coalescing around Thiel, with Lambach widely expected to endorse him too. However, if the DHV or Volkskonservativ blocs' influence begins to wane, they may coalesce around Lambach as a compromise between the two blocs. ?]
-
 Hans Luther, as president of the Reichsbank, is largely seen as a unifying independent, though mainly by the former <span style="color: #C0A054;">**DVP**</span>. Outside of former <span style="color: #C0A054;">**DVP**</span> members, the Middle Class Groups and some Democrats have endorsed him, though they see his candidacy as insufficient for the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>’s big-tent nature amongst the political bourgeois.
 
 
@@ -40,7 +38,6 @@ Q.special_interest_influence = 0;
 
 Q.vnr_influence = 0;
 Q.social_catholics_influence = 0;
-Q.christian_socials_influence = 0;
 Q.dbp_influence = 0;
 Q.wp_influence = 0;
 Q.cnblp_influence = 0;
@@ -72,9 +69,6 @@ if (Q.vnr_dvp) {
 if (Q.social_catholics_dvp) {
     Q.total_influence = parseFloat((Q.total_influence + Q.catholics_dvp*(Q.progressive_strength+Q.labor_strength)*0.002).toFixed(1))
 }
-if (Q.christian_socials_dvp) {
-    Q.total_influence = parseFloat((Q.total_influence + Q.workers_dvp*(Q.labor_strength+Q.peoples_conservative_strength)*0.001).toFixed(1))
-}
 if (Q.special_interest_dvp) {
     Q.total_influence = parseFloat((Q.total_influence + Q.special_interest_strength).toFixed(1))
     Q.total_special_interest = 0;
@@ -102,7 +96,6 @@ if (Q.industrialists_dvp) Q.industrialist_influence = parseFloat((Q.industrialis
 if (Q.peoples_conservatives_dvp) Q.peoples_conservative_influence = parseFloat((Q.peoples_conservative_strength/Q.total_influence*100).toFixed(1))
 
 if (Q.social_catholics_dvp) Q.social_catholics_influence = parseFloat((Q.catholics_dvp*(Q.progressive_strength+Q.labor_strength)*0.002/Q.total_influence*100).toFixed(1))
-if (Q.christian_socials_dvp) Q.christian_socials_influence = parseFloat((Q.workers_dvp*(Q.labor_strength+Q.peoples_conservative_strength)*0.001/Q.total_influence*100).toFixed(1))
 if (Q.vnr_dvp) Q.vnr_influence = parseFloat(((Q.democratic_strength+Q.liberal_strength)*0.02/Q.total_influence*100).toFixed(1))
 if (Q.dbp_dvp) Q.dbp_influence = parseFloat((Q.special_interest_strength*(Q.dbp_share/Q.total_special_interest)/Q.total_influence*100).toFixed(1))
 if (Q.wp_dvp) Q.wp_influence = parseFloat((Q.special_interest_strength*(Q.wp_share/Q.total_special_interest)/Q.total_influence*100).toFixed(1))
@@ -174,14 +167,6 @@ if (Q.wp_dvp) {
         "seats": Math.round(Q.wp_influence*5.0),
     });
 }
-if (Q.christian_socials_dvp) {
-    data.push({
-        "id": "csvd",
-        "legend": "Christian Socials",
-        "name": "Christian Socials",
-        "seats": Math.round(Q.christian_socials_influence*5.0),
-    });
-}
 if (Q.industrialists_dvp) {
     data.push({
         "id": "dvp_2",
@@ -248,8 +233,6 @@ go-to: leader
 
 [? if wp_dvp: {!<tr><td><div class="box" style='background-color:#B8996F'> </div> !} Middle Class Groups: {!</td><td>!} [+ wp_influence +]% {!</td><td>!} ?]
 
-[? if christian_socials_dvp: {!<tr><td><div class="box" style='background-color:#8ED8E4'> </div> !} Christian Socials: {!</td><td>!} [+ christian_socials_influence +]% {!</td><td>!} ?]
-
 [? if industrialists_dvp: {!<tr><td><div class="box" style='background-color:#C0A054'> </div> !} Industrialists: {!</td><td>!} [+ industrialist_influence +]% {!</td><td>!} ?]
 
 [? if cnblp_dvp: {!<tr><td><div class="box" style='background-color:#7FCEB1'> </div> !} Nationalist Farmer Groups: {!</td><td>!} [+ cnblp_influence +]% {!</td><td>!} ?]
@@ -274,9 +257,9 @@ WIP
 
 @lemmer
 subtitle: Lemmer is a prominent labor leader. <span style="color: #E0B0FF;">**Progressives**</span> + <span style="color: #DCCA4A;">**Democrats**</span> + <span style="color: #6D5298;">**Labor**</span> ([+ progressive_influence + democratic_influence + labor_influence +]%)
-unavailable-subtitle: Lemmer isn’t seen as a viable candidate, with the party viewing him as too left-wing. He has endorsed Dietrich or Thiel.
+unavailable-subtitle: Lemmer isn’t seen as a viable candidate, with the party viewing him as too left-wing. He has endorsed Dietrich or Thiel. <span style="color: #E0B0FF;">**Progressives**</span> + <span style="color: #DCCA4A;">**Democrats**</span> + <span style="color: #6D5298;">**Labor**</span> ([+ progressive_influence + democratic_influence + labor_influence +]%)
 choose-if: progressive_influence + democratic_influence + labor_influence >= 50
-on-arrival: dvp_leader = "Lemmer"
+on-arrival: dvp_leader = "Lemmer"; progressive_strength += 10; democratization += 1; progressive_dissent -= 5; spd_relation += 5
 face-image: img/portraits/LemmerErnst.jpg
 
 Ernst Lemmer has managed to, with the backing of Thiel’s unions, and the former <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>, become leader of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. He is expected to cooperate closely with Thiel, and the socialists of the <span style="color: #E3000F;">**SPD**</span> will be watching his leadership closely. He will certainly be a divisive leader of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>, with his progressive stance sure to render any cooperation with the parties to our right difficult for the near future.
@@ -284,9 +267,9 @@ Ernst Lemmer has managed to, with the backing of Thiel’s unions, and the forme
 
 @dietrich
 subtitle: Dietrich was the former leader of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>'s business wing. <span style="color: #E0B0FF;">**Progressives**</span> + <span style="color: #DCCA4A;">**Democrats**</span> + <span style="color: #98C22C;">**Liberals**</span> ([+ progressive_influence + democratic_influence + liberal_influence +]%)
-unavailable-subtitle: The party prefers a former <span style="color: #C0A054;">**DVP**</span> member than Dietrich, with the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> not holding enough sway. Dietrich has endorsed Curtius.
+unavailable-subtitle: The party prefers a former <span style="color: #C0A054;">**DVP**</span> member than Dietrich, with the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> not holding enough sway. Dietrich has endorsed Curtius. <span style="color: #E0B0FF;">**Progressives**</span> + <span style="color: #DCCA4A;">**Democrats**</span> + <span style="color: #98C22C;">**Liberals**</span> ([+ progressive_influence + democratic_influence + liberal_influence +]%)
 choose-if: progressive_influence + democratic_influence + liberal_influence >= 50
-on-arrival: dvp_leader = "Dietrich"
+on-arrival: dvp_leader = "Dietrich"; democratic_strength += 10; democratization += 1; democratic_dissent -= 5; z_relation += 5; kvp_relation += 3
 face-image: img/portraits/DietrichHermann.jpg
 
 Hermann Dietrich has been elected as the leader of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. Having a former <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> member at the helm of the party will shift it left, if only slightly due to Dietrich’s leanings to the right, and the fact the industrialist votes got him elected. He is, however, staunchly republican and this enables him to have a good hold over the party.
@@ -304,9 +287,9 @@ Hans Luther, [? if not president = "Luther": president of the Reichsbank?][? if 
 
 @curtius
 subtitle: Curtius belongs to the Stresemannite wing of our party. <span style="color: #98C22C;">**Liberals**</span> + <span style="color: #6D5298;">**Labor**</span> [? if peoples_conservatives_dvp: + <span style="color: #0087DC;">**People's Conservatives**</span> ?] ([+ liberal_influence + labor_influence + peoples_conservative_influence +]%)
-unavailable-subtitle: Curtius prefers Thiel or Dietrich currently, with the former <span style="color: #C0A054;">**DVP**</span> too weak to push him, anyways.
+unavailable-subtitle: Curtius prefers Thiel or Dietrich currently, with the former <span style="color: #C0A054;">**DVP**</span> too weak to push him, anyways. <span style="color: #98C22C;">**Liberals**</span> + <span style="color: #6D5298;">**Labor**</span> [? if peoples_conservatives_dvp: + <span style="color: #0087DC;">**People's Conservatives**</span> ?] ([+ liberal_influence + labor_influence + peoples_conservative_influence +]%)
 choose-if: liberal_influence + labor_influence + peoples_conservative_influence >= 50
-on-arrival: dvp_leader = "Curtius"
+on-arrival: dvp_leader = "Curtius"; liberal_strength += 10; democratization += 1; liberal_dissent -= 5;
 face-image: img/portraits/CurtiusJulius.jpg
 
 Julius Curtius, Stresemann’s successor, has been elected as the leader of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. Whilst he may alienate the extremes of the party, his foreign policy experience and the mantle of Stresemann’s successor will help him be a strong <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> leader. He is expected to be a similar leader to Stresemann, furthering his ‘party of reason’ ideals.
@@ -314,42 +297,30 @@ Julius Curtius, Stresemann’s successor, has been elected as the leader of the 
 
 @thiel
 subtitle: Thiel is a prominent labor leader. <span style="color: #DCCA4A;">**Democrats**</span> + <span style="color: #98C22C;">**Liberals**</span> + <span style="color: #6D5298;">**Labor**</span> ([+ democratic_influence + liberal_influence + labor_influence +]%)
-unavailable-subtitle: The unions aren’t willing to run Thiel, and he prefers to work behind the scenes at the moment, anyways. He has endorsed Curtius.
+unavailable-subtitle: The unions aren’t willing to run Thiel, and he prefers to work behind the scenes at the moment, anyways. He has endorsed Curtius.  <span style="color: #DCCA4A;">**Democrats**</span> + <span style="color: #98C22C;">**Liberals**</span> + <span style="color: #6D5298;">**Labor**</span> ([+ democratic_influence + liberal_influence + labor_influence +]%)
 choose-if: democratic_influence + liberal_influence + labor_influence >= 50
-on-arrival: dvp_leader = "Thiel"
+on-arrival: dvp_leader = "Thiel"; labor_strength += 10; labor_dissent -= 5;
 face-image: img/portraits/ThielOtto.jpg
 
 Otto Thiel, close ally of Stresemann and former <span style="color: #C0A054;">**DVP**</span> member, has managed to secure the chairmanship of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. He is expected to be a decisive leader, with his willingness to extend the party into the <span style="color: #E3000F;">**SPD**</span>-dominated working class. Already, he has made many enemies amongst the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>’s industrial backers - what’s left of them anyways. He will pursue his ideal of a nationalistic, democratic and progressive party. Only time will tell how sucessful he shall be.
   
 
 @raumer
-subtitle: Raumer is backed by industrialists. <span style="color: #C0A054;">**Industrialists:**</span> [? if peoples_conservatives_dvp: + <span style="color: #0087DC;">**People's Conservatives**</span> ?] [? if christian_socials_dvp: + <span style="color: #8ED8E4;">**Christian Socials**</span> ?] ([+ industrialist_influence + peoples_conservative_influence + christian_socials_influence +]%)
-unavailable-subtitle: The party doesn’t view Raumer seriously, with what’s left of the industrialists being too scattered to push him, anyhow.
-choose-if: industrialist_influence + peoples_conservative_influence + christian_socials_influence >= 50
-on-arrival: dvp_leader = "Raumer"
+subtitle: Raumer is backed by industrialists. <span style="color: #C0A054;">**Industrialists:**</span> [? if peoples_conservatives_dvp: + <span style="color: #0087DC;">**People's Conservatives**</span> ?] ([+ industrialist_influence + peoples_conservative_influence +]%)
+unavailable-subtitle: The party doesn’t view Raumer seriously, with what’s left of the industrialists being too scattered to push him, anyhow. <span style="color: #C0A054;">**Industrialists:**</span> [? if peoples_conservatives_dvp: + <span style="color: #0087DC;">**People's Conservatives**</span> ?] ([+ industrialist_influence + peoples_conservative_influence +]%)
+choose-if: industrialist_influence + peoples_conservative_influence >= 50
+on-arrival: dvp_leader = "Raumer"; industrialist_strength += 10; industrialist_dissent -= 10
 face-image: img/portraits/RaumerHans.jpg
 
 In a shock upset, Hans Raumer has been elected as the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>’s leader. He shall shift the party to the right, hopefully drawing heavy industry away from the [? if kvp_formed: <span style="color: #455B95;">**KVP**</span>?][? if dnvp_ideology="Moderate": <span style="color: #3F7BC1;">**DNVP**</span>?], <span style="color: #954B00;">Nazis</span>[?if dnvp_ideology="Radical":, and what’s left of the <span style="color: #3F7BC1;">**DNVP**</span>?][?if dnf_formed: <span style="color: #003755;">**DNF**</span>?]. The left-wing elements of the party have already began to agitate for his removal, with Thiel in particular becoming an enemy of the chairman.
   
 
 @treviranus
-subtitle: Treviranus is the leader of People's Conservatives. <span style="color: #98C22C;">**Liberals**</span> [? if peoples_conservatives_dvp: + <span style="color: #0087DC;">**People's Conservatives**</span> ?] [? if christian_socials_dvp: + <span style="color: #8ED8E4;">**Christian Socials**</span> ?] ([+ peoples_conservative_influence + christian_socials_influence + liberal_influence +]%)
+subtitle: Treviranus is the leader of People's Conservatives. <span style="color: #98C22C;">**Liberals**</span> [? if peoples_conservatives_dvp: + <span style="color: #0087DC;">**People's Conservatives**</span> ?] ([+ peoples_conservative_influence + liberal_influence +]%)
 unavailable-subtitle: Trevarinus prefers Curtius or Luther.
 view-if: peoples_conservatives_dvp
-choose-if: liberal_influence + peoples_conservative_influence + christian_socials_influence >= 50
-on-arrival: dvp_leader = "Treviranus"
+choose-if: liberal_influence + peoples_conservative_influence >= 50
+on-arrival: dvp_leader = "Treviranus"; peoples_conservative_strength += 10; peoples_conservative_dissent -= 5
 face-image: img/portraits/TreviranusGottfried.jpg
 
 Gottfried Treviranus, dissenting <span style="color: #3F7BC1;">**DNVP**</span> member, has somehow been elected as <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> leader. This possibly signifies a rightward turn, with the industrialists being pleased at his leadership. However, he is not set to shift the party forward the <span style="color: #3F7BC1;">**DNVP**</span> [? if kvp_formed: and <span style="color: #455B95;">**KVP**</span> ?] too drastically. The left-wing of the party are somewhat discontented, but seemingly taking a wait-and-see approach for now.
-  
-
-@lambach
-subtitle: Walther Lambach is the leader of Christian Socials. <span style="color: #6D5298;">**Labor**</span> [? if peoples_conservatives_dvp: + <span style="color: #0087DC;">**People's Conservatives**</span> ?] [? if christian_socials_dvp: + <span style="color: #8ED8E4;">**Christian Socials**</span> ?] ([+ peoples_conservative_influence + christian_socials_influence + labor_influence +]%)
-unavailable-subtitle: Lambach’s unions don’t have enough influence amongst the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. He has endorsed Thiel or Trevarinus.
-view-if: christian_socials_dvp
-choose-if: labor_influence + peoples_conservative_influence + christian_socials_influence >= 50
-on-arrival: dvp_leader = "Lambach"
-face-image: img/portraits/LambachWalther.jpg
-
-With the backing of Thiel, Trevarinus, and some of the former <span style="color: #C0A054;">**DVP**</span>, Lambach has won the leadership election for the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. He is widely expected to cooperate with Thiel on economic matters, and open the party up to  conservative republicans in line with the Lambach article many years ago. On economic matters, his corporstist model is harboured with heavy scepticism from the <span style="color: #E3000F;">**SPD**</span>, and the left of our party. If he shall be as divisive as he was in the former <span style="color: #3F7BC1;">**DNVP**</span> remains to be seen.
-

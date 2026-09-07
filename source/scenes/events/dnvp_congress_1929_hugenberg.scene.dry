@@ -1,6 +1,6 @@
 title: <span style="color: #3F7BC1;">**DNVP**</span> Leadership Vote
 subtitle: Hugenberg has angered his party.
-view-if: dnvp_leader = "Hugenberg" and year = 1929 and month = 12
+view-if: dnvp_leader = "Hugenberg" and year = 1929 and month = 11
 max-visits: 1
 tags: event
 face-image: img/portraits/KVP_logo.jpg
@@ -8,12 +8,12 @@ new-page: true
 
 = <span style="color: #3F7BC1;">**DNVP**</span> Congress
 
-Factions withitn the <span style="color: #3F7BC1;">**DNVP**</span> have clashed with one another increasingly often under Hugenberg's leadership. His attemps to assert control over the party and the fallout from the Young Plan have made a party slip virtually inevitable.
+Factions withitn the <span style="color: #3F7BC1;">**DNVP**</span> have clashed with one another increasingly often under Hugenberg's leadership. His attemps to assert control over the party and the fallout from the Young Plan have made a party split virtually inevitable.
 
 - @resultsdnvp: The congress unfolds...
 
 @resultsdnvp
-go-to: hugenberg if young_plan_signatures >= 10; treviranus if young_plan_signatures < 10
+go-to: hugenberg if young_plan_signatures >= 8; treviranus if young_plan_signatures < 8
 
 @treviranus
 on-arrival: dnvp_leader = "Treviiranus";  dnvp_ideology = "Moderate"; dvp_right += 1

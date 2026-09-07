@@ -171,56 +171,45 @@ on-arrival: {!
 WIP
 
 - @lemmer: Ernst Lemmer will lead our party.
-- @dietrich: Hermann Dietrich will lead our party.
 - @luther: Hans Luther will lead our party.
 - @curtius: Julius Curtius will lead our party.
 - @heuss: Theodor Heuss will lead our party.
 
 @lemmer
-subtitle: Lemmer is a prominent labor leader.
-unavailable-subtitle: Lemmer isn’t seen as a viable candidate, with the party viewing him as too left-wing. He has endorsed Dietrich or Thiel.
-#choose-if: 
-on-arrival: dvp_leader = "Lemmer"
+subtitle: Lemmer is a prominent labor leader. <span style="color: #E0B0FF;">**Progressives**</span> + <span style="color: #DCCA4A;">**Democrats**</span> + <span style="color: #6D5298;">**Labor**</span> ([+ progressive_influence + democratic_influence + labor_influence +]%)
+unavailable-subtitle: Lemmer isn’t seen as a viable candidate, with the party viewing him as too left-wing. He has endorsed Dietrich or Thiel. <span style="color: #E0B0FF;">**Progressives**</span> + <span style="color: #DCCA4A;">**Democrats**</span> + <span style="color: #6D5298;">**Labor**</span> ([+ progressive_influence + democratic_influence + labor_influence +]%)
+choose-if: progressive_influence + democratic_influence + labor_influence >= 50
+on-arrival: dvp_leader = "Lemmer"; progressive_strength += 10; democratization += 1; progressive_dissent -= 5; spd_relation += 5
 face-image: img/portraits/LemmerErnst.jpg
 
-WIP.
+Ernst Lemmer has managed to, with the backing of Thiel’s unions, and the former <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>, become leader of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. He is expected to cooperate closely with Thiel, and the socialists of the <span style="color: #E3000F;">**SPD**</span> will be watching his leadership closely. He will certainly be a divisive leader of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>, with his progressive stance sure to render any cooperation with the parties to our right difficult for the near future.
   
 
-@dietrich
-subtitle: Dietrich was the former leader of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>'s business wing.
-unavailable-subtitle: The party prefers a former <span style="color: #C0A054;">**DVP**</span> member than Dietrich, with the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> not holding enough sway. Dietrich has endorsed Curtius.
-#choose-if: 
-on-arrival: dvp_leader = "Dietrich"
-face-image: img/portraits/DietrichHermann.jpg
+@heuss
+subtitle: Heuss was a former member of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>'s business wing. <span style="color: #E0B0FF;">**Progressives**</span> + <span style="color: #DCCA4A;">**Democrats**</span> + <span style="color: #98C22C;">**Liberals**</span> ([+ progressive_influence + democratic_influence + liberal_influence +]%)
+unavailable-subtitle: The party prefers a former <span style="color: #C0A054;">**DVP**</span> member than Heuss, with the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> not holding enough sway. Heuss has endorsed Curtius. <span style="color: #E0B0FF;">**Progressives**</span> + <span style="color: #DCCA4A;">**Democrats**</span> + <span style="color: #98C22C;">**Liberals**</span> ([+ progressive_influence + democratic_influence + liberal_influence +]%)
+choose-if: progressive_influence + democratic_influence + liberal_influence >= 50
+on-arrival: dvp_leader = "Heuss"; democratic_strength += 10; democratization += 1; democratic_dissent -= 5; z_relation += 5; kvp_relation += 3
+face-image: img/portraits/HeussTheodor.jpg
 
-WIP.
+Heuss Dietrich has been elected as the leader of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. Having a former <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> member at the helm of the party will shift it leftwards, especially due to his genuine, determined commitment to liberal democracy.
   
 
 @luther
-subtitle: WIP.
+subtitle: The former Chancellor is always available as a compromise candidate.
 unavailable-subtitle: Luther sees no need to run, currently.
 #choose-if: 
 on-arrival: dvp_leader = "Luther"
 face-image: img/portraits/LutherHans.jpg
 
-WIP.
+Hans Luther, [? if not president = "Luther": president of the Reichsbank?][? if president = "Luther": President of the Republic?], has been elected, commanding great confidence amongst the party’s many factions. He is, however, as the [? if not president = "Luther": president of the Reichsbank?][? if president = "Luther": President of the Republic?], expected to take a hands-off approach, delegating the party’s day to day running to his former <span style="color: #C0A054;">**DVP**</span> allies Curtius and Thiel. All in all, many view him as simply a caretaker until their faction can seize power at the next congress. We shall see how accurate they are.
   
 
 @curtius
-subtitle: Curtius belongs to the Stresemannite wing of our party.
-unavailable-subtitle: Curtius prefers Thiel or Dietrich currently, with the former <span style="color: #C0A054;">**DVP**</span> too weak to push him, anyways.
-#choose-if: 
-on-arrival: dvp_leader = "Curtius"
+subtitle: Curtius belongs to the Stresemannite wing of our party. <span style="color: #98C22C;">**Liberals**</span> + <span style="color: #6D5298;">**Labor**</span> [? if peoples_conservatives_dvp: + <span style="color: #0087DC;">**People's Conservatives**</span> ?] ([+ liberal_influence + labor_influence + peoples_conservative_influence +]%)
+unavailable-subtitle: Curtius prefers Thiel or Dietrich currently, with the former <span style="color: #C0A054;">**DVP**</span> too weak to push him, anyways. <span style="color: #98C22C;">**Liberals**</span> + <span style="color: #6D5298;">**Labor**</span> [? if peoples_conservatives_dvp: + <span style="color: #0087DC;">**People's Conservatives**</span> ?] ([+ liberal_influence + labor_influence + peoples_conservative_influence +]%)
+choose-if: liberal_influence + labor_influence + peoples_conservative_influence >= 50
+on-arrival: dvp_leader = "Curtius"; liberal_strength += 10; democratization += 1; liberal_dissent -= 5;
 face-image: img/portraits/CurtiusJulius.jpg
 
-WIP.
-  
-
-@heuss
-subtitle: Heuss is a WIP.
-unavailable-subtitle: WIP.
-#choose-if: 
-on-arrival: dvp_leader = "Heuss"
-face-image: img/portraits/HeussTheodor.jpg
-
-WIP.
+Julius Curtius, Stresemann’s successor, has been elected as the leader of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. Whilst he may alienate the extremes of the party, his foreign policy experience and the mantle of Stresemann’s successor will help him be a strong <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> leader. He is expected to be a similar leader to Stresemann, furthering his ‘party of reason’ ideals.

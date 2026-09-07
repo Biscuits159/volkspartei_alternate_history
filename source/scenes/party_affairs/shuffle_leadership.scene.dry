@@ -405,7 +405,7 @@ view-if: special_interest_dvp and n_advisors < 4
 
 @add_scholz
 title: Ernst Scholz
-subtitle: Ernst Scholz is the leader of our faction in Reichstag. Actions - Relly Against Socialism, Against the <span style="color: #E3000F;">**SPD**</span> and the <span style="color: #8B0000;">**KPD**</span>, Against Toleration
+subtitle: Ernst Scholz is the leader of our faction in Reichstag. {!<br><br>!} Actions - Relly Against Socialism, Against the <span style="color: #E3000F;">**SPD**</span> and the <span style="color: #8B0000;">**KPD**</span>, Against Toleration
 is-card: true
 card-image: img/portraits/ScholzErnst.jpg
 tags: industrialist_advisor
@@ -418,7 +418,7 @@ Ernst Scholz is now an advisor.
 
 @add_jarres
 title: Karl Jarres
-subtitle: Karl Jarres is a prominent lawyer and our candidate for president in 1925. Actions - Police Affairs, Defend Taming, Snap Elections
+subtitle: Karl Jarres is a prominent lawyer and our candidate for president in 1925. {!<br><br>!} Actions - Police Affairs, Defend Taming, Snap Elections
 is-card: true
 card-image: img/portraits/JarresKarl.jpg
 tags: industrialist_advisor
@@ -431,7 +431,7 @@ Karl Jarres is now an advisor.
 
 @add_raumer
 title: Hans Raumer
-subtitle: Hans Raumer is a member from our party's right wing and a representative from Germany's industry. Actions - Party Discipline, Build up Industrialists, Industrialist Funding
+subtitle: Hans Raumer is a member from our party's right wing and a representative from Germany's industry. {!<br><br>!} Actions - Party Discipline, Build up Industrialists, Industrialist Funding
 is-card: true
 card-image: img/portraits/RaumerHans.jpg
 tags: industrialist_advisor
@@ -446,7 +446,7 @@ Hans Raumer is now an advisor.
 
 @add_luther
 title: Hans Luther
-subtitle: Hans Luther is a prominent politician and banker, who has served as Chancellor in 1925-1926. Actions - Monetary Policy, Support a united liberal party
+subtitle: Hans Luther is a prominent politician and banker, who has served as Chancellor in 1925-1926. {!<br><br>!} Actions - Monetary Policy, Support a united liberal party
 is-card: true
 card-image: img/portraits/LutherHans.jpg
 tags: liberal_advisor
@@ -459,7 +459,7 @@ Hans Luther is now an advisor.
 
 @add_stresemann
 title: Gustav Stresemann
-subtitle: Stresemann is a former [? if chancellor = "Stresemann": and current ?] Chancellor. Actions - Foreign Affairs, Negotiating with the Coalition, Defending Toleration
+subtitle: Stresemann is a former [? if chancellor = "Stresemann": and current ?] Chancellor. {!<br><br>!} Actions - Foreign Affairs, Negotiating with the Coalition, Defending Toleration
 is-card: true
 card-image: img/portraits/StresemannGustav.jpg
 tags: liberal_advisor
@@ -472,7 +472,7 @@ Gustav Stresemann is now an advisor.
 
 @add_rheinbaben
 title: Rochus von Rheinbaben
-subtitle: Rheinbaben is a politician and activist often tasked with reaching out to other non-socialist republican parties. Actions - Media, Support a united liberal party, Negotiating with minor parties
+subtitle: Rheinbaben is a politician and activist often tasked with reaching out to other non-socialist republican parties. {!<br><br>!} Actions - Media, Support a united liberal party, Negotiating with minor parties
 is-card: true
 card-image: img/portraits/RheinbabenRochus.jpg
 tags: liberal_advisor
@@ -485,7 +485,7 @@ Rochus von Rheinbaben is now an advisor.
 
 @add_curtius
 title: Julius Curtius
-subtitle: Julius Curtius is one of our foreign policy leaders and a close ally of Stresemann. Actions - International Relations, Foreign Affairs, Negotiating with the Coalition
+subtitle: Julius Curtius is one of our foreign policy leaders and a close ally of Stresemann. {!<br><br>!} Actions - International Relations, Foreign Affairs, Negotiating with the Coalition
 is-card: true
 card-image: img/portraits/CurtiusJulius.jpg
 tags: liberal_advisor
@@ -523,7 +523,7 @@ Julius Curtius is now an advisor.
 
 @add_moldenhauer
 title: Paul Moldenhauer
-subtitle: Paul Moldenhauer is an economist and politician. He is a professor at the University of Cologne. Actions - Defending Toleration, Fiscal Policy
+subtitle: Paul Moldenhauer is an economist and politician. He is a professor at the University of Cologne. {!<br><br>!} Actions - Defending Toleration, Fiscal Policy
 is-card: true
 card-image: img/portraits/MoldenhauerPaul.jpg
 view-if: moldenhauer_advisor = 0 and n_advisors < 4
@@ -538,7 +538,7 @@ Paul Moldenhauer is now an advisor.
 
 @add_treviranus
 title: Gottfried Treviranus
-subtitle: Gottfried Treviranus was a member of the <span style="color: #3f7bc1;">**DNVP**</span>'s moderate wing, who advocate for continuation and normalization of the Republic. Actions - Criticize the National Opposition, Rally for the Republic, Build the People's Conservative
+subtitle: Gottfried Treviranus was a member of the <span style="color: #3f7bc1;">**DNVP**</span>'s moderate wing, who advocate for continuation and normalization of the Republic. {!<br><br>!} Actions - Criticize the National Opposition, Rally for the Republic, Build the People's Conservative
 is-card: true
 card-image: img/portraits/TreviranusGottfried.jpg
 view-if: treviranus_advisor = 0 and n_advisors < 4
@@ -551,7 +551,7 @@ Gottfried Treviranus is now an advisor.
 
 @add_lejeune_jung
 title: Paul Lejeune-Jung
-subtitle: Paul Lejeune-Jung was one of the few high-profile catholics from the <span style="color: #3f7bc1;">**DNVP**</span> and a member of its moderate wing. Actions - Europabund Negotiations, Foreign Affairs, Economic Policy, Organizing Catholics
+subtitle: Paul Lejeune-Jung was one of the few high-profile catholics from the <span style="color: #3f7bc1;">**DNVP**</span> and a member of its moderate wing. {!<br><br>!} Actions - Europabund Negotiations, Foreign Affairs, Economic Policy, Organizing Catholics
 is-card: true
 card-image: img/portraits/LejeuneJungPaul.jpg
 view-if: lejeune_jung_advisor = 0 and n_advisors < 4
@@ -567,7 +567,7 @@ Paul Lejeune-Jung is now an advisor.
 
 @add_seeckt
 title: Hans von Seeckt
-subtitle: Hans von Seeckt was the chief of staff the Reichswehr, who modernized and reorganized our army. Actions - Military affairs, Anti-Semitic Campaign, Against Toleration, Addressing the Economic Crisis
+subtitle: Hans von Seeckt was the chief of staff the Reichswehr, who modernized and reorganized our army. {!<br><br>!} Actions - Military affairs, Anti-Semitic Campaign, Against Toleration, Addressing the Economic Crisis
 is-card: true
 card-image: img/portraits/SeecktHans.jpg
 view-if: seeckt_advisor = 0 and n_advisors < 4 and nationalists_dvp
@@ -580,7 +580,7 @@ Hans von Seeckt is now an advisor.
 
 @add_hugo
 title: Otto Hugo
-subtitle: Otto Hugo is a prominent member of the right wing in the <span style="color: var(--dvp-color);">**DVP**</span>, known for his nationalist views and cooperative stance towards far-right groups. Actions - Building the Right, Cooperation with the <span style="color: #954B00;">**NSDAP**</span>, Rally for Nationalism
+subtitle: Otto Hugo is a prominent member of the right wing in the <span style="color: var(--dvp-color);">**DVP**</span>, known for his nationalist views and cooperative stance towards far-right groups. {!<br><br>!} Actions - Building the Right, Cooperation with the <span style="color: #954B00;">**NSDAP**</span>, Rally for Nationalism
 is-card: true
 card-image: img/portraits/HugoOtto.jpg
 view-if: hugo_advisor = 0 and n_advisors < 4 and nationalists_dvp
@@ -595,7 +595,7 @@ Otto Hugo is now an advisor.
 
 @add_bechly
 title: Hans Bechly
-subtitle: Hans Bechly is the leader of the DHV, the German National Association of Commercial Employees. Actions - Organizing Workers, Union-Party Coordination
+subtitle: Hans Bechly is the leader of the DHV, the German National Association of Commercial Employees. {!<br><br>!} Actions - Organizing Workers, Union-Party Coordination
 is-card: true
 card-image: img/portraits/BechlyHans.jpg
 tags: labor_advisor
@@ -608,7 +608,7 @@ Hans Bechly is now an advisor.
 
 @add_thiel
 title: Otto Thiel
-subtitle: Otto Thiel is a politician and unionist affiliated with the DHV, the right-wing trade union federation. Actions - Labor Affaris, Organizing White-Collar Workers, Union-Party Coordination
+subtitle: Otto Thiel is a politician and unionist affiliated with the DHV, the right-wing trade union federation. {!<br><br>!} Actions - Labor Affaris, Organizing White-Collar Workers, Union-Party Coordination
 is-card: true
 card-image: img/portraits/ThielOtto.jpg
 tags: labor_advisor
@@ -621,7 +621,7 @@ Otto Thiel is now an advisor.
 
 @add_baltrusch
 title: Friedrich Baltrusch
-subtitle: Friedrich Baltrusch is one of the leaders of the Young German Order and a close assocaite of the <span style="color: #000000;">**Center**</span>'s Adam Stegerwald. Actions - Organizing Workers, Union-Party Coordination, <span style="color: #000000;">**Center**</span> relations
+subtitle: Friedrich Baltrusch is one of the leaders of the Young German Order and a close assocaite of the <span style="color: #000000;">**Center**</span>'s Adam Stegerwald. {!<br><br>!} Actions - Organizing Workers, Union-Party Coordination, <span style="color: #000000;">**Center**</span> relations
 is-card: true
 card-image: img/portraits/BaltruschFriedrich.jpg
 tags: labor_advisor
@@ -662,7 +662,7 @@ Friedrich Baltrusch is now an advisor.
 
 @add_dietrich
 title: Hermann Dietrich
-subtitle: Dietrich is a founding member of the <span style="color: #DCCA4A;">**DDP**</span>. Actions - Agriculture Affairs, Building the Democrats, Addressing the Economic Crisis
+subtitle: Dietrich is a founding member of the <span style="color: #DCCA4A;">**DDP**</span>. {!<br><br>!} Actions - Agriculture Affairs, Building the Democrats, Addressing the Economic Crisis
 is-card: true
 card-image: img/portraits/DietrichHermann.jpg
 view-if: dietrich_advisor = 0 and n_advisors < 4 and democrats_dvp
@@ -675,7 +675,7 @@ Hermann Dietrich is now an advisor.
 
 @add_gessler
 title: Otto Gessler
-subtitle: Otto Gessler is a prominent figure from the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> and longtime Minister of Defence. Actions - Military Affairs, Police Affairs
+subtitle: Otto Gessler is a prominent figure from the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> and longtime Minister of Defence. {!<br><br>!} Actions - Military Affairs, Police Affairs
 is-card: true
 card-image: img/portraits/GesslerOtto.jpg
 view-if: gessler_advisor = 0 and n_advisors < 4 and democrats_dvp
@@ -690,7 +690,7 @@ Otto Gessler is now an advisor.
 
 @add_erkelenz
 title: Anton Erkelenz
-subtitle: Anton Erkelenz is a member of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> situated firmly in the party's left. Actions - Rally the Progressives, Campaign Among Workers, <span style="color: #E3000F;">**SPD**</span> Relations
+subtitle: Anton Erkelenz is a member of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> situated firmly in the party's left. {!<br><br>!} Actions - Rally the Progressives, Campaign Among Workers, <span style="color: #E3000F;">**SPD**</span> Relations
 is-card: true
 card-image: img/portraits/ErkelenzAnton.jpg
 tags: progressive_advisor
@@ -703,7 +703,7 @@ Anton Erkelenz is now an advisor.
 
 @add_wirth
 title: Joseph Wirth
-subtitle: Wirth is a former Chancellor and figure of the <span style="color: #000000;">Center</span>'s left. Actions - Organizing Catholics, Rally for the Republic, <span style="color: #E3000F;">**SPD**</span> Relations
+subtitle: Wirth is a former Chancellor and figure of the <span style="color: #000000;">Center</span>'s left. {!<br><br>!} Actions - Organizing Catholics, Rally for the Republic, <span style="color: #E3000F;">**SPD**</span> Relations
 is-card: true
 card-image: img/portraits/WirthJoseph.jpg
 tags: progressive_advisor
@@ -731,7 +731,7 @@ Joseph Wirth is now an advisor.
 
 @add_schiele
 title: Martin Schiele
-subtitle: Martin Schiele is a nationalist and former <span style="color: #3f7bc1;">**DNVP**</span> member and a well-known representative for German farmers. Actions - Agricultural Affairs, Rural Campaigning
+subtitle: Martin Schiele is a nationalist and former <span style="color: #3f7bc1;">**DNVP**</span> member and a well-known representative for German farmers. {!<br><br>!} Actions - Agricultural Affairs, Rural Campaigning
 is-card: true
 card-image: img/portraits/SchieleMartin.jpg
 tags: special_interest_advisor
@@ -744,7 +744,7 @@ Martin Schiele is now an advisor.
 
 @add_colosser
 title: Otto Colosser
-subtitle: Otto Colosser is a prominent politician within the Wirtschaftspartei and their chief propagandist. Actions - Media, Middle Class Campaigning
+subtitle: Otto Colosser is a prominent politician within the Wirtschaftspartei and their chief propagandist. {!<br><br>!} Actions - Media, Middle Class Campaigning
 is-card: true
 card-image: img/portraits/ColosserOtto.jpg
 tags: special_interest_advisor
@@ -783,7 +783,7 @@ Otto Colosser is now an advisor.
 
 @add_heinze
 title: Rudolf Heinze
-subtitle: Rudolf Heinze is a renowned legal scholar and long-time <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> justice minister. Actions - Judicial Affairs, Constitutional Reform
+subtitle: Rudolf Heinze is a renowned legal scholar and long-time <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> justice minister. {!<br><br>!} Actions - Judicial Affairs, Constitutional Reform
 is-card: true
 card-image: img/portraits/HeinzeRudolf.jpg
 tags: special_interest_advisor

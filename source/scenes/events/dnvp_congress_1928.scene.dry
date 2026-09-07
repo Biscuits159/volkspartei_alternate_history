@@ -15,13 +15,19 @@ The right wing of the party rallied behind Alfred Hugenberg, an industrialist an
 - @resultsdnvp: The party votes...
 
 @resultsdnvp
-go-to: hergt if pro_republic >= 65; hugenberg if pro_republic < 65
+go-to: hergt if pro_republic >= 75; triumvirate if pro_republic >= 65 and pro_republic < 75; hugenberg if pro_republic < 65
 
 @hergt
-on-arrival: dnvp_leader = "Hergt"; dnvp_ideology = "Moderate"; dvp_right += 1; dnvp_relation += 5 if dvp_ideology = "Left";
+on-arrival: dnvp_leader = "Hergt"; dnvp_ideology = "Moderate"; dvp_right += 1; dnvp_relation += 5 if dvp_ideology = "Right";
 face-image: img/portraits/HergtOskar.jpg
 
 Hergt is elected to lead the <span style="color: #3F7BC1;">**DNVP**</span>. In response, Hugenberg and his faction have left <span style="color: #3F7BC1;">**DNVP**</span> to form their own party.
+
+@triumvirate
+on-arrival: dnvp_leader = "Triumvirate"; dnvp_ideology = "Radical"; dvp_right += 1; dnvp_relation += 2 if dvp_ideology = "Right";
+face-image: img/portraits/WestarpKuno.jpg
+
+With neither candidate able to convince a majority of <span style="color: #3F7BC1;">**DNVP**</span> members
 
 - @dnf_formation: Alfred Hugenberg and his supporters form <span style="color: #003755;">**DNF**</span>.
 

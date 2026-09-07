@@ -586,35 +586,44 @@ WIP
 - @killinger: Manfred Killinger
 
 @blucher
+title: Bernhard Blüher, the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> candidate.
+subtitle: He has been the mayor of Dresde since the Great War and advocates for cooperation with the <span style="color: #E3000F;">**SPD**</span>.
 view-if: dvp_saxony
 choose-if: in_dvp_majority_saxony or (in_bourgeois_coalition_saxony and not far_right_toleration_saxony) or (in_grand_coalition_saxony and (dvp_sl + ddp_sl + aspd_sl) > spd_sl)
 unavailable-subtitle: [? if in_grand_coalition_saxony: The <span style="color: #E3000F;">**SPD**</span> can prevent him from becoming the Minister-President. ?][? if far_right_toleration_saxony: The far-right will never support him. ?]
-on-arrival: saxony_leader = "Blüher"; saxony_leader_party = dvp_name
+on-arrival: saxony_leader = "Blüher"; saxony_leader_party = dvp_name; old_middle_dvp += 4*(1-dissent); new_middle_dvp += 2*(1-dissent); pro_republic += 3*(1-dissent)
 face-image: img/portraits/BlüherBernhard.jpg
 
 Bernhard Blüher was elected.
 
 @bunger
+title: Wilhelm Bünger, the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> candidate.
+subtitle: Situated to the right of our party, he'd prefer <span style="color: #954B00;">*far-right*NSDAP**</span> toleration to avoid dependence on the socialists.
 view-if: dvp_saxony
 choose-if: in_dvp_majority_saxony or (in_bourgeois_coalition_saxony and not spd_toleration_saxony)
 unavailable-subtitle: The <span style="color: #E3000F;">**SPD**</span> will never support him.
-on-arrival: saxony_leader = "Bünger"; saxony_leader_party = dvp_name
+on-arrival: saxony_leader = "Bünger"; saxony_leader_party = dvp_name; old_middle_dvp += 4*(1-dissent); new_middle_dvp += 2*(1-dissent); nationalism += 3*(1-dissent)
 face-image: img/portraits/BüngerWilhelm.jpg
 
 Wilhelm Bünger was elected.
 
 @heldt
+
+title: Max Heldt, the <span style="color: #FE9E00;">**ASPD**</span> candidate.
+subtitle: The nationalist splinter of the <span style="color: #E3000F;">**SPD**</span> is willing to work with us once more.
 view-if: in_grand_coalition_saxony or in_bourgeois_coalition_saxony
 choose-if: not far_right_toleration_saxony
 unavailable-subtitle: The far-right will never support him.
-on-arrival: saxony_leader = "Heldt"; saxony_leader_party = "ASPD"
+on-arrival: saxony_leader = "Heldt"; saxony_leader_party = "ASPD"; nationalism += 1; pro_republic -= 1
 face-image: img/portraits/HeldtMax.jpg
 
 Max Heldt was elected.
 
 @killinger
+title: Manfred Killinger, <span style="color: #954B00;">**NSDAP**</span> candidate.
+subtitle: He is an anti-semite and former Freikorps leader.
 view-if: in_far_right_coalition_saxony
-on-arrival: saxony_leader = "Killinger"; saxony_leader_party = "NSDAP"
+on-arrival: saxony_leader = "Killinger"; saxony_leader_party = "NSDAP"; rural_nsdap += 4; old_middle_nsdap += 2; nationalism += 2; pro_republic -= 3
 
 Manfred Killinger was elected.
 

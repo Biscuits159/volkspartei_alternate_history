@@ -443,31 +443,39 @@ WIP
 - @schmidt: Otto Schmidt
 
 @albrecht
+title: Helmuth Albrecht, the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> candidate.
+subtitle: He is a minor regional business figure.
 view-if: dvp_hanover
 choose-if: in_dvp_majority_hanover or in_grand_coalition_hanover or ((in_bourgeois_coalition_hanover) and dvp_hl > dhp_hl)
 unavailable-subtitle: The <span style="color: #63C489;">**DHP**</span> can prevent him from becoming the Minister-President.
-on-arrival: hanover_leader = "Albrecht"; hanover_leader_party = dvp_name;
+on-arrival: hanover_leader = "Albrecht"; hanover_leader_party = dvp_name; old_middle_dvp += 4*(1-dissent); new_middle_dvp += 2*(1-dissent); pro_republic += 3*(1-dissent)
 face-image: img/portraits/AlbrechtHelmuth.jpg
 
 Helmuth Albrecht was chosen.
 
 @langwost
+title: Heinrich Langwost, the <span style="color: #63C489;">**BVP**</DHP> candidate.
+subtitle: The regional parties have retained their strength even through the crisis.
 view-if: in_bourgeois_coalition_hanover
-on-arrival: hanover_leader = "Langwost"; hanover_leader_party = "DHP"
+on-arrival: hanover_leader = "Langwost"; hanover_leader_party = "DHP"; pro_republic += 2; 
 face-image: img/portraits/LangwostHeinrich.jpg
 
 Heinrich Langwost was chosen.
 
 @noske
+title: Gustav Noske, the <span style="color: #E3000F;">**SPD**</span> candidate.
+subtitle: The controversial former Minister of Defence who became increasingly revisionist over the years.
 view-if: in_grand_coalition_hanover
-on-arrival: hanover_leader = "Noske"; hanover_leader_party = "SPD"
+on-arrival: hanover_leader = "Noske"; hanover_leader_party = "SPD"; workers_spd += 4; unemployed_spd += 2; socialism += 2; pro_republic += 3
 face-image: img/portraits/NoskeGustav.jpg
 
 Gustav Noske was chosen.
 
 @schmidt
+title: Otto Schmidt, <span style="color: #3F7BC1;">**DNVP**</span> candidate.
+subtitle: A commited völkist bridging the gap between the right of the <span style="color: #3F7BC1;">**DNVP**</span> and the <span style="color: #954B00;">**NSDAP**</span>.
 view-if: in_far_right_coalition_hanover
-on-arrival: hanover_leader = "Schmidt"; hanover_leader_party = "DNVP" if dnvp_ideology = "Radical"; hanover_leader_party = "DNF" if dnvp_ideology = "Moderate"
+on-arrival: hanover_leader = "Schmidt"; hanover_leader_party = "DNVP" if dnvp_ideology = "Radical"; hanover_leader_party = "DNF" if dnvp_ideology = "Moderate"; rural_nsdap += 4; old_middle_nsdap += 2; nationalism += 2; pro_republic -= 3
 face-image: img/portraits/SchmidtOtto.jpg
 
 Otto Schmidt was chosen.
