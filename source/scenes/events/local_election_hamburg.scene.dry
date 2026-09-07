@@ -432,38 +432,47 @@ title: The coalition will choose the mayor.
 
 WIP
 
-- @dauch: Walther Dauch
-- @petersen: Carl Wilhelm Petersen
-- @ross: Rudolf Ross
-- @hugenberg: Alfred Hugenberg?!
+- @dauch
+- @petersen
+- @ross
+- @hugenberg
 
 @dauch
+title: Walther Dauch, the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> candidate.
+subtitle: He is a businessman and was a member of the Reichstag for our party from 1920 to 1924.
 view-if: dvp_hamburg
 choose-if: lvp_formed or nfvp_formed or (not in_grand_coalition_hamburg and not in_weimar_coalition_hamburg) or ((in_grand_coalition_hamburg or in_weimar_coalition_hamburg) and dvp_hb > spd_hb)
 unavailable-subtitle: The <span style="color: #E3000F;">**SPD**</span> can prevent a member of our party from becoming mayor.
-on-arrival: hamburg_leader = "Dauch"; hamburg_leader_party = dvp_name
+on-arrival: hamburg_leader = "Dauch"; hamburg_leader_party = dvp_name; pro_republic += 1*(1-dissent)
 face-image: img/portraits/DauchWalther.jpg
 
 Walther Dauch was chosen.
 
 @petersen
+title: Carl Wilhelm Petersen, the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> candidate.
+subtitle: He is the incumbent.
+view-if: dvp_hamburg
 view-if: (dvp_hamburg and (nfvp_formed or lvp_formed)) or in_weimar_coalition_hamburg or in_grand_coalition_hamburg or in_bourgeois_coalition
-on-arrival: hamburg_leader = "Petersen"; hamburg_leader_party = ddp_name if ddp_exist; hamburg_leader_party = dvp_name if lvp_formed or nfvp_formed
+on-arrival: hamburg_leader = "Petersen"; hamburg_leader_party = ddp_name if ddp_exist; hamburg_leader_party = dvp_name if lvp_formed or nfvp_formed; pro_republic += 1
 face-image: img/portraits/PetersenCarl.jpg
 
 Carl Wilhelm Petersen was chosen.
 
 @ross
+title: Rudolf Ross, the <span style="color: #E3000F;">**SPD**</span> candidate.
+subtitle: He was Second Mayor under Petersen.
 view-if: in_weimar_coalition_hamburg or in_grand_coalition_hamburg
-on-arrival: hamburg_leader = "Ross"; hamburg_leader_party = "SPD"
+on-arrival: hamburg_leader = "Ross"; hamburg_leader_party = "SPD"; socialism += 1; pro_republic += 1
 
 Rudolf Ross was chosen.
 
 @hugenberg
+title: Alfred Hugenberg, the <span style="color: #3F7BC1;">**DNVP**</span> candidate.
+subtitle: The incredibly unpopular authoritarian nationalist media mogul from Germany's far-right needs no further introduction.
 view-if: in_far_right_coalition_hamburg
-on-arrival: hamburg_leader = "Hugenberg"; hamburg_leader_party = "DNVP" if dnvp_ideology = "Radical"; hamburg_leader_party = "DNF" if dnvp_ideology = "Moderate"
+on-arrival: hamburg_leader = "Hugenberg"; hamburg_leader_party = "DNVP" if dnvp_ideology = "Radical"; hamburg_leader_party = "DNF" if dnvp_ideology = "Moderate"; pro_republic -= 1; nationalism += 1
 
-Alfred Hugenberg was chosen.
+Alfred Hugenberg was somehow chosen.
 
 
 @no_majority

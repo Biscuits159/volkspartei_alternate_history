@@ -11,9 +11,9 @@ new-page: true
 
 The Reichswehr Ministry is demanding the construction of a new battlecruiser, as part of Germany's rearmament. We enthusiastically support this initiative as do our coalition partners bar the <span style="color: #E3000F;">**SPD**</span>. The <span style="color: #E3000F;">**SPD**</span> campaigned on food for children instead of battlecruisers, it is uncertain if they will betray their campaign promises. Only the <span style="color: #8B0000;">**KPD**</span> is sure to vote against, as the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> will likely yield to right-wing pressure.
 
-- @vote_two: The <span style="color: #E3000F;">**SPD**</span> abstains from the vote.
+- @vote_two
 - @vote_yes
-- @vote_no: The <span style="color: #E3000F;">**SPD**</span> votes no, against constructing the battlecruiser.
+- @vote_no
 
 @vote_two
 title: Why not two battlecruisers?
@@ -39,7 +39,6 @@ subtitle: What are we doing?
 choose-if: (liberal_strength + labor_strength) > 1.5*(industrialist_strength + nationalist_strength) and in_grand_coalition == 1
 unavailable-subtitle: The party will not allow this.
 on-arrival: nationalist_dissent += 10; industrialist_dissent += 5; ddp_cohesion += 1
-go-to: nevermind; convince_ddp
 
 Not building the battlecruiser would severely alienate our industrialist and nationalist factions. Still, even with our dissenting members, if we can convince the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>, we might just scrape enough votes to kill the project.
 

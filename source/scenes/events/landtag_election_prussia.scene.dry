@@ -544,9 +544,9 @@ title: The coalition will choose the Minister-President.
 
 WIP
 
-- @braun: Otto Braun
-- @fischbeck: Otto Fischbeck
-- @stegerwald: Adam Stegerwald
+- @braun
+- @fischbeck
+- @stegerwald
 
 @fischbeck
 title: Ernst Stendel, the [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?][? if ddp_exist == 0: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> ?] candidate.

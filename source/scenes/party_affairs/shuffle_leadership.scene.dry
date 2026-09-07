@@ -396,7 +396,7 @@ view-if: (progressives_dvp or social_catholics_dvp) and n_advisors < 4
 - #progressive_advisor
 
 @special_interest
-view-if: special_interest_dvp and n_advisors < 4
+view-if: n_advisors < 4
 
 - #special_interest_advisor
 
