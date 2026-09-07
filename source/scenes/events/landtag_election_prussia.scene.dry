@@ -549,7 +549,7 @@ WIP
 - @stegerwald: Adam Stegerwald
 
 @fischbeck
-title: Ernst Stendel, the [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?][? if !ddp_exist: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> ?] candidate.
+title: Ernst Stendel, the [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?][? if ddp_exist == 0: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> ?] candidate.
 subtitle: A member of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> who briefly served as Prussian Minister of Trade.
 view-if: (dvp_prussia and (lvp_formed or nfvp_formed)) or in_grand_coalition_prussia or in_weimar_coalition_prussia or in_bourgeois_coalition_prussia
 choose-if: in_dvp_majority_prussia or in_bourgeois_coalition_prussia or (in_grand_coalition_prussia and (dvp_pl + ddp_pl) > spd_pl) or (in_weimar_coalition_prussia and dvp_prussia and (dvp_pl + ddp_pl) > spd_pl) or (in_weimar_coalition_prussia and not dvp_prussia and ddp_pl > spd_pl)

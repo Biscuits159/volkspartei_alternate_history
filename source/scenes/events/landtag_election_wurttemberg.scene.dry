@@ -462,7 +462,7 @@ face-image: img/portraits/BickesTheodor.jpg
 Theodor Bickes was chosen.
 
 @maier
-title: Reinhold Maier, the [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?][? if !ddp_exist: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> ?] candidate.
+title: Reinhold Maier, the [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?][? if ddp_exist == 0: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> ?] candidate.
 subtitle: He is an influent figure of the regional <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>.
 view-if: (dvp_wurttemberg and (nfvp_formed or lvp_formed)) or in_weimar_coalition_wurttemberg or in_grand_coalition_wurttemberg or in_bourgeois_coalition_wurttemberg
 choose-if: in_dvp_majority_wurttemberg or ((in_grand_coalition_wurttemberg or in_bourgeois_coalition_wurttemberg) and (dvp_wl + ddp_wl) > z_wl) or (in_weimar_coalition_wurttemberg and dvp_wurttemberg and (dvp_wl + ddp_wl) > z_wl) or (in_weimar_coalition_wurttemberg and not dvp_wurttemberg and ddp_wl > z_wl)
