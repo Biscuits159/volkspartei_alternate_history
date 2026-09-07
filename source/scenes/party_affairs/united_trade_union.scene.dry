@@ -171,26 +171,23 @@ go-to: leader
 
 @leader
 
-- @lemmer
-- @bechly
-- @imbusch
+- @lemmer: Ernst Lemmer, the Social-Liberal candidate!
+- @bechly: Hans Bechly, the National-Liberal candidate!
+- @imbusch: Heinrich Imbusch, the Christian candidate!
 
 @lemmer
-subtitle: Ernst Lemmer, the Social-Liberal candidate!
 unavailable-subtitle: The Hirsch-Duncker Unions lack the necessary influence.
 choose-if: ddp_influence >= dgb_influence and ddp_influence >= dvp_influence 
 on-arrival: dfgb_leader = "Lemmer"; progressive_strength += 5; labor_strength += 5;
 face-image: img/portraits/LemmerErnst.jpg
 
 @bechly
-subtitle: Hans Bechly, the National-Liberal candidate!
 unavailable-subtitle: The DHV lacks the necessary influence.
 choose-if: dvp_influence >= ddp_influence and dvp_influence >= dgb_influence 
 on-arrival: dfgb_leader = "Bechly"; liberal_strength += 5; labor_strength += 5;
 face-image: img/portraits/BechlyHans.jpg
 
 @imbusch
-subtitle: Heinrich Imbusch, the Christian candidate!
 unavailable-subtitle: The Christian Unions lack the necessary influence.
 view-if: dgb_success
 choose-if: dgb_influence >= ddp_influence and dgb_influence >= dvp_influence 
