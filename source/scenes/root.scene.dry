@@ -31,7 +31,7 @@ Q.week = 0;
 Q.month_actions = 0;
 
 // 0 = normal difficulty, 1 = hard mode, 2 = hard mode no saves
-Q.difficulty = -1;
+Q.difficulty = 0;
 Q.historical_mode = 0;
 // old demographics
 Q.old_demographics = 0;
@@ -1100,9 +1100,14 @@ For more information on the politics and government of the German Republic, see 
 
 Creator of the mod does not support or justify extremist ideologies. This mod is made for entertainment purposes only.
 
+- @1928_easy: Begin (easy difficulty, recommended)
 - @1928_main: Begin (normal difficulty)
 - @1928_hard: Begin (hard difficulty)
 - @1928_historical: Begin (historical mode)
+
+@1928_easy
+on-arrival: difficulty = -1; resources = 4; dues = 3; rb_strength = 2500; kpd_relation = 0; z_relation = 55; spd_relation = 45; budget = 5;
+go-to: 1928_main
 
 @1928_hard
 on-arrival: difficulty = 1; resources = 0; dues = 1; rb_strength = 1000; liberal_dissent = 25; nationalist_dissent = 30; labor_dissent = 25; industrialist_dissent = 25; z_relation = 45; kpd_relation = 0; spd_relation = 30; budget = 3;

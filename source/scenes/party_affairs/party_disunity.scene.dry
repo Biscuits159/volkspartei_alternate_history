@@ -19,7 +19,7 @@ The party is being torn apart by internal dissent. Upset at the leadership and g
 [? if industrialist_dissent > 30 : The industrialists are displeased with the direction of our party. ?]
 [? if labor_dissent > 30 : The trade unions disagree with our present course of action. ?]
 [? if peoples_conservative_dissent > 30 : The people's conservatives are upset at our direction. ?]
-[? if nationalist_dissent > 30: Nationalists are making noises about another party split. ?]
+[? if nationalist_dissent > 30: Nationalists disagree with our present course of action. ?]
 [? if special_interest_dissent > 30 and special_interest_dvp: Special interest groups are in disagreement about our political direction. ?]
 
 Something must be done to reinforce party unity.

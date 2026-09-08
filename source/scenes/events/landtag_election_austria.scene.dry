@@ -74,7 +74,7 @@ for (var party of Q.parties) {
     Q['old_' + party + '_al'] = Q[party + '_al'];
     Q[party + '_votes_austria'] = parseFloat((Q[party + '_votes_austria']).toFixed(1))
     if (Q.electoral_threshold > 0) {
-        if (Q[party + '_votes_austria'] < Q.electoral_threshold || (Q.electoral_threshold > 1 && party == 'other') || Q[party + '_banned']) {
+        if (Q[party + '_votes_austria'] < Q.electoral_threshold || (Q.electoral_threshold > 1 && party == 'other') || Q[party + '_banned'] == 1) {
             Q[party + '_al'] = 0;
         } else {
             Q[party + '_al'] = Q[party + '_votes_austria'];
