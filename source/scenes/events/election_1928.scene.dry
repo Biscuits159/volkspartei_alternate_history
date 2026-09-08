@@ -1421,7 +1421,7 @@ unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
 choose-if: leverage >= 5 
 view-if: finance_minister_party != dvp_name
-on-arrival: leverage -= 5: finance_minister = "Moldenhauer"; finance_minister_party = dvp_name
+on-arrival: leverage -= 5; finance_minister = "Moldenhauer"; finance_minister_party = dvp_name
 go-to: ministries
 
 Paul Moldenhauer has been appointed Finance Minister.
@@ -1447,7 +1447,7 @@ unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
 choose-if: leverage >= 10 
 view-if: justice_minister_party != dvp_name
-on-arrival: leverage -= 10: justice_minister = "Heinze"; justice_minister_party = dvp_name
+on-arrival: leverage -= 10; justice_minister = "Heinze"; justice_minister_party = dvp_name
 go-to: ministries
 
 Rudolf Heinze has been appointed Justice Minister.
@@ -1486,7 +1486,7 @@ unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
 choose-if: leverage >= 15 
 view-if: reichswehr_minister_party != dvp_name
-on-arrival: leverage -= 15; reichswehr_minister = "Seeckt" if ddp_exist == 1; reichswehr_minister = "Gessler" if if ddp_exist == 0; reichswehr_minister_party = dvp_name;
+on-arrival: leverage -= 15; reichswehr_minister = "Seeckt" if ddp_exist == 1; reichswehr_minister = "Gessler" if ddp_exist == 0; reichswehr_minister_party = dvp_name;
 go-to: ministries
 
 [? if ddp_exist == 1: Hans von Seeckt ?][? if ddp_exist == 0: Otto Gessler ?] has been appointed Reichswehr Minister.
