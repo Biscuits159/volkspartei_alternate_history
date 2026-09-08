@@ -31,7 +31,7 @@ Q.week = 0;
 Q.month_actions = 0;
 
 // 0 = normal difficulty, 1 = hard mode, 2 = hard mode no saves
-Q.difficulty = 0;
+Q.difficulty = -1;
 Q.historical_mode = 0;
 // old demographics
 Q.old_demographics = 0;
@@ -1107,14 +1107,18 @@ Creator of the mod does not support or justify extremist ideologies. This mod is
 
 @1928_easy
 on-arrival: difficulty = -1; resources = 4; dues = 3; rb_strength = 2500; kpd_relation = 0; z_relation = 55; spd_relation = 45; budget = 5;
+choose-if: 1 == 2
+unavailable-subtitle: Not available.
 go-to: 1928_main
 
 @1928_hard
 on-arrival: difficulty = 1; resources = 0; dues = 1; rb_strength = 1000; liberal_dissent = 25; nationalist_dissent = 30; labor_dissent = 25; industrialist_dissent = 25; z_relation = 45; kpd_relation = 0; spd_relation = 30; budget = 3;
+choose-if: 1 == 2
+unavailable-subtitle: Not available.
 go-to: 1928_main
 
 @1928_historical
-subtitle: Saving, loading, and polls will be disabled. [? if not achievement_game_completed: Not recommended for a first playthrough. ?]
+subtitle: Saving, loading, and polls will be disabled. Don't do this to yourself.
 on-arrival: {!
 Q.difficulty = 2;
 Q.historical_mode = 1;
