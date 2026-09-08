@@ -93,6 +93,7 @@ for (var party of Q.parties) {
         new_party_sum += Q[party + '_sl'];
     } else {
         Q[party + '_sl'] = Q[party + '_votes_saxony'];
+        if (Q[party + '_banned'] == 1) Q[party + '_sl'] = 0;
         new_party_sum += Q[party + '_sl'];
     }
 

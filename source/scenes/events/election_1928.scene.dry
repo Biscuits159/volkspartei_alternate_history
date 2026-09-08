@@ -81,6 +81,7 @@ for (var party of Q.parties) {
     } else {
         Q[party + '_r'] = parseFloat((Q[party+'_votes']).toFixed(1));
         if (party == 'other') Q[party + '_r'] = Q[party + '_votes'] * 0.3;
+        if (Q[party + '_banned'] == 1) Q[party + '_r'] = 0;
         new_party_sum += Q[party + '_r'];
         console.log(new_party_sum)
     }

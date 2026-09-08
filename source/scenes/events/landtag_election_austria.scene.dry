@@ -83,6 +83,7 @@ for (var party of Q.parties) {
     } else {
         Q[party + '_al'] = Q[party + '_votes_austria'];
         if (party == 'other') Q[party + '_al'] = Q[party + '_votes_austria'] * 0.3;
+        if (Q[party + '_banned'] == 1) Q[party + '_al'] = 0;
         new_party_sum += Q[party + '_al'];
     }
 
