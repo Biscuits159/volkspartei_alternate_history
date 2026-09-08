@@ -1045,6 +1045,7 @@ Q.schleicher_chancellor_time = 0;
 Q.hitler_chancellor_time = 0;
 
 Q.muller_dead = 0;
+Q.no_stresemann = 0;
 
 
 Q.stresemann_advisor = 1; // Gustav Stresemann
@@ -1052,42 +1053,39 @@ Q.hugo_advisor = 1; // Otto Hugo
 Q.scholz_advisor = 1; // Ernst Scholz
 Q.curtius_advisor = 1; // Julius Curtius
 
-// left advisors
-Q.seeckt_advisor = 0; // Hans von Seeckt
-Q.levi_advisor = 0; // Paul Levi
-Q.levi_dead = 0;
-Q.crispien_advisor = 0; // Arthur Crispien
-Q.seydewitz_advisor = 0; // Max Seydewitz
-
-// centrist alternate advisors
-Q.pfulf_advisor = 0; // Antonie Pfülf
-Q.breitscheid_advisor = 0; // Rudolf Breitscheid
-Q.hilferding_advisor = 0; // Rudolf Hilferding
+// industrialist advisors
+Q.jarres_advisor = 0; // Karl Jarres
+Q.raumer_advisor = 0; // Hans Raumer
 
 // Liberal advisors
 Q.luther_advisor = 0; // Hans Luther
-Q.severing_advisor = 0; // Carl Severing
-Q.juchacz_advisor = 0; // Marie Juchacz
-Q.baade_advisor = 0; // Fritz Baade
+Q.rheinbaben_advisor = 0; // Rochus von Rheinbaben
+Q.moldenhauer_advisor = 0; // Paul Moldenhauer
+
+// Peoples Conservative advisors
+Q.treviranus_advisor = 0; // Gottfried Treviranus
+Q.lejeune_jung_advisor = 0; // Paul Lejeune-Jung
+
+// nationalist advisors
+Q.seeckt_advisor = 0; // Hans von Seeckt
 
 // Labor advisors
 Q.thiel_advisor = 0; // Otto Thiel
-Q.leipart_advisor = 0; // Theodor Leipart
-Q.wissell_advisor = 0; // Rudolf Wissell
+Q.bechly_advisor = 0; // Hans Bechly
+Q.baltrusch_advisor = 0; // Otto Thiel
 
 // Revisionist advisors
 Q.dietrich_advisor = 0; // Hermann Dietrich
-Q.leber_advisor = 0; // Julius Leber (post-1930)
+Q.gessler_advisor = 0; // Otto Gessler
 
 // Progressive advisors
 Q.erkelenz_advisor = 0; // Anton Erkelenz
+Q.wirth_advisor = 0; // Joseph Wirth
 
 // Special Interest advisors
-Q.kubler_advisor = 0; // Konrad Kübler
-
-// Nonfactional advisors
+Q.schiele_advisor = 0; // Martin Schiele
+Q.colosser_advisor = 0; // Otto Colosser
 Q.heinze_advisor = 0; // Rudolf Heinze
-Q.moldenhauer_advisor = 0; // Paul Moldenhauer
 !}
 set-bg: img/map_2.jpg
 new-page: true

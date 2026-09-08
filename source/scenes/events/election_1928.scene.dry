@@ -1395,27 +1395,11 @@ unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
 choose-if: leverage >= 15
 view-if: labor_minister_party != dvp_name
-on-arrival: leverage -= 15
-
-Who will be the labor minister?
-
-- @thiel_labor: Otto Thiel
-- @erkelenz_labor: Anton Erkelenz
-
-@thiel_labor
-on-arrival: labor_minister = "Thiel"; labor_minister_party = dvp_name;
+on-arrival: leverage -= 15; labor_minister = "Thiel"; labor_minister_party = dvp_name
 go-to: ministries
-face-image: img/portraits/ThielOtto.jpg
 
-Otto Thiel of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Labor Minister.
+Otto Thiel has been appointed Labor Minister.
 
-@erkelenz_labor
-on-arrival: labor_minister = "Erkelenz"; labor_minister_party = dvp_name;
-view-if: lvp_formed or nfvp_formed
-go-to: ministries
-face-image: img/portraits/ErkelenzAnton.jpg
-
-Anton Erkelenz of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Labor Minister.
 
 @interior
 title: Interior Ministry
@@ -1424,27 +1408,11 @@ unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
 choose-if: leverage >= 10
 view-if: interior_minister_party != dvp_name
-on-arrival: leverage -= 10; interior_minister_party = dvp_name; interior_minister = "Jarres"
-
-Who will be the interior minister?
-
-- @jarres_interior: Karl Jarres
-- @koch_weser_interior: Erich Koch-Weser
-
-@jarres_interior
-on-arrival: interior_minister = "Jarres"; interior_minister_party = dvp_name;
+on-arrival: leverage -= 10; interior_minister = "Jarres"; interior_minister_party = dvp_name
 go-to: ministries
-face-image: img/portraits/JarresKarl.jpg
 
-Karl Jarres of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Interior Minister.
+Karl Jarres has been appointed Interior Minister.
 
-@koch_weser_interior
-on-arrival: interior_minister = "Koch-Weser"; interior_minister_party = dvp_name;
-view-if: lvp_formed or nfvp_formed
-go-to: ministries
-face-image: img/portraits/KochWeserErich.jpg
-
-Erich Koch-Weser of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Interior Minister.
 
 @finance
 title: Finance Ministry
@@ -1453,27 +1421,11 @@ unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
 choose-if: leverage >= 5 
 view-if: finance_minister_party != dvp_name
-on-arrival: leverage -= 5; 
-
-Who will be the finance minister?
-
-- @moldenhauer_finance: Paul Moldenhauer
-- @dietrich_finance: Hermann Dietrich
-
-@moldenhauer_finance
-on-arrival: finance_minister = "Moldenhauer"; finance_minister_party = dvp_name;
+on-arrival: leverage -= 5: finance_minister = "Moldenhauer"; finance_minister_party = dvp_name
 go-to: ministries
-face-image: img/portraits/MoldenhauerPaul.jpg
 
-Paul Moldenhauer of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Finance Minister.
+Paul Moldenhauer has been appointed Finance Minister.
 
-@dietrich_finance
-on-arrival: finance_minister = "Dietrich"; finance_minister_party = dvp_name;
-view-if: lvp_formed or nfvp_formed
-go-to: ministries
-face-image: img/portraits/DietrichHermann.jpg
-
-Hermann Dietrich of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Finance Minister.
 
 @economic
 title: Economic Ministry
@@ -1482,44 +1434,10 @@ unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
 choose-if: leverage >= 5 
 view-if: economic_minister_party != dvp_name
-on-arrival: leverage -= 5;
-
-Who will be the economic minister?
-
-- @curtius_economic: Julius Curtius
-- @krohne_economic: Rudolf Krohne
-- @hamm_economic: Eduard Hamm
-- @lejeune_jung_economic: Paul Lejeune-Jung
-
-@curtius_economic
-on-arrival: economic_minister = "Curtius"; economic_minister_party = dvp_name;
+on-arrival: leverage -= 5; economic_minister = "Curtius" if no_stresemann == 0; economic_minister = "Krohne" if no_stresemann == 1; economic_minister_party = dvp_name
 go-to: ministries
-face-image: img/portraits/CurtiusJulius.jpg
 
-Julius Curtius of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Economic Minister.
-
-@krohne_economic
-on-arrival: economic_minister = "Krohne"; economic_minister_party = dvp_name;
-go-to: ministries
-face-image: img/portraits/KrohneRudolf.jpg
-
-Rudolf Krohne of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Economic Minister.
-
-@hamm_economic
-on-arrival: economic_minister = "Hamm"; economic_minister_party = dvp_name;
-view-if: lvp_formed or nfvp_formed
-go-to: ministries
-face-image: img/portraits/HammEduard.jpg
-
-Eduard Hamm of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Economic Minister.
-
-@lejeune_jung_economic
-on-arrival: economic_minister = "Lejeune-Jung"; economic_minister_party = dvp_name;
-view-if: peoples_conservatives_dvp
-go-to: ministries
-face-image: img/portraits/LejeuneJungPaul.jpg
-
-Paul Lejeune-Jung of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Economic Minister.
+[? if no_stresemann == 0: Julius Curtius ?][? if no_stresemann == 1: Rudolf Krohne ?] has been appointed Economic Minister.
 
 
 @justice
@@ -1529,35 +1447,11 @@ unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
 choose-if: leverage >= 10 
 view-if: justice_minister_party != dvp_name
-on-arrival: leverage -= 10;
-
-Who will be the justice minister?
-
-- @heinze_justice: Rudolf Heinze
-- @kardorff_justice: Siegfried Kardorff
-- @schiffer_justice: Eugen Schiffer
-
-@heinze_justice
-on-arrival: justice_minister = "Heinze"; justice_minister_party = dvp_name;
+on-arrival: leverage -= 10: justice_minister = "Heinze"; justice_minister_party = dvp_name
 go-to: ministries
-face-image: img/portraits/HeinzeRudolf.jpg
 
-Rudolf Heinze of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Justice Minister.
+Rudolf Heinze has been appointed Justice Minister.
 
-@kardorff_justice
-on-arrival: justice_minister = "Kardorff"; justice_minister_party = dvp_name;
-go-to: ministries
-face-image: img/portraits/KardorffSiegfried.jpg
-
-Siegfried Kardorff of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Justice Minister.
-
-@schiffer_justice
-on-arrival: justice_minister = "Schiffer"; justice_minister_party = dvp_name;
-view-if: lvp_formed or nfvp_formed
-go-to: ministries
-face-image: img/portraits/SchifferEugen.jpg
-
-Eugen Schiffer of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Justice Minister.
 
 @foreign
 title: Foreign Ministry
@@ -1566,28 +1460,10 @@ unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
 choose-if: leverage >= 5 
 view-if: foreign_minister_party != dvp_name
-on-arrival: leverage -= 5;
-
-Who will be the foreign minister?
-
-- @stresemann_foreign: Gustav Stresemann
-- @curtius_foreign: Julius Curtius
-
-@stresemann_foreign
-on-arrival: foreign_minister = "Stresemann"; foreign_minister_party = dvp_name;
-view-if: not no_stresemann
+on-arrival: leverage -= 5; foreign_minister = "Stresemann" if no_stresemann == 0; foreign_minister = "Curtius" if no_stresemann == 1; foreign_minister_party = dvp_name
 go-to: ministries
-face-image: img/portraits/StresemannGustav.jpg
 
-Gustav Stresemann of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Foreign Minister.
-
-@curtius_foreign
-on-arrival: foreign_minister = "Curtius"; foreign_minister_party = dvp_name;
-view-if: no_stresemann
-go-to: ministries
-face-image: img/portraits/CurtiusJulius.jpg
-
-Julius Curtius of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Foreign Minister.
+[? if no_stresemann == 0: Gustav Stresemann ?][? if no_stresemann == 1: Julius Curtius ?] has been appointed Economic Minister.
 
 
 @agriculture
@@ -1597,36 +1473,11 @@ unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
 choose-if: leverage >= 10 
 view-if: agriculture_minister_party != dvp_name
-on-arrival: leverage -= 10
-
-Who will be the agriculture minister?
-
-- @kanitz_agriculture: Gerhard von Kanitz
-- @schiele_agriculture: Martin Schiele
-- @fehr_agriculture: Anton Fehr
-
-@kanitz_agriculture
-on-arrival: agriculture_minister = "Kanitz"; agriculture_minister_party = dvp_name;
+on-arrival: leverage -= 10; agriculture_minister = "Kanitz" if ddp_exist == 1; agriculture_minister = "Dietrich" if ddp_exist == 0; agriculture_minister_party = dvp_name
 go-to: ministries
-face-image: img/portraits/KanitzGerhard.jpg
 
-Gerhard von Kanitz of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Agriculture Minister.
+[? if ddp_exist == 1: Gerhard von Kanitz ?][? if ddp_exist == 0: Hermann Dietrich ?] has been appointed Agriculture Minister.
 
-@schiele_agriculture
-on-arrival: agriculture_minister = "Schiele"; agriculture_minister_party = dvp_name;
-view-if: cnblp_dvp
-go-to: ministries
-face-image: img/portraits/SchieleMartin.jpg
-
-Martin Schiele of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Agriculture Minister.
-
-@fehr_agriculture
-on-arrival: agriculture_minister = "Fehr"; agriculture_minister_party = dvp_name;
-view-if: dbp_dvp
-go-to: ministries
-face-image: img/portraits/FehrAnton.jpg
-
-Anton Fehr of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Agriculture Minister.
 
 @reichswehr
 title: Reichswehr Ministry
@@ -1635,28 +1486,10 @@ unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
 choose-if: leverage >= 15 
 view-if: reichswehr_minister_party != dvp_name
-on-arrival: leverage -= 15
-
-Who will be the Reichswehr minister?
-
-- @seeckt_reichswehr: Hans von Seeckt
-- @gessler_reichswehr: Otto Gessler
-
-@seeckt_reichswehr
-on-arrival: reichswehr_minister = "Seeckt"; reichswehr_minister_party = dvp_name;
+on-arrival: leverage -= 15; reichswehr_minister = "Seeckt" if ddp_exist == 1; reichswehr_minister = "Gessler" if if ddp_exist == 0; reichswehr_minister_party = dvp_name;
 go-to: ministries
-face-image: img/portraits/SeecktHans.jpg
 
-Hans von Seeckt of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Reichswehr Minister.
-
-@gessler_reichswehr
-on-arrival: reichswehr_minister = "Gessler"; reichswehr_minister_party = dvp_name;
-view-if: lvp_formed or nfvp_formed
-go-to: ministries
-face-image: img/portraits/GesslerOtto.jpg
-
-Otto Gessler of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has been appointed Reichswehr Minister.
-
+[? if ddp_exist == 1: Hans von Seeckt ?][? if ddp_exist == 0: Otto Gessler ?] has been appointed Reichswehr Minister.
 
 
 @no_more

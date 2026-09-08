@@ -36,7 +36,7 @@ We manage to rally the a few of the workers to our cause.
 
 @SPD_relation
 title: Relations with the <span style="color: #E3000F;">**SPD**</span>.
-subtitle: Improve our standing with the <span style="color: #E3000F;">**socialists**</span>.
+subtitle: Improve our standing with the socialists.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 on-arrival: advisor_action_timer = 6; spd_relation += 6*(1 - dissent); industrialist_dissent += 15
