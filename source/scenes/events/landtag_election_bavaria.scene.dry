@@ -447,7 +447,7 @@ face-image: img/portraits/HammEduard.jpg
 Eduard Hamm was elected.
 
 @held
-title: Eduard Hamm, the <span style="color: #69A2BE;">**BVP**</span> candidate.
+title: Heinrich Held, the <span style="color: #69A2BE;">**BVP**</span> candidate.
 subtitle: The Minister-President since 1924 remains the natural choice.
 view-if: in_bourgeois_coalition_bavaria or in_right_coalition_bavaria
 on-arrival: bavaria_leader = "Held"; bavaria_leader_party = "BVP"; catholics_z += 4
