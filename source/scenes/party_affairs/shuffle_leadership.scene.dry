@@ -405,7 +405,7 @@ view-if: n_advisors < 4
 
 @add_scholz
 title: Ernst Scholz
-subtitle: Ernst Scholz is the leader of our faction in Reichstag. {!<br><br>!} Actions - Relly Against Socialism, Against the <span style="color: #E3000F;">**SPD**</span> and the <span style="color: #8B0000;">**KPD**</span>, Against Toleration
+subtitle: Ernst Scholz is the leader of our faction in Reichstag. {!<br><br>!} Actions - Rally Against Socialism, Against the <span style="color: #E3000F;">**SPD**</span> and the <span style="color: #8B0000;">**KPD**</span>, Against Toleration
 is-card: true
 card-image: img/portraits/ScholzErnst.jpg
 tags: industrialist_advisor
