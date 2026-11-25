@@ -9,22 +9,22 @@ new-page: true
 
 Stegerwald's actions have solidified the <span style="color: #000000;">**Center Party**</span> as an interconfessional party, but he has made plenty of enemies in doing so. Former chancellor Joseph Wirth and his allies in the <span style="color: #FF7F00;">Christian Left</span> are opposing his leadership.
 
-Jakob Kaiser, a rising star on the left, who supports a united Christian union, but opposes Stegerwald's right-wind policies is best placed to challenge him.
+Jakob Kaiser, a rising star on the left, who supports a Christian union, but opposes Stegerwald's right-wind policies is best placed to challenge him.
 
 - @z_stegerwald: The Center Party elects Adam Stegerwald as the party chair.
 - @z_kaiser: The Center Party elects Jakob Kaiser as the party chair.
 
 @z_stegerwald
-on-arrival: z_leader = "Stegerwald"; z_ideology = "Right"; workers_z += 3; catholics_z -= 3
+on-arrival: z_leader = "Stegerwald"; z_ideology = "Paternalistic Conservatism"; workers_z += 3; catholics_z -= 3
 face-image: img/portraits/StegerwaldAdam.jpg
 
-Stegerwald will continue to evolve the <span style="color: #000000;">Center Party</span> into a <span style="color: #000000;">Christian</span>, <span style="color: #586593;">democratic</span>, <span style="color: #000000;">German</span>, and <span style="color: #c00000;">social</span> party. [? if dnvp_ideology == "Radical": Now taking the <span style="color: #3E88B3;">**DNVP**</span>'s place on the German right. ?]
+Stegerwald will continue to evolve the <span style="color: #000000;">Center Party</span> into a <span style="color: #000000;">Christian</span>, <span style="color: #586593;">democratic</span>, <span style="color: #000000;">German</span>, and <span style="color: #c00000;">social</span> party. [? if dnvp_leader != "Treviranus": Now taking the <span style="color: #3E88B3;">**DNVP**</span>'s place on the German right. ?]
 
-[? if dnvp_ideology == "Moderate": There are already rumors of a merger with the moderate <span style="color: #3E88B3;">**DNVP**</span>?]
+[? if dnvp_leader == "Treviranus": There are already rumors of a merger with the moderate <span style="color: #3E88B3;">**DNVP**</span>?]
 
 @z_kaiser
 unavailable-subtitle: Kaiser doesn't have enough support.
-on-arrival: z_leader = "Joos"; z_ideology = "Left"; workers_z += 3; dvp_left += 2
+on-arrival: z_leader = "Joos"; z_ideology = "Christian Democracy"; workers_z += 3; z_left += 2
 choose-if: pro_republic >= 80
 face-image: img/portraits/JoosJoseph.jpg
 

@@ -14,11 +14,11 @@ The economic crisis has caused mass layoffs all throughout Germany, affecting th
 
 In the midst of all this, our party's economic experts in cooperation with those of the <span style="color: #000000;">**Center Party**</span> have devised a plan to cut benefits for the unemployed, lower taxes on the rich, and raise taxes on the working class, as part of a plan to balance the budget and discipline labor. They see these reforms as paramount in order to keep our finances solvent.
 
-The <span style="color: #E3000F;">**SPD**</span>, however, has strenuously objected to the proposed budget modifications, seeing it as an attempt by the bourgeois to dismantle the welfare system they have fought so hard for. If we attempt to go forward with this plan, they are threatening to blow up the coalition.
+The <span style="color: var(--spd-color);">**SPD**</span>, however, has strenuously objected to the proposed budget modifications, seeing it as an attempt by the bourgeois to dismantle the welfare system they have fought so hard for. If we attempt to go forward with this plan, they are threatening to blow up the coalition.
 
 They have instead proposed their own measure to maintain budget solvency, which calls for increased taxes on the rich to keep the unemployment insurance program fully funded. Our industrialist backers and middle class base, however, see this as completely unacceptable.
 
-Thankfully, President Hindenburg is on our side, and will likely support any attempts at passing these reforms by emergency decree, negating the need for the <span style="color: #E3000F;">**SPD**</span>'s support if we do not mind the fall of the government.
+Thankfully, President Hindenburg is on our side, and will likely support any attempts at passing these reforms by emergency decree, negating the need for the <span style="color: var(--spd-color);">**SPD**</span>'s support if we do not mind the fall of the government.
 
 [? if unemployment_insurance_crisis = 2 : This is the second time our finances have been imperiled thusly. Obviously, the previous reforms have not sufficiently disciplined labor to allow the economy to recover. ?]
 
@@ -28,21 +28,21 @@ Thankfully, President Hindenburg is on our side, and will likely support any att
 max-visits: 1
 go-to: what_do
 
-The <span style="color: #E3000F;">**SPD**</span>, as the representatives of the working class, would not have that.
+The <span style="color: var(--spd-color);">**SPD**</span>, as the representatives of the working class, would not have that.
 
 @what_do
 
 But the crux of the matter is, what can we do?
 
 - @destroy: Fine. We will end this coalition.
-- @accept: Unfortunately, we must accept the <span style="color: #E3000F;">socialists</span>' demands for the sake of stability.
+- @accept: Unfortunately, we must accept the <span style="color: var(--spd-color);">socialists</span>' demands for the sake of stability.
 - @compromise: Surely there is some compromise to be had?
 
 @destroy
 call: set_next_election_time
 on-arrival: time_to_election = 3; spd_in_government = 0; in_grand_coalition = 0; in_bourgeois_coalition = 1; spd_toleration = 0; spd_relation -= 10; labor_dissent += 10; progressive_dissent += 7; industrialist_strength += 7; welfare -= 2; budget += 1; inflation -= 2; chancellor = "Brüning"; chancellor_party = "Z"; foreign_minister = "Curtius"; foreign_minister_party = dvp_name; interior_minister = "Wirth"; interior_minister_party = "Z"; justice_minister = "Guérard"; justice_minister_party = "Z"; justice_minister = "Bredt" if wp_exist; justice_minister_party = "WP" if wp_exist; labor_minister = "Stegerwald"; labor_minister_party = "Z"; reichswehr_minister = "Groener"; reichswehr_minister_party = "I"; economic_minister = "Warmbold"; economic_minister_party = "I"; economic_minister = "Dietrich" if ddp_exist; economic_minister_party = ddp_name if ddp_exist; finance_minister = "Moldenhauer"; finance_minister_party = dvp_name; agriculture_minister = "Hermes"; agriculture_minister_party = "Z"; agriculture_minister = "Schiele" if not cnblp_dvp; agriculture_minister_party = "CNBLP" if cnblp_exist; agriculture_minister_party = "KVP" if cnblp_kvp; agriculture_minister_party = "DNVP" if cnblp_dnvp; spd_no_confidence = 1; pro_republic -= 4; workers_dvp -= 6; unemployed_dvp -= 6; economic_growth -= 0.6
 
-Fine. If the <span style="color: #E3000F;">socialists</span> wish to blow up the government, let them do so. We have the support of Hindenburg, and they do not.
+Fine. If the <span style="color: var(--spd-color);">socialists</span> wish to blow up the government, let them do so. We have the support of Hindenburg, and they do not.
 
 Heinrich Brüning of the <span style="color: #000000;">**Center Party**</span> has been appointed Chancellor. Brüning now leads an all-bourgeois cabinet, in which we have been given control of the Finance and Foreign ministries. Using the emergency powers of Article 48, Brüning and President Hindenburg have passed the welfare cuts over the objections of the Reichstag.
 
@@ -57,19 +57,19 @@ on-arrival: new_middle_dvp -= 0.15*new_middle_dvp; old_middle_dvp -= 0.25*old_mi
 
 Unfortunately, we must accept this ultimatum if we are to maintain this coalition. The Nazis and Communists are waiting in the wings for us to fail, ready to pounce upon the instability that would result from a breakup of the governing coalition.
 
-The industrialists and small business owners are furious at our betrayal, as are a good portion of our membership throughout the rightist factions, which are threatening a full on seccession from the party. Our loss is the DNVP's gain, and even the NSDAP, who heavy industry and an angered middle class see as the only parties willing to stand up to the <span style="color: #E3000F;">socialists</span>.
+The industrialists and small business owners are furious at our betrayal, as are a good portion of our membership throughout the rightist factions, which are threatening a full on seccession from the party. Our loss is the DNVP's gain, and even the NSDAP, who heavy industry and an angered middle class see as the only parties willing to stand up to the <span style="color: var(--spd-color);">socialists</span>.
 
-The workers, at least, are pleased at the government's course of action, although they attribute most of the credit to the <span style="color: #E3000F;">**SPD**</span>.
+The workers, at least, are pleased at the government's course of action, although they attribute most of the credit to the <span style="color: var(--spd-color);">**SPD**</span>.
 
 Still, this has deradicalized the proletariat away from the extremes at both ends of the political spectrum, as they see the parties of the government as acting in their interest in this time of crisis.
 
-The <span style="color: #E3000F;">**SPD**</span> is pleasantly surprised at our backing of their increase in the tax burden upon the rich, and we have seen a substantial improvement in relations and decrease in coalition tensions as a result.
+The <span style="color: var(--spd-color);">**SPD**</span> is pleasantly surprised at our backing of their increase in the tax burden upon the rich, and we have seen a substantial improvement in relations and decrease in coalition tensions as a result.
 
 @compromise
-unavailable-subtitle: [? if spd_relation < 35 : We do not have good enough relations with the <span style="color: #E3000F;">**SPD**</span>. ?] [? if dvp_ideology != "Left" : The party is too right-wing to consider compromises with the socialists. ?]
-choose-if: spd_relation >= 35 and dvp_ideology = "Left"
+unavailable-subtitle: [? if spd_relation < 35 : We do not have good enough relations with the <span style="color: var(--spd-color);">**SPD**</span>. ?] [? if dvp_left < 0 : The party is too right-wing to consider compromises with the socialists. ?]
+choose-if: spd_relation >= 35 and dvp_left >= 0
 
-Thanks to our good relations, the <span style="color: #E3000F;">**SPD**</span> has offered a compromise that raises some taxes on the wealthy, along with lesser welfare cuts. Our members have mixed opinions on accepting this compromise. The Liberals support maintaining our government to keep the fascists and communists out, while Labor supports the compromise in the hopes of moderating the pain of the workers they represent, but the Industrialists who provide the bulk of the funding our party needs to function are strongly opposed. The nationalists, of course, oppose it as capitulation to the <span style="color: #E3000F;">socialists</span>.
+Thanks to our good relations, the <span style="color: var(--spd-color);">**SPD**</span> has offered a compromise that raises some taxes on the wealthy, along with lesser welfare cuts. Our members have mixed opinions on accepting this compromise. The Liberals support maintaining our government to keep the fascists and communists out, while Labor supports the compromise in the hopes of moderating the pain of the workers they represent, but the Industrialists who provide the bulk of the funding our party needs to function are strongly opposed. The nationalists, of course, oppose it as capitulation to the <span style="color: var(--spd-color);">socialists</span>.
 
 - @accept_compromise: Accept the compromise.
 - @destroy: Reject the compromise and let this government fall.
@@ -77,6 +77,6 @@ Thanks to our good relations, the <span style="color: #E3000F;">**SPD**</span> h
 @accept_compromise
 on-arrival: spd_relation += 2; new_middle_dvp -= 0.1*new_middle_dvp; old_middle_dvp -= 0.15*new_middle_dvp; workers_spd -= 2; unemployed_spd -= 2; workers_kpd += 3; unemployed_kpd += 2; unemployed_nsdap += 2; workers_dvp -= 3; unemployed_dvp -= 3; industrialist_dissent += 15; nationalist_dissent += 10; labor_strength += 7; liberal_strength += 5; democratic_strength += 5; progressive_strength += 5; welfare -= 1; budget += 1; dnvp_relation -= 4; inflation -= 1; economic_growth -= 0.3
 
-We have accepted the compromise offered by the <span style="color: #E3000F;">socialists</span>, who appreciate our concessions even if the workers themselves do not.
+We have accepted the compromise offered by the <span style="color: var(--spd-color);">socialists</span>, who appreciate our concessions even if the workers themselves do not.
 
 Many of our industrialist backers and middle class supporters see this as a betrayal, although we present it as the successful aversion of the collapse of the government.

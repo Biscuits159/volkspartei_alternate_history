@@ -19,7 +19,7 @@ title: Defend the "taming strategy"
 subtitle: The <span style="color: #954B00;">**nazis**</span> must be brought into government.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 6; nationalist_strength += 5; nsdap_relation += 4*(1-dissent); liberal_dissent += 5; dvp_right += 1
+on-arrival: advisor_action_timer = 6; nationalist_strength += 5; nsdap_relation += 4*(1-dissent); liberal_dissent += 5; dvp_left -= 1
 
 Mainly proposed by General Kurt von Schleicher, we believe the <span style="color: #954B00;">**NSDAP**</span> can be transformed into a constructive force to purge Germany of Marxism.
 

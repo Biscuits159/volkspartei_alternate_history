@@ -3,7 +3,7 @@ subtitle: Our publication of the Wittorf Affair has changed the balance of power
 new-page: true
 view-if: wittorf_affair_published = 1 and year = 1929 and month >= 6 and month <= 8
 max-visits: 1
-on-arrival: kpd_leader = "LuxemLuxemburgists"; spd_left += 4; pro_republic += (kpd_votes / 2)
+on-arrival: kpd_leader = "Conciliators"; kpd_ideology = "Luxembourgism"; kpd_color = "#ce527f"; spd_left += 4; pro_republic += (kpd_votes / 2)
 tags: event
 
 = <span style="color: #8B0000;">**KPD**</span> Party Conference

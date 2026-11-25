@@ -1,6 +1,6 @@
 title: Party for the National Proletariat
 subtitle: The <span style="color: #FE9E00;">**ASPD**</span> is refounded!
-view-if: year >= 1935 and return_to_normalcy
+view-if: return_to_normalcy and nsdap_votes < 8
 max-visits: 1
 tags: event
 new-page: true
@@ -16,11 +16,11 @@ With the decline of the Nazis, nationalist workers have been looking for a place
 on-arrival: aspd_leader = "Heldt"
 go-to: aspd_formed
 
-Max Heldt, minster-president of Saxony has won the leadership election. He will lead the <span style="color: #FE9E00;">**ASPD**</span> on a modearte course, even accecpting cooperation with the <span style="color: #E3000F;">**SPD**</span> on economic matters, while maintaining a nationalist stance on abroad.
+Max Heldt, minster-president of Saxony has won the leadership election. He will lead the <span style="color: #FE9E00;">**ASPD**</span> on a modearte course, even accecpting cooperation with the <span style="color: var(--spd-color);">**SPD**</span> on economic matters, while maintaining a nationalist stance on abroad.
 
 
 @niekisch
-on-arrival: aspd_leader = "Niekisch"
+on-arrival: aspd_leader = "Niekisch"; aspd_ideology = "National Bolchevism"; aspd_radical = 1
 go-to: aspd_formed
 
 WIP

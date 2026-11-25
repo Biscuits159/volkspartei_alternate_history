@@ -22,7 +22,7 @@ Q.catholics_dnf = 1;
 Q.catholics_dnvp -= 1;
 
 
-if (Q.dvp_ideology = "Right") {
+if (Q.dvp_left < 0) {
     Q.dnf_relation = 50
 } else {
     Q.dnf_relation = 35

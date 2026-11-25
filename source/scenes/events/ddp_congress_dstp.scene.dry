@@ -16,7 +16,7 @@ if (Q.time_since_election >= 12 && !Q.dstp_election) {
 }
 if ((100 - Q.pro_republic) + Q.nationalism >= 100) {
     Q.dstp_collapse_points -= 1;
-    Q.ddp_right += 1;
+    Q.ddp_left -= 1;
 }
 if (Q.major_curriculum == "humanist") {
     Q.dstp_collapse_points -= 1;
@@ -30,7 +30,7 @@ if (Q.nationalism < 50) {
 }
 if (Q.ddp_relation >= 65) {
     Q.dstp_collapse_points += 1;
-    Q.ddp_right += 1;
+    Q.ddp_left -= 1;
 }
 !}
 max-visits: 1
@@ -48,7 +48,7 @@ According to the agreement on which the founding of the <span style="color: #DCC
 
 @dstp_maintained
 view-if: dstp_collapse_points < 4
-on-arrival: dstp_maintained = 1; nationalism += 3; new_middle_ddp -= 2; new_middle_spd += 2; old_middle_ddp += 2; old_middle_nsdap -= 2; unemployed_ddp += 2; ddp_right += 1; ddp_relation -= 5;
+on-arrival: dstp_maintained = 1; nationalism += 3; new_middle_ddp -= 2; new_middle_spd += 2; old_middle_ddp += 2; old_middle_nsdap -= 2; unemployed_ddp += 2; ddp_left -= 1; ddp_relation -= 5;
 
 Surprisingly, the contradiction that is the <span style="color: #DCCA4A;">**DStP**</span> continues to live on. After intense negotiations between the <span style="color: #DCCA4A;">democrats</span> in favor of the merger, like Koch-Weser, and the dissenting old-line <span style="color: #DCCA4A;">democrats</span>, they agree to elevate Koch-Weser to the chairman of the Reichstag faction. However, Mahraun's control over the party's national organization proved to be a much trickier problem, as Mahraun’s Order remained inflexible when it came to compromise. The deadlock is finally resolved when Mahraun agrees to cede some of his Reichsführer powers to the executive committee in exchange for a larger share of <span style="color: #D3D3A9;">**VNR**</span>-affiliated delegates at next month's party congress.
 
@@ -56,7 +56,7 @@ It seems this experiment will persist, with the <span style="color: #DCCA4A;">**
 
 @dstp_collapse
 view-if: dstp_collapse_points >= 4
-on-arrival: vnr_exist = 1; dstp_collapsed = 1; new_middle_ddp -= 4; old_middle_ddp -= 6; ddp_right += 1; ddp_relation -= 3; ddp_leader = "Dietrich"
+on-arrival: vnr_exist = 1; dstp_collapsed = 1; new_middle_ddp -= 4; old_middle_ddp -= 6; ddp_left -= 1; ddp_relation -= 3; ddp_leader = "Dietrich"
 
 Negotiations between Mahraun and the <span style="color: #DCCA4A;">democrats</span> have finally collapsed; the experiment has finally fallen apart. The members from Mahraun's <span style="color: #D3D3A9;">**VNR**</span> have split[? if dstp_election:, taking their Reichstag seats with them?]. Responsibility for the break is argued on both sides, with the old-line <span style="color: #DCCA4A;">democrats</span> Mahraun's refusal to compromise and the Order blaming purposeful obstruction.
 

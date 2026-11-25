@@ -30,7 +30,6 @@ Since we are currently ruling as part of an emergency government, we may use qua
 
 @cancel_elections_2
 on-departure: next_election_year = next_election_year + 1; next_election_time = time + 12; pro_republic -= 10; spd_relation -= 8; z_relation -= 8; ddp_relation -= 10; kpd_relation -= 8; coup_progress += 2; workers_spd -= 4; new_middle_spd -= 5; old_middle_spd -= 5; rural_spd -= 5; catholics_spd -= 5; unemployed_spd -= 5; coup_progress += 2 if nsdap_normalized >= 0.3; coup_progress += 2 if nsdap_normalized + dnvp_normalized >= 0.5; sa_strength += 100 if coup_progress >= 7; sh_strength += 100 if coup_progress >= 7
-achievement: ausnahmezustand
 
 Fine. President [+ president +] has taken the unprecedented step of canceling these elections. New elections are scheduled for [+ next_election_month : month +] [+ next_election_year +].
 
@@ -238,14 +237,14 @@ if (Q.dvp_r >= Q.spd_r && Q.dvp_r >= Q.nsdap_r && Q.dvp_r >= Q.kpd_r) {
 // coalitions
 Q.liberal_coalition = parseFloat((Q.dvp_r + Q.ddp_r).toFixed(1));
 
-Q.social_liberal_coalition = parseFloat((Q.spd_r + Q.ddp_r + Q.dvp_r).toFixed(1));
+Q.social_liberal_coalition = parseFloat((Q.sapd_r + Q.spd_r + Q.ddp_r + Q.dvp_r + Q.csrp_r).toFixed(1));
 
-if (Q.ddp_exist) Q.weimar_coalition = parseFloat((Q.spd_r + Q.ddp_r + Q.z_minus_bvp_r + Q.csrp_r).toFixed(1));
-if (!Q.ddp_exist) Q.weimar_coalition = parseFloat((Q.spd_r + Q.dvp_r + Q.z_minus_bvp_r + Q.csrp_r).toFixed(1));
-if (Q.aspd_exist && Q.aspd_ideology == "Moderate") Q.weimar_coalition = parseFloat((Q.weimar_coalition + Q.aspd_r).toFixed(1));
+if (Q.ddp_exist) Q.weimar_coalition = parseFloat((Q.sapd_r + Q.spd_r + Q.ddp_r + Q.z_minus_bvp_r + Q.csrp_r).toFixed(1));
+if (!Q.ddp_exist) Q.weimar_coalition = parseFloat((Q.sapd_r + Q.spd_r + Q.dvp_r + Q.z_minus_bvp_r + Q.csrp_r).toFixed(1));
+if (Q.aspd_exist && Q.aspd_radical == 0) Q.weimar_coalition = parseFloat((Q.weimar_coalition + Q.aspd_r).toFixed(1));
 
-Q.grand_coalition = parseFloat((Q.spd_r + Q.ddp_r + Q.z_r + Q.dvp_r + Q.csrp_r).toFixed(1));
-if (Q.aspd_exist && Q.aspd_ideology == "Moderate") Q.grand_coalition = parseFloat((Q.grand_coalition + Q.aspd_r).toFixed(1));
+Q.grand_coalition = parseFloat((Q.sapd_r + Q.spd_r + Q.ddp_r + Q.z_r + Q.dvp_r + Q.csrp_r).toFixed(1));
+if (Q.aspd_exist && Q.aspd_radical == 0) Q.grand_coalition = parseFloat((Q.grand_coalition + Q.aspd_r).toFixed(1));
 
 Q.left_front = parseFloat((Q.kpd_r + Q.sapd_r + Q.spd_r).toFixed(1));
 
@@ -253,35 +252,31 @@ Q.popular_front = parseFloat((Q.kpd_r + Q.sapd_r + Q.spd_r + Q.z_minus_bvp_r).to
 if (Q.ddp_exist) Q.popular_front = parseFloat((Q.popular_front + Q.ddp_r).toFixed(1));
 
 Q.bourgeois_coalition = parseFloat((Q.ddp_r + Q.z_r + Q.dvp_r + Q.other_r + Q.kvp_r + Q.wp_r + Q.dbp_r + Q.cnblp_r + Q.csvd_r + Q.csrp_r).toFixed(1));
-if (Q.aspd_exist && Q.aspd_ideology == "Moderate") Q.bourgeois_coalition = parseFloat((Q.bourgeois_coalition + Q.aspd_r).toFixed(1));
+if (Q.aspd_exist && Q.aspd_radical == 0) Q.bourgeois_coalition = parseFloat((Q.bourgeois_coalition + Q.aspd_r).toFixed(1));
 
-if (Q.kvp_formed) Q.center_right_coalition = parseFloat((Q.z_r + Q.dvp_r + Q.other_r + Q.kvp_r + Q.wp_r + Q.dbp_r + Q.cnblp_r + Q.csvd_r + Q.csrp_r).toFixed(1));
-if (!Q.kvp_formed) Q.center_right_coalition = parseFloat((Q.z_r + Q.dvp_r + Q.other_r + Q.dnvp_r + Q.wp_r + Q.dbp_r + Q.cnblp_r + Q.csvd_r + Q.csrp_r).toFixed(1));
-if (Q.aspd_exist && Q.aspd_ideology == "Moderate") Q.center_right_coalition = parseFloat((Q.center_right_coalition + Q.aspd_r).toFixed(1));
+Q.center_right_coalition = parseFloat((Q.z_r + Q.dvp_r + Q.other_r + Q.dnvp_r + Q.wp_r + Q.dbp_r + Q.cnblp_r + Q.csvd_r + Q.csrp_r).toFixed(1));
+if (Q.aspd_exist && Q.aspd_radical == 0) Q.center_right_coalition = parseFloat((Q.center_right_coalition + Q.aspd_r).toFixed(1));
 
-if (Q.dnvp_ideology == "Moderate") Q.rg_coalition = parseFloat((Q.dvp_r + Q.bvp_r + Q.other_r + Q.dnvp_r + Q.wp_r + Q.dbp_r + Q.cnblp_r + Q.csvd_r + Q.csrp_r).toFixed(1));
+if (Q.dnvp_left >= 0) Q.hindenburg_coalition = parseFloat((Q.dvp_r + Q.bvp_r + Q.other_r + Q.dnvp_r + Q.wp_r + Q.dbp_r + Q.cnblp_r + Q.csvd_r + Q.csrp_r).toFixed(1));
 
-Q.neo_weimar_coalition = parseFloat((Q.spd_r + Q.ddp_r + Q.z_r + Q.dvp_r + Q.other_r + Q.kvp_r + Q.wp_r + Q.dbp_r + Q.cnblp_r + Q.csvd_r + Q.csrp_r).toFixed(1));
-if (Q.dnvp_ideology == "Moderate") Q.neo_weimar_coalition = parseFloat((Q.neo_weimar_coalition + Q.dnvp_r).toFixed(1));
-if (Q.aspd_exist && Q.aspd_ideology == "Moderate") Q.neo_weimar_coalition = parseFloat((Q.neo_weimar_coalition + Q.aspd_r).toFixed(1));
-
-if (Q.dnvp_ideology == "Radical") Q.far_right_coalition = parseFloat((Q.dnvp_r + Q.nsdap_r).toFixed(1));
+if (Q.dnvp_left < 0) Q.far_right_coalition = parseFloat((Q.dnvp_r + Q.nsdap_r).toFixed(1));
 if (Q.dnf_formed) Q.far_right_coalition = parseFloat((Q.dnf_r + Q.nsdap_r).toFixed(1));
 
-if (Q.dnvp_ideology == "Radical") Q.anti_democratic_coalition = parseFloat((Q.kpd_r + Q.nsdap_r + Q.dnvp_r).toFixed(1));
-if (Q.dnf_formed) Q.anti_democratic_coalition = parseFloat((Q.kpd_r + Q.nsdap_r + Q.dnf_r).toFixed(1));
-
 // Hitler + Right-wing parties
-if (Q.dnvp_ideology == "Radical") Q.hitler_right_coalition = parseFloat((Q.dvp_r + Q.dnvp_r + Q.nsdap_r).toFixed(1));
+if (Q.dnvp_left < 0) Q.hitler_right_coalition = parseFloat((Q.dvp_r + Q.dnvp_r + Q.nsdap_r).toFixed(1));
 if (Q.dnf_formed) Q.hitler_right_coalition = parseFloat((Q.dvp_r + Q.dnf_r + Q.nsdap_r).toFixed(1));
+
+if (Q.dnvp_left < 0) Q.anti_democratic_coalition = parseFloat((Q.kpd_r + Q.nsdap_r + Q.dnvp_r).toFixed(1));
+if (Q.dnf_formed) Q.anti_democratic_coalition = parseFloat((Q.kpd_r + Q.nsdap_r + Q.dnf_r).toFixed(1));
+if (Q.aspd_exist && Q.aspd_radical) Q.anti_democratic_coalition = parseFloat((Q.anti_democratic_coalition + Q.aspd_r).toFixed(1));
 
 Q.leverage = Q.dvp_r;
 
 Q.grand_coalition_failed = 0;
 
 // Reset government and ministers... Based on Brüning's 1930 govt
-Q.rg_angry_old = Q.rg_angry;
-Q.rg_angry = 0;
+Q.hindenburg_angry_old = Q.hindenburg_angry;
+Q.hindenburg_angry = 0;
 
 Q.spd_in_government = 0;
 Q.z_in_government = 0;
@@ -294,7 +289,6 @@ Q.nsdap_in_government = 0;
 Q.in_dvp_majority = 0;
 Q.in_liberal_coalition = 0;
 Q.in_social_liberal_coalition = 0;
-Q.in_spd_majority = 0;
 Q.in_weimar_coalition = 0;
 Q.in_grand_coalition = 0;
 Q.in_left_front = 0;
@@ -302,7 +296,6 @@ Q.in_popular_front = 0;
 Q.in_bourgeois_coalition = 0;
 Q.in_center_right_coalition = 0;
 Q.in_hindenburg_coalition = 0;
-Q.in_new_grand_coalition = 0;
 Q.in_minority_government = 0;
 Q.in_unity_government = 0;
 Q.in_far_right_coalition = 0;
@@ -330,11 +323,11 @@ if (Q.dstp_formed && !Q.dstp_collapse_seen) {
 on-departure: nazi_urgency = 1 if (nazi_urgency == 0 and nsdap_r >= 15)
 on-display: {!
 data = []
-if (Q.kpd_r) {
+if (Q.kpd_exist && Q.kpd_r) {
     data.push({
         "id": "kpd",
-        "legend": "KPD",
-        "name": "KPD",
+        "legend": Q.kpd_name,
+        "name": Q.kpd_name,
         "seats": Math.round(Q.kpd_seats),
     });
 }
@@ -349,8 +342,8 @@ if (Q.sapd_formed && Q.sapd_r) {
 if (Q.spd_r) {
     data.push({
         "id": "spd",
-        "legend": "SPD",
-        "name": "SPD",
+        "legend": Q.spd_name,
+        "name": Q.spd_name,
         "seats": Math.round(Q.spd_seats),
     });
 }
@@ -386,7 +379,7 @@ if (Q.lvp_formed && Q.dvp_r) {
         "seats": Math.round(Q.dvp_seats),
     });
 }
-if (Q.csrp_exist && Q.csrp_r) {
+if (Q.csrp_formed && Q.csrp_r) {
     data.push({
         "id": "csrp",
         "legend": "CSRP",
@@ -397,8 +390,8 @@ if (Q.csrp_exist && Q.csrp_r) {
 if (Q.z_r) {
     data.push({
         "id": "z",
-        "legend": "Center",
-        "name": "Center",
+        "legend": Q.z_name,
+        "name": Q.z_name,
         "seats": Math.round(Q.z_seats),
     });
 }
@@ -466,11 +459,11 @@ if (Q.kvp_formed && Q.kvp_r) {
         "seats": Math.round(Q.kvp_seats),
     });
 }
-if (Q.dnvp_r) {
+if (Q.dnvp_exist && Q.dnvp_r) {
     data.push({
         "id": "dnvp",
-        "legend": "DNVP",
-        "name": "DNVP",
+        "legend": Q.dnvp_name,
+        "name": Q.dnvp_name,
         "seats": Math.round(Q.dnvp_seats),
     });
 }
@@ -482,7 +475,7 @@ if (Q.dnf_formed && Q.dnf_r) {
         "seats": Math.round(Q.dnf_seats),
     });
 }
-if (Q.nsdap_r) {
+if (Q.nsdap_exist && Q.nsdap_r) {
     data.push({
         "id": "nsdap",
         "legend": "NSDAP",
@@ -518,17 +511,19 @@ go-to: coalition_menu
 {!<tr><td>Party</td><td>Vote Share</td><td>% Change</td><td>Reichstag Seats</td><td>Seats Change</td></tr>!}
 {!<tr><td><div class="box" style='background-color: var(--dvp-color); outline: 2px; outline-style: solid;'> </div> !} **[+ dvp_name +]**: {!</td><td>!} **[+ dvp_votes +]%** {!</td><td>!} **[+ votes_change_dvp +]** {!</td><td>!} **[+ dvp_seats +]** **([+ dvp_r +]%)** {!</td><td>!} **[+ str_seats_change_dvp +]** **([+ str_change_dvp +]%)** {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !} KPD: {!</td><td>!} [+ kpd_votes +]% {!</td><td>!} [+ votes_change_kpd +] {!</td><td>!} [+ kpd_seats +] ([+ kpd_r +]%) {!</td><td>!} [+ str_seats_change_kpd +] ([+ str_change_kpd +]%) {!</td></tr>!}
+[? if kpd_exist: {!<tr><td><div class="box" style='background-color:var(--kpd-color)'> </div> !} KPD: {!</td><td>!} [+ kpd_votes +]% {!</td><td>!} [+ votes_change_kpd +] {!</td><td>!} [+ kpd_seats +] ([+ kpd_r +]%) {!</td><td>!} [+ str_seats_change_kpd +] ([+ str_change_kpd +]%) {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#E3000F'> </div> !} SPD: {!</td><td>!} [+ spd_votes +]% {!</td><td>!} [+ votes_change_spd +] {!</td><td>!} [+ spd_seats +] ([+ spd_r +]%) {!</td><td>!} [+ str_seats_change_spd +] ([+ str_change_spd +]%) {!</td></tr>!}
+[? if sapd_formed: {!<tr><td><div class="box" style='background-color:#C40000'> </div> !} SAPD: {!</td><td>!} [+ sapd_votes +]% {!</td><td>!} [+ votes_change_sapd +] {!</td><td>!} [+ sapd_seats +] ([+ spd_r +]%) {!</td><td>!} [+ str_seats_change_spd +] ([+ str_change_sapd +]%) {!</td></tr>!} ?]
+
+{!<tr><td><div class="box" style='background-color:var(--spd-color)'> </div> !} SPD: {!</td><td>!} [+ spd_votes +]% {!</td><td>!} [+ votes_change_spd +] {!</td><td>!} [+ spd_seats +] ([+ spd_r +]%) {!</td><td>!} [+ str_seats_change_spd +] ([+ str_change_spd +]%) {!</td></tr>!}
 
 [? if aspd_exist: {!<tr><td><div class="box" style='background-color:#FE9E00'> </div> !} ASPD: {!</td><td>!} [+ aspd_votes +]% {!</td><td>!} [+ votes_change_aspd +] {!</td><td>!} [+ aspd_seats +] ([+ aspd_r +]%) {!</td><td>!} [+ str_seats_change_aspd +] ([+ str_change_aspd +]%) {!</td></tr>!} ?]
 
-[? if ddp_exist: {!<tr><td><div class="box" style='background-color:#DCCA4A'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_votes +]% {!</td><td>!} [+ votes_change_ddp +] {!</td><td>!} [+ ddp_seats +] ([+ ddp_r +]%) {!</td><td>!} [+ str_seats_change_ddp +] ([+ str_change_ddp +]%) {!</td></tr>!} ?]
+[? if ddp_exist: {!<tr><td><div class="box" style='background-color:var(--ddp-color)'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_votes +]% {!</td><td>!} [+ votes_change_ddp +] {!</td><td>!} [+ ddp_seats +] ([+ ddp_r +]%) {!</td><td>!} [+ str_seats_change_ddp +] ([+ str_change_ddp +]%) {!</td></tr>!} ?]
 
 [? if dbp_exist: {!<tr><td><div class="box" style='background-color:#38C538'> </div> !} DBP: {!</td><td>!} [+ dbp_votes +]% {!</td><td>!} [+ votes_change_dbp +] {!</td><td>!} [+ dbp_seats +] ([+ dbp_r +]%) {!</td><td>!} [+ str_seats_change_dbp +] ([+ str_change_dbp +]%) {!</td></tr>!} ?]
 
-[? if csrp_exist: {!<tr><td><div class="box" style='background-color:#FF6B21'> </div> !} CSRP: {!</td><td>!} [+ csrp_votes +]% {!</td><td>!} [+ votes_change_csrp +] {!</td><td>!} [+ csrp_seats +] ([+ csrp_r +]%) {!</td><td>!} [+ str_seats_change_csrp +] ([+ str_change_csrp +]%) {!</td></tr>!} ?]
+[? if csrp_formed: {!<tr><td><div class="box" style='background-color:#FF6B21'> </div> !} CSRP: {!</td><td>!} [+ csrp_votes +]% {!</td><td>!} [+ votes_change_csrp +] {!</td><td>!} [+ csrp_seats +] ([+ csrp_r +]%) {!</td><td>!} [+ str_seats_change_csrp +] ([+ str_change_csrp +]%) {!</td></tr>!} ?]
 
 {!<tr><td><div class="box" style='background-color:#000'> </div> !} Z: {!</td><td>!} [+ z_minus_bvp_votes +]% {!</td><td>!} [+ votes_change_z +] {!</td><td>!} [+ z_minus_bvp_seats +] ([+ z_minus_bvp_r +]%) {!</td><td>!} [+ str_seats_change_z +] ([+ str_change_z +]%) {!</td></tr>!}
 
@@ -542,30 +537,32 @@ go-to: coalition_menu
 
 [? if kvp_formed: {!<tr><td><div class="box" style='background-color:#455B95'> </div> !} KVP: {!</td><td>!} [+ kvp_votes +]% {!</td><td>!} [+ votes_change_kvp +] {!</td><td>!} [+ kvp_seats +] ([+ kvp_r +]%) {!</td><td>!} [+ str_seats_change_kvp +] ([+ str_change_kvp +]%) {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} DNVP: {!</td><td>!} [+ dnvp_votes +]% {!</td><td>!} [+ votes_change_dnvp +] {!</td><td>!} [+ dnvp_seats +] ([+ dnvp_r +]%) {!</td><td>!} [+ str_seats_change_dnvp +] ([+ str_change_dnvp +]%) {!</td></tr>!}
+[? if dnvp_exist: {!<tr><td><div class="box" style='background-color:var(--dnvp-color)'> </div> !} DNVP: {!</td><td>!} [+ dnvp_votes +]% {!</td><td>!} [+ votes_change_dnvp +] {!</td><td>!} [+ dnvp_seats +] ([+ dnvp_r +]%) {!</td><td>!} [+ str_seats_change_dnvp +] ([+ str_change_dnvp +]%) {!</td></tr>!} ?]
 
 [? if dnf_formed: {!<tr><td><div class="box" style='background-color:#003755'> </div> !} DNF: {!</td><td>!} [+ dnf_votes +]% {!</td><td>!} [+ votes_change_dnf +] {!</td><td>!} [+ dnf_seats +] ([+ dnf_r +]%) {!</td><td>!} [+ str_seats_change_dnf +] ([+ str_change_dnf +]%) {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_votes +]% {!</td><td>!} [+ votes_change_nsdap +] {!</td><td>!} [+ nsdap_seats +] ([+ nsdap_r +]%) {!</td><td>!} [+ str_seats_change_nsdap +] ([+ str_change_nsdap +]%) {!</td></tr>!}
+[? if nsdap_exist: {!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_votes +]% {!</td><td>!} [+ votes_change_nsdap +] {!</td><td>!} [+ nsdap_seats +] ([+ nsdap_r +]%) {!</td><td>!} [+ str_seats_change_nsdap +] ([+ str_change_nsdap +]%) {!</td></tr>!} ?]
 
 {!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Others: {!</td><td>!} [+ other_votes +]% {!</td><td>!} [+ votes_change_other +] {!</td><td>!} [+ other_seats +] ([+ other_r +]%) {!</td><td>!} [+ str_seats_change_other +] ([+ str_change_other +]%) {!</td></tr>!}
 {!</table>!}
 
 **Potential coalitions:**
 
-Weimar Coalition (<span style="color: #E3000F;">**SPD**</span> + <span style="color: #000000;">**Z**</span> + [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>?][? if ddp_exist == 0: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>?][? if aspd_exist and aspd_ideology = "Moderate": + <span style="color: #FE9E00;">**ASPD**</span>?][? if csrp_exist: + <span style="color: #FF6B21;">**CSRP**</span>?]): [+ weimar_coalition +]%
+[? if cvp_formed or lvp_formed or nfvp_formed: Social-Liberal Coalition ([? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?] <span style="color: var(--spd-color);">**[+ spd_name +]**</span> + [? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span>?][? if lvp_formed or nfvp_formed: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>?][? if csrp_formed: + <span style="color: #FF6B21;">**CSRP**</span>?]): [+ social_liberal_coalition +]% ?]
 
-Grand Coalition (<span style="color: #E3000F;">**SPD**</span> + <span style="color: #000000;">**Z**</span> + <span style="color: #69A2BE;">**BVP**</span> + [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> [? if aspd_exist and aspd_ideology = "Moderate": + <span style="color: #FE9E00;">**ASPD**</span>?][? if csrp_exist:  + <span style="color: #FF6B21;">**CSRP**</span>?]): [+ grand_coalition +]%
+[? if cvp_formed == 0: Weimar Coalition ([? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?] <span style="color: var(--spd-color);">**[+ spd_name +]**</span> + <span style="color: var(--z-color);">**[+ z_name +]**</span> + [? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span>?][? if lvp_formed or nfvp_formed: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>?][? if aspd_exist and aspd_radical == 0: + <span style="color: #FE9E00;">**ASPD**</span>?][? if csrp_formed: + <span style="color: #FF6B21;">**CSRP**</span>?]): [+ weimar_coalition +]% ?]
 
-Bourgeois Coalition (<span style="color: #000000;">**Z**</span> + <span style="color: #69A2BE;">**BVP**</span> [? if ddp_exist: + <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?]+ <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + [? if kvp_formed: <span style="color: #455B95;">**KVP**</span> +  ?][? if wp_exist: <span style="color: #B8996F;">**WP**</span> +  ?][? if dbp_exist: <span style="color: #38C538;">**DBP**</span> +  ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span> +  ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span> +  ?][? if csrp_exist: <span style="color: #FF6B21;">**CSRP**</span> +  ?][? if aspd_exist and aspd_ideology = "Moderate": <span style="color: #FE9E00;">**ASPD**</span> +  ?] <span style="color: #909090;">**Others**</span>): [+ bourgeois_coalition +]%
+[? if cvp_formed == 0: Grand Coalition ([? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?] <span style="color: var(--spd-color);">**[+ spd_name +]**</span> + <span style="color: var(--z-color);">**[+ z_name +]**</span> + <span style="color: #69A2BE;">**BVP**</span> + [? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> [? if aspd_exist and aspd_radical == 0: + <span style="color: #FE9E00;">**ASPD**</span>?][? if csrp_formed: + <span style="color: #FF6B21;">**CSRP**</span>?]): [+ grand_coalition +]% ?]
 
-Center-Right Coalition (<span style="color: #000000;">**Z**</span> + <span style="color: #69A2BE;">**BVP**</span> + <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + [? if wp_exist: <span style="color: #B8996F;">**WP**</span> +  ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span> +  ?][? if kvp_formed: <span style="color: #455B95;">**KVP**</span> + ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span> +  ?] <span style="color: #3F7BC1;">**DNVP**</span> + <span style="color: #909090;">**Others**</span>): [+ center_right_coalition +]%
+Bourgeois Coalition (<span style="color: var(--z-color);">**[+ z_name +]**</span> + <span style="color: #69A2BE;">**BVP**</span> [? if ddp_exist: + <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> ?]+ <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + [? if kvp_formed: <span style="color: #455B95;">**KVP**</span> +  ?][? if wp_exist: <span style="color: #B8996F;">**WP**</span> +  ?][? if dbp_exist: <span style="color: #38C538;">**DBP**</span> +  ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span> +  ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span> +  ?][? if csrp_formed: <span style="color: #FF6B21;">**CSRP**</span> +  ?][? if aspd_exist and aspd_radical == 0: <span style="color: #FE9E00;">**ASPD**</span> + ?] <span style="color: #909090;">**Others**</span>): [+ bourgeois_coalition +]%
 
-[? if ddp_exist: Liberal Coalition (<span style="color: #DCCA4A;">**[+ ddp_name +]**</span> + <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>): [+ liberal_coalition +]% ?]
+[? if cvp_formed == 0: Center-Right Coalition (<span style="color: var(--z-color);">**[+ z_name +]**</span> + <span style="color: #69A2BE;">**BVP**</span> + <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + [? if wp_exist: <span style="color: #B8996F;">**WP**</span> +  ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span> +  ?][? if kvp_formed: <span style="color: #455B95;">**KVP**</span> + ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span> +  ?] <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> + <span style="color: #909090;">**Others**</span>): [+ center_right_coalition +]% ?]
+
+[? if ddp_exist: Liberal Coalition (<span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> + <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>): [+ liberal_coalition +]% ?]
 
 [? if nazi_urgency <= 1 and nsdap_r >= 15 : The rapid rise in <span style="color: #954B00;">**NSDAP**</span> votes is extremely worrying. Many had believed that the party was moribound; now, some of us consider it to be the greatest threat to democracy in Germany. ?]
 
-[? if anti_democratic_coalition >= 50: Together, the anti-democratic <span style="color: #8B0000;">**KPD**</span>, [? if dnvp_ideology ==  "Radical": <span style="color: #3F7BC1;">**DNVP**</span> + ?][? if dnf_formed: <span style="color: #003755;">**DNF**</span> ?] and <span style="color: #954B00;">**NSDAP**</span> have a majority in the Reichstag. A stable governing majority will be almost impossible. ?]
+[? if anti_democratic_coalition >= 50: Together, the anti-democratic <span style="color: var(--kpd-color);">**[+ kpd_name +]**</span>, [? if dnvp_left < 0: <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> + ?][? if dnf_formed: <span style="color: #003755;">**DNF**</span> ?] and <span style="color: #954B00;">**NSDAP**</span> have a majority in the Reichstag. A stable governing majority will be almost impossible. ?]
 
 There are some potential coalition arrangements.
 
@@ -574,7 +571,6 @@ There are some potential coalition arrangements.
 - @dvp_majority
 - @liberal_coalition
 - @social_liberal_coalition
-- @spd_majority
 - @weimar_coalition
 - @grand_coalition
 - @left_front
@@ -595,7 +591,7 @@ There are some potential coalition arrangements.
 title: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> majority alone
 view-if: dvp_r >= 50
 subtitle: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>: [+ dvp_r +]%
-on-arrival: dvp_in_government = 1; in_dvp_majority = 1; chancellor = "Empty"; chancellor_party = dvp_name; foreign_minister_party = dvp_name; foreign_minister = "Stresemann" if no_stresemann == 0; foreign_minister = "Curtius" if no_stresemann; interior_minister_party = dvp_name; interior_minister = "Jarres"; justice_minister_party = dvp_name; justice_minister = "Heinze" if ddp_exist; justice_minister = "Schiffer" if ddp_exist == 0; labor_minister_party = dvp_name; labor_minister = "Thiel"; reichswehr_minister_party = dvp_name; reichswehr_minister = "Seeckt"; economic_minister_party = dvp_name; economic_minister = "Krohne" if ddp_exist; economic_minister = "Hamm" if ddp_exist == 0; finance_minister_party = dvp_name; finance_minister = "Moldenhauer"; agriculture_minister_party = dvp_name; agriculture_minister = "Kanitz"; reichswehr_loyalty -= 0.05; 
+on-arrival: dvp_in_government = 1; in_dvp_majority = 1; chancellor = "Empty"; chancellor_party = dvp_name; foreign_minister_party = dvp_name; foreign_minister = "Stresemann" if no_stresemann == 0; foreign_minister = "Curtius" if no_stresemann; interior_minister_party = dvp_name; interior_minister = "Jarres"; justice_minister_party = dvp_name; justice_minister = "Heinze" if ddp_exist; justice_minister = "Schiffer" if lvp_formed or nfvp_formed; labor_minister_party = dvp_name; labor_minister = "Thiel"; reichswehr_minister_party = dvp_name; reichswehr_minister = "Seeckt"; economic_minister_party = dvp_name; economic_minister = "Krohne" if ddp_exist; economic_minister = "Hamm" if lvp_formed or nfvp_formed; finance_minister_party = dvp_name; finance_minister = "Moldenhauer"; agriculture_minister_party = dvp_name; agriculture_minister = "Kanitz"; reichswehr_loyalty -= 0.05; 
 achievement: majority_party
 
 Finally, the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> can govern alone! Our long campaign of electioneering has paid off. We do not need to worry about coalition government; anything is possible. 
@@ -614,7 +610,7 @@ face-image: img/portraits/ScholzErnst.jpg
 Ernst Scholz has become chancellor of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> majority.
 
 @dietrich_majority_chancellor
-view-if: ddp_exist == 0
+view-if: lvp_formed or nfvp_formed
 on-arrival: chancellor = "Dietrich"
 face-image: img/portraits/DietrichHermann.jpg
 
@@ -637,11 +633,11 @@ Julius Curtius has become chancellor of the <span style="color: var(--dvp-color)
 
 @liberal_coalition
 title: We can form a Liberal Coalition.
-subtitle: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ([+ liberal_coalition +]%)
+subtitle: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> ([+ liberal_coalition +]%)
 view-if: liberal_coalition >= 50 and ddp_exist
 on-arrival: leverage += 5; ddp_in_government = 1; dvp_in_government = 1; in_liberal_coalition = 1; chancellor = "Dietrich"; chancellor_party = ddp_name; foreign_minister_party = ddp_name; foreign_minister = "Solf"; interior_minister_party = ddp_name; interior_minister = "Koch-Weser"; justice_minister_party = ddp_name; justice_minister = "Koch-Weser"; labor_minister_party = ddp_name; labor_minister = "Erkelenz"; reichswehr_minister_party = ddp_name; reichswehr_minister = "Gessler"; economic_minister_party = ddp_name; economic_minister = "Dietrich"; finance_minister_party = ddp_name; finance_minister = "Dietrich"; agriculture_minister_party = ddp_name; agriculture_minister = "Dietrich";
 
-We have enough votes to form a "Liberal Coalition" government consisting of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> and <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>!
+We have enough votes to form a "Liberal Coalition" government consisting of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> and <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span>!
 
 Who should be the chancellor?
 
@@ -667,22 +663,13 @@ go-to: ministries
 Hermann Dietrich has been appointed chancellor.
 
 
-@spd_majority
-title: The <span style="color: #E3000F;">**SPD**</span> secures a majority
-view-if: spd_r >= 50
-subtitle: <span style="color: #E3000F;">**SPD**</span>: [+ spd_r +]%
-on-arrival: spd_in_government = 1; in_spd_majority = 1; chancellor = "Müller" if muller_dead == 0; chancellor = "Wels" if muller_dead == 1; chancellor_party = "SPD"; foreign_minister_party = "SPD"; foreign_minister = "Breitscheid"; interior_minister_party = "SPD"; interior_minister = "Severing"; justice_minister_party = "SPD"; justice_minister = "Radbruch"; labor_minister_party = "SPD"; labor_minister = "Wissell"; reichswehr_minister_party = "SPD"; reichswehr_minister = "Leber"; economic_minister_party = "SPD"; economic_minister = "Schmidt"; finance_minister_party = "SPD"; finance_minister = "Hilferding"; agriculture_minister_party = "SPD"; agriculture_minister = "Baade"; pro_republic += 5;
-
-Somehow, the <span style="color: #E3000F;">**SPD**</span> has won a majority. They now have limitless power to change Germany in their image. [? if muller_dead == 0: Hermann Müller ?][? if muller_dead == 1: Otto Wels ?] has become chancellor.
-
-
 @social_liberal_coalition
 title: Let us try a Social-Liberal coalition
 view-if: social_liberal_coalition >= 50
-subtitle: <span style="color: #E3000F;">**SPD**</span> + [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> ([+ social_liberal_coalition +]%)
-on-arrival: leverage += 5; spd_in_government = 1; ddp_in_government = 1 if ddp_exist; dvp_in_government = 1; in_social_liberal_coalition = 1; chancellor = "Müller" if muller_dead == 0; chancellor = "Wels" if muller_dead == 1; chancellor_party = "SPD"; foreign_minister_party = "SPD"; foreign_minister = "Breitscheid"; interior_minister_party = "SPD"; interior_minister = "Severing"; justice_minister_party = "SPD"; justice_minister = "Radbruch"; labor_minister_party = "SPD"; labor_minister = "Wissell"; reichswehr_minister_party = "SPD"; reichswehr_minister = "Leber"; economic_minister_party = "SPD"; economic_minister = "Schmidt"; finance_minister_party = "SPD"; finance_minister = "Hilferding"; agriculture_minister_party = "SPD"; agriculture_minister = "Baade";
+subtitle: [? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?] <span style="color: var(--spd-color);">**[+ spd_name +]**</span> + [? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span>?][? if lvp_formed or nfvp_formed: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>?][? if csrp_formed: + <span style="color: #FF6B21;">**CSRP**</span> ?] ([+ social_liberal_coalition +]%)
+on-arrival: leverage += 5; spd_in_government = 1; ddp_in_government = 1 if ddp_exist; dvp_in_government = 1; in_social_liberal_coalition = 1; chancellor = "Müller" if muller_dead == 0; chancellor = "Wels" if muller_dead == 1; chancellor_party = spd_name; foreign_minister_party = spd_name; foreign_minister = "Breitscheid"; interior_minister_party = spd_name; interior_minister = "Severing"; justice_minister_party = spd_name; justice_minister = "Radbruch"; labor_minister_party = spd_name; labor_minister = "Wissell"; reichswehr_minister_party = spd_name; reichswehr_minister = "Leber"; economic_minister_party = spd_name; economic_minister = "Schmidt"; finance_minister_party = spd_name; finance_minister = "Hilferding"; agriculture_minister_party = spd_name; agriculture_minister = "Baade";
 
-We have decided to form a Social-Liberal coalition with the <span style="color: #E3000F;">**SPD**</span>. A coalition like this has never been tried before, we have increased leverage when picking our ministries, and the <span style="color: #000000;">**Center**</span> can't bring down the cabinet if we secularize education. Now we must choose who will be chancellor.
+We have decided to form a Social-Liberal coalition with the <span style="color: var(--spd-color);">**[+ spd_name +]**</span>. A coalition like this has never been tried before, we have increased leverage when picking our ministries, and the <span style="color: var(--z-color);">**[+ z_name +]**</span> can't bring down the cabinet if we secularize education. Now we must choose who will be chancellor.
 
 - @curtius_social_liberal_coalition
 - @SPD_social_liberal_coalition_1
@@ -699,7 +686,7 @@ Julius Curtius has been appointed chancellor.
 
 @SPD_social_liberal_coalition_1
 title: Support Hermann Müller for chancellorship.
-subtitle: This will improve our relations with <span style="color: #E3000F;">**SPD**</span>.
+subtitle: This will improve our relations with <span style="color: var(--spd-color);">**[+ spd_name +]**</span>.
 on-arrival: chancellor = "Müller"; spd_relation += 5
 view-if: muller_dead == 0
 face-image: img/portraits/MüllerHermann.jpg
@@ -709,7 +696,7 @@ Hermann Müller has been appointed chancellor.
 
 @SPD_social_liberal_coalition_2
 title: Support Otto Wels for chancellorship.
-subtitle: This will improve our relations with <span style="color: #E3000F;">**SPD**</span>.
+subtitle: This will improve our relations with <span style="color: var(--spd-color);">**[+ spd_name +]**</span>.
 on-arrival: chancellor = "Wels"; spd_relation += 5
 view-if: muller_dead == 1
 face-image: img/portraits/WelsOtto.jpg
@@ -719,13 +706,13 @@ Otto Wels has been appointed chancellor.
 
 
 @weimar_coalition
-title: [? if ddp_exist: A Weimar Coalition forms without us ?][? if ddp_exist == 0: We can form a Weimar Coalition ?]
-view-if: weimar_coalition >= 50
-subtitle: <span style="color: #E3000F;">**SPD**</span> + <span style="color: #000000;">**Z**</span> + [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>?][? if ddp_exist == 0: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>?][? if aspd_exist and aspd_ideology = "Moderate": + <span style="color: #FE9E00;">**ASPD**</span>?][? if csrp_exist: + <span style="color: #FF6B21;">**CSRP**</span>?] ([+ weimar_coalition +]%)
-on-arrival: spd_in_government = 1; z_in_government = 1; ddp_in_government = 1 if ddp_exist; dvp_in_government = 1 if ddp_exist == 0; in_weimar_coalition = 1; chancellor = "Müller" if muller_dead == 0; chancellor = "Wels" if muller_dead == 1; chancellor_party = "SPD"; foreign_minister = "Brüning"; foreign_minister_party = "Z"; interior_minister = "Severing"; interior_minister_party = "SPD"; justice_minister = "Guérard"; justice_minister_party = "Z"; justice_minister = "Koch-Weser" if ddp_exist; justice_minister_party = ddp_name if ddp_exist; labor_minister = "Wissel"; labor_minister_party = "SPD"; reichswehr_minister = "Groener"; reichswehr_minister_party = "I"; economic_minister = "Schmidt"; economic_minister_party = "SPD"; finance_minister = "Köhler"; finance_minister_party = "Z"; agriculture_minister = "Hermes"; agriculture_minister_party = "Z"; agriculture_minister = "Dietrich" if ddp_exist; agriculture_minister_party = ddp_name if ddp_exist;
-go-to: weimar_coalition_dvp if ddp_exist == 0
+title: [? if ddp_exist: A Weimar Coalition forms without us ?][? if lvp_formed or nfvp_formed: We can form a Weimar Coalition ?]
+view-if: weimar_coalition >= 50 and cvp_formed == 0
+subtitle: [? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?] <span style="color: var(--spd-color);">**[+ spd_name +]**</span> + <span style="color: var(--z-color);">**[+ z_name +]**</span> + [? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span>?][? if lvp_formed or nfvp_formed: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>?][? if aspd_exist and aspd_radical == 0: + <span style="color: #FE9E00;">**ASPD**</span>?][? if csrp_formed: + <span style="color: #FF6B21;">**CSRP**</span>?] ([+ weimar_coalition +]%)
+on-arrival: spd_in_government = 1; z_in_government = 1; ddp_in_government = 1 if ddp_exist; dvp_in_government = 1 if lvp_formed or nfvp_formed; in_weimar_coalition = 1; chancellor = "Müller" if muller_dead == 0; chancellor = "Wels" if muller_dead == 1; chancellor_party = spd_name; foreign_minister = "Brüning"; foreign_minister_party = z_name; interior_minister = "Severing"; interior_minister_party = spd_name; justice_minister = "Guérard"; justice_minister_party = z_name; justice_minister = "Koch-Weser" if ddp_exist; justice_minister_party = ddp_name if ddp_exist; labor_minister = "Wissel"; labor_minister_party = spd_name; reichswehr_minister = "Groener"; reichswehr_minister_party = "I"; economic_minister = "Schmidt"; economic_minister_party = spd_name; finance_minister = "Köhler"; finance_minister_party = z_name; agriculture_minister = "Hermes"; agriculture_minister_party = z_name; agriculture_minister = "Dietrich" if ddp_exist; agriculture_minister_party = ddp_name if ddp_exist;
+go-to: weimar_coalition_dvp if lvp_formed or nfvp_formed
 
-There are enough votes for a Weimar Coalition of the <span style="color: #000000;">**Center**</span>, <span style="color: #E3000F;">**SPD**</span> and [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>?][? if ddp_exist == 0: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>?]. [? if largest_party == dvp_name and ddp_exist: However, this will be seen as abdicating responsibility for government, as we are the largest party. ?]
+There are enough votes for a Weimar Coalition of the <span style="color: var(--z-color);">**[+ z_name +]**</span>, <span style="color: var(--spd-color);">**[+ spd_name +]**</span> and [? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span>?][? if lvp_formed or nfvp_formed: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>?]. [? if largest_party == dvp_name and ddp_exist: However, this will be seen as abdicating responsibility for government, as we are the largest party. ?]
 
 @weimar_coalition_dvp
 
@@ -739,7 +726,7 @@ Who should be the chancellor?
 
 @dietrich_weimar_chancellor
 title: Hermann Dietrich for Chancellor
-subtitle: Dietrich is a former member of <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> Business Wing.
+subtitle: Dietrich is a former member of <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> Business Wing.
 on-arrival: chancellor = "Dietrich"; chancellor_party = dvp_name; leverage -= 5
 face-image: img/portraits/DietrichHermann.jpg
 go-to: ministries
@@ -748,7 +735,7 @@ Hermann Dietrich has been appointed chancellor.
 
 @SPD_weimar_chancellor_1
 title: Support Hermann Müller for chancellorship.
-subtitle: This will improve our relations with <span style="color: #E3000F;">**SPD**</span>.
+subtitle: This will improve our relations with <span style="color: var(--spd-color);">**[+ spd_name +]**</span>.
 on-arrival: chancellor = "Müller"; spd_relation += 5
 view-if: muller_dead == 0
 face-image: img/portraits/MüllerHermann.jpg
@@ -758,7 +745,7 @@ Hermann Müller has been appointed chancellor.
 
 @SPD_weimar_chancellor_2
 title: Support Otto Wels for chancellorship.
-subtitle: This will improve our relations with <span style="color: #E3000F;">**SPD**</span>.
+subtitle: This will improve our relations with <span style="color: var(--spd-color);">**[+ spd_name +]**</span>.
 on-arrival: chancellor = "Wels"; spd_relation += 5
 view-if: muller_dead == 1
 face-image: img/portraits/WelsOtto.jpg
@@ -768,8 +755,8 @@ Otto Wels has been appointed chancellor.
 
 @Z_weimar_chancellor_1
 title: Support Heinrich Brüning for chancellorship.
-subtitle: This will improve our relations with the <span style="color: #000000;">**Center**</span>.
-on-arrival: chancellor = "Brüning"; chancellor_party = "Z"
+subtitle: This will improve our relations with the <span style="color: var(--z-color);">**[+ z_name +]**</span>.
+on-arrival: chancellor = "Brüning"; chancellor_party = z_name
 view-if: return_to_normalcy == 0
 face-image: img/portraits/BrüningHeinrich.jpg
 go-to: ministries
@@ -778,8 +765,8 @@ Heinrich Brüning has been appointed chancellor.
 
 @Z_weimar_chancellor_2
 title: Support Konrad Adenauer for chancellorship.
-subtitle: This will improve our relations with the <span style="color: #000000;">**Center**</span>.
-on-arrival: chancellor = "Adenauer"; chancellor_party = "Z"
+subtitle: This will improve our relations with the <span style="color: var(--z-color);">**[+ z_name +]**</span>.
+on-arrival: chancellor = "Adenauer"; chancellor_party = z_name
 face-image: img/portraits/AdenauerKonrad.jpg
 view-if: return_to_normalcy == 1
 go-to: ministries
@@ -789,16 +776,16 @@ With Brüning too unpopular, Konrad Adenauer has been appointed chancellor.
 
 @grand_coalition
 title: We can form a Grand Coalition.
-view-if: grand_coalition >= 50 and weimar_coalition < 50 and grand_coalition_failed == 0
-subtitle: <span style="color: #E3000F;">**SPD**</span> + <span style="color: #000000;">**Z**</span> + <span style="color: #69A2BE;">**BVP**</span> + [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> [? if aspd_exist and aspd_ideology = "Moderate": + <span style="color: #FE9E00;">**ASPD**</span> ?][? if csrp_exist:  + <span style="color: #FF6B21;">**CSRP**</span>?] ([+ grand_coalition +]%)
-go-to: grand_coalition_success if spd_relation >= 50 or no_stresemann == 0; grand_coalition_stall if spd_relation < 50 and no_stresemann
+view-if: grand_coalition >= 50 and weimar_coalition < 50 and grand_coalition_failed == 0 and cvp_formed == 0
+subtitle: [? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?] <span style="color: var(--spd-color);">**[+ spd_name +]**</span> + <span style="color: var(--z-color);">**[+ z_name +]**</span> + <span style="color: #69A2BE;">**BVP**</span> + [? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> [? if aspd_exist and aspd_radical == 0: + <span style="color: #FE9E00;">**ASPD**</span> ?][? if csrp_formed:  + <span style="color: #FF6B21;">**CSRP**</span>?] ([+ grand_coalition +]%)
+go-to: grand_coalition_success if spd_relation >= 45 or no_stresemann == 0; grand_coalition_stall if spd_relation < 45 and no_stresemann
 
-As expected, the <span style="color: #E3000F;">**SPD**</span> is the largest party, and this time, they are expected to take the lead role in the formation of the next government, including selecting the chancellor. President [+ president +] has asked the <span style="color: #E3000F;">**SPD**</span> to form a majority coalition with the <span style="color: #000000;">**Center Party**</span>, <span style="color: #69A2BE;">**BVP**</span>[? if ddp_exist: , <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?], and <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>.
+As expected, the <span style="color: var(--spd-color);">**[+ spd_name +]**</span> is the largest party, and this time, they are expected to take the lead role in the formation of the next government, including selecting the chancellor. President [+ president +] has asked the <span style="color: var(--spd-color);">**[+ spd_name +]**</span> to form a majority coalition with the <span style="color: var(--z-color);">**Center Party**</span>, <span style="color: #69A2BE;">**BVP**</span>[? if ddp_exist: , <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> ?], and <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>.
 
-[? if spd_relation < 20 : As our relation with the <span style="color: #E3000F;">**SPD**</span> is poor, they are demanding more minister posts in order to remain part of the coalition. ?]
+[? if spd_relation < 20 : As our relation with the <span style="color: var(--spd-color);">**[+ spd_name +]**</span> is poor, they are demanding more minister posts in order to remain part of the coalition. ?]
 
 @grand_coalition_success
-on-arrival: spd_in_government = 1; z_in_government = 1; ddp_in_government = 1 if ddp_exist; dvp_in_government = 1; in_grand_coalition = 1; leverage -= 5 if spd_relation < 20; foreign_minister = "Brüning"; foreign_minister_party = "Z"; interior_minister = "Severing"; interior_minister_party = "SPD"; justice_minister = "Guérard"; justice_minister_party = "Z"; justice_minister = "Koch-Weser" if ddp_exist; justice_minister_party = ddp_name if ddp_exist; labor_minister = "Wissel"; labor_minister_party = "SPD"; reichswehr_minister = "Groener"; reichswehr_minister_party = "I"; economic_minister = "Schmidt"; economic_minister_party = "SPD"; finance_minister = "Köhler"; finance_minister_party = "Z"; agriculture_minister = "Hermes"; agriculture_minister_party = "Z"; agriculture_minister = "Dietrich" if ddp_exist; agriculture_minister_party = ddp_name if ddp_exist;
+on-arrival: spd_in_government = 1; z_in_government = 1; ddp_in_government = 1 if ddp_exist; dvp_in_government = 1; in_grand_coalition = 1; leverage -= 5 if spd_relation < 20; foreign_minister = "Brüning"; foreign_minister_party = z_name; interior_minister = "Severing"; interior_minister_party = spd_name; justice_minister = "Guérard"; justice_minister_party = z_name; justice_minister = "Koch-Weser" if ddp_exist; justice_minister_party = ddp_name if ddp_exist; labor_minister = "Wissel"; labor_minister_party = spd_name; reichswehr_minister = "Groener"; reichswehr_minister_party = "I"; economic_minister = "Schmidt"; economic_minister_party = spd_name; finance_minister = "Köhler"; finance_minister_party = z_name; agriculture_minister = "Hermes"; agriculture_minister_party = z_name; agriculture_minister = "Dietrich" if ddp_exist; agriculture_minister_party = ddp_name if ddp_exist;
 
 Who should be the chancellor?
 
@@ -811,8 +798,8 @@ Who should be the chancellor?
 @spd_grand_chancellor_1
 title: Support Hermann Müller for Chancellor
 view-if: muller_dead == 0
-subtitle: Müller is the preferred candidate of the <span style="color: #E3000F;">**SPD**</span> and other parties. This may give us a better position in negotiating for other cabinet positions.
-on-arrival: chancellor = "Müller"; chancellor_party = "SPD"; spd_relation += 3; nationalist_dissent += 5; leverage += 2
+subtitle: Müller is the preferred candidate of the <span style="color: var(--spd-color);">**[+ spd_name +]**</span> and other parties. This may give us a better position in negotiating for other cabinet positions.
+on-arrival: chancellor = "Müller"; chancellor_party = spd_name; spd_relation += 3; nationalist_dissent += 5; leverage += 2
 go-to: ministries
 
 Müller's appointment as chancellor is approved by all members of the coalition.
@@ -820,28 +807,28 @@ Müller's appointment as chancellor is approved by all members of the coalition.
 @spd_grand_chancellor_2
 title: Support Otto Wels for Chancellor
 view-if: muller_dead == 1
-subtitle: Otto Wels is the leader of <span style="color: #E3000F;">**SPD**</span>, but can he also be chancellor? This may give us a better position in negotiating for other cabinet positions.
-on-arrival: chancellor = "Wels"; chancellor_party = "SPD"; spd_relation += 3; nationalist_dissent += 5; leverage += 2
+subtitle: Otto Wels is the leader of <span style="color: var(--spd-color);">**[+ spd_name +]**</span>, but can he also be chancellor? This may give us a better position in negotiating for other cabinet positions.
+on-arrival: chancellor = "Wels"; chancellor_party = spd_name; spd_relation += 3; nationalist_dissent += 5; leverage += 2
 go-to: ministries
 
 Otto Wels's appointment as chancellor is approved by all members of the coalition.
 
 @z_grand_chancellor_1
 title: Support Heinrich Brüning for chancellorship.
-subtitle: This will improve our relations with the <span style="color: #000000;">**Center**</span>.
-on-arrival: chancellor = "Brüning"; chancellor_party = "Z"; z_relation += 5
+subtitle: This will improve our relations with the <span style="color: var(--z-color);">**[+ z_name +]**</span>.
+on-arrival: chancellor = "Brüning"; chancellor_party = z_name; z_relation += 5
 view-if: return_to_normalcy == 0
 face-image: img/portraits/BrüningHeinrich.jpg
 go-to: ministries
 
-The <span style="color: #E3000F;">**SPD**</span> reluctantly accepts Brüning's appointment.
+The <span style="color: var(--spd-color);">**[+ spd_name +]**</span> reluctantly accepts Brüning's appointment.
 
 [? if year == 1928 : Since Wilhelm Marx resigned, Heinrich Brüning has been appointed chancellor. ?]
 
 @z_grand_chancellor_2
 title: Support Konrad Adenauer for chancellorship.
-subtitle: This will improve our relations with the <span style="color: #000000;">**Center**</span>.
-on-arrival: chancellor = "Adenauer"; chancellor_party = "Z"; z_relation += 5
+subtitle: This will improve our relations with the <span style="color: var(--z-color);">**[+ z_name +]**</span>.
+on-arrival: chancellor = "Adenauer"; chancellor_party = z_name; z_relation += 5
 face-image: img/portraits/AdenauerKonrad.jpg
 view-if: return_to_normalcy == 1
 go-to: ministries
@@ -850,33 +837,33 @@ With Brüning too unpopular, Konrad Adenauer has been appointed chancellor.
 
 @grand_coalition_stall
 
-Due to our low relations with the <span style="color: #E3000F;">**SPD**</span>, coalition talks have stalled and a formal agreement seems increasingly unlikely. Though all is not lost, all democratic parties are expected to lose if another election is called, and the center Marxists have signaled that a toleration agreement might be possible. For better or for worse, the Chancellor for such an arrangement would need to be Heinrich Brüning.
+Due to our low relations with the <span style="color: var(--spd-color);">**[+ spd_name +]**</span>, coalition talks have stalled and a formal agreement seems increasingly unlikely. Though all is not lost, all democratic parties are expected to lose if another election is called, and the center Marxists have signaled that a toleration agreement might be possible. For better or for worse, the Chancellor for such an arrangement would need to be Heinrich Brüning.
 
-Finally, we could lend an <span style="color: #E3000F;">**SPD**</span>-led cabinet our toleration, it would be incredibly unpopular with both our industrial backers and our voter base, but it may be the only way to save the Republic.
+Finally, we could lend an <span style="color: var(--spd-color);">**[+ spd_name +]**</span>-led cabinet our toleration, it would be incredibly unpopular with both our industrial backers and our voter base, but it may be the only way to save the Republic.
 
-- @spd_toleration_grand: The <span style="color: #E3000F;">**SPD**</span> will tolerate Brüning.
-- @dvp_toleration_grand: We will offer the social democrats our toleration.
+- @spd_toleration_grand: The <span style="color: var(--spd-color);">**[+ spd_name +]**</span> will tolerate Brüning.
+- @dvp_toleration_grand: We will offer them our toleration.
 - @grand_coalition_fail: No compromise can be found.
 
 @spd_toleration_grand
-choose-if: spd_relation >= 30 and neo_weimar_coalition >= 50
-unavailable-subtitle: [? if spd_relation < 30: Our relations are not high enough. ?][? if neo_weimar_coalition < 50: Parties supporting Brüning do not have a majority. ?]
-on-arrival: leverage += 5; z_in_government = 1; ddp_in_government = 1 if ddp_exist; dvp_in_government = 1; spd_toleration = 1; spd_patience = (50+0.2*spd_relation) ; in_grand_coalition = 1; chancellor = "Brüning"; chancellor_party = "Z"; foreign_minister = "Brüning"; foreign_minister_party = "Z"; interior_minister = "Wirth"; interior_minister_party = "Z" if csrp_exist == 0; interior_minister_party = "CSRP" if csrp_exist; interior_minister = "Bolz" if social_catholics_dvp; interior_minister_party = "Z" if social_catholics_dvp; justice_minister = "Guérard"; justice_minister_party = "Z"; justice_minister = "Koch-Weser" if ddp_exist; justice_minister_party = ddp_name if ddp_exist; labor_minister = "Stegerwald"; labor_minister_party = "Z"; reichswehr_minister = "Groener"; reichswehr_minister_party = "I"; economic_minister = "Hermes"; economic_minister_party = "Z"; finance_minister = "Köhler"; finance_minister_party = "Z"; agriculture_minister = "Hermes"; agriculture_minister_party = "Z";
+choose-if: spd_relation >= 30 and anti_democratic_coalition < 50
+unavailable-subtitle: [? if spd_relation < 30: Our relations are not high enough. ?][? if anti_democratic_coalition >= 50: Parties supporting Brüning do not have a majority. ?]
+on-arrival: leverage += 5; z_in_government = 1; ddp_in_government = 1 if ddp_exist; dvp_in_government = 1; spd_toleration = 1; spd_patience = (50+0.2*spd_relation) ; in_grand_coalition = 1; chancellor = "Brüning"; chancellor_party = z_name; foreign_minister = "Brüning"; foreign_minister_party = z_name; interior_minister = "Wirth"; interior_minister_party = z_name if csrp_formed == 0; interior_minister_party = "CSRP" if csrp_formed; interior_minister = "Bolz" if social_catholics_dvp; interior_minister_party = z_name if social_catholics_dvp; justice_minister = "Guérard"; justice_minister_party = z_name; justice_minister = "Koch-Weser" if ddp_exist; justice_minister_party = ddp_name if ddp_exist; labor_minister = "Stegerwald"; labor_minister_party = z_name; reichswehr_minister = "Groener"; reichswehr_minister_party = "I"; economic_minister = "Hermes"; economic_minister_party = z_name; finance_minister = "Köhler"; finance_minister_party = z_name; agriculture_minister = "Hermes"; agriculture_minister_party = z_name;
 go-to: ministries
 
 Heinrich Brüning welcomes us into his new cabinet. Now, we have our pick of ministries.
 
 @dvp_toleration_grand
-choose-if: neo_weimar_coalition >= 50
+choose-if: anti_democratic_coalition < 50
 unavailable-subtitle: Parties supporting Brüning do not have a majority.
-on-arrival: spd_in_government = 1; z_in_government = 1; ddp_in_government = 1 if ddp_exist; dvp_toleration = 1; in_grand_coalition = 1; chancellor = "Brüning"; chancellor_party = "Z"; foreign_minister = "Brüning"; foreign_minister_party = "Z"; interior_minister = "Severing"; interior_minister_party = "SPD"; justice_minister = "Guérard"; justice_minister_party = "Z"; justice_minister = "Koch-Weser" if ddp_exist; justice_minister_party = ddp_name if ddp_exist; labor_minister = "Wissel"; labor_minister_party = "SPD"; reichswehr_minister = "Groener"; reichswehr_minister_party = "I"; economic_minister = "Schmidt"; economic_minister_party = "SPD"; finance_minister = "Köhler"; finance_minister_party = "Z"; agriculture_minister = "Hermes"; agriculture_minister_party = "Z"; agriculture_minister = "Dietrich" if ddp_exist; agriculture_minister_party = ddp_name if ddp_exist; industrialist_dissent += 10;
+on-arrival: spd_in_government = 1; z_in_government = 1; ddp_in_government = 1 if ddp_exist; dvp_toleration = 1; in_grand_coalition = 1; chancellor = "Brüning"; chancellor_party = z_name; foreign_minister = "Brüning"; foreign_minister_party = z_name; interior_minister = "Severing"; interior_minister_party = spd_name; justice_minister = "Guérard"; justice_minister_party = z_name; justice_minister = "Koch-Weser" if ddp_exist; justice_minister_party = ddp_name if ddp_exist; labor_minister = "Wissel"; labor_minister_party = spd_name; reichswehr_minister = "Groener"; reichswehr_minister_party = "I"; economic_minister = "Schmidt"; economic_minister_party = spd_name; finance_minister = "Köhler"; finance_minister_party = z_name; agriculture_minister = "Hermes"; agriculture_minister_party = z_name; agriculture_minister = "Dietrich" if ddp_exist; agriculture_minister_party = ddp_name if ddp_exist; industrialist_dissent += 10;
 
-We've agreed to tolerate a Weimar Coalition minority government. Though controversial among even some of our left-leaning members, it may be only way to preserve the republic.
+We've agreed to tolerate a Weimar Coalition minority government. Though controversial among even some of our right-leaning members, it may be only way to preserve the republic.
 
 @grand_coalition_fail
 on-arrival: grand_coalition_failed = 1
 
-Unfortunately, the <span style="color: #E3000F;">**SPD**</span> is unwilling to enter into another coalition with the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> and <span style="color: #69A2BE;">**BVP**</span>, so the grand coalition is unable to be formed.
+Unfortunately, the <span style="color: var(--spd-color);">**[+ spd_name +]**</span> is unwilling to enter into another coalition with the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> and <span style="color: #69A2BE;">**BVP**</span>, so the grand coalition is unable to be formed.
 
 - @coalition_menu: What are the other governing arrangements?
 
@@ -884,29 +871,29 @@ Unfortunately, the <span style="color: #E3000F;">**SPD**</span> is unwilling to 
 @left_front
 title: A Left Front forms
 view-if: left_front >= 50
-subtitle: <span style="color: #8B0000;">**KPD**</span> + [? if sapd_formed: <span style="color: #E3000F;">**SAPD**</span> + ?] <span style="color: #E3000F;">**SPD**</span> ([+ left_front +]%)
-on-arrival: spd_in_government = 1; kpd_in_government = 1; in_left_front = 1; chancellor = "Breitscheid"; chancellor_party = "SPD"; foreign_minister_party = "SPD"; foreign_minister = "Breitscheid"; interior_minister_party = "SPD"; interior_minister = "Severing"; justice_minister_party = "SPD"; justice_minister = "Radbruch"; labor_minister_party = "SPD"; labor_minister = "Wissell"; reichswehr_minister_party = "SPD"; reichswehr_minister = "Leber"; economic_minister_party = "SPD"; economic_minister = "Schmidt"; finance_minister_party = "SPD"; finance_minister = "Hilferding"; agriculture_minister_party = "SPD"; agriculture_minister = "Baade";
+subtitle: <span style="color: var(--kpd-color);">**[+ kpd_name +]**</span> + [? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?] <span style="color: var(--spd-color);">**[+ spd_name +]**</span> ([+ left_front +]%)
+on-arrival: spd_in_government = 1; kpd_in_government = 1; in_left_front = 1; chancellor = "Breitscheid"; chancellor_party = spd_name; foreign_minister_party = spd_name; foreign_minister = "Breitscheid"; interior_minister_party = spd_name; interior_minister = "Severing"; justice_minister_party = spd_name; justice_minister = "Radbruch"; labor_minister_party = spd_name; labor_minister = "Wissell"; reichswehr_minister_party = spd_name; reichswehr_minister = "Leber"; economic_minister_party = spd_name; economic_minister = "Schmidt"; finance_minister_party = spd_name; finance_minister = "Hilferding"; agriculture_minister_party = spd_name; agriculture_minister = "Baade";
 
-Somehow, the <span style="color: #8B0000;">**Marxists**</span> parties have achieved a majority. They're expected to pursue mass nationalizations, socialization of services, judicial reform, land reform, increased welfare spending and demilitarization. The right-wing paramilitaries are already threatening a putsch [? if President == "Hindenburg": and it seems only a matter of time until President Hindenburg brings this cabinet down ?].
+Somehow, the <span style="color: var(--kpd-color);">**Marxists**</span> parties have achieved a majority. They're expected to pursue mass nationalizations, socialization of services, judicial reform, land reform, increased welfare spending and demilitarization. The right-wing paramilitaries are already threatening a putsch[? if President == "Hindenburg": and it seems only a matter of time until President Hindenburg brings this cabinet down ?].
 
 
 @popular_front
-title: An exceptional Popular Front forms
+title: An extraordinary Popular Front forms
 view-if: popular_front >= 50 and kpd_leader = "Luxemburgists" and (z_leader = "Joos" or z_leader = "Kaiser") and left_front < 50
-subtitle: <span style="color: #8B0000;">**KPD**</span> + [? if sapd_formed: <span style="color: #E3000F;">**SAPD**</span> + ?] <span style="color: #E3000F;">**SPD**</span> + [if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> +] <span style="color: #000000;">**Z**</span> ([+ popular_front +]%)
-on-arrival: spd_in_government = 1; z_in_government = 1; ddp_in_government = 1 if ddp_exist; kpd_in_government = 1; in_popular_front = 1; chancellor = "Breitscheid"; chancellor_party = "SPD"; foreign_minister = "Brüning"; foreign_minister_party = "Z"; interior_minister = "Severing"; interior_minister_party = "SPD"; justice_minister = "Radbruch"; justice_minister_party = "SPD"; labor_minister = "Wissell"; labor_minister_party = "SPD"; reichswehr_minister = "Leber"; reichswehr_minister_party = "SPD"; economic_minister = "Schmidt"; economic_minister_party = "SPD"; finance_minister_party = "SPD"; finance_minister = "Hilferding"; agriculture_minister = "Hermes"; agriculture_minister_party = "Z"; in_popular_front = 1;
+subtitle: <span style="color: var(--kpd-color);">**[+ kpd_name +]**</span> + [? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?] <span style="color: var(--spd-color);">**[+ spd_name +]**</span> + [if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> +] <span style="color: var(--z-color);">**[+ z_name +]**</span> ([+ popular_front +]%)
+on-arrival: spd_in_government = 1; z_in_government = 1; ddp_in_government = 1 if ddp_exist; kpd_in_government = 1; in_popular_front = 1; chancellor = "Breitscheid"; chancellor_party = spd_name; foreign_minister = "Brüning"; foreign_minister_party = z_name; interior_minister = "Severing"; interior_minister_party = spd_name; justice_minister = "Radbruch"; justice_minister_party = spd_name; labor_minister = "Wissell"; labor_minister_party = spd_name; reichswehr_minister = "Leber"; reichswehr_minister_party = spd_name; economic_minister = "Schmidt"; economic_minister_party = spd_name; finance_minister_party = spd_name; finance_minister = "Hilferding"; agriculture_minister = "Hermes"; agriculture_minister_party = z_name; in_popular_front = 1;
 
-The inclusion of the <span style="color: #8B0000;">**KPD**</span> into the governing coalition is unprecedented, but these are exceptional times. Only through the conciliatory leadership of the <span style="color: #8B0000;">**KPD**</span> and the <span style="color: #000000;">**Center**</span> was this governing arrangement able to form. This government is expected to carry out mass nationalizations to solve the crisis, as well as radically reforming Germany's reactionary bureaucracy. The right-wing parties and their paramilitaries have reacted with alarm, and the Conciliatos of the <span style="color: #8B0000;">**KPD**</span> make extensive efforts to assure Germny of their commitment to the Constitutional order.
+The inclusion of the <span style="color: var(--kpd-color);">**[+ kpd_name +]**</span> into the governing coalition is unprecedented, but these are extraordinary times. Only through the conciliatory leadership of the <span style="color: var(--kpd-color);">**[+ kpd_name +]**</span> and the <span style="color: var(--z-color);">**[+ z_name +]**</span> was this governing arrangement able to form. This government is expected to carry out mass nationalizations to solve the crisis, as well as radically reforming Germany's reactionary bureaucracy. The right-wing parties and their paramilitaries have reacted with alarm, and the Conciliatos of the <span style="color: var(--kpd-color);">**[+ kpd_name +]**</span> make extensive efforts to assure Germny of their commitment to the Constitutional order.
 
 
 @bourgeois_coalition
 title: We can form a Bourgeois Coalition.
 view-if: bourgeois_coalition >= 50
-subtitle: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: #000000;">**Z**</span> + <span style="color: #69A2BE;">**BVP**</span> + [? if kvp_formed: <span style="color: #455B95;">**KVP**</span> + ?][? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> + ?][? if dbp_exist: <span style="color: #38C538;">**DBP**</span> + ?][? if wp_exist: <span style="color: #B8996F;">**WP**</span> + ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span> + ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span> + ?][? if aspd_exist and aspd_ideology = "Moderate": <span style="color: #FE9E00;">**ASPD**</span> + ?][? if csrp_exist: <span style="color: #FF6B21;">**CSRP**</span> + ?] <span style="color: #909090;">**Others**</span> ([+ bourgeois_coalition +]%)
-on-arrival: leverage += 5; leverage += 5 if z_leader == "Brüning"; z_in_government = 1; ddp_in_government = 1 if ddp_exist == 0; dvp_in_government = 1; in_bourgeois_coalition = 1; foreign_minister = "Brüning"; foreign_minister_party = "Z"; interior_minister = "Wirth"; interior_minister_party = "Z" if csrp_exist == 0; interior_minister_party = "CSRP" if csrp_exist; interior_minister = "Bolz" if social_catholics_dvp; interior_minister_party = "Z" if social_catholics_dvp; justice_minister = "Guérard"; justice_minister_party = "Z"; justice_minister = "Koch-Weser" if ddp_exist; justice_minister_party = ddp_name if ddp_exist; labor_minister = "Stegerwald"; labor_minister_party = "Z"; reichswehr_minister = "Groener"; reichswehr_minister_party = "I"; economic_minister = "Hermes"; economic_minister_party = "Z"; finance_minister = "Köhler"; finance_minister_party = "Z"; agriculture_minister = "Hermes"; agriculture_minister_party = "Z"; agriculture_minister = "Fehr" if dbp_exist; agriculture_minister_party = "DBP" if dbp_exist;
+subtitle: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: var(--z-color);">**[+ z_name +]**</span> + <span style="color: #69A2BE;">**BVP**</span> + [? if kvp_formed: <span style="color: #455B95;">**KVP**</span> + ?][? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> + ?][? if dbp_exist: <span style="color: #38C538;">**DBP**</span> + ?][? if wp_exist: <span style="color: #B8996F;">**WP**</span> + ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span> + ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span> + ?][? if aspd_exist and aspd_radical == 0: <span style="color: #FE9E00;">**ASPD**</span> + ?][? if csrp_formed: <span style="color: #FF6B21;">**CSRP**</span> + ?] <span style="color: #909090;">**Others**</span> ([+ bourgeois_coalition +]%)
+on-arrival: leverage += 5; leverage += 5 if z_leader == "Brüning"; z_in_government = 1; ddp_in_government = 1 if lvp_formed or nfvp_formed; dvp_in_government = 1; in_bourgeois_coalition = 1; foreign_minister = "Brüning"; foreign_minister_party = z_name; interior_minister = "Wirth"; interior_minister_party = z_name if csrp_formed == 0; interior_minister_party = "CSRP" if csrp_formed; interior_minister = "Bolz" if social_catholics_dvp; interior_minister_party = z_name if social_catholics_dvp; justice_minister = "Guérard"; justice_minister_party = z_name; justice_minister = "Koch-Weser" if ddp_exist; justice_minister_party = ddp_name if ddp_exist; labor_minister = "Stegerwald"; labor_minister_party = z_name; reichswehr_minister = "Groener"; reichswehr_minister_party = "I"; economic_minister = "Hermes"; economic_minister_party = z_name; finance_minister = "Köhler"; finance_minister_party = z_name; agriculture_minister = "Hermes"; agriculture_minister_party = z_name; agriculture_minister = "Fehr" if dbp_exist; agriculture_minister_party = "DBP" if dbp_exist;
 achievement: bourgeois_coalition
 
-We have enough votes to form a "Bourgeois Coalition" government consisting of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>, <span style="color: #000000;">**Z**</span>, [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>, ?][? if kvp_formed: <span style="color: #455B95;">**KVP**</span>, ?][? if wp_exist: <span style="color: #B8996F;">**WP**</span>, ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span>, ?][? if dbp_exist: <span style="color: #38C538;">**DBP**</span>, ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span>, ?][? if aspd_exist and aspd_ideology = "Moderate": <span style="color: #FE9E00;">**ASPD**</span>, ?][? if csrp_exist: <span style="color: #FF6B21;">**CSRP**</span>, ?] <span style="color: #69A2BE;">**BVP**</span> and small conservative parties!
+We have enough votes to form a "Bourgeois Coalition" government consisting of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>, <span style="color: var(--z-color);">**[+ z_name +]**</span>, [? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span>, ?][? if kvp_formed: <span style="color: #455B95;">**KVP**</span>, ?][? if wp_exist: <span style="color: #B8996F;">**WP**</span>, ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span>, ?][? if dbp_exist: <span style="color: #38C538;">**DBP**</span>, ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span>, ?][? if aspd_exist and aspd_radical == 0: <span style="color: #FE9E00;">**ASPD**</span>, ?][? if csrp_formed: <span style="color: #FF6B21;">**CSRP**</span>, ?] <span style="color: #69A2BE;">**BVP**</span> and small conservative parties!
 
 Who should be the chancellor?
 
@@ -926,8 +913,8 @@ Siegfried Kardorff has been appointed chancellor.
 
 @z_bourgeois_chancellor_1
 title: Support Heinrich Brüning for chancellorship.
-subtitle: This will improve our relations with the <span style="color: #000000;">**Center**</span>.
-on-arrival: chancellor = "Brüning"; chancellor_party = "Z"; z_relation += 5; leverage += 5
+subtitle: This will improve our relations with the <span style="color: var(--z-color);">**[+ z_name +]**</span>.
+on-arrival: chancellor = "Brüning"; chancellor_party = z_name; z_relation += 5; leverage += 5
 view-if: return_to_normalcy == 0
 face-image: img/portraits/BrüningHeinrich.jpg
 go-to: ministries
@@ -936,8 +923,8 @@ Heinrich Brüning has been appointed chancellor.
 
 @z_bourgeois_chancellor_2
 title: Support Konrad Adenauer for chancellorship.
-subtitle: This will improve our relations with the <span style="color: #000000;">**Center**</span>.
-on-arrival: chancellor = "Adenauer"; chancellor_party = "Z"; z_relation += 5; leverage += 5
+subtitle: This will improve our relations with the <span style="color: var(--z-color);">**[+ z_name +]**</span>.
+on-arrival: chancellor = "Adenauer"; chancellor_party = z_name; z_relation += 5; leverage += 5
 face-image: img/portraits/AdenauerKonrad.jpg
 view-if: return_to_normalcy == 1
 go-to: ministries
@@ -947,12 +934,12 @@ With Brüning too unpopular, Konrad Adenauer has been appointed chancellor.
 
 @center_right_coalition
 title: A Center-Right Coalition may be formed.
-view-if: center_right_coalition >= 50 and dnvp_leader != "Hugenberg"
-subtitle: This will be unpopular within the left of our party. {!<br><br>!} <span style="color: #000000;">**Z**</span> + <span style="color: #69A2BE;">**BVP**</span> + <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: #3F7BC1;">**DNVP**</span> + [? if kvp_formed: <span style="color: #455B95;">**KVP**</span> +  ?][? if wp_exist: <span style="color: #B8996F;">**WP**</span> +  ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span> +  ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span> +  ?] <span style="color: #909090;">**Others**</span> ([+ center_right_coalition +]%)
+view-if: center_right_coalition >= 50 and dnvp_leader != "Hugenberg" and cvp_formed == 0
+subtitle: This will be unpopular within the left of our party. {!<br><br>!} <span style="color: var(--z-color);">**[+ z_name +]**</span> + <span style="color: #69A2BE;">**BVP**</span> + <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> + [? if kvp_formed: <span style="color: #455B95;">**KVP**</span> +  ?][? if wp_exist: <span style="color: #B8996F;">**WP**</span> +  ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span> +  ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span> +  ?] <span style="color: #909090;">**Others**</span> ([+ center_right_coalition +]%)
 unavailable-subtitle: The DNVP is not interested in a coalition with the "November criminals" in the Center Party.
-on-arrival: z_in_government = 1; dvp_in_government = 1; dnvp_in_government = 1; in_center_right_coalition = 1; chancellor = "Brüning"; chancellor_party = "Z"; foreign_minister = "Brüning"; foreign_minister_party = "Z"; interior_minister = "Wirth"; interior_minister_party = "Z" if csrp_exist == 0; interior_minister_party = "CSRP" if csrp_exist; interior_minister = "Bolz" if social_catholics_dvp; interior_minister_party = "Z" if social_catholics_dvp; justice_minister = "Hergt"; justice_minister_party = "DNVP"; labor_minister = "Stegerwald"; labor_minister_party = "Z"; reichswehr_minister = "Groener"; reichswehr_minister_party = "I"; economic_minister = "Neuhaus"; economic_minister_party = "DNVP"; finance_minister = "Schlieben"; finance_minister_party = "DNVP"; agriculture_minister = "Hermes"; agriculture_minister_party = "Z"; agriculture_minister = "Fehr" if dbp_exist; agriculture_minister_party = "DBP" if dbp_exist; pro_republic -= 5 if dnvp_republican == 0; liberal_dissent += 5; labor_dissent += 3; spd_relation -= 4;
+on-arrival: z_in_government = 1; dvp_in_government = 1; dnvp_in_government = 1; in_center_right_coalition = 1; chancellor = "Brüning"; chancellor_party = z_name; foreign_minister = "Brüning"; foreign_minister_party = z_name; interior_minister = "Wirth"; interior_minister_party = z_name if csrp_formed == 0; interior_minister_party = "CSRP" if csrp_formed; interior_minister = "Bolz" if social_catholics_dvp; interior_minister_party = z_name if social_catholics_dvp; justice_minister = "Hergt"; justice_minister_party = dnvp_name; labor_minister = "Stegerwald"; labor_minister_party = z_name; reichswehr_minister = "Groener"; reichswehr_minister_party = "I"; economic_minister = "Neuhaus"; economic_minister_party = dnvp_name; finance_minister = "Schlieben"; finance_minister_party = dnvp_name; agriculture_minister = "Hermes"; agriculture_minister_party = z_name; agriculture_minister = "Schiele" if cnblp_exist; agriculture_minister_party = "CNBLP" if cnblp_exist; pro_republic -= 5 if dnvp_republican == 0; liberal_dissent += 5; labor_dissent += 3; spd_relation -= 4;
 
-There are enough votes for a Center-Right Coalition of the <span style="color: #000000;">**Center**</span>, <span style="color: #69A2BE;">**BVP**</span>, <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>, <span style="color: #3F7BC1;">**DNVP**</span>, [? if kvp_formed: <span style="color: #455B95;">**KVP**</span>, ?] [? if wp_exist: <span style="color: #B8996F;">**WP**</span>, ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span>, ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span>, ?] and minor conservative parties.
+There are enough votes for a Center-Right Coalition of the <span style="color: var(--z-color);">**[+ z_name +]**</span>, <span style="color: #69A2BE;">**BVP**</span>, <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>, <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span>, [? if kvp_formed: <span style="color: #455B95;">**KVP**</span>, ?] [? if wp_exist: <span style="color: #B8996F;">**WP**</span>, ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span>, ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span>, ?] and minor conservative parties.
 
 Who should be the chancellor?
 
@@ -971,8 +958,8 @@ Ernst Scholz has been appointed chancellor.
 
 @z_center_right_chancellor_1
 title: Support Heinrich Brüning for chancellorship.
-subtitle: This will improve our relations with the <span style="color: #000000;">**Center**</span>.
-on-arrival: chancellor = "Brüning"; chancellor_party = "Z"; z_relation += 5
+subtitle: This will improve our relations with the <span style="color: var(--z-color);">**[+ z_name +]**</span>.
+on-arrival: chancellor = "Brüning"; chancellor_party = z_name; z_relation += 5
 view-if: return_to_normalcy == 0
 face-image: img/portraits/BrüningHeinrich.jpg
 go-to: ministries
@@ -981,8 +968,8 @@ Heinrich Brüning has been appointed chancellor.
 
 @z_center_right_chancellor_2
 title: Support Konrad Adenauer for chancellorship.
-subtitle: This will improve our relations with the <span style="color: #000000;">**Center**</span>.
-on-arrival: chancellor = "Adenauer"; chancellor_party = "Z"; z_relation += 5
+subtitle: This will improve our relations with the <span style="color: var(--z-color);">**[+ z_name +]**</span>.
+on-arrival: chancellor = "Adenauer"; chancellor_party = z_name; z_relation += 5
 face-image: img/portraits/AdenauerKonrad.jpg
 view-if: return_to_normalcy == 1
 go-to: ministries
@@ -992,12 +979,12 @@ With Brüning too unpopular, Konrad Adenauer has been appointed chancellor.
 
 @hindenburg_coalition
 title: A "Hindenburg Bloc" may be formed.
-view-if: hindenburg_coalition >= 50 and dnvp_relation >= 40 and dnvp_leader != "Hugenberg"
-subtitle: This will be very unpopular within the left of our party. {!<br><br>!} <span style="color: #69A2BE;">**BVP**</span> + <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: #3F7BC1;">**DNVP**</span> + [? if wp_exist: <span style="color: #B8996F;">**WP**</span> +  ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span> +  ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span> +  ?] <span style="color: #909090;">**Others**</span> ([+ center_right_coalition +]%)
-unavailable-subtitle: [? if dnvp_leader == "Hugenberg": Hugenberg is not interested in constructive governance.?][? if (dnvp_relation < 40 and dnvp_ideology == "Radical" or dnvp_relation < 50): Our relations aren't high enough.?]
-on-arrival: leverage += 5; dvp_in_government = 1; dnvp_in_government = 1; in_hindenburg_coalition = 1; chancellor = "Westarp"; chancellor_party = "DNVP"; foreign_minister = "Hassell"; foreign_minister_party = "DNVP"; interior_minister = "Keudell"; interior_minister_party = "DNVP"; justice_minister = "Hergt"; justice_minister_party = "DNVP"; labor_minister = "Seldte"; labor_minister_party = "DNVP"; reichswehr_minister = "Blomberg"; reichswehr_minister_party = "DNVP"; economic_minister = "Neuhaus"; economic_minister_party = "DNVP"; finance_minister = "Schlieben"; finance_minister_party = "DNVP"; agriculture_minister = "Kanitz"; agriculture_minister_party = "I"; pro_republic -= 5 if dnvp_republican = 0; liberal_dissent += 10; labor_dissent += 7; spd_relation -= 7;
+view-if: hindenburg_coalition >= 50 and dnvp_relation >= 40 and dnvp_leader != "Hugenberg" and cvp_formed == 0
+subtitle: This will be very unpopular within the left of our party. {!<br><br>!} <span style="color: #69A2BE;">**BVP**</span> + <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> + [? if wp_exist: <span style="color: #B8996F;">**WP**</span> +  ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span> +  ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span> +  ?] <span style="color: #909090;">**Others**</span> ([+ center_right_coalition +]%)
+unavailable-subtitle: [? if dnvp_leader == "Hugenberg": Hugenberg is not interested in constructive governance. ?][? if dnvp_relation < 40: Our relations aren't high enough.?]
+on-arrival: leverage += 5; dvp_in_government = 1; dnvp_in_government = 1; in_hindenburg_coalition = 1; chancellor = "Westarp"; chancellor_party = dnvp_name; foreign_minister = "Hassell"; foreign_minister_party = dnvp_name; interior_minister = "Keudell"; interior_minister_party = dnvp_name; justice_minister = "Hergt"; justice_minister_party = dnvp_name; labor_minister = "Seldte"; labor_minister_party = dnvp_name; reichswehr_minister = "Blomberg"; reichswehr_minister_party = dnvp_name; economic_minister = "Neuhaus"; economic_minister_party = dnvp_name; finance_minister = "Schlieben"; finance_minister_party = dnvp_name; agriculture_minister = "Kanitz"; agriculture_minister_party = "I"; pro_republic -= 5 if dnvp_republican = 0; liberal_dissent += 10; labor_dissent += 7; spd_relation -= 7;
 
-We can unite the parties that supported President Hindenburg back in 1925 as a governing coalition: the <span style="color: #69A2BE;">**BVP**</span>, <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>, <span style="color: #3F7BC1;">**DNVP**</span>, [? if wp_exist: <span style="color: #B8996F;">**WP**</span>, ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span>, ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span>, ?] and minor conservative parties.
+We can unite the parties that supported President Hindenburg back in 1925 as a governing coalition: the <span style="color: #69A2BE;">**BVP**</span>, <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>, <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span>, [? if wp_exist: <span style="color: #B8996F;">**WP**</span>, ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span>, ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span>, ?] and minor conservative parties.
 
 Who should be the chancellor?
 
@@ -1015,8 +1002,8 @@ Ernst Scholz has been appointed chancellor.
 
 @dnvp_hindenburg_chancellor
 title: Support Kuno von Westarp for chancellorship.
-subtitle: This will improve our relations with the <span style="color: #3F7BC1;">**DNVP**</span>>.
-on-arrival: chancellor = "Westarp"; chancellor_party = "DNVP"; dnvp_relation += 5
+subtitle: This will improve our relations with the <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span>>.
+on-arrival: chancellor = "Westarp"; chancellor_party = dnvp_name; dnvp_relation += 5
 view-if: return_to_normalcy == 0
 face-image: img/portraits/WestarpKuno.jpg
 go-to: ministries
@@ -1026,12 +1013,12 @@ Kuno von Westarp has been appointed chancellor.
 
 @new_grand_coalition
 title: A "New Grand Coalition" of all the constitutional parties?
-subtitle: <span style="color: #E3000F;">**SPD**</span> + <span style="color: #000000;">**Z**</span> + <span style="color: #69A2BE;">**BVP**</span> + [? if kvp_formed: <span style="color: #455B95;">**KVP**</span> + ?][? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + [? if aspd_exist and aspd_ideology = "Moderate": <span style="color: #FE9E00;">**ASPD**</span> +  ?][? if csrp_exist: <span style="color: #FF6B21;">**CSRP**</span> + ?]<span style="color: #909090;">**Others**</span> ([+ neo_weimar_coalition +]%)
-view-if: neo_weimar_coalition >= 50 and grand_coalition < 50
+subtitle: [? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?] <span style="color: var(--spd-color);">**[+ spd_name +]**</span> + <span style="color: var(--z-color);">**[+ z_name +]**</span> + <span style="color: #69A2BE;">**BVP**</span> + [? if kvp_formed: <span style="color: #455B95;">**KVP**</span> + ?][? if dnvp_exist: <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> + ?][? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + [? if aspd_exist and aspd_radical == 0: <span style="color: #FE9E00;">**ASPD**</span> +  ?][? if csrp_formed: <span style="color: #FF6B21;">**CSRP**</span> + ?]<span style="color: #909090;">**Others**</span> ([+ 100 - anti_democratic_coalition +]%)
+view-if: anti_democratic_coalition < 50 and grand_coalition < 50
 choose-if: z_relation >= 30 and spd_relation >= 30
-unavailable-subtitle: <span style="color: #E3000F;">**SPD**</span> + <span style="color: #000000;">**Z**</span> + <span style="color: #69A2BE;">**BVP**</span> + [? if kvp_formed: <span style="color: #455B95;">**KVP**</span> + ?][? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + [? if aspd_exist and aspd_ideology = "Moderate": <span style="color: #FE9E00;">**ASPD**</span> +  ?][? if csrp_exist: <span style="color: #FF6B21;">**CSRP**</span> +  ?]<span style="color: #909090;">**Others**</span> ([+ neo_weimar_coalition +]%) - [? if z_relation < 30 : We do not have adequate relations with the <span style="color: #000000;">**Center Party**</span>. ?][? if spd_relation < 30 : We do not have adequate relations with the <span style="color: #E3000F;">**SPD**</span>. ?]
+unavailable-subtitle: [? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?] <span style="color: var(--spd-color);">**[+ spd_name +]**</span> + <span style="color: var(--z-color);">**[+ z_name +]**</span> + <span style="color: #69A2BE;">**BVP**</span> + [? if kvp_formed: <span style="color: #455B95;">**KVP**</span> + ?][? if dnvp_exist: <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> + ?][? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + [? if aspd_exist and aspd_radical == 0: <span style="color: #FE9E00;">**ASPD**</span> +  ?][? if csrp_formed: <span style="color: #FF6B21;">**CSRP**</span> +  ?]<span style="color: #909090;">**Others**</span> ([+ 100 - anti_democratic_coalition +]%) - [? if z_relation < 30 : We do not have adequate relations with the <span style="color: var(--z-color);">**Center Party**</span>. ?][? if spd_relation < 30 : We do not have adequate relations with the <span style="color: var(--spd-color);">**[+ spd_name +]**</span>. ?]
 
-In these extraordinary times, with other governing arrangements lacking a majority or the political will, a "New Grand Coalition" might be the only way forward, encompassing all parties right of the <span style="color: #8B0000;">**KPD**</span> and left of the <span style="color: #3F7BC1;">**DNVP**</span>, though simply bringing all of these parties together will require effort.
+In these extraordinary times, with other governing arrangements lacking a majority or the political will, a "New Grand Coalition" might be the only way forward, encompassing all parties right of the <span style="color: var(--kpd-color);">**[+ kpd_name +]**</span> and left of the [? if dnvp_left < 0: <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> ?][? if dnf_formed: <span style="color: #003755;">**DNF**</span> ?], though simply bringing all of these parties together will require effort.
 
 - @use_resources: Use our resources to smooth over the creation of a coalition.
 - @coalition_menu: What are the other governing arrangements?
@@ -1040,7 +1027,7 @@ In these extraordinary times, with other governing arrangements lacking a majori
 subtitle: -2 resources
 unavailable-subtitle: Not enough resources (need 2).
 choose-if: resources >= 2
-on-arrival: resources -= 2; leverage -= 5; spd_in_government = 1; z_in_government = 1; ddp_in_government = 1 if ddp_exist; dvp_toleration = 1; in_grand_coalition = 1; chancellor = "Brüning"; chancellor_party = "Z"; foreign_minister = "Brüning"; foreign_minister_party = "Z"; interior_minister = "Severing"; interior_minister_party = "SPD"; justice_minister = "Guérard"; justice_minister_party = "Z"; justice_minister = "Koch-Weser" if ddp_exist; justice_minister_party = ddp_name if ddp_exist; labor_minister = "Wissel"; labor_minister_party = "SPD"; reichswehr_minister = "Groener"; reichswehr_minister_party = "I"; economic_minister = "Schmidt"; economic_minister_party = "SPD"; finance_minister = "Köhler"; finance_minister_party = "Z"; agriculture_minister = "Hermes"; agriculture_minister_party = "Z"; agriculture_minister = "Dietrich" if ddp_exist; agriculture_minister_party = ddp_name if ddp_exist; nationalist_dissent += 10;
+on-arrival: resources -= 2; leverage -= 5; spd_in_government = 1; z_in_government = 1; ddp_in_government = 1 if ddp_exist; dvp_in_government = 1; dnvp_in_government = 1 if dnvp_left >= 0; in_grand_coalition = 1; chancellor = "Brüning"; chancellor_party = z_name; foreign_minister = "Brüning"; foreign_minister_party = z_name; interior_minister = "Severing"; interior_minister_party = spd_name; justice_minister = "Guérard"; justice_minister_party = z_name; justice_minister = "Koch-Weser" if ddp_exist; justice_minister_party = ddp_name if ddp_exist; labor_minister = "Wissel"; labor_minister_party = spd_name; reichswehr_minister = "Groener"; reichswehr_minister_party = "I"; economic_minister = "Schmidt"; economic_minister_party = spd_name; finance_minister = "Köhler"; finance_minister_party = z_name; agriculture_minister = "Hermes"; agriculture_minister_party = z_name; agriculture_minister = "Dietrich" if ddp_exist; agriculture_minister_party = ddp_name if ddp_exist; nationalist_dissent += 10;
 go-to: ministries
 
 We transfer some of our campaign funds to our putative coalition partners. Some would call this corruption, but perhaps it is necessary to save our democracy.
@@ -1050,26 +1037,26 @@ Now, we have a new grand coalition, a "Constitutional Coalition" of all the non-
 
 @far_right_coalition
 title: Far-Right Coalition
-subtitle: [? if dnvp_ideology ==  "Radical": <span style="color: #3F7BC1;">**DNVP**</span> + ?][? if dnf_formed: <span style="color: #003755;">**DNF**</span> + ?] <span style="color: #954B00;">**NSDAP**</span> ([+ far_right_coalition +]%)
+subtitle: [? if dnvp_left < 0: <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> + ?][? if dnf_formed: <span style="color: #003755;">**DNF**</span> + ?] <span style="color: #954B00;">**NSDAP**</span> ([+ far_right_coalition +]%)
 view-if: far_right_coalition >= 50
 go-to: far_right_win if (year >= 1932 or nsdap_r >= 44) and president == "Hindenburg"; far_right_fail if (year < 1932 and nsdap_r < 44) and president == "Hindenburg"; far_right_other if president != "Hindenburg"
 priority: 2
 
-There are enough votes for the <span style="color: #954B00;">**Nazis**</span> and the [? if dnvp_ideology ==  "Radical": <span style="color: #3F7BC1;">**DNVP**</span> ?][? if dnf_formed: <span style="color: #003755;">**DNF**</span> ?] to form a coalition. [+ nsdap_leader +] has made his participation in government contingent on being appointed chancellor. It is up to President [+ president +] to decide.
+There are enough votes for the <span style="color: #954B00;">**Nazis**</span> and the [? if dnvp_left < 0: <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> ?][? if dnf_formed: <span style="color: #003755;">**DNF**</span> ?] to form a coalition. [+ nsdap_leader +] has made his participation in government contingent on being appointed chancellor. It is up to President [+ president +] to decide.
 
 @hitler_right_coalition
 title: A Right-Wing Coalition including the NSDAP
-subtitle: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + [? if dnvp_ideology ==  "Radical": <span style="color: #3F7BC1;">**DNVP**</span> + ?][? if dnf_formed: <span style="color: #003755;">**DNF**</span> + ?] <span style="color: #954B00;">**NSDAP**</span> ([+ far_right_coalition +]%) ([+ hitler_right_coalition +]%)
-view-if: hitler_right_coalition >= 50 and dvp_ideology == "Right"
+subtitle: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + [? if dnvp_left < 0: <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> + ?][? if dnf_formed: <span style="color: #003755;">**DNF**</span> + ?] <span style="color: #954B00;">**NSDAP**</span> ([+ far_right_coalition +]%) ([+ hitler_right_coalition +]%)
+view-if: hitler_right_coalition >= 50 and dvp_left < 0
 go-to: far_right_win if (year >= 1932 or nsdap_r >= 44) and president == "Hindenburg"; far_right_fail if (year < 1932 and nsdap_r < 44) and president == "Hindenburg"; far_right_other if president != "Hindenburg"
 priority: 2
 
-With our help, there are enough votes for the <span style="color: #954B00;">**Nazis**</span>, the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> and the [? if dnvp_ideology ==  "Radical": <span style="color: #3F7BC1;">**DNVP**</span> ?][? if dnf_formed: <span style="color: #003755;">**DNF**</span> ?] to form a coalition. [+ nsdap_leader +] has made his participation in government contingent on being appointed chancellor. It is up to President [+ president +] to decide.
+With our help, there are enough votes for the <span style="color: #954B00;">**Nazis**</span>, the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> and the [? if dnvp_left < 0: <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> ?][? if dnf_formed: <span style="color: #003755;">**DNF**</span> ?] to form a coalition. [+ nsdap_leader +] has made his participation in government contingent on being appointed chancellor. It is up to President [+ president +] to decide.
 
 @far_right_win
-on-arrival: chancellor = "Hitler"; chancellor_party = "NSDAP"; foreign_minister = 'Neurath'; foreign_minister_party = 'I'; interior_minister = 'Frick'; interior_minister_party = 'NSDAP'; justice_minister = 'Gürtner'; justice_minister_party = 'DNVP' if dnvp_ideology = "Radical"; justice_minister_party = 'DNF' if dnf_formed; labor_minister = 'Seldte'; labor_minister_party = 'DNVP' if dnvp_ideology = "Radical"; labor_minister_party = 'DNF' if dnf_formed; reichswehr_minister = 'Blomberg'; reichswehr_minister_party = 'I'; economic_minister = 'Hugenberg'; economic_minister_party = 'DNVP' if dnvp_ideology = "Radical"; economic_minister_party = 'DNF' if dnf_formed; finance_minister = 'Krosigk'; finance_minister_party = 'I'; agriculture_minister = 'Hugenberg'; agriculture_minister_party = 'DNVP' if dnvp_ideology = "Radical"; agriculture_minister_party = 'DNF' if dnf_formed;
+on-arrival: chancellor = "Hitler"; chancellor_party = "NSDAP"; foreign_minister = 'Neurath'; foreign_minister_party = 'I'; interior_minister = 'Frick'; interior_minister_party = 'NSDAP'; justice_minister = 'Gürtner'; justice_minister_party = 'DNVP' if dnvp_left < 0; justice_minister_party = 'DNF' if dnf_formed; labor_minister = 'Seldte'; labor_minister_party = 'DNVP' if dnvp_left < 0; labor_minister_party = 'DNF' if dnf_formed; reichswehr_minister = 'Blomberg'; reichswehr_minister_party = 'I'; economic_minister = 'Hugenberg'; economic_minister_party = 'DNVP' if dnvp_left < 0; economic_minister_party = 'DNF' if dnf_formed; finance_minister = 'Krosigk'; finance_minister_party = 'I'; agriculture_minister = 'Hugenberg'; agriculture_minister_party = 'DNVP' if dnvp_left < 0; agriculture_minister_party = 'DNF' if dnf_formed;
 
-[? if president == "Hindenburg" : President Hindenburg's camarilla ?][? if president != "Hindenburg" : President [+ president +] somehow ?] has decided that the leader of NSDAP must be chancellor [? if president == "Hindenburg": , and the aging president accepts their recommendations. ?][? if president != "Hindenburg" : because it is what the constitution would stipulate. ?]
+President Hindenburg's camarilla has decided that the leader of NSDAP must be chancellor, and the aging president accepts their recommendations.
 
 @far_right_fail
 on-arrival: chancellor = "Schleicher"; chancellor_party = "I"; pro_republic -= 10; next_election_time = time + 5; next_election_month = month + 5; next_election_year = year; next_election_year += 1 if next_election_month > 12; next_election_month -= 12 if next_election_month > 12;
@@ -1094,7 +1081,7 @@ Alternatively, [+ president +] could use the emergency powers of the presidency.
 
 @no_majority
 title: There is no clear governing majority.
-view-if: weimar_coalition < 50 and bourgeois_coalition < 50 and (grand_coalition < 50 or grand_coalition_failed == 1) and far_right_coalition < 50
+view-if: weimar_coalition < 50 and bourgeois_coalition < 50 and (grand_coalition < 50 or grand_coalition_failed == 1) and center_right_coalition < 50 and far_right_coalition < 50
 on-arrival: no_majority_elections += 1
 go-to: no_majority_bruning if (chancellor != "Papen" and chancellor != "Schleicher" and chancellor != "Hitler"); no_majority_papen if (chancellor = "Papen" and no_majority_papen_elections == 0); no_majority_papen_2 if (chancellor == "Papen" and no_majority_papen_elections > 0); no_majority_schleicher if chancellor == "Schleicher"; no_majority_hitler if chancellor == "Hitler"
 
@@ -1106,11 +1093,11 @@ go-to: no_majority_bruning_toleration if (no_majority_elections <= 3 and anti_de
 @no_majority_bruning_toleration
 on-arrival: no_majority_bruning_elections += 1
 
-There is no path to a majority government. One option would be to have a continuation of the current Brüning government; if <span style="color: #E3000F;">**SPD**</span> tolerate it, then it would retain a majority vote against no-confidence.
+There is no path to a majority government. One option would be to have a continuation of the current Brüning government; if <span style="color: var(--spd-color);">**[+ spd_name +]**</span> tolerate it, then it would retain a majority vote against no-confidence.
 
 The second option is to have new elections.
 
-- @spd_toleration_grand: The <span style="color: #E3000F;">**SPD**</span> will tolerate Brüning.
+- @spd_toleration_grand: The <span style="color: var(--spd-color);">**[+ spd_name +]**</span> will tolerate Brüning.
 - @new_elections: We will have new elections.
 
 @hindenburg_appoints_papen
@@ -1143,9 +1130,9 @@ if (Q.next_reichstag_month > 12) {
 !}
 face-image: img/portraits/PapenFranz.jpg
 
-With the <span style="color: #954B00;">**NSDAP**</span> commanding a strong position in parliament, it can decide the fate of the independent Papen cabinet, as only the [? if dnvp_ideology == "Radical": <span style="color: #3F7BC1;">**DNVP**</span>?][? if dnvp_ideology == "Moderate": <span style="color: #003755;">**DNF**</span>?][? if dvp_papen: and <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>?] are the only other parties willing to tie themselves to the unpopular chancellor.
+With the <span style="color: #954B00;">**NSDAP**</span> commanding a strong position in parliament, it can decide the fate of the independent Papen cabinet, as only the [? if dnvp_left < 0: <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span>?][? if dnf_formed: <span style="color: #003755;">**DNF**</span>?][? if dvp_papen: and <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>?] are the only other parties willing to tie themselves to the unpopular chancellor.
 
-However, it's likely that even a coalition of all parties to the right won't receive a majority, not without the support of the antagonistic <span style="color: #000000;">**Center Party**</span>. The new Reichstag will convene on [+ next_reichstag_month : month +] [+ next_reichstag_year +], Week [+ next_reichstag_week +].
+However, it's likely that even a coalition of all parties to the right won't receive a majority, not without the support of the antagonistic <span style="color: var(--z-color);">**Center Party**</span>. The new Reichstag will convene on [+ next_reichstag_month : month +] [+ next_reichstag_year +], Week [+ next_reichstag_week +].
 
 @no_majority_papen_2
 on-arrival: {!
@@ -1182,7 +1169,7 @@ Negotiations with [+ nsdap_leader +] will resume in the coming weeks. However, S
 go-to: hitler_chancellor
 
 @no_majority_hitler
-on-arrival: in_far_right_coalition = 1; chancellor = "Hitler"; chancellor_party = "NSDAP"; foreign_minister = 'Neurath'; interior_minister = 'Frick'; justice_minister = 'Gürtner'; labor_minister = 'Seldte'; reichswehr_minister = 'Blomberg'; economic_minister = 'Hugenberg'; finance_minister = 'Krosigk'; agriculture_minister = 'Hugenberg'; foreign_minister_party = 'I'; interior_minister_party = 'NSDAP'; justice_minister_party = 'DNVP' if dnvp_ideology = "Radical"; justice_minister_party = 'DNF' if dnf_formed; labor_minister_party = 'DNVP' if dnvp_ideology = "Radical"; labor_minister_party = 'DNF' if dnf_formed; reichswehr_minister_party = 'I'; economic_minister_party = 'DNVP' if dnvp_ideology = "Radical"; economic_minister_party = 'DNF' if dnf_formed; finance_minister_party = 'I'; agriculture_minister_party = 'DNVP' if dnvp_ideology = "Radical"; agriculture_minister_party = 'DNF' if dnf_formed;
+on-arrival: in_far_right_coalition = 1; chancellor = "Hitler"; chancellor_party = "NSDAP"; foreign_minister = 'Neurath'; interior_minister = 'Frick'; justice_minister = 'Gürtner'; labor_minister = 'Seldte'; reichswehr_minister = 'Blomberg'; economic_minister = 'Hugenberg'; finance_minister = 'Krosigk'; agriculture_minister = 'Hugenberg'; foreign_minister_party = 'I'; interior_minister_party = 'NSDAP'; justice_minister_party = 'DNVP' if dnvp_left < 0; justice_minister_party = 'DNF' if dnf_formed; labor_minister_party = 'DNVP' if dnvp_left < 0; labor_minister_party = 'DNF' if dnf_formed; reichswehr_minister_party = 'I'; economic_minister_party = 'DNVP' if dnvp_left < 0; economic_minister_party = 'DNF' if dnf_formed; finance_minister_party = 'I'; agriculture_minister_party = 'DNVP' if dnvp_left < 0; agriculture_minister_party = 'DNF' if dnf_formed;
 
 President has decided to give Hitler one more chance.
 
@@ -1200,7 +1187,7 @@ President [+ president +] faces a dilemma. He desperately desires a democratic g
 @emergency_luther
 title: We will form an emergency government with [+ president +]'s support.
 subtitle: This may have the effect of inflamming public sentiment against us, and the extremists will be against us each step of the way.
-on-arrival: sa_strength += 100; sh_strength += 100; rfb_strength += 100; dvp_in_government = 1; chancellor = "Curtius"; chancellor_party = dvp_name; in_emergency_government = 1; foreign_minister_party = dvp_name; foreign_minister = "Stresemann" if no_stresemann == 0; foreign_minister = "Curtius" if no_stresemann; interior_minister_party = dvp_name; interior_minister = "Jarres"; justice_minister_party = dvp_name; justice_minister = "Heinze" if ddp_exist; justice_minister = "Schiffer" if ddp_exist == 0; labor_minister_party = dvp_name; labor_minister = "Thiel"; reichswehr_minister_party = dvp_name; reichswehr_minister = "Seeckt"; economic_minister_party = dvp_name; economic_minister = "Krohne" if ddp_exist; economic_minister = "Hamm" if ddp_exist == 0; finance_minister_party = dvp_name; finance_minister = "Moldenhauer"; agriculture_minister_party = dvp_name; agriculture_minister = "Kanitz";
+on-arrival: sa_strength += 100; sh_strength += 100; rfb_strength += 100; dvp_in_government = 1; chancellor = "Curtius"; chancellor_party = dvp_name; in_emergency_government = 1; foreign_minister_party = dvp_name; foreign_minister = "Stresemann" if no_stresemann == 0; foreign_minister = "Curtius" if no_stresemann; interior_minister_party = dvp_name; interior_minister = "Jarres"; justice_minister_party = dvp_name; justice_minister = "Heinze" if ddp_exist; justice_minister = "Schiffer" if lvp_formed or nfvp_formed; labor_minister_party = dvp_name; labor_minister = "Thiel"; reichswehr_minister_party = dvp_name; reichswehr_minister = "Seeckt"; economic_minister_party = dvp_name; economic_minister = "Krohne" if ddp_exist; economic_minister = "Hamm" if lvp_formed or nfvp_formed; finance_minister_party = dvp_name; finance_minister = "Moldenhauer"; agriculture_minister_party = dvp_name; agriculture_minister = "Kanitz";
 
 Yes, an emergency minority government, with the support of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>, led by Julius Curtius
 
@@ -1223,7 +1210,7 @@ title: The Nazis immediately call a no-confidence vote against us...
 view-if: far_right_coalition < 45
 on-arrival: sa_strength += 200; sh_strength += 200; no_confidence_votes = nsdap_r + kpd_r; no_confidence_votes = no_confidence_votes + spd_r + sapd_r if spd_relation < 45; no_confidence_votes += z_r if z_relation < 45; no_confidence_votes += ddp_r if ddp_relation < 45 and ddp_exist; no_confidence_votes += other_r if (z_relation + dnvp_relation)/2 < 45; no_confidence_succeeds = 1 if no_confidence_votes > 50
 
-The <span style="color: #8B0000;">**KPD**</span>, [? if dnvp_ideology ==  "Radical": <span style="color: #3F7BC1;">**DNVP**</span> + ?][? if dnf_formed: <span style="color: #003755;">**DNF**</span> ?] and <span style="color: #954B00;">**NSDAP**</span> will vote against us, of course. The other parties vote their conscience.
+The <span style="color: var(--kpd-color);">**[+ kpd_name +]**</span>, [? if dnvp_left < 0: <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> + ?][? if dnf_formed: <span style="color: #003755;">**DNF**</span> ?] and <span style="color: #954B00;">**NSDAP**</span> will vote against us, of course. The other parties vote their conscience.
 
 In total, [+ no_confidence_votes +]% of the Reichstag is against us. [? if no_confidence_succeeds : We have lost the vote of no confidence. ?]
 
@@ -1293,7 +1280,6 @@ The next elections are set for [+ next_election_month : month +] [+ next_electio
 @no_confidence_win
 view-if: no_confidence_votes <= 50
 on-arrival: in_minority_government = 1; in_emergency_government = 0;
-achievement: minderheitsregierung
 
 We have won the vote of no confidence, and are currently ruling under an <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> minority government. Now our task is to fix the country.
 
@@ -1373,9 +1359,9 @@ title: Labor Ministry
 subtitle: This is not our usual domain.
 unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
-choose-if: leverage >= 15
+choose-if: leverage >= 10
 view-if: labor_minister_party != dvp_name
-on-arrival: leverage -= 15; labor_minister = "Thiel"; labor_minister_party = dvp_name
+on-arrival: leverage -= 10; labor_minister = "Thiel"; labor_minister_party = dvp_name
 go-to: ministries
 
 Otto Thiel has been appointed Labor Minister.
@@ -1386,9 +1372,9 @@ title: Interior Ministry
 subtitle: The Interior Ministry controls domestic security.
 unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
-choose-if: leverage >= 10
+choose-if: leverage >= 5
 view-if: interior_minister_party != dvp_name
-on-arrival: leverage -= 10; interior_minister = "Jarres"; interior_minister_party = dvp_name
+on-arrival: leverage -= 5; interior_minister = "Jarres"; interior_minister_party = dvp_name
 go-to: ministries
 
 Karl Jarres has been appointed Interior Minister.
@@ -1425,9 +1411,9 @@ title: Justice Ministry
 subtitle: The Justice Ministry controls the courts.
 unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
-choose-if: leverage >= 10 
+choose-if: leverage >= 5
 view-if: justice_minister_party != dvp_name
-on-arrival: leverage -= 10; justice_minister = "Heinze"; justice_minister_party = dvp_name
+on-arrival: leverage -= 5; justice_minister = "Heinze"; justice_minister_party = dvp_name
 go-to: ministries
 
 Rudolf Heinze has been appointed Justice Minister.
@@ -1451,12 +1437,12 @@ title: Agricultural Ministry
 subtitle: This is not our usual domain.
 unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
-choose-if: leverage >= 10 
+choose-if: leverage >= 5
 view-if: agriculture_minister_party != dvp_name
-on-arrival: leverage -= 10; agriculture_minister = "Kanitz" if ddp_exist; agriculture_minister = "Dietrich" if ddp_exist == 0; agriculture_minister_party = dvp_name
+on-arrival: leverage -= 5; agriculture_minister = "Kanitz" if ddp_exist; agriculture_minister = "Dietrich" if lvp_formed or nfvp_formed; agriculture_minister_party = dvp_name
 go-to: ministries
 
-[? if ddp_exist: Gerhard von Kanitz ?][? if ddp_exist == 0: Hermann Dietrich ?] has been appointed Agriculture Minister.
+[? if ddp_exist: Gerhard von Kanitz ?][? if lvp_formed or nfvp_formed: Hermann Dietrich ?] has been appointed Agriculture Minister.
 
 
 @reichswehr
@@ -1464,12 +1450,12 @@ title: Reichswehr Ministry
 subtitle: The Ministry responsible for the armed forces is not typically our domain; General Groener and the bourgeois-conservatives will be displeased.
 unavailable-subtitle: We do not have enough leverage.
 tags: mins_1928
-choose-if: leverage >= 15 
+choose-if: leverage >= 10 
 view-if: reichswehr_minister_party != dvp_name
-on-arrival: leverage -= 15; reichswehr_minister = "Seeckt" if ddp_exist; reichswehr_minister = "Gessler" if ddp_exist == 0; reichswehr_minister_party = dvp_name;
+on-arrival: leverage -= 10; reichswehr_minister = "Seeckt" if ddp_exist; reichswehr_minister = "Gessler" if lvp_formed or nfvp_formed; reichswehr_minister_party = dvp_name;
 go-to: ministries
 
-[? if ddp_exist: Hans von Seeckt ?][? if ddp_exist == 0: Otto Gessler ?] has been appointed Reichswehr Minister.
+[? if ddp_exist: Hans von Seeckt ?][? if lvp_formed or nfvp_formed: Otto Gessler ?] has been appointed Reichswehr Minister.
 
 
 @no_more
@@ -1482,55 +1468,55 @@ This coalition arrangement is tolerable to all.
 @drop_labor
 title: Drop the Labor Ministry.
 view-if: labor_minister_party = dvp_name
-on-arrival: labor_minister_party = "Z"; labor_minister = "Stegerwald"; leverage += 15; labor_minister_party = ddp_name if in_liberal_coalition; labor_minister = "Erkelenz" if in_liberal_coalition
+on-arrival: labor_minister_party = z_name; labor_minister = "Stegerwald"; leverage += 10; labor_minister_party = ddp_name if in_liberal_coalition; labor_minister = "Erkelenz" if in_liberal_coalition
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_interior
 title: Drop the Interior Ministry.
 view-if: interior_minister_party = dvp_name
-on-arrival: interior_minister_party = "Z" if not csrp_exist; interior_minister_party = "CSRP" if csrp_exist; interior_minister = "Wirth"; interior_minister = "Bolz" if social_catholics_dvp; interior_minister_party = "Z" if social_catholics_dvp; leverage += 10; interior_minister_party = ddp_name if in_liberal_coalition; interior_minister = "Koch-Weser" if in_liberal_coalition
+on-arrival: interior_minister_party = z_name if not csrp_formed; interior_minister_party = "CSRP" if csrp_formed; interior_minister = "Wirth"; interior_minister = "Bolz" if social_catholics_dvp; interior_minister_party = z_name if social_catholics_dvp; leverage += 5; interior_minister_party = ddp_name if in_liberal_coalition; interior_minister = "Koch-Weser" if in_liberal_coalition
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_finance
 title: Drop the Finance Ministry.
 view-if: finance_minister_party = dvp_name
-on-arrival: finance_minister_party = "Z"; finance_minister = "Köhler"; leverage += 5; finance_minister_party = ddp_name if in_liberal_coalition; finance_minister = "Dietrich" if in_liberal_coalition
+on-arrival: finance_minister_party = z_name; finance_minister = "Köhler"; leverage += 5; finance_minister_party = ddp_name if in_liberal_coalition; finance_minister = "Dietrich" if in_liberal_coalition
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_economic
 title: Drop the Economic Ministry.
 view-if: economic_minister_party = dvp_name
-on-arrival: economic_minister_party = ddp_name; economic_minister = "Hamm"; leverage += 5; economic_minister_party = "SPD" if in_weimar_coalition; economic_minister = "Schmidt" if in_weimar_coalition;
+on-arrival: economic_minister_party = ddp_name; economic_minister = "Hamm"; leverage += 5; economic_minister_party = spd_name if in_weimar_coalition; economic_minister = "Schmidt" if in_weimar_coalition;
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_justice
 title: Drop the Justice Ministry.
 view-if: justice_minister_party = dvp_name
-on-arrival: justice_minister_party = ddp_name; justice_minister = "Koch-Weser"; leverage += 10
+on-arrival: justice_minister_party = ddp_name; justice_minister = "Koch-Weser"; leverage += 5
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_foreign
 title: Drop the Foreign Ministry.
 view-if: foreign_minister_party = dvp_name
-on-arrival: foreign_minister_party = "Z"; foreign_minister = "Brüning"; leverage += 5; foreign_minister_party = ddp_name if in_liberal_coalition; foreign_minister = "Solf" if in_liberal_coalition
+on-arrival: foreign_minister_party = z_name; foreign_minister = "Brüning"; leverage += 5; foreign_minister_party = ddp_name if in_liberal_coalition; foreign_minister = "Solf" if in_liberal_coalition
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_agriculture
 title: Drop the Agriculture Ministry.
 view-if: agriculture_minister_party = dvp_name
-on-arrival: leverage += 10; agriculture_minister_party = "Z"; agriculture_minister = "Hermes"; agriculture_minister_party = ddp_name if in_liberal_coalition; agriculture_minister = "Dietrich" if in_liberal_coalition
+on-arrival: leverage += 5; agriculture_minister_party = z_name; agriculture_minister = "Hermes"; agriculture_minister_party = ddp_name if in_liberal_coalition; agriculture_minister = "Dietrich" if in_liberal_coalition
 tags: drop_mins_1928
 go-to: ministries
 
 @drop_reichswehr
 title: Drop the Reichswehr Ministry.
 view-if: reichswehr_minister_party = dvp_name
-on-arrival: reichswehr_minister_party = "I"; reichswehr_minister = "Groener"; leverage += 15; reichswehr_minister_party = ddp_name if in_liberal_coalition; reichswehr_minister = "Gessler" if in_liberal_coalition
+on-arrival: reichswehr_minister_party = "I"; reichswehr_minister = "Groener"; leverage += 10; reichswehr_minister_party = ddp_name if in_liberal_coalition; reichswehr_minister = "Gessler" if in_liberal_coalition
 tags: drop_mins_1928
 go-to: ministries

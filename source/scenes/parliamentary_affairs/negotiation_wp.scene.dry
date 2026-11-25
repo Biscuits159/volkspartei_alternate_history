@@ -25,14 +25,14 @@ on-arrival: wp_relation += 5*(1-dissent)
 go-to: fiscal_policy.cut_rich
 
 @build_support_nfvp
-view-if: nfvp_formed and wp_ideology = "Moderate"
+view-if: nfvp_formed and wp_ideology != "Corporatism"
 on-arrival: wp_relation += 5; progressive_dissent += 3; industrialist_dissent += 3;
 
 We are pushing forward proposals for a united middle class party. We are also building ties with <span style="color: #B8996F;">**WP**</span>-affiliated organizations.
 
 @convince_wp_nfvp
 unavailable-subtitle: [? if wp_relation < 60: Our relations with the <span style="color: #B8996F;">**WP**</span> are not good enough. ?][? if not nfvp_formed and not lvp_formed: We have not yet united the liberals. ?]
-choose-if: wp_relation >= 60 and (nfvp_formed or lvp_formed) and wp_ideology = "Moderate"
+choose-if: wp_relation >= 60 and (nfvp_formed or lvp_formed) and wp_ideology != "Corporatism"
 on-arrival: {!
 Q.wp_exist = 0;
 Q.special_interest_dvp = 1;

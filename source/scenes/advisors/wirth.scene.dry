@@ -35,10 +35,10 @@ Wirth helps us to rally the people in defense of the Republic.
 
 
 @spd_relations
-title: <span style="color: #E3000F;">**SPD**</span> relations
+title: <span style="color: var(--spd-color);">**SPD**</span> relations
 subtitle: Wirth can reach out to the social democrats.
 choose-if: advisor_action_timer == 0 
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 on-arrival: advisor_action_timer = 6; spd_relation += 7*(1-dissent); industrialist_dissent += 10
 
-As a commited republican and still member of the Reichsbanenr, Wirth uses his connections to the <span style="color: #E3000F;">**SPD**</span>'s center and reformist wing to increase our realtions.
+As a commited republican and still member of the Reichsbanenr, Wirth uses his connections to the <span style="color: var(--spd-color);">**SPD**</span>'s center and reformist wing to increase our realtions.

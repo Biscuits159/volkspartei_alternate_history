@@ -17,7 +17,7 @@ Baron Rochus von Rheinbaben has reached out to all major liberal organizations i
 @support_front_1929
 unavailable-subtitle: Industrialist wing is not interested in this.
 choose-if: (liberal_strength + labor_strength)>(industrialist_strength + nationalist_strength)
-on-arrival: new_middle_dvp += 2; dvp_left += 1; liberal_strength += 5; industrialist_dissent += 15; nationalist_dissent += 10; ddp_right += 1; ddp_relation += 5; liberal_peoples_party_progress += 1; supported_front_1929 = 1
+on-arrival: new_middle_dvp += 2; dvp_left += 1; liberal_strength += 5; industrialist_dissent += 15; nationalist_dissent += 10; ddp_left -= 1; ddp_relation += 5; liberal_peoples_party_progress += 1; supported_front_1929 = 1
 
 With our support, von Rheinbaben has made rapid progress in negotiations for a unified republican right, with official unification expected to come in coming months.
 
@@ -28,7 +28,7 @@ With our lukewarm support to Rheinbaben's initiative, attempts to form a unified
 @expel_front_1929
 unavailable-subtitle: Why would we do this?
 choose-if: (industrialist_strength + nationalist_strength)>(liberal_strength + labor_strength)
-on-arrival: new_middle_dvp -= 3; dvp_right += 1; industrialist_strength += 5; liberal_dissent += 10; labor_dissent += 5; ddp_relation -= 5;
+on-arrival: new_middle_dvp -= 3; dvp_left -= 1; industrialist_strength += 5; liberal_dissent += 10; labor_dissent += 5; ddp_relation -= 5;
 
 With our rejection of Von Rheinbaben's initiative the effort for republican unity quickly collapsed. Our rejection of the Front has enraged our liberal and labor wings, and torched our relations with the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>.
 

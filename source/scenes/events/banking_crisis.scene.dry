@@ -30,7 +30,6 @@ Unemployement ticks up once more and the extremist parties see increased support
 
 - @enact_austerity: We shall cut welfare.
 - @stabilization: Take action to stabilize the economy!
-- @spd_stabilization: The social democrats take emergency action to stabilize the economy.
 - @austerity: Chancellor [+ chancellor +]'s response is, as always, more austerity.
 - @end_toleration: We are tired of austerity. End the toleration arrangement!
 
@@ -48,21 +47,15 @@ on-arrival: workers_dvp += 2*(1-dissent); new_middle_dvp += 3*(1-dissent); old_m
 
 In the face of the banking crisis, we have taken emergency action to stabilize the economy by injecting money into the banking system. It might not be enough, but it temporarily staunches the bleeding.
 
-@spd_stabilization
-view-if: spd_in_government and dvp_in_government == 0
-on-arrival: workers_spd += 3*(1-dissent); new_middle_spd += 3*(1-dissent); old_middle_spd += 2*(1-dissent); rural_spd += 2*(1-dissent); unemployed -= 2; inflation += 1 if inflation < 0; budget -= 1; workers_nsdap -= 3; economic_growth += 1;
-
-The <span style="color: #E3000F;">**SPD**</span> moves quickly to stabilize the economy by injecting money into the banking system. It might not be enough, but it temporarily staunches the bleeding.
-
 @austerity
-view-if: spd_in_government == 0 and dvp_in_government == 0
+view-if: dvp_in_government == 0
 on-arrival: welfare -= 1; workers_spd -= 3; unemployed_spd -= 3; pro_republic -= 3; economic_growth -= 1;
 
 Chancellor [+ chancellor +] responds to the banking crisis with more cuts to welfare.
 
 @end_toleration
 view-if: dvp_toleration = 1
-on-arrival: time_to_election = 3; spd_in_government = 0; in_grand_coalition = 0; spd_toleration = 0;
+on-arrival: time_to_election = 3; dvp_in_government = 0; dvp_toleration = 0;
 call: set_next_election_time
 
 We are tired of [+ chancellor +]'s policy of austerity. After [+ chancellor +]'s attempt to use emergency powers to pass another welfare cut, we have worked with the other parties to reverse this policy. In response, the Reichstag has been dissolved, and new elections called.

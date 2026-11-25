@@ -8,7 +8,7 @@ tags: parliamentary_affairs
 
 = Negotiations with Right-Wing parties
 
-<span style="color: #000000;">**Zentrum**</span> has been the leading bourgeoise party and our closest major ally throughout the republic, while the <span style="color: #3F7BC1;">**DNVP**</span> [? if kvp_formed: and the <span style="color: #455B95;">**KVP**</span> ?] remain our closest ideological allies. What should we do to strengthen out ties?
+<span style="color: #000000;">**Zentrum**</span> has been the leading bourgeois party and our closest major ally throughout the course of the republic, while the <span style="color: #3F7BC1;">**DNVP**</span> remain aligned with us on many important issues [? if kvp_formed: and the <span style="color: #455B95;">**KVP**</span> ?] seemingly stand now as our closest ideological partners. What should we do to strengthen our ties with these parties?
 
 - @center: Strengthen our bonds with the Catholic Center Party.
 - @kvp: Strengthen our bonds with the Conservative People's Party.
@@ -24,7 +24,7 @@ choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; z_relation += 7*(1-dissent)
 
-The Zentrum has been one of our closest allies through the course of the Republic.
+Despite our disagreements regarding secularism, Zentrum has been one of our closest allies through the course of the Republic.
 
 @kvp
 subtitle: -1 resources
@@ -36,13 +36,13 @@ on-arrival: resources -= 1; kvp_relation += 5*(1-dissent)
 The KVP is a moderate right wing party.
 
 @dnvp
-title: [? if dnvp_ideology = "Moderate" and not dnvp_leader = "Treviranus": Increase communications with the national-conservatives from DNVP. ?][? if dnvp_ideology = "Radical" and dvp_ideology = "Right": Collaborate with the anti-democratic rightists from DNVP. ?][? if dnvp_leader = "Treviranus" and dvp_ideology = "Right": Reconcile with the parliamentary turncoats from DNVP. ?][? if dnvp_ideology = "Radical" and dvp_ideology = "Left": Meet with the radical anti-republican rightists from DNVP. ?][? if dnvp_leader = "Treviranus" and dvp_ideology = "Left": Find common ground with the people's conservatives from DNVP. ?]
+title: [? if dnvp_left == 0: Increase communications with the national-conservatives from DNVP. ?][? if dnvp_left < 0 and dvp_left < 0: Collaborate with the anti-democratic rightists from DNVP. ?][? if dnvp_left == 1 and dvp_left < 0: Reconcile with the parliamentary turncoats from DNVP. ?][? if dnvp_left < 0 and dvp_left >= 0: Meet with the radical anti-republican rightists from DNVP. ?][? if dnvp_left == 1 and dvp_left >= 0: Find common ground with the people's conservatives from DNVP. ?]
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; dnvp_relation += 5*(1-dissent)
 
-[? if dnvp_ideology = "Radical" and dvp_ideology = "Right": Our mutual disdain for the Weimar Republic’s parliamentary catastrophe has made us natural allies with the radicalized DNVP. ?][? if dnvp_ideology = "Moderate" and not dnvp_leader = "Treviranus" and dvp_ideology = "Right": The DNVP’s reluctance to participate in the Reichstag under the moderates has made them a possible ally, despite our differences. ?][? if dnvp_leader = "Treviranus" and dvp_ideology = "Right": Ties with the DNVP have grown increasingly strained with our rapidly diverging views on the Republic, but negotiations are still possible with their nationalistic tendencies. ?][? if dnvp_ideology = "Radical" and dvp_ideology = "Left": Having the DNVP barrel towards rabid anti-parliamentarian tendencies has made any attempts of reconciliation increasingly moot. ?][? if dnvp_ideology = "Moderate" and not dnvp_leader = "Treviranus" and dvp_ideology = "Left": With the DNVP embracing a middle ground between the young parliamentarians and the radicals, perhaps we could find some compromise. ?][? if dnvp_leader = "Treviranus" and dvp_ideology = "Left": Having followed us in our more republican stance, the DNVP could be a great ally, should the SPD either be entirely excluded from government or embrace a radical rightward shift. ?]
+[? if dnvp_left < 0 and dvp_left < 0: Our mutual disdain for the Weimar Republic’s parliamentary catastrophe has made us natural allies with the radicalized DNVP. ?][? if dnvp_left == 0 and dvp_left < 0: The DNVP’s reluctance to participate in the Reichstag under the moderates has made them a possible ally, despite our differences. ?][? if dnvp_left == 1 and dvp_left < 0: Ties with the DNVP have grown increasingly strained with our rapidly diverging views on the Republic, but negotiations are still possible with their nationalistic tendencies. ?][? if dnvp_left < 0 and dvp_left >= 0: Having the DNVP barrel towards rabid anti-parliamentarian tendencies has made any attempts of reconciliation increasingly moot. ?][? if dnvp_left == 0 and dvp_left >= 0: With the DNVP embracing a middle ground between the young parliamentarians and the radicals, perhaps we could find some compromise. ?][? if dnvp_left == 1 and dvp_left >= 0: Having followed us in our more republican stance, the DNVP could be a great ally, should the SPD either be entirely excluded from government or embrace a radical rightward shift. ?]
 
 @convince_z_lautenbach
 subtitle: -2 budget.
@@ -65,7 +65,7 @@ subtitle: -2 budget.
 unavailable-subtitle: -2 budget. [? if budget < 2 : We do not have the necessary budget. ?][? if unemployed < 8 : Unemployment is low enough that job creation is not necessary. ?][? if inflation >= 5: The threat of inflation forces the Reichsbank to pause implementation of the plan. ?]
 view-if: lautenbach_wtb_adopted and (chancellor_party = "Z" or finance_minister_party = "Z" or economic_minister_party = "Z") and economic_policy_timer = 0
 choose-if: unemployed >= 10 and budget >= 2 and inflation < 5
-on-arrival: economic_policy_timer += 12; lautenbach_wtb_progress += 1; works_program += 1; workers_spd += 4*(1-dissent); workers_dvp += 1*(1-dissent); workers_z += 1*(1-dissent); unemployed_spd += 6*(1-dissent); new_middle_dvp += 3*(1-dissent); new_middle_z += 1*(1-dissent); old_middle_dvp += 3*(1-dissent); old_middle_z += 1*(1-dissent); rural_dvp += 1*(1-dissent); rural_z += 3*(1-dissent); workers_nsdap -= 6; spd_relation += 3; z_relation += 3; ddp_relation += 3; kvp_relation += 3; dnvp_relation += 3 if dnvp_ideology = "Moderate"; coalition_dissent -= 1 if coalition_dissent >= 1; capital_strike_progress -= 1 if capital_strike_progress >= 3; dvp_left += 2; ddp_cohesion += 1; pro_republic += 5; unemployed -= 2 if unemployed >= 15; unemployed -= 2; inflation += 2; economic_growth += 2.6;
+on-arrival: economic_policy_timer += 12; lautenbach_wtb_progress += 1; works_program += 1; workers_spd += 4*(1-dissent); workers_dvp += 1*(1-dissent); workers_z += 1*(1-dissent); unemployed_spd += 6*(1-dissent); new_middle_dvp += 3*(1-dissent); new_middle_z += 1*(1-dissent); old_middle_dvp += 3*(1-dissent); old_middle_z += 1*(1-dissent); rural_dvp += 1*(1-dissent); rural_z += 3*(1-dissent); workers_nsdap -= 6; spd_relation += 3; z_relation += 3; ddp_relation += 3; kvp_relation += 3; dnvp_relation += 3 if dnvp_leader = "Treviranus"; coalition_dissent -= 1 if coalition_dissent >= 1; capital_strike_progress -= 1 if capital_strike_progress >= 3; dvp_left += 2; ddp_cohesion += 1; pro_republic += 5; unemployed -= 2 if unemployed >= 15; unemployed -= 2; inflation += 2; economic_growth += 2.6;
 achievement: wirtschaftspolitik
 
 [? if lautenbach_wtb_progress == 1 : We have convinced <span style="color: #000000;">**Center Party**</span> to implement the job-creation plan! Funds are sent to build public works projects across Germany, reducing unemployment. ?]

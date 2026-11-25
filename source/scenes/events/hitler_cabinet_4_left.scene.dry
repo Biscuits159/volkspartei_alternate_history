@@ -1,5 +1,5 @@
 title: Hitler declares his intention to pass an Enabling Act
-view-if: hitler_chancellor_time = 8 and chancellor = "Hitler" and president = "Hindenburg" and dvp_ideology = "Left"
+view-if: hitler_chancellor_time = 8 and chancellor = "Hitler" and president = "Hindenburg" and dvp_left >= 0
 tags: event
 max-visits: 1
 new-page: true
@@ -7,8 +7,8 @@ on-arrival: {!
 Q.kpd_enabling_act = "Against"
 Q.spd_enabling_act = "Against"
 Q.aspd_enabling_act = "Against"
-if (Q.ddp_ideology == "Left") Q.ddp_enabling_act = "Against"
-if (Q.ddp_ideology != "Left") Q.ddp_enabling_act = "For"
+if (Q.ddp_left >= 0) Q.ddp_enabling_act = "Against"
+if (Q.ddp_left < 0) Q.ddp_enabling_act = "For"
 Q.dbp_enabling_act = "For"
 Q.csrp_enabling_act = "Against"
 Q.z_enabling_act = "Against"
@@ -29,12 +29,12 @@ WIP
 
 We must see, how will the other parties vote.
 
-- @spd: As expected, the <span style="color: #E3000F;">**SPD**</span> will vote against this act.
+- @spd: As expected, the <span style="color: var(--spd-color);">**SPD**</span> will vote against this act.
 
 @spd
 on_arrival: spd_enabling_act = "Against"
 
-The <span style="color: #E3000F;">**SPD**</span> will vote against.
+The <span style="color: var(--spd-color);">**SPD**</span> will vote against.
 
 - @zentrum: How will the <span style="color: #000000;">**Center Party**</span> vote?
 
@@ -55,7 +55,7 @@ WIP [? if kvp_enabling_act = "For": support ?][? if kvp_enabling_act = "Against"
 - @dvp
 
 @dnvp
-view-if: dnvp_ideology = "Moderate"
+view-if: dnvp_leader != "Hugenberg"
 on-arrival: dnvp_enabling_act = "For" if dnvp_leader != "Treviranus" or z_enabling_act = "For"; dnvp_enabling_act = "Against" if dnvp_leader == "Treviranus" and z_enabling_act = "Against";
 
 WIP [? if dnvp_enabling_act = "For": support ?][? if dnvp_enabling_act = "Against": against ?]
@@ -66,7 +66,7 @@ WIP [? if dnvp_enabling_act = "For": support ?][? if dnvp_enabling_act = "Agains
 title: Now, we have to make our decision.
 on-arrival: {!
 if (Q.kvp_enabling_act == "Against" || Q.dnvp_enabling_act == "Against") Q.csvd_enabling_act = "Against"
-if ((Q.kvp_enabling_act == "Against" || Q.dnvp_enabling_act == "Against") && Q.wp_ideology == "Moderate") Q.wp_enabling_act = "Against"
+if ((Q.kvp_enabling_act == "Against" || Q.dnvp_enabling_act == "Against") && Q.wp_leader == "Drewitz") Q.wp_enabling_act = "Against"
 if (Q.kvp_enabling_act == "Against" || Q.dnvp_enabling_act == "Against") Q.cnblp_enabling_act = "Against"
 if (Q.z_enabling_act == "Against") Q.ddp_enabling_act = "Against"
 if (Q.z_enabling_act == "Against") Q.dbp_enabling_act = "Against"
@@ -89,7 +89,7 @@ Q.nsdap_relation += 10;
 if (Q.z_enabling_act == "Against") Q.z_relation -= 3;
 if (Q.ddp_enabling_act == "Against") Q.ddp_relation -= 7;
 if (Q.kvp_enabling_act == "Against" && Q.kvp_formed) Q.kvp_relation -= 3;
-if (Q.dnvp_enabling_act == "Against" && Q.dnvp_ideology == "Moderate") Q.dnvp_relation -= 3;
+if (Q.dnvp_enabling_act == "Against" && Q.dnvp_leader != "Hugenberg") Q.dnvp_relation -= 3;
 if (Q.dnvp_enabling_act == "For") Q.dnvp_relation += 5;
 !}
 
@@ -108,7 +108,7 @@ Q.nsdap_relation -= 5;
 if (Q.z_enabling_act == "Against") Q.z_relation += 3;
 if (Q.ddp_enabling_act == "Against") Q.ddp_relation += 7;
 if (Q.kvp_enabling_act == "Against" && Q.kvp_formed) Q.kvp_relation += 3;
-if (Q.dnvp_enabling_act == "Against" && Q.dnvp_ideology == "Moderate") Q.dnvp_relation += 3;
+if (Q.dnvp_enabling_act == "Against" && Q.dnvp_leader != "Hugenberg") Q.dnvp_relation += 3;
 if (Q.dnvp_enabling_act == "For") Q.dnvp_relation -= 5;
 !}
 
@@ -167,7 +167,7 @@ We convinced the <span style="color: #000000;">**Center Party**</span> and <span
 
 @convince_csvd
 unavailable-subtitle: The <span style="color: #8ED8E4;">**CSVD**</span> are unable to be convinced.
-choose-if: (kvp_enabling_act = "Against" and kvp_formed) or (dnvp_enabling_act = "Against" and dnvp_ideology = "Moderate")
+choose-if: (kvp_enabling_act = "Against" and kvp_formed) or (dnvp_enabling_act = "Against" and dnvp_leader != "Hugenberg")
 view-if: csvd_enabling_act = "For" and csvd_exist
 on-arrival: csvd_enabling_act = "Against";
 
@@ -178,8 +178,8 @@ We convinced the <span style="color: #8ED8E4;">**CSVD**</span> to vote against t
 
 @convince_wp
 unavailable-subtitle: The <span style="color: #B8996F;">**WP**</span> are unable to be convinced.
-choose-if: (kvp_enabling_act = "Against" and kvp_formed) or (dnvp_enabling_act = "Against" and dnvp_ideology = "Moderate")
-view-if: wp_enabling_act = "For" and wp_ideology = "Moderate" and wp_exist
+choose-if: (kvp_enabling_act = "Against" and kvp_formed) or (dnvp_enabling_act = "Against" and dnvp_leader != "Hugenberg")
+view-if: wp_enabling_act = "For" and wp_leader = "Drewitz" and wp_exist
 on-arrival: wp_enabling_act = "Against";
 
 We convinced the <span style="color: #B8996F;">**WP**</span> to vote against this law!
@@ -189,7 +189,7 @@ We convinced the <span style="color: #B8996F;">**WP**</span> to vote against thi
 
 @convince_cnblp
 unavailable-subtitle: The <span style="color: #7FCEB1;">**CNBLP**</span> are unable to be convinced.
-choose-if: (kvp_enabling_act = "Against" and kvp_formed) or (dnvp_enabling_act = "Against" and dnvp_ideology = "Moderate")
+choose-if: (kvp_enabling_act = "Against" and kvp_formed) or (dnvp_enabling_act = "Against" and dnvp_leader != "Hugenberg")
 view-if: cnblp_enabling_act = "For" and cnblp_exist
 on-arrival: cnblp_enabling_act = "Against";
 
@@ -212,7 +212,7 @@ We convinced the <span style="color: #455B95;">**KVP**</span> to vote against th
 @convince_dnvp
 unavailable-subtitle: The <span style="color: #3F7BC1;">**DNVP**</span> are unable to be convinced.
 choose-if: dnvp_leader = "Treviranus" and z_enabling_act = "Against"
-view-if: dnvp_enabling_act = "For" and dnvp_ideology = "Moderate"
+view-if: dnvp_enabling_act = "For" and dnvp_leader != "Hugenberg"
 on-arrival: dnvp_enabling_act = "Against";
 
 We convinced the <span style="color: #3F7BC1;">**DNVP**</span> to vote against this law!

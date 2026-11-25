@@ -1,4 +1,4 @@
-title: <span style="color: #E3000F;">**SPD**</span> forms the Iron Front!
+title: <span style="color: var(--spd-color);">**SPD**</span> forms the Iron Front!
 new-page: true
 is-card: true
 max-visits: 1
@@ -18,8 +18,8 @@ Many in their party are calling for urgent action. The "neorevisionist" faction,
 
 @iron_front_formed
 title: The Iron Front is formed!
-subtitle: The Iron Front consists of the <span style="color: #E3000F;">**SPD**</span>, the trade unions, and the Reichsbanner.
+subtitle: The Iron Front consists of the <span style="color: var(--spd-color);">**SPD**</span>, the trade unions, and the Reichsbanner.
 on-arrival: iron_front_formed = 1; radicalization += 1; nazi_urgency += 1; workers_spd += 5; new_middle_spd += 3; pro_republic += 5*(1-dissent); progressive_dissent += 8; progressive_strength += 5
 achievement: eiserne_front
 
-The Nazi threat can no longer be ignored. <span style="color: #E3000F;">**Social Democrats**</span> created a new organization to confront them - the Iron Front - consisting of the <span style="color: #E3000F;">**SPD**</span>, the <span style="color: #E3000F;">**ADGB**</span> trade union federation, and the *Reichsbanner Schwarz-Rot-Gold*. They have a new symbol - the Three Arrows, pointing down towards the left.
+The Nazi threat can no longer be ignored. <span style="color: var(--spd-color);">**Social Democrats**</span> created a new organization to confront them - the Iron Front - consisting of the <span style="color: var(--spd-color);">**SPD**</span>, the <span style="color: var(--spd-color);">**ADGB**</span> trade union federation, and the *Reichsbanner Schwarz-Rot-Gold*. They have a new symbol - the Three Arrows, pointing down towards the left.

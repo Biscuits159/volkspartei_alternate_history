@@ -10,7 +10,8 @@ go-to: fp_menu
 
 = Foreign Policy
 
-What should our foreign policy priority be?
+Foreign policy is an expertise strongly associated with our party. The diplomatically gifted Gustav Stresseman, our founder, [? if no_stresemann == 0: is?][? if no_stresemann: was?] especially noted for his contributions to peace in Europe.
+What should our foreign policy priority be? 
 
 @fp_menu
 
@@ -40,7 +41,7 @@ The key to peace in Europe is a rapproachment between France and Germany. We are
 title: Improve our relations with our eastern neighbors.
 on-arrival: east_relation += 2;
 
-We also aim to improve relations with our eastern neighbors, Poland and Czechoslovakia, who are righfully terrified of German aggression. Hopefully we can convince them of our peaceful intentions.
+We aim to improve relations with our eastern neighbors, Poland and Czechoslovakia, who are terrified of German aggression. Hopefully we can keep at least some cordiality with them. 
 
 
 @customs_union
@@ -107,11 +108,9 @@ This has reduced tensions within our government, and our party has gotten credit
 @expose
 title: Expose the secret rearmament plans of the previous foreign ministry!
 view-if: rearmament_exposed == 0
-on-arrival: west_relation += 2; east_relation += 1; nationalism -= 5*(1-dissent); pro_republic += 5*(1-dissent); coalition_dissent += 1 if (dnvp_in_government or z_in_government); rearmament_exposed += 1; reparations_negotiation += 3; coup_progress += 2
+on-arrival: west_relation -= 1; east_relation -= 1; nationalism -= 2*(1-dissent); nationalism -= 3*(1-dissent) if grand_coalition_prussia; pro_republic += 5*(1-dissent); coalition_dissent += 1 if (dnvp_in_government or z_in_government); rearmament_exposed += 1; reparations_negotiation -= 1; coup_progress += 2; hindenburg_angry += 25;
 
-The previous foreign ministry, despite its benevolent and peaceful face, was secretly helping the Reichswehr to build up its forces, in contravention of the Treaty of Versailles.
-
-The Allies are grateful of our exposure and repudiation of militarism. Our partners in the coalition are less supportive.
+We've exposed our secret rearmament plans, in clear contravention of the Treaty of Versailles. Since we were that previous foreign ministry, our relations with the Allies have been damaged. At least the public is now aware of our actions, and are now conscious of Germany's growing militarism.
 
 
 @concordat_negotiate
@@ -136,7 +135,7 @@ We have successfully signed a Concordat between Germany and the Roman Catholic C
 title: Take steps to form a "Europabund".
 subtitle: Is a "United States of Europe" possible?
 unavailable-subtitle: [? if west_relation < 5 : Our relations with the West are not good enough. ?] [? if east_relation < 4 : Our relations with the East are not good enough. ?]
-view-if: reparations <= -2 and eb_progress < 2 and dvp_ideology = "Left"
+view-if: reparations <= -2 and eb_progress < 2 and dvp_left >= 0
 choose-if: west_relation >= 5 and east_relation >= 4
 on-arrival: eb_progress += 1; west_relation += 1
 
@@ -145,7 +144,7 @@ Despite forming a "United States of Europe" is not one of our major goals, Franc
 
 @europabund_2
 title: We can sign a treaty to form a Europabund!
-view-if: west_relation >= 5 and east_relation >= 4 and eb_progress >= 2 and dvp_ideology = "Left"
+view-if: west_relation >= 5 and east_relation >= 4 and eb_progress >= 2 and dvp_left >= 0
 on-arrival: europabund = 1; unemployed -= 2 if unemployed >= 10; inflation += 2 if inflation <= -2; inflation -= 1 if inflation >= 4.5; workers_dvp += 2*(1-dissent); new_middle_dvp += 7*(1-dissent); old_middle_dvp += 7*(1-dissent); rural_dvp += 3*(1-dissent); catholics_dvp += 4*(1-dissent); unemployed_dvp += 2*(1-dissent); pro_republic += 5; nationalism -= 5; budget += 1; economic_growth += 1; economic_growth += 1 if economic_growth < 3
 max-visits: 1
 achievement: europabund

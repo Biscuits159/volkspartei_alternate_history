@@ -28,7 +28,7 @@ title: Campaign for antisemitism
 subtitle: Let us use the stab-in-the-back to our advantage.
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
 choose-if: advisor_action_timer = 0
-on-arrival: advisor_action_timer = 6; old_middle_dvp += 3*(1-dissent); rural_dvp += 2*(1-dissent); nationalism += 2*(1-dissent); pro_republic -= 2*(1-dissent); nationalist_strength += 5*(1-dissent)
+on-arrival: advisor_action_timer = 6; old_middle_dvp += 3*(1-dissent); rural_dvp += 2*(1-dissent); nationalism += 2*(1-dissent); pro_republic -= 2*(1-dissent); nationalist_strength += 5*(1-dissent); dnvp_relation += 5*(1-dissent); spd_relation -= 5; ddp_relation -= 5; spd_left += 1;
 
 We use the sporadic antisemitism to our advantage, challenging the <span style="color: #3f7bc1;">**DNVP**</span> and the <span style="color: #954B00;">**nazis**</span>.
 

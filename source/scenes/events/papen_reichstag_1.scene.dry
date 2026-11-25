@@ -70,6 +70,6 @@ Q.reichstag_president = "Löbe";
 Q.reichstag_president_rubicon = 1;
 !}
 
-In Reichstag tradition, as the <span style="color: #E3000F;">**SPD**</span> is the largest party, the <span style="color: #000000;">Center Party</span> feels bound to support them.
+In Reichstag tradition, as the <span style="color: var(--spd-color);">**SPD**</span> is the largest party, the <span style="color: #000000;">Center Party</span> feels bound to support them.
 
-The Reichstag agenda committee, over <span style="color: #E3000F;">**Social Democratic**</span> objections, has voted for a two-week adjournment.
+The Reichstag agenda committee, over <span style="color: var(--spd-color);">**Social Democratic**</span> objections, has voted for a two-week adjournment.

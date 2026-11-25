@@ -32,7 +32,7 @@ WIP
 
 @wp_dnvp
 unavailable-subtitle: The <span style="color: #B8996F;">**WP**</span> is not interested in uniting with far-right radicals.
-choose-if: wp_ideology = "Radical"
+choose-if: wp_radical
 on-departure: {!
     Q.wp_exist = 0;
     Q.parties = Q.parties.filter(party => party !== 'wp');
@@ -57,7 +57,7 @@ on-departure: {!
 
 The <span style="color: #B8996F;">**WP**</span> has decided to unite with Hugenberg's <span style="color: #3F7BC1;">**DNVP**</span>.
 
-[? if not wp_split_seen and ddp_exist: Otto Colosser and his faction have split to join the <span style="color: #DCCA4A;">**[+ddp_name+]**</span>. ?]
+[? if not wp_split_seen and ddp_exist: Otto Colosser and his faction have split to join the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>. ?]
 [? if not wp_split_seen and not ddp_exist: Otto Colosser and his faction have split to join us! ?]
 
 - @parties: What about other parties?
@@ -65,7 +65,7 @@ The <span style="color: #B8996F;">**WP**</span> has decided to unite with Hugenb
 
 @wp_kvp
 unavailable-subtitle: The <span style="color: #B8996F;">**WP**</span> is not interested in uniting with moderate right.
-choose-if: wp_ideology = "Moderate"
+choose-if: wp_radical == 0
 on-departure: {!
     Q.wp_exist = 0;
     Q.parties = Q.parties.filter(party => party !== 'wp');
@@ -90,7 +90,7 @@ on-departure: {!
 
 The <span style="color: #B8996F;">**WP**</span> has decided to unite with the <span style="color: #455B95;">**KVP**</span>.
 
-[? if not wp_split_seen and ddp_exist: Otto Colosser and his faction have split to join the <span style="color: #DCCA4A;">**[+ddp_name+]**</span>. ?]
+[? if not wp_split_seen and ddp_exist: Otto Colosser and his faction have split to join the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>. ?]
 [? if not wp_split_seen and not ddp_exist: Otto Colosser and his faction have split to join us! ?]
 
 - @parties: What about other parties?
@@ -158,7 +158,7 @@ view-if: vrp_exist
 
 WIP
 
-- @vrp_ddp: The <span style="color: #0075EB;">**VRP**</span> unites with <span style="color: #DCCA4A;">**[+ddp_name+]**</span>!
+- @vrp_ddp: The <span style="color: #0075EB;">**VRP**</span> unites with <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>!
 - @vrp_kvp: The <span style="color: #0075EB;">**VRP**</span> unites with <span style="color: #455B95;">**KVP**</span>!
   
 
@@ -171,7 +171,7 @@ on-departure: {!
     Q.old_middle_other = 0;
 !}
 
-The <span style="color: #0075EB;">**VRP**</span> has decided to unite with the <span style="color: #DCCA4A;">**[+ddp_name+]**</span>.
+The <span style="color: #0075EB;">**VRP**</span> has decided to unite with the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>.
 
 - @parties: What about other parties?
   

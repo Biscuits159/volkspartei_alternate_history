@@ -227,7 +227,7 @@ if (window && d3) {
 
 {!<tr><td><div class="box" style='background-color:#8B0000'> </div> !}KPD: {!</td><td>!} [+ kpd_r +]% {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#E3000F'> </div> !} SPD: {!</td><td>!} [+ spd_r +]% {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:var(--spd-color)'> </div> !} SPD: {!</td><td>!} [+ spd_r +]% {!</td></tr>!}
 
 [? if aspd_exist: {!<tr><td><div class="box" style='background-color:#FE9E00'> </div> !} ASPD: {!</td><td>!} [+ aspd_r +]% {!</td></tr>!} ?]
 

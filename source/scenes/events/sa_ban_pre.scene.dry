@@ -13,19 +13,19 @@ Prussian Minister of the Interior Carl Severing has ordered an emergency search 
 
 During the raids, evidence was uncovered that the <span style="color: #954B00;">Nazi</span> Party headquarters in Munich had ordered <span style="color: #954B00;">**SA**</span> units to be placed on high alert on election day. In the event of an anticipated [+ nsdap_candidate_1932 +] victory, these units were to immediately launch a coup d’état, which included the planned seizure of military installations and weaponry.
 
-Non-<span style="color: #954B00;">Nazi</span> state governments broadly support banning the <span style="color: #954B00;">**SA**</span>, having lobbied the federal government for months on the issue. However, the more conservative, non-<span style="color: #954B00;">Nazi</span> elements of the German right, as well as the Reichswehr itself, do not share <span style="color: #E3000F;">**SPD**</span>'s sense of alarm over the <span style="color: #954B00;">**SA**</span>’s supposed coup plans and see no need for immediate action.
+Non-<span style="color: #954B00;">Nazi</span> state governments broadly support banning the <span style="color: #954B00;">**SA**</span>, having lobbied the federal government for months on the issue. However, the more conservative, non-<span style="color: #954B00;">Nazi</span> elements of the German right, as well as the Reichswehr itself, do not share <span style="color: var(--spd-color);">**SPD**</span>'s sense of alarm over the <span style="color: #954B00;">**SA**</span>’s supposed coup plans and see no need for immediate action.
 
 
-- @sa_ban_spd: The <span style="color: #E3000F;">**SPD**</span> uses this revelation to commence a nationwide ban on the <span style="color: #954B00;">**SA**</span>!
+- @sa_ban_spd: The <span style="color: var(--spd-color);">**SPD**</span> uses this revelation to commence a nationwide ban on the <span style="color: #954B00;">**SA**</span>!
 - @sa_ban_dvp: We will use this revelation to commence a nationwide ban on the <span style="color: #954B00;">**SA**</span>!
 - @sa_ban_dvp_refuse: We will refuse to ban the <span style="color: #954B00;">**SA**</span>!
-- @sa_ban_bruning: We will support the <span style="color: #E3000F;">**Social Democrats**</span> and push for a nationwide ban on the <span style="color: #954B00;">**SA**</span>!
+- @sa_ban_bruning: We will support the <span style="color: var(--spd-color);">**Social Democrats**</span> and push for a nationwide ban on the <span style="color: #954B00;">**SA**</span>!
 
 @sa_ban_spd
 view-if: interior_minister_party = "SPD"
 on-arrival: sa_strength *= 0.6; sa_militancy -= 0.15; sa_banned = 1; sa_nationwide_ban = 1; sa_ban_timer = 6; hindenburg_angry += 25; unemployed_nsdap -= 5; workers_nsdap -= 3; new_middle_nsdap -= 3
 
-With control of the Interior Ministry, the <span style="color: #E3000F;">**Social Democrats**</span> have used these revelations as a pretext to ban the <span style="color: #954B00;">**SA**</span> nationwide. This has led to a noticeable drop in political violence, effectively dealing a blow to the <span style="color: #954B00;">Nazis</span>, who had relied on intimidation tactics to gain votes.
+With control of the Interior Ministry, the <span style="color: var(--spd-color);">**Social Democrats**</span> have used these revelations as a pretext to ban the <span style="color: #954B00;">**SA**</span> nationwide. This has led to a noticeable drop in political violence, effectively dealing a blow to the <span style="color: #954B00;">Nazis</span>, who had relied on intimidation tactics to gain votes.
 
 However, the ban has not been as effective as initially hoped. Few weapons have been seized, because the plans to ban the <span style="color: #954B00;">SA</span> were leaked by none other than General Kurt von Schleicher, who believes this move interferes with his taming strategy.
 
@@ -34,7 +34,7 @@ However, the ban has not been as effective as initially hoped. Few weapons have 
 view-if: interior_minister_party = dvp_name
 on-arrival: sa_strength *= 0.7; sa_militancy -= 0.1; sa_banned = 1; sa_nationwide_ban = 1; sa_ban_timer = 6; hindenburg_angry += 20; unemployed_nsdap -= 5; workers_nsdap -= 3; new_middle_nsdap -= 3; spd_relation += 5; dnvp_relation -= 3 if dnvp_ideology = "Radical"; dnf_relation -= 3 if dnf_formed; nsdap_relation -= 5;
 
-With control of the Interior Ministry, we have used these revelations as a pretext to ban the <span style="color: #954B00;">**SA**</span> nationwide. This has led to a noticeable drop in political violence, effectively dealing a blow to the <span style="color: #954B00;">Nazis</span>, who had relied on intimidation tactics to gain votes. This also improves our relation with <span style="color: #E3000F;">**SPD**</span>.
+With control of the Interior Ministry, we have used these revelations as a pretext to ban the <span style="color: #954B00;">**SA**</span> nationwide. This has led to a noticeable drop in political violence, effectively dealing a blow to the <span style="color: #954B00;">Nazis</span>, who had relied on intimidation tactics to gain votes. This also improves our relation with <span style="color: var(--spd-color);">**SPD**</span>.
 
 However, the ban has not been as effective as initially hoped. Few weapons have been seized, because the plans to ban the <span style="color: #954B00;">SA</span> were leaked by none other than General Kurt von Schleicher, who believes this move interferes with his taming strategy.
 
@@ -45,7 +45,7 @@ choose-if: False
 
 
 @sa_ban_bruning
-view-if: bruning_chancellor_time and dvp_ideology = "Left"
+view-if: bruning_chancellor_time and dvp_left >= 0
 go-to: sa_ban_bruning_groener if interior_minister = "Groener"; sa_ban_bruning_wirth if interior_minister = "Wirth"
 
 @sa_ban_bruning_groener

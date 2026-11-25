@@ -27,7 +27,7 @@ Q.catholics_kvp = 1;
 Q.catholics_dnvp -= 1;
 
 
-if (Q.dvp_ideology = "Left") {
+if (Q.dvp_left >= 0) {
     Q.kvp_relation = 50
 } else {
     Q.kvp_relation = 40
@@ -69,7 +69,7 @@ if (Q.nfvp_peoples_conservatives_success != 1) {
     Q.unemployed_csvd = 0;
     Q.catholics_csvd = 0;
     
-    if (Q.dvp_ideology = "Left") {
+    if (Q.dvp_left >= 0) {
         Q.csvd_relation = 50
     } else {
         Q.csvd_relation = 40

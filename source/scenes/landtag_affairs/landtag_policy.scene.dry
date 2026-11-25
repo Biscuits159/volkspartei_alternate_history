@@ -16,7 +16,7 @@ We can enact policies in Prussia.
 
 - @local_policies: Enact business-friendly policies at the local level.
 - @target_kpd: Target the <span style="color: #8B0000;">**KPD**</span>.
-- @target_spd: Target the <span style="color: #E3000F;">**SPD**</span>.
+- @target_spd: Target the <span style="color: var(--spd-color);">**SPD**</span>.
 - @target_nsdap: Target the <span style="color: #954B00;">**NSDAP**</span>.
 - @strengthen_police: Bolster local police.
 - @root: No new policies are needed.
@@ -24,28 +24,28 @@ We can enact policies in Prussia.
 - @cancel_advisor_action
 
 @local_policies
-on-arrival: new_middle_dvp += landtag_power*(1-dissent); old_middle_dvp += landtag_power*(1-dissent)
+on-arrival: new_middle_dvp += landtag_power*(1-dissent); old_middle_dvp += landtag_power*(1-dissent); demand_for_action_countdown += 6;
 
 Our policies help us improve the popularity of our party among our base, the middle class.
 
 @target_kpd
 subtitle: Including the <span style="color: #8B0000;">**RFB**</span>.
-on-arrival: workers_kpd -= landtag_power*(1-dissent); unemployed_kpd -= landtag_power*(1-dissent); rfb_strength *= (1-landtag_power_100); rfb_militancy *= (1-landtag_power_100)
+on-arrival: workers_kpd -= landtag_power*(1-dissent); unemployed_kpd -= landtag_power*(1-dissent); rfb_strength *= (1-landtag_power_100); rfb_militancy *= (1-landtag_power_100); investigate_far_left += 1;
 
 <span style="color: #8B0000;">**KPD**</span> party newspapers, gatherings and party headquarters are closed or otherwise cracked down on all German states which we govern. <span style="color: #8B0000;">**RFB**</span> members are arrested and their weapons seized.
 
 @target_spd
 choose-if: liberal_strength < nationalist_strength + industrialist_strength - 10
 unavailable-subtitle: The liberal wing of our party is too strong. They will not allow this.
-on-arrival: workers_spd -= landtag_power*(1-dissent); unemployed_spd -= landtag_power*(1-dissent); spd_patience -= 25 if spd_toleration; spd_relation -= 10
+on-arrival: workers_spd -= landtag_power*(1-dissent); unemployed_spd -= landtag_power*(1-dissent); spd_left += 2; spd_patience -= 25 if spd_toleration; spd_relation -= 10; wp_relation += 5*(1-dissent); kvp_relation += 10*(1-dissent); dnvp_relation += 10*(1-dissent);
 
-<span style="color: #E3000F;">**Socialist**</span> unions and rallies are disrupted by local authorities. Naturally, the <span style="color: #E3000F;">**SPD**</span> is outraged, and the prospect of a Grand Coalition becomes ever distant.
+<span style="color: var(--spd-color);">**Socialist**</span> unions and rallies are disrupted by local authorities. Naturally, the <span style="color: var(--spd-color);">**SPD**</span> is outraged, and the prospect of a Grand Coalition becomes ever distant.
 
 @target_nsdap
 subtitle: And their violent paramilitary, the <span style="color: #954B00;">**SA**</span>.
 choose-if: black_thursday_seen
 unavailable-subtitle: Who are these people?
-on-arrival: new_middle_nsdap -= landtag_power*(1-dissent); old_middle_nsdap -= landtag_power*(1-dissent); rural_nsdap -= landtag_power*(1-dissent); unemployed_spd -= landtag_power*(1-dissent); sa_strength *= (1-landtag_power_100); sa_militancy *= (1-landtag_power_100)
+on-arrival: new_middle_nsdap -= landtag_power*(1-dissent); old_middle_nsdap -= landtag_power*(1-dissent); rural_nsdap -= landtag_power*(1-dissent); unemployed_spd -= landtag_power*(1-dissent); sa_strength *= (1-landtag_power_100); sa_militancy *= (1-landtag_power_100); investigate_far_right += 1;
 
 <span style="color: #954B00;">**SA**</span> meetings are disrupted by local police, their members arrested and weapons seized.
 

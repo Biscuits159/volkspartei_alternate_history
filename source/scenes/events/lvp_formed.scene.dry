@@ -8,9 +8,8 @@ Q.ddp_exist = 0;
 
 Q.dvp_name = "LVP";
 Q.dvp_color = "#FFCC00";
-document.body.style.setProperty('--dvp-color', '#FFCC00');
-
-Q.dvp_leader = "Luther";
+Q.dvp_ideology = "Classical Liberalism";
+Q.dvp_ideologycolor = "#DCCA4A";
 
 Q.lvp_next_congress_year = Q.year + 1;
 Q.lvp_next_congress_month = Q.month;
@@ -36,9 +35,7 @@ Q.catholics_dvp += Q.catholics_ddp;
 Q.catholics_ddp = 0;
 
 
-if (Q.in_weimar_coalition == 1) {
-  Q.dvp_in_government = 1
-}
+if (Q.ddp_in_government == 1) Q.dvp_in_government = 1;
 
 if (Q.in_liberal_coalition == 1) {
   Q.in_liberal_coalition = 0

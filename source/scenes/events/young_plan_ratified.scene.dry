@@ -1,0 +1,15 @@
+title: Young Plan Ratified
+new-page: true
+subtitle: President Hindenburg no longer needs the <span style="color: var(--spd-color);">**SPD**</span>.
+tags: event
+view-if: year = 1930 and month >= 3
+on-arrival: hindenburg_angry += 10; young_plan_ratified = 1;
+max-visits: 1
+
+= Young Plan Ratified
+
+The Young Plan is finally ratified, and with it, the main reason President Hindenburg and the reactionary establishment have humored the <span style="color: var(--spd-color);">**SPD**</span> is gone. [? if spd_in_government and dvp_in_government: If we can keep the Field Marshall calm, the cabinet may hold, otherwise our coalition partners may be ejected from government. ?] 
+
+- @continue: Continue...
+
+@continue

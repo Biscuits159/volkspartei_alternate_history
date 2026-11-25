@@ -21,14 +21,14 @@ tags: govt_affairs, cabinet
 @reform
 subtitle: -1 budget
 unavailable-subtitle: Not enough budget.
-view-if: dvp_ideology = "Left"
+view-if: dvp_left >= 0
 choose-if: budget >= 1
 on-arrival: budget -= 1; democratization += 2; coalition_dissent += 1 if dnvp_in_government; new_middle_dvp += 5*(1-dissent) if democratization >= 3; judicial_reform += 2; pro_republic += 5*(1-dissent); coup_progress += 1; coalition_dissent += 1 if historical_mode; hindenburg_angry += 5;
 
 We investigate jurists who have shown themselves to have biased or corrupt behavior, and try to remove them, replacing them with more independent jurists. This obviously raises quite a great deal of ire in opposition circles. 
 
 @minor_reforms
-view-if: dvp_ideology = "Left"
+view-if: dvp_left >= 0
 on-arrival: democratization += 1; new_middle_dvp += 3*(1-dissent) if democratization >= 3; judicial_reform += 1; pro_republic += 3*(1-dissent); judiciary_timer += 6
 
 We try to remove the most obviously biased and corrupt jurists, while leaving most of the system intact. It is slow work reforming the judiciary.
@@ -37,7 +37,7 @@ We try to remove the most obviously biased and corrupt jurists, while leaving mo
 go-to: root
 
 @corrupt
-view-if: dvp_ideology = "Right"
+view-if: dvp_left < 0
 on-arrival: democratization -= 2; coalition_dissent += 1 if spd_in_government; judicial_reform -= 2; pro_republic -= 3*(1-dissent); judiciary_timer += 6; spd_relation -= 5; ddp_relation -= 5;
 
 We have corrupted the judiciary, removing the more independent judges and supporting biased reactionaries. This obviously raises quite a great deal of ire in opposition circles.

@@ -4,13 +4,13 @@ on-arrival: {!
 Q.nfvp_formation_points = 0;
 if (Q.ddp_relation >= 65) {
     Q.nfvp_formation_points += 1;
-    Q.ddp_right += 1;
+    Q.ddp_left -= 1;
 }
 if (Q.ddp_relation < 50) {
     Q.nfvp_formation_points -= 1;
-    Q.ddp_right -= 1;
+    Q.ddp_left += 1;
 }
-if (Q.ddp_right > (Q.ddp_left + 2)) {
+if (Q.ddp_left < -1) {
     Q.nfvp_formation_points += 1;
 }
 if (Q.dvp_reform) {
@@ -20,7 +20,7 @@ if (Q.bourgeois_parliament) {
     Q.nfvp_formation_points += 1;
 }
 
-if (((Q.nationalist_strength + Q.industrialist_strength) >= (Q.liberal_strength + Q.labor_strength)) || Q.dvp_ideology == "Right") {
+if (((Q.nationalist_strength + Q.industrialist_strength) >= (Q.liberal_strength + Q.labor_strength)) || Q.dvp_left < 0) {
     Q.nfvp_formation_points -= 5;
 }
 !}

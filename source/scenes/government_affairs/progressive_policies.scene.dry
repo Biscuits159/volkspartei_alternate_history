@@ -1,0 +1,81 @@
+title: Progressive Policies
+new-page: true
+is-card: true
+tags: govt_affairs, cabinet
+on-arrival: {!
+Q.progressive_policies_timer += 10; 
+Q.month_actions += 1;
+Q.progressive_coalition = Q.kpd_r + Q.sapd_r + Q.spd_r + Q.ddp_r + Q.dvp_r;
+!}
+view-if: dvp_in_government and chancellor_party == dvp_name and (lvp_formed or nfvp_formed) and progressive_policies_timer <= 0
+card-image: img/portraits/BaumerGertrud.jpg
+#subtitle: Women and gay rights.
+
+= Progressive Policies
+
+Since our union with the <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span>, many of their left-leaning members have been calling for the promulgation of progressive policies. While the former <span style="color: #C0A054;">**DVP**</span> was ostensibly Conservative-Liberal, it was also often pragmatic, unburdened by an overly Christian electorate, it was capable of compromising to a degree. As it stands, it seems like these ideals will be adopted sooner or later, in Germany or elsewhere in the World. By supporting some of these policies now, we stand to gain electorally more than we'd lose among conservative voters.
+
+- @women_labor
+- @women_family
+- @abortion_rights
+- @paragraph_175
+- @paragragh_183
+- @return: Do not enact any policies for now.
+- @easy_discard
+- @cancel_advisor_action
+
+
+@women_labor
+title: Expand women's workplace rights.
+subtitle: Paid maternal leave policies, equal pay policies, and so on.
+on-arrival: womens_rights += 1; new_middle_dvp += 4*(1-dissent); workers_dvp += 4*(1 - dissent); workers_dvp -= 4 if unemployed > 15; progressive_strength += 5; peoples_conservative_dissent += 5; economic_growth += 0.1;
+max-visits: 3
+
+We have seen an increase in popularity for our party among the "new women" who work beyong being housewives. [? if unemployed > 15 : However, many male workers develop a backlash towards women in the workplace, especially given the rising unemployment. ?]
+
+
+@women_family
+title: Reform marriage, divorce and property law.
+subtitle: Change family and inheritance law to treat women more equally.
+on-arrival: womens_rights += 1; new_middle_dvp += 2*(1-dissent); workers_dvp += 3*(1-dissent); old_middle_dvp -= 2; rural_dvp -= 2; catholics_dvp -= 4; coalition_dissent += 1 if z_in_government or dnvp_in_government; spd_relation += 5*(1-dissent); z_relation -= 4; dnvp_relation -= 4; spd_left -= 0.5; dvp_left += 0.5; progressive_strength += 7; democratic_strength += 4; peoples_conservative_dissent += 7;
+max-visits: 1
+
+We aim to fix inequalities within marriage law, including giving women the right to divorce. The Conservative and Christian sections of our society, attached to the usual patriarchal order, are alarmed at our actions.
+
+
+@abortion_rights
+title: Attempt to legalize abortion.
+max-visits: 1
+view-if: womens_rights > 2
+subtitle: [? if progressive_coalition < 50 : This is unlikely to succeed; we do not have majority support. ?]
+go-to: abortion_rights_fail if progressive_coalition < 50; abortion_rights_success if progressive_coalition >= 50
+
+@abortion_rights_fail
+on-arrival: z_relation -= 5; dnvp_relation -= 5; coalition_dissent += 1 if z_in_government or dnvp_in_government; catholics_dvp -= 3;
+
+Our proposal has been shot down at the Reichstag, and our relations with the <span style="color: var(--z-color);">[+ z_name +]</span> have been damaged for nothing. It seems we will be unable to return to this topic in the near future.
+
+@abortion_rights_success
+on-arrival: womens_rights += 1; coalition_dissent += 2 if z_in_government or dnvp_in_government; spd_relation += 10*(1-dissent); z_relation -= 8; dnvp_relation -= 10; catholics_dvp -= 10; workers_dvp += 3*(1-dissent); new_middle_dvp += 3*(1-dissent); rural_spd -= 3; old_middle_spd -= 3; new_middle_spd += 3; workers_spd += 2; workers_z += 3; new_middle_z += 3; old_middle_z += 3; unemployed_z += 3; old_middle_dnvp += 3; rural_dnvp += 3; workers_nsdap -= 3; new_middle_nsdap -= 3; old_middle_nsdap -= 2; rural_nsdap -= 2; unemployed_nsdap -= 2; spd_left -= 1; dvp_left += 1; progressive_strength += 10; democratic_strength += 5; labor_dissent += 5; liberal_dissent += 5; peoples_conservative_dissent += 10;
+
+With the support of a "progressive coalition" including the <span style="color: var(--kpd-color);">**[+ kpd_name +]**</span> and the <span style="color: var(--spd-color);">**[+ spd_name +]**</span>, abortion is now legal in Germany. Our progressive wing is jubilant, while our relations with the <span style="color: var(--z-color);">**[+ z_name +]**</span> [? if dnvp_exist: and the <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> ?] have been significantly hurt. With the spotlight on the political discourse around abortion, the Christian parties have gained much electoral momentum, at the expense of the span style="color: #954B00;">**NSDAP**</span>.
+
+
+@paragraph_175
+title: Reform Paragraph 175.
+subtitle: Paragraph 175, in effect since the founding of Germany, criminalizes homosexual acts.
+view-if: lgbt_rights == 0
+on-arrival: lgbt_rights += 1; spd_relation += 5*(1-dissent); z_relation -= 5; dnvp_relation -= 7; coalition_dissent += 1 if z_in_government or dnvp_in_government; catholics_dvp -= 4; spd_left -= 0.5; dvp_left += 0.5; progressive_strength += 5; economic_growth += 0.1;
+
+We offer a compromise, homosexual acts will now be legal, but the age of consent and penalties for acts with younger men or prostitution will increase. Now, men can still be arrested for homosexual acts with male partners under twenty-one, still, this is a win for the progressives and weimar's libertine culture. The repeal in controversial with our conservative partners, but the stricter criminal measures, Paragraph 297, assuages them.
+
+
+@paragragh_183
+title: Repeal Paragraph 183.
+subtitle: Paragraph 183 criminalizes public homosexual displays and cross-dressing.
+unavailable-subtitle: We would need a progressive majority, which we do not have.
+view-if: lgbt_rights == 1
+choose-if: progressive_coalition >= 50 
+on-arrival: lgbt_rights += 1; spd_relation += 5*(1-dissent); z_relation -= 5; dnvp_relation -= 7; coalition_dissent += 1 if z_in_government or dnvp_in_government; catholics_dvp -= 4; spd_left -= 0.5; dvp_left += 0.5; progressive_strength += 5; economic_growth += 0.1;
+
+The progressive coalition, consisting of us, the <span style="color: var(--spd-color);">**[+ spd_name +]**</span> and, to our industrialists disgust, the <span style="color: var(--kpd-color);">**[+ kpd_name +]**</span>, homosexual displays and cross-dressing are no longer crimes.

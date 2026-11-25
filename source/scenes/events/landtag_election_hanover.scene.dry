@@ -3,7 +3,7 @@ view-if: year = next_election_year_hanover and month >= next_election_month_hano
 new-page: true
 tags: event
 priority: 3
-on-arrival: next_election_year_hanover = next_election_year_hanover + 4; next_election_time_hanover = time + 48; was_dvp_hanover = 0; was_in_dvp_majority_hanover = 0; was_in_grand_coalition_hanover = 0; was_in_bourgeois_coalition_hanover = 0; was_in_far_right_coalition_hanover = 0;
+on-arrival: next_election_year_hanover = next_election_year_hanover + 4; next_election_time_hanover = time + 48; was_dvp_hanover = 0; was_in_dvp_majority_hanover = 0; was_in_popular_front_hanover = 0; was_in_grand_coalition_hanover = 0; was_in_bourgeois_coalition_hanover = 0; was_in_far_right_coalition_hanover = 0;
 
 = Hanoverian Elections, [+ month : month +] [+ year +]
 
@@ -27,9 +27,10 @@ for (var c of Q.classes) {
 }
 
 // Define adjustment factors
+Q.adjustmentFactors_kpd_hanover = 0.7;
+Q.adjustmentFactors_sapd_hanover = 0.7;
 Q.adjustmentFactors_spd_hanover = 1.1;
 Q.adjustmentFactors_aspd_hanover = 0.0;
-Q.adjustmentFactors_kpd_hanover = 0.7;
 Q.adjustmentFactors_ddp_hanover = 0.8;
 Q.adjustmentFactors_dbp_hanover = 0.0;
 Q.adjustmentFactors_csrp_hanover = 0.0;
@@ -163,9 +164,14 @@ Q.old_z_hl = Q.z_hl;
 
 
 
-Q.grand_coalition_hanover = parseFloat((Q.spd_hl + Q.ddp_hl + Q.dvp_hl + Q.z_hl).toFixed(1));
+Q.popular_front_hanover = parseFloat((Q.kpd_hl + Q.sapd_hl + Q.spd_hl + Q.ddp_hl).toFixed(1));
+
+Q.grand_coalition_hanover = parseFloat((Q.sapd_hl + Q.spd_hl + Q.ddp_hl + Q.dvp_hl).toFixed(1));
+if (Q.cvp_formed == 0) Q.grand_coalition_hanover = parseFloat((Q.grand_coalition_hanover + Q.z_hl).toFixed(1));
+
 Q.bourgeois_coalition_hanover = parseFloat((Q.ddp_hl + Q.z_hl + Q.dhp_hl + Q.dvp_hl + Q.other_hl + Q.kvp_hl + Q.wp_hl + Q.csvd_hl + Q.cnblp_hl).toFixed(1));
-if (Q.dnvp_ideology === "Radical") Q.far_right_coalition_hanover = parseFloat((Q.dnvp_hl + Q.nsdap_hl).toFixed(1));
+
+if (!Q.dnf_formed) Q.far_right_coalition_hanover = parseFloat((Q.dnvp_hl + Q.nsdap_hl).toFixed(1));
 if (Q.dnf_formed) Q.far_right_coalition_hanover = parseFloat((Q.dnf_hl + Q.nsdap_hl).toFixed(1));
 
 
@@ -175,6 +181,8 @@ if (Q.dvp_hanover) {
 }
 if (Q.in_dvp_majority_hanover) {
     Q.was_in_dvp_majority_hanover = 1
+} else if (Q.in_popular_front_hanover) {
+    Q.was_in_popular_front_hanover = 1
 } else if (Q.in_grand_coalition_hanover) {
     Q.was_in_grand_coalition_hanover = 1
 } else if (Q.in_bourgeois_coalition_hanover) {
@@ -186,25 +194,34 @@ if (Q.in_dvp_majority_hanover) {
 
 Q.dvp_hanover = 0;
 Q.in_dvp_majority_hanover = 0;
+Q.in_popular_front_hanover = 0;
 Q.in_grand_coalition_hanover = 0;
 Q.in_bourgeois_coalition_hanover = 0;
 Q.in_far_right_coalition_hanover = 0;
 !}
 on-display: {!
 data = []
-if (Q.kpd_hl) {
+if (Q.kpd_exist && Q.kpd_hl) {
     data.push({
         "id": "kpd",
-        "legend": "KPD",
-        "name": "KPD",
+        "legend": Q.kpd_name,
+        "name": Q.kpd_name,
         "seats": Math.round(Q.kpd_hl*1.5),
+    });
+}
+if (Q.sapd_formed && Q.sapd_hl) {
+    data.push({
+        "id": "sapd",
+        "legend": "SAPD",
+        "name": "SAPD",
+        "seats": Math.round(Q.sapd_hl*1.5),
     });
 }
 if (Q.spd_hl) {
     data.push({
         "id": "spd",
-        "legend": "SPD",
-        "name": "SPD",
+        "legend": Q.spd_name,
+        "name": Q.spd_name,
         "seats": Math.round(Q.spd_hl*1.5),
     });
 }
@@ -227,8 +244,8 @@ if (Q.lvp_formed && Q.dvp_hl) {
 if (Q.z_hl) {
     data.push({
         "id": "z",
-        "legend": "Center",
-        "name": "Center",
+        "legend": Q.z_name,
+        "name": Q.z_name,
         "seats": Math.round(Q.z_hl*1.5),
     });
 }
@@ -296,11 +313,11 @@ if (Q.kvp_formed && Q.kvp_hl) {
         "seats": Math.round(Q.kvp_hl*1.5),
     });
 }
-if (Q.dnvp_hl) {
+if (Q.dnvp_exist && Q.dnvp_hl) {
     data.push({
         "id": "dnvp",
-        "legend": "DNVP",
-        "name": "DNVP",
+        "legend": Q.dnvp_name,
+        "name": Q.dnvp_name,
         "seats": Math.round(Q.dnvp_hl*1.5),
     });
 }
@@ -312,7 +329,7 @@ if (Q.dnf_formed && Q.dnf_hl) {
         "seats": Math.round(Q.dnf_hl*1.5),
     });
 }
-if (Q.nsdap_hl) {
+if (Q.nsdap_exist && Q.nsdap_hl) {
     data.push({
         "id": "nsdap",
         "legend": "NSDAP",
@@ -348,13 +365,15 @@ go-to: coalition_menu
 {!<tr><td>Party</td><td>Vote Share</td><td>% Change</td><td>Landtag Seats</td><td>% Change</td></tr>!}
 {!<tr><td><div class="box" style='background-color: var(--dvp-color); outline: 2px; outline-style: solid;'> </div> !} **[+ dvp_name +]**: {!</td><td>!} **[+ dvp_votes_hanover +]%** {!</td><td>!} **[+ votes_change_dvp_hanover +]** {!</td><td>!} **[+ dvp_hl +]%** {!</td><td>!} **[+ change_dvp_hl +]** {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !} KPD: {!</td><td>!} [+ kpd_votes_hanover +]% {!</td><td>!} [+ votes_change_kpd_hanover +] {!</td><td>!} [+ kpd_hl +]% {!</td><td>!} [+ change_kpd_hl +] {!</td></tr>!}
+[? if kpd_exist: {!<tr><td><div class="box" style='background-color:var(--kpd-color)'> </div> !} [+ kpd_name +]: {!</td><td>!} [+ kpd_votes_hanover +]% {!</td><td>!} [+ votes_change_kpd_hanover +] {!</td><td>!} [+ kpd_hl +]% {!</td><td>!} [+ change_kpd_hl +] {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#E3000F'> </div> !} SPD: {!</td><td>!} [+ spd_votes_hanover +]% {!</td><td>!} [+ votes_change_spd_hanover +] {!</td><td>!} [+ spd_hl +]% {!</td><td>!} [+ change_spd_hl +] {!</td></tr>!}
+[? if sapd_formed: {!<tr><td><div class="box" style='background-color:#C40000'> </div> !} SAPD: {!</td><td>!} [+ sapd_votes_hanover +]% {!</td><td>!} [+ votes_change_sapd_hanover +] {!</td><td>!} [+ spd_hl +]% {!</td><td>!} [+ change_sapd_hl +] {!</td></tr>!} ?]
 
-[? if ddp_exist: {!<tr><td><div class="box" style='background-color:#DCCA4A'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_votes_hanover +]% {!</td><td>!} [+ votes_change_ddp_hanover +] {!</td><td>!} [+ ddp_hl +]% {!</td><td>!} [+ change_ddp_hl +] {!</td></tr>!} ?]
+{!<tr><td><div class="box" style='background-color:var(--spd-color)'> </div> !} [+ spd_name +]: {!</td><td>!} [+ spd_votes_hanover +]% {!</td><td>!} [+ votes_change_spd_hanover +] {!</td><td>!} [+ spd_hl +]% {!</td><td>!} [+ change_spd_hl +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#000'> </div> !} Z: {!</td><td>!} [+ z_votes_hanover +]% {!</td><td>!} [+ votes_change_z_hanover +] {!</td><td>!} [+ z_hl +]% {!</td><td>!} [+ change_z_hl +] {!</td></tr>!}
+[? if ddp_exist: {!<tr><td><div class="box" style='background-color:var(--ddp-color)'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_votes_hanover +]% {!</td><td>!} [+ votes_change_ddp_hanover +] {!</td><td>!} [+ ddp_hl +]% {!</td><td>!} [+ change_ddp_hl +] {!</td></tr>!} ?]
+
+{!<tr><td><div class="box" style='background-color:var(--z-color)> </div> !} [+ z_name +]: {!</td><td>!} [+ z_votes_hanover +]% {!</td><td>!} [+ votes_change_z_hanover +] {!</td><td>!} [+ z_hl +]% {!</td><td>!} [+ change_z_hl +] {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#63C489'> </div> !} DHP: {!</td><td>!} [+ dhp_votes_hanover +]% {!</td><td>!} [+ votes_change_dhp_hanover +] {!</td><td>!} [+ dhp_hl +]% {!</td><td>!} [+ change_dhp_hl +] {!</td></tr>!}
 
@@ -366,37 +385,48 @@ go-to: coalition_menu
 
 [? if kvp_formed: {!<tr><td><div class="box" style='background-color:#455B95'> </div> !} KVP: {!</td><td>!} [+ kvp_votes_hanover +]% {!</td><td>!} [+ votes_change_kvp_hanover +] {!</td><td>!} [+ kvp_hl +]% {!</td><td>!} [+ change_kvp_hl +] {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} DNVP: {!</td><td>!} [+ dnvp_votes_hanover +]% {!</td><td>!} [+ votes_change_dnvp_hanover +] {!</td><td>!} [+ dnvp_hl +]% {!</td><td>!} [+ change_dnvp_hl +] {!</td></tr>!}
+[? if dnvp_exist: {!<tr><td><div class="box" style='background-color:var(--dnvp-color)'> </div> !} DNVP: {!</td><td>!} [+ dnvp_votes_hanover +]% {!</td><td>!} [+ votes_change_dnvp_hanover +] {!</td><td>!} [+ dnvp_hl +]% {!</td><td>!} [+ change_dnvp_hl +] {!</td></tr>!} ?]
 
 [? if dnf_formed: {!<tr><td><div class="box" style='background-color:#003755'> </div> !} DNF: {!</td><td>!} [+ dnf_votes_hanover +]% {!</td><td>!} [+ votes_change_dnf_hanover +] {!</td><td>!} [+ dnf_hl +]% {!</td><td>!} [+ change_dnf_hl +] {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_votes_hanover +]% {!</td><td>!} [+ votes_change_nsdap_hanover +] {!</td><td>!} [+ nsdap_hl +]% {!</td><td>!} [+ change_nsdap_hl +] {!</td></tr>!}
+[? if nsdap_exist:{!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_votes_hanover +]% {!</td><td>!} [+ votes_change_nsdap_hanover +] {!</td><td>!} [+ nsdap_hl +]% {!</td><td>!} [+ change_nsdap_hl +] {!</td></tr>!} ?]
 
 {!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Others: {!</td><td>!} [+ other_votes_hanover +]% {!</td><td>!} [+ votes_change_other_hanover +] {!</td><td>!} [+ other_hl +]% {!</td><td>!} [+ change_other_hl +] {!</td></tr>!}
 {!</table>!}
 
 **Potential coalitions:**
 
-Grand Coalition (<span style="color: #E3000F;">**SPD**</span> + [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: #000000;">**Z**</span>): [+ grand_coalition_hanover +]%
+Grand Coalition ([? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?] <span style="color: var(--spd-color);">**[+ spd_name +]**</span> + [? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> [? if cvp_formed == 0: + <span style="color: var(--z-color);">**[+ z_name +]**</span> ?]): [+ grand_coalition_hanover +]%
 
-Bourgeois Coalition (<span style="color: #000000;">**Z**</span> [? if ddp_exist: + <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?]+ <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: #63C489;">**DHP**</span> + [? if kvp_formed: <span style="color: #455B95;">**KVP**</span> +  ?][? if wp_exist: <span style="color: #B8996F;">**WP**</span> +  ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span> +  ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span> +  ?] <span style="color: #909090;">**Others**</span>): [+ bourgeois_coalition_hanover +]%
+Bourgeois Coalition (<span style="color: var(--z-color);">**[+ z_name +]**</span> [? if ddp_exist: + <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> ?]+ <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: #63C489;">**DHP**</span> + [? if kvp_formed: <span style="color: #455B95;">**KVP**</span> + ?][? if wp_exist: <span style="color: #B8996F;">**WP**</span> + ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span> + ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span> + ?] <span style="color: #909090;">**Others**</span>): [+ bourgeois_coalition_hanover +]%
 
-Far-Right Coalition (<span style="color: #954B00;">**NSDAP**</span> + [? if dnvp_ideology = "Radical": <span style="color: #3F7BC1;">**DNVP**</span>?][? if dnf_formed: <span style="color: #003755;">**DNF**</span>?]): [+ far_right_coalition_hanover +]%
+Far-Right Coalition (<span style="color: #954B00;">**NSDAP**</span> + [? if dnf_formed == 0: <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span>?][? if dnf_formed: <span style="color: #003755;">**DNF**</span>?]): [+ far_right_coalition_hanover +]%
 
 There are some potential coalition arrangements.
 
 @coalition_menu
 
 - @dvp_majority_hanover
+- @popular_front_hanover
 - @grand_coalition_hanover
 - @bourgeois_coalition_hanover
 - @far_right_coalition_hanover
 - @no_majority
 
+@popular_front_hanover
+title: A Popular Front forms.
+view-if: popular_front_hanover >= 50
+subtitle: [? if kpd_exist: <span style="color: var(--kpd-color);">**[+ kpd_name +]**</span> + ?][? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?] <span style="color: var(--spd-color);">**[+ spd_name +]**</span> [? if ddp_exist: + <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> ?] ([+ popular_front_hanover +]%)
+on-arrival: in_popular_front_hanover = 1;
+
+A Popular Front forms.
+
+- @hanover_mp
+
 @grand_coalition_hanover
 title: We can form a Grand Coalition.
 view-if: grand_coalition_hanover >= 50
-subtitle: <span style="color: #E3000F;">**SPD**</span> + [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: #000000;">**Z**</span> ([+ grand_coalition_hanover +]%)
+subtitle: [? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?]<span style="color: var(--spd-color);">**[+ spd_name +]**</span> + [? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>[? if cvp_formed == 0: + <span style="color: var(--z-color);">**[+ z_name +]**</span> ?] ([+ grand_coalition_hanover +]%)
 on-arrival: in_grand_coalition_hanover = 1; dvp_hanover = 1;
 
 We will form a Grand Coalition.
@@ -406,7 +436,7 @@ We will form a Grand Coalition.
 @bourgeois_coalition_hanover
 title: We can form a Bourgeois Coalition.
 view-if: bourgeois_coalition_hanover >= 50
-subtitle: <span style="color: #000000;">**Z**</span> [? if ddp_exist: + <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?]+ <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: #63C489;">**DHP**</span> + [? if kvp_formed: <span style="color: #455B95;">**KVP**</span> +  ?][? if wp_exist: <span style="color: #B8996F;">**WP**</span> +  ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span> +  ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span> +  ?] <span style="color: #909090;">**Others**</span> ([+ bourgeois_coalition_hanover +]%)
+subtitle: <span style="color: var(--z-color);">**[+ z_name +]**</span> [? if ddp_exist: + <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> ?]+ <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: #63C489;">**DHP**</span> + [? if kvp_formed: <span style="color: #455B95;">**KVP**</span> +  ?][? if wp_exist: <span style="color: #B8996F;">**WP**</span> +  ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span> +  ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span> +  ?] <span style="color: #909090;">**Others**</span> ([+ bourgeois_coalition_hanover +]%)
 on-arrival: in_bourgeois_coalition_hanover = 1; dvp_hanover = 1;
 
 A Bourgeois Coalition is formed.
@@ -416,7 +446,7 @@ A Bourgeois Coalition is formed.
 @far_right_coalition_hanover
 title: Far-right Coalition is formed!
 view-if: far_right_coalition_hanover >= 50
-subtitle: <span style="color: #954B00;">**NSDAP**</span> + [? if dnvp_ideology = "Radical": <span style="color: #3F7BC1;">**DNVP**</span>?][? if dnf_formed: <span style="color: #003755;">**DNF**</span>?] ([+ far_right_coalition_hanover +]%)
+subtitle: <span style="color: #954B00;">**NSDAP**</span> + [? if dnf_formed == 0: <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span>?][? if dnf_formed: <span style="color: #003755;">**DNF**</span>?] ([+ far_right_coalition_hanover +]%)
 on-arrival: in_far_right_coalition_hanover = 1;
 
 A Far-right Coalition is formed.
@@ -447,7 +477,7 @@ WIP
 title: Helmuth Albrecht, the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> candidate.
 subtitle: He is a minor regional business figure.
 view-if: dvp_hanover
-choose-if: in_dvp_majority_hanover or in_grand_coalition_hanover or ((in_bourgeois_coalition_hanover) and dvp_hl > dhp_hl)
+choose-if: in_dvp_majority_hanover or in_social_liberal_coalition_hanover or in_grand_coalition_hanover or ((in_bourgeois_coalition_hanover) and dvp_hl > dhp_hl)
 unavailable-subtitle: The <span style="color: #63C489;">**DHP**</span> can prevent him from becoming the Minister-President.
 on-arrival: hanover_leader = "Albrecht"; hanover_leader_party = dvp_name; old_middle_dvp += 4*(1-dissent); new_middle_dvp += 2*(1-dissent); pro_republic += 1*(1-dissent)
 face-image: img/portraits/AlbrechtHelmuth.jpg
@@ -464,19 +494,19 @@ face-image: img/portraits/LangwostHeinrich.jpg
 Heinrich Langwost was chosen.
 
 @noske
-title: Gustav Noske, the <span style="color: #E3000F;">**SPD**</span> candidate.
+title: Gustav Noske, the <span style="color: var(--spd-color);">**[+ spd_name +]**</span> candidate.
 subtitle: The controversial former Minister of Defence who became increasingly revisionist over the years.
-view-if: in_grand_coalition_hanover
-on-arrival: hanover_leader = "Noske"; hanover_leader_party = "SPD"; workers_spd += 4; unemployed_spd += 2; socialism += 2; pro_republic += 1
+view-if: in_grand_coalition_hanover or in_social_liberal_coalition_hanover or in_popular_front_hanover
+on-arrival: hanover_leader = "Noske"; hanover_leader_party = spd_name; workers_spd += 4; unemployed_spd += 2; socialism += 2; pro_republic += 1
 face-image: img/portraits/NoskeGustav.jpg
 
-Gustav Noske was chosen.
+Gustav Noske was chosen. [? if in_popular_front_hanover: Despite the <span style="color: var(--kpd-color);">**[+ kpd_name +]**</span> being on the verge of a mental breakdown, they eventually settle down. ?]
 
 @schmidt
-title: Otto Schmidt, <span style="color: #3F7BC1;">**DNVP**</span> candidate.
-subtitle: A commited völkist bridging the gap between the right of the <span style="color: #3F7BC1;">**DNVP**</span> and the <span style="color: #954B00;">**NSDAP**</span>.
+title: Otto Schmidt, <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> candidate.
+subtitle: A commited völkist bridging the gap between the right of the <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> and the <span style="color: #954B00;">**NSDAP**</span>.
 view-if: in_far_right_coalition_hanover
-on-arrival: hanover_leader = "Schmidt"; hanover_leader_party = "DNVP" if dnvp_ideology = "Radical"; hanover_leader_party = "DNF" if dnvp_ideology = "Moderate"; rural_nsdap += 4; old_middle_nsdap += 2; nationalism += 2; pro_republic -= 3
+on-arrival: hanover_leader = "Schmidt"; hanover_leader_party = dnvp_name if dnf_formed == 0; hanover_leader_party = "DNF" if dnf_formed; rural_nsdap += 4; old_middle_nsdap += 2; nationalism += 2; pro_republic -= 3
 face-image: img/portraits/SchmidtOtto.jpg
 
 Otto Schmidt was chosen.
@@ -484,7 +514,7 @@ Otto Schmidt was chosen.
 
 @no_majority
 title: There is no clear governing majority.
-view-if: grand_coalition_hanover < 50 and bourgeois_coalition_hanover < 50 and far_right_coalition_hanover < 50
-on-arrival: workers_nsdap += 1; unemployed_nsdap += 1; old_middle_nsdap += 1; new_middle_nsdap += 1; rural_nsdap += 1; dvp_hanover = 1 if was_dvp_hanover; in_dvp_majority_hanover = 1 if was_in_dvp_majority_hanover; in_grand_coalition_hanover = 1 if was_in_grand_coalition_hanover; in_bourgeois_coalition_hanover = 1 if was_in_bourgeois_coalition_hanover; in_far_right_coalition_hanover = 1 if was_in_far_right_coalition_hanover;
+view-if: popular_front_hanover < 50 and grand_coalition_hanover < 50 and bourgeois_coalition_hanover < 50 and far_right_coalition_hanover < 50
+on-arrival: workers_nsdap += 1; unemployed_nsdap += 1; old_middle_nsdap += 1; new_middle_nsdap += 1; rural_nsdap += 1; dvp_hanover = 1 if was_dvp_hanover; in_dvp_majority_hanover = 1 if was_in_dvp_majority_hanover; in_popular_front_hanover = 1 if was_in_popular_front_hanover; in_grand_coalition_hanover = 1 if was_in_grand_coalition_hanover; in_bourgeois_coalition_hanover = 1 if was_in_bourgeois_coalition_hanover; in_far_right_coalition_hanover = 1 if was_in_far_right_coalition_hanover;
 
 There is no path to a majority government for now. The current government will stay in power as a minority coalition.

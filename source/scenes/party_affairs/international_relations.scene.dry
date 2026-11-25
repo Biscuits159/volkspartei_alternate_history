@@ -23,13 +23,13 @@ choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; west_relation += 1; pacifism += 1
 
-Through the French and British Liberals, we can nudge their governments towards rapprochement with Germany. [? if dvp_r < 15 and dvp_votes < 15: Due to our party’s size, our effectiveness is not to the extent that we have hoped for. ?][? if dvp_ideology = "Left" and spd_relation >= 40: Perhaps through allying with the SPD, the main force of pacifism within the republic, our joint efforts could push this further. ?]
+Through the French and British Liberals, we can nudge their governments towards rapprochement with Germany. [? if dvp_r < 15 and dvp_votes < 15: Due to our party’s size, our effectiveness is not to the extent that we have hoped for. ?][? if dvp_left >= 0 and spd_relation >= 40: Perhaps through allying with the SPD, the main force of pacifism within the republic, our joint efforts could push this further. ?]
 
 - @spd_joint_influencing: Inquire with the SPD about a potential joint influencing of the Entente’s Liberals and Socialists.
 - @root
 
 @spd_joint_influencing
-view-if: dvp_ideology = "Left" and spd_relation >= 40
+view-if: dvp_left >= 0 and spd_relation >= 40
 
 We have contacted the SPD, and, for a price, they are willing to collaborate with us.
 
@@ -69,7 +69,7 @@ choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: sudetenland_strength += 1;
 
-We have improved relations with Sudeten-German parties, such as Christian <span style="color: #AA98A9;">**DCVP**</span>, agrarian <span style="color: #016A38;">**BdL**</span> and [? if dvp_ideology = "Left": liberal <span style="color: #23B68A;">**DDFP**</span>?][? if dvp_ideology = "Right": radical nationalist <span style="color: #964B00;">**SdP**</span>?].
+We have improved relations with Sudeten-German parties, such as Christian <span style="color: #AA98A9;">**DCVP**</span>, agrarian <span style="color: #016A38;">**BdL**</span> and [? if dvp_left >= 0: liberal <span style="color: #23B68A;">**DDFP**</span>?][? if dvp_left < 0: radical nationalist <span style="color: #964B00;">**SdP**</span>?].
 
 @america
 subtitle: -1 resources

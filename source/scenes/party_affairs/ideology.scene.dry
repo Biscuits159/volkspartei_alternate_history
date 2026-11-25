@@ -31,7 +31,7 @@ if (Q.ideology && Q.ideology != "nationalist") {
 }
 !}
 go-to: changed if changed = 1
-on-departure: ideology = "nationalist"; nationalist_strength += 10; nationalist_dissent -= 5; z_relation -= 3; spd_relation -= 5; nationalization_support += 1; dnvp_relation += 3; dvp_right += 3
+on-departure: ideology = "nationalist"; nationalist_strength += 10; nationalist_dissent -= 5; z_relation -= 3; spd_relation -= 5; nationalization_support += 1; dnvp_relation += 3; dvp_left -= 3
 
 Germany will be rejuvenated, for the nation was infiltrated and subjugated by the West and its values.
 
@@ -43,7 +43,7 @@ if (Q.ideology && Q.ideology != "people's conservative") {
 }
 !}
 go-to: changed if changed = 1
-on-departure: ideology = "people's conservative"; peoples_conservative_strength += 10; peoples_conservative_dissent -= 5; z_relation += 5; spd_relation -= 3; kvp_relation += 5; dnvp_relation += 5 if dnvp_ideology = "Moderate"
+on-departure: ideology = "people's conservative"; peoples_conservative_strength += 10; peoples_conservative_dissent -= 5; z_relation += 5; spd_relation -= 3; kvp_relation += 5; dnvp_relation += 5 if dnvp_leader != "Hugenberg"
 
 The party must lead Germany with a strong hand; united in tradition, popular will, and the state.
 
@@ -88,7 +88,7 @@ if (Q.ideology && Q.ideology != "democratic") {
 }
 !}
 go-to: changed if changed = 1
-on-departure: ideology = "democratic"; democratic_strength += 10; democratization += 1; democratic_dissent -= 5; z_relation += 5; kvp_relation += 3; dnvp_relation += 3 if dnvp_ideology = "Moderate"
+on-departure: ideology = "democratic"; democratic_strength += 10; democratization += 1; democratic_dissent -= 5; z_relation += 5; kvp_relation += 3; dnvp_relation += 3 if dnvp_leader = "Treviranus"
 
 We will fervently defend the republic, standing on our own and accepting collaboration with the Weimar Parties.
 

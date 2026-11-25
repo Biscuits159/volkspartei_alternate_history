@@ -8,7 +8,7 @@ card-image: img/protest.jpg
 
 = Rally
 
-Organizing rallies to rile up their constituents has mainly been a tactic used by the <span style="color: #E3000F;">**SPD**</span>. While our rallies will not have the effectiveness of the socialist parties, simply due to the party’s smaller voter base, we can still galvanize the crowd towards a common message. What will be the primary theme of this rally?
+Organizing rallies to rile up their constituents has mainly been a tactic used by the <span style="color: var(--spd-color);">**SPD**</span>. While our rallies will not have the effectiveness of the socialist parties, simply due to the party’s smaller voter base, we can still galvanize the crowd towards a common message. What will be the primary theme of this rally?
 
 - @attack_republic: Attack the republic’s foundations and gear towards nationalistic rhetoric.
 - @need_for_reform: The need for reform, both within the party, and in the nation.
@@ -18,8 +18,8 @@ Organizing rallies to rile up their constituents has mainly been a tactic used b
 - @easy_discard
 
 @attack_republic
-on-arrival: new_middle_dvp += 2*(1-dissent); old_middle_dvp += 3*(1-dissent); democratization -= 1; nationalist_strength += 5; nationalist_dissent -= 5; liberal_dissent += 5; spd_relation -= 5; ddp_relation -= 5; z_relation -= 3; dvp_right += 1
-choose-if: nationalist_strength > liberal_strength or dvp_ideology = "Right"
+on-arrival: new_middle_dvp += 2*(1-dissent); old_middle_dvp += 3*(1-dissent); democratization -= 1; nationalist_strength += 5; nationalist_dissent -= 5; liberal_dissent += 5; spd_relation -= 5; ddp_relation -= 5; z_relation -= 3; dvp_left -= 1
+choose-if: nationalist_strength > liberal_strength or dvp_left < 0
 unavailable-subtitle: Majority of the party does not support this.
 
 [? if black_thursday_seen = 0 or return_to_normalcy = 1: Believers in continued participation within the Republic are disgusted by our shift, and although we have attracted the support of right-wing voters, the nation has not fallen far enough for desperation to truly energize the party in this manner. ?][? if black_thursday_seen = 1 and return_to_normalcy = 0: As the republic continues to fail its people, our message has become wildly popular with the industrialists, and even the DHV has seen an increase of disillusioned white-collar members. ?]
@@ -28,11 +28,11 @@ unavailable-subtitle: Majority of the party does not support this.
 view-if: year = 1928 and month < 12
 on-arrival: new_middle_dvp += 2*(1-dissent); old_middle_dvp += 2*(1-dissent); workers_dvp += 1*(1-dissent); rural_dvp += 1*(1-dissent); liberal_strength += 3; labor_strength += 4; liberal_dissent -= 3; labor_dissent -= 3; dvp_left += 1;
 
-The nationalists and industrialists have grown suspicious of our motives, while the democratic parties and especially the <span style="color: #E3000F;">**SPD**</span> has become curious with the possibility of further cooperation. Voters from outside our traditional blocs have even taken an interest with our rally.
+The nationalists and industrialists have grown suspicious of our motives, while the democratic parties and especially the <span style="color: var(--spd-color);">**SPD**</span> has become curious with the possibility of further cooperation. Voters from outside our traditional blocs have even taken an interest with our rally.
 
 @democracy
-on-arrival: new_middle_dvp += 3*(1-dissent); democratization += 1; pro_republic += 1*(1 - dissent); new_middle_dvp += 3*(1-dissent) if democratization >= 3; old_middle_dvp += 3*(1-dissent) if democratization >= 3; workers_dvp += 2*(1-dissent) if democratization >= 3 and dvp_ideology = "Left"; pro_republic += 4*(1 - dissent) if democratization >= 3; dvp_left += 1; liberal_strength += 5; liberal_dissent -= 5; nationalist_dissent += 5
-choose-if: dvp_ideology = "Left"
+on-arrival: new_middle_dvp += 3*(1-dissent); democratization += 1; pro_republic += 1*(1 - dissent); new_middle_dvp += 3*(1-dissent) if democratization >= 3; old_middle_dvp += 3*(1-dissent) if democratization >= 3; workers_dvp += 2*(1-dissent) if democratization >= 3 and dvp_left >= 0; pro_republic += 4*(1 - dissent) if democratization >= 3; dvp_left += 1; liberal_strength += 5; liberal_dissent -= 5; nationalist_dissent += 5
+choose-if: dvp_left >= 0
 unavailable-subtitle: Nationalist wing will not allow this.
 
 [? if black_thursday_seen = 0: Maintaining and reinforcing the status quo is popular with most of our party aside from the nationalist-industrialist wing. ?][? if black_thursday_seen = 1 and pro_republic >= 40: Despite the failings of the Republic, we must continue to support the system that we have attached ourselves to. We have restored a portion of faith in the democratic system. ?][? if black_thursday_seen = 1 and pro_republic < 40: With ever-dwindling supporters of the current system, our message has mainly fallen to deaf ears, though a few have changed their minds back to democracy. ?]
@@ -43,9 +43,9 @@ choose-if: not return_to_normalcy
 unavailable-subtitle: The economic crisis is largely over now, and the public is no longer interested in hearing about it.
 on-arrival: lautenbach_plan_support += 1; workers_dvp += 2*(1-dissent)*(pro_republic/100); rural_dvp += 3*(1-dissent)*(pro_republic/100); new_middle_dvp += 4*(1-dissent)*(pro_republic/100); old_middle_dvp += 4*(1-dissent)*(pro_republic/100); workers_ddp += 2*(pro_republic/100); rural_z += 3*(pro_republic/100); new_middle_ddp += 5*(pro_republic/100); old_middle_ddp += 3*(pro_republic/100); old_middle_z += 3*(pro_republic/100); workers_csrp += 1*(pro_republic/100); catholics_csrp += 1*(pro_republic/100); workers_csvd += 2*(pro_republic/100); new_middle_csvd += 2*(pro_republic/100); rural_cnblp += 3*(pro_republic/100); old_middle_kvp += 3*(pro_republic/100); old_middle_dnvp += 3*(pro_republic/100) if dnvp_tory_democracy; rural_dbp += 2*(pro_republic/100); unemployed_nsdap -= 2*(pro_republic/100); unemployed_kpd -= 2*(pro_republic/100); workers_nsdap -= 1*(pro_republic/100); workers_kpd -= 1*(pro_republic/100); new_middle_nsdap -= 2*(pro_republic/100); old_middle_nsdap -= 1*(pro_republic/100); ddp_relation += 5; dbp_relation += 3; z_relation += 3; csvd_relation += 3; kvp_relation += 3; dnvp_relation += 3 if dnvp_tory_democracy; progressive_strength += 3; democratic_strength += 5; liberal_strength += 5; peoples_conservative_strength += 3; pro_republic += 3; lautenbach_rallies += 1;
 
-We rally alongside politicians from <span style="color: #000000;">**Zentrum**</span>[?if ddp_exist:, the <span style="color: #DCCA4A;">**[+ddp_name+]**</span>?] and other bourgeois parties, united behind our economic plan and support of the republic.
+We rally alongside politicians from <span style="color: #000000;">**Zentrum**</span>[? if ddp_exist:, the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?] and other bourgeois parties, united behind our economic plan and support of the republic.
 
 @local
-on-arrival: old_middle_dvp += 3*(1-dissent); new_middle_dvp += 3*(1-dissent); workers_dvp += 1*(1-dissent) if dvp_ideology = "Left";
+on-arrival: old_middle_dvp += 3*(1-dissent); new_middle_dvp += 3*(1-dissent); workers_dvp += 1*(1-dissent) if dvp_left >= 0;
 
 Our speakers have gauged the mood and are speaking to the issues that seem to most affect the voters in this moment.

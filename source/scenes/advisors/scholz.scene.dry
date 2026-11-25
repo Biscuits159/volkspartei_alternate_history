@@ -25,13 +25,13 @@ We must rid Germany of the socialist plague infecting it. The industrialists app
 
 
 @against_SPD_KPD
-title: Against the <span style="color: #E3000F;">**SPD**</span> and the <span style="color: #8B0000;">**KPD**</span>
+title: Against the <span style="color: var(--spd-color);">**SPD**</span> and the <span style="color: #8B0000;">**KPD**</span>
 subtitle: We can disrupt their motions in the Reichstag and their rallies.
 choose-if: advisor_action_timer = 0
 unavailable-subtitle: [? if advisor_action_timer > 0 : [+ advisor_action_timer +] months before next advisor action. ?]
-on-arrival: advisor_action_timer = 6; spd_relation -= 10*(1-dissent); workers_spd -= 1*(1-dissent); industrialist_dissent -= 10; dnvp_relation += 10*(1-dissent)
+on-arrival: advisor_action_timer = 6; spd_relation -= 10*(1-dissent); spd_left += 2; workers_spd -= 1*(1-dissent); industrialist_dissent -= 10; dnvp_relation += 10*(1-dissent)
 
-Scholz, as chairman of our Reichstag delegation, condemns the <span style="color: #E3000F;">**SPD**</span>'s policies, while we organize counter-rallies to the marxists'.
+Scholz, as chairman of our Reichstag delegation, condemns the <span style="color: var(--spd-color);">**SPD**</span>'s policies, while we organize counter-rallies to the marxists'.
 
 
 @against_toleration

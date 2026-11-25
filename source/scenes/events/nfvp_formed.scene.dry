@@ -9,7 +9,8 @@ Q.vnr_exist = 0;
 
 Q.dvp_name = "NFVP";
 Q.dvp_color = "#00A2DE";
-document.body.style.setProperty('--dvp-color', '#00A2DE');
+Q.dvp_ideology = "Conservative Liberalism";
+Q.dvp_ideologycolor = "#C0A054";
 
 Q.democrats_dvp = 1;
 Q.progressives_dvp = 1;
@@ -56,9 +57,7 @@ if (Q.nfvp_peoples_conservatives_success) {
 }
 
 
-if (Q.in_weimar_coalition == 1) {
-  Q.dvp_in_government = 1
-}
+if (Q.ddp_in_government == 1) Q.dvp_in_government = 1;
 
 if (Q.in_liberal_coalition == 1) {
   Q.in_liberal_coalition = 0

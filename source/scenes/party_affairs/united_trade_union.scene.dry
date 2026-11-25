@@ -21,7 +21,7 @@ First thing we have done is merging more liberal parts of DHV with Hirsch-Duncke
 - @dgb: Negotiate with the Deutscher Gewerkschaftsbund
 
 @dgb
-go-to: dgb_success if ((z_leader != "Joos" and z_leader != "Stegerwald") or csrp_exist) and progressives_dvp; dgb_fail if ((z_leader = "Joos" or z_leader = "Stegerwald") and not csrp_exist) or not progressives_dvp
+go-to: dgb_success if ((z_leader != "Joos" and z_leader != "Stegerwald") or csrp_formed) and progressives_dvp; dgb_fail if ((z_leader = "Joos" or z_leader = "Stegerwald") and not csrp_formed) or not progressives_dvp
 
 
 @dgb_success
@@ -29,7 +29,7 @@ on-arrival: dgb_success = 1; workers_z -= 5*(1-dissent); workers_dvp += 5*(1-dis
 
 We have succeeded in convincing some of DGB-affiliated unions to join us!
 
-[? if csrp_exist and progressives_dvp: The <span style="color: #FF6B21;">**CSRP**</span> have decided to join our party! ?]
+[? if csrp_formed and progressives_dvp: The <span style="color: #FF6B21;">**CSRP**</span> have decided to join our party! ?]
 
 - @election: The Deutscher Freier Gewerkschaftsbund is formed!
 
@@ -52,7 +52,7 @@ Q.dvp_influence = (Q.workers_dvp + Q.new_middle_dvp)*(Q.liberal_strength+Q.labor
 
 if (Q.dgb_success) {
     Q.dgb_influence = (Q.workers_z + Q.new_middle_z)*Q.z_relation*0.75
-    if (Q.csrp_exist) {
+    if (Q.csrp_formed) {
         Q.dgb_influence = Q.dgb_influence + (Q.workers_csrp*Q.csrp_relation*0.75)
     }
 }
@@ -86,8 +86,8 @@ if (Q.csvd_exist) {
     Q.dvp_r = parseFloat((Q.dvp_r + Q.csvd_r).toFixed(1));
     Q.csvd_r = 0;
 }
-if (Q.csrp_exist && Q.progressives_dvp) {
-    Q.csrp_exist = 0;
+if (Q.csrp_formed && Q.progressives_dvp) {
+    Q.csrp_formed = 0;
 
     Q.workers_dvp += Q.workers_csrp;
     Q.workers_csrp = 0;

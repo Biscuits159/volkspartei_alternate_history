@@ -51,7 +51,7 @@ subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 view-if: newspaper > 0 and newspaper <= 3
-on-arrival: newspaper += 1; resources -= 1; new_middle_dvp += 4*(1 - dissent); old_middle_dvp += 4*(1 - dissent); workers_dvp += 1*(1 - dissent) if dvp_ideology = "Left"; pro_republic += 2*(1-dissent) if democratization > 1
+on-arrival: newspaper += 1; resources -= 1; new_middle_dvp += 4*(1 - dissent); old_middle_dvp += 4*(1 - dissent); workers_dvp += 1*(1 - dissent) if dvp_left >= 0; pro_republic += 2*(1-dissent) if democratization > 1
 
 The paper continues to draw support for our party, especially among the middle class.
 
@@ -59,7 +59,7 @@ The paper continues to draw support for our party, especially among the middle c
 title: Keep building up our newspaper.
 subtitle: It is now financially self-sufficient, and does not require any more resources.
 view-if: newspaper > 3
-on-arrival: newspaper += 1; new_middle_dvp += 4*(1 - dissent); old_middle_dvp += 4*(1 - dissent); workers_dvp += 1*(1 - dissent) if dvp_ideology = "Left"; rural_dvp += 2*(1 - dissent); pro_republic += 2*(1-dissent) if democratization > 1
+on-arrival: newspaper += 1; new_middle_dvp += 4*(1 - dissent); old_middle_dvp += 4*(1 - dissent); workers_dvp += 1*(1 - dissent) if dvp_left >= 0; rural_dvp += 2*(1 - dissent); pro_republic += 2*(1-dissent) if democratization > 1
 
 The paper continues to draw support for our party, especially among the middle class.
 

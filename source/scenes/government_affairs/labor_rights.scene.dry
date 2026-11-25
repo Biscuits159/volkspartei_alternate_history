@@ -16,7 +16,7 @@ With control of the Labor Ministry, we can set national standards for labor. Tho
 
 - @working_hours: Enforce the 40-hour work week.
 - @safety: Reduce safety standards. 
-- @target_spd_unions: Target <span style="color: #E3000F;">**SPD**</span>-affiliated unions
+- @target_spd_unions: Target <span style="color: var(--spd-color);">**SPD**</span>-affiliated unions
 - @unemployment_insurance: Fund the unemployment insurance program.
 - @root: Do not enact any policies.
 - @easy_discard
@@ -24,7 +24,7 @@ With control of the Labor Ministry, we can set national standards for labor. Tho
 
 @working_hours
 view-if: black_thursday_seen = 1 and return_to_normalcy = 0
-on-arrival: working_hours += 1; labor_dissent -= 8; progressive_dissent -= 5; industrialist_dissent += 5; labor_strength += 5; progressive_strength += 3; workers_dvp += 5*(1-dissent); spd_relation += 4; inflation += 0.1; economic_growth -= 0.1; unemployed -= 0.2;
+on-arrival: working_hours += 1; labor_dissent -= 8; progressive_dissent -= 5; industrialist_dissent += 5; labor_strength += 5; progressive_strength += 3; workers_dvp += 5*(1-dissent); spd_relation += 4; spd_left -= 0.5; demand_for_action_countdown -= 2; inflation += 0.1; economic_growth -= 0.1; unemployed -= 0.2;
 
 While a 40-hour work week was declared during the German Revolution in 1918, enforcement has become increasingly porous over the years. We have successfully added numerous exceptions and loopholes, returning to the old regime of forced overtime for workers.
 
@@ -32,7 +32,7 @@ Now, however, with the rising unemployement in the wake of Black Thursday, perha
 
 
 @safety
-on-arrival: workers_safety -= 1; coalition_dissent += 1 if spd_in_government; labor_dissent += 5; progressive_dissent += 3; industrialist_dissent -= 5; industrialist_strength += 3; workers_dvp -= 3*(1-dissent)
+on-arrival: workers_safety -= 1; coalition_dissent += 1 if spd_in_government; labor_dissent += 5; progressive_dissent += 3; industrialist_dissent -= 5; industrialist_strength += 3; demand_for_action_countdown += 4; workers_dvp -= 3*(1-dissent); spd_relation -= 4; spd_left -= 0.5;
 
 We slowly chip away at existing safety regulations, while also turning a blind eye to violations. Employers approve of these measures, while our labor faction and our few working class supporters express their dissatisfaction.
 
@@ -40,9 +40,9 @@ We slowly chip away at existing safety regulations, while also turning a blind e
 @target_spd_unions
 choose-if: spd_in_government == 0
 unavailable-subtitle: Our coalition partners will not allow this.
-on-arrival: labor_strength += 5; industrialist_dissent -= 5; workers_dvp += 4*(1-dissent); spd_relation -= 8; workers_spd -= 5;
+on-arrival: labor_strength += 5; industrialist_dissent -= 5; workers_dvp += 4*(1-dissent); spd_relation -= 8; spd_left += 2; workers_spd -= 5;
 
-We promore right-wing trade unions, mainly the [? if dfgb_formed == 0: DHV ?][? if dfgb_formed == 0: DFGB ?], as an alternative to the ADGB, successfully peeling some workers away from the <span style="color: #E3000F;">**SPD**</span>. Naturally, the social democrats are displeased with us.
+We promore right-wing trade unions, mainly the [? if dfgb_formed == 0: DHV ?][? if dfgb_formed == 0: DFGB ?], as an alternative to the ADGB, successfully peeling some workers away from the <span style="color: var(--spd-color);">**SPD**</span>. Naturally, the social democrats are displeased with us.
 
 
 @unemployment_insurance
@@ -58,7 +58,7 @@ With the onset of the Depression and its throngs of unemployed, the unemployment
 
 @cut_benefits
 subtitle: Our expected course of action.
-on-arrival: coalition_dissent += 1 if spd_in_government; workers_dvp -= 4*(1-dissent); unemployed_dvp -= 4*(1-dissent); workers_nsdap += 6; unemployed_kpd += 5; unemployed_nsdap += 5; labor_dissent += 15; progressive_dissent += 10; democratic_dissent += 5; industrialist_dissent -= 10; industrialist_strength += 10; welfare -= 2; budget += 1; unemployed += 3; pro_republic -= 4; spd_relation -= 8; inflation -= 2; unemployment_insurance_threshold = unemployed; unemployment_insurance_timer = 10; economic_growth -= 0.2;
+on-arrival: coalition_dissent += 1 if spd_in_government; workers_dvp -= 4*(1-dissent); unemployed_dvp -= 4*(1-dissent); workers_nsdap += 6; unemployed_kpd += 5; unemployed_nsdap += 5; labor_dissent += 15; progressive_dissent += 10; democratic_dissent += 5; industrialist_dissent -= 10; industrialist_strength += 10; welfare -= 2; budget += 1; unemployed += 3; pro_republic -= 4; spd_relation -= 8; spd_left += 1; inflation -= 2; unemployment_insurance_threshold = unemployed; unemployment_insurance_timer = 10; economic_growth -= 0.2;
 
 For budgetary reasons, we have cut unemployment insurance benefits. Unfortunately, our reasons for fiscal discipline are alien to the workers. They are furious at our betrayal, as are a good portion of our membership throughout the factions. Our loss is the KPD's gain, and even the NSDAP, those lapdogs of the bourgeoisie, have joined in criticizing us for our austerity.
 

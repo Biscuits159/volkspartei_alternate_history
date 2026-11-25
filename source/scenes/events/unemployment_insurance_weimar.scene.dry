@@ -20,4 +20,4 @@ In the midst of all this, the unemployment insurance program is underfunded; the
 subtitle: Neither workers nor employers will be entirely satisfied or dissatisfied.
 on-arrival: workers_spd -= 4; unemployed_spd -= 5; workers_kpd += 4; unemployed_kpd += 3; unemployed_nsdap += 3; welfare -= 1; budget += 1; month += 1; inflation -= 1; unemployment_insurance_threshold = unemployed; unemployment_insurance_timer = 10; economic_growth -= 0.2;
 
-Neither side is entirely satisfied by the compromise solution. Many of the workers and unemployed see this as a betrayal, although the <span style="color: #E3000F;">**Social Democrats**</span> present it as the successful aversion of a much worse alternative.
+Neither side is entirely satisfied by the compromise solution. Many of the workers and unemployed see this as a betrayal, although the <span style="color: var(--spd-color);">**Social Democrats**</span> present it as the successful aversion of a much worse alternative.

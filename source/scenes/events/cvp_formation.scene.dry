@@ -1,0 +1,196 @@
+title: Consolidation of the Christian Right
+subtitle: The <span style="color: #000000;">**Center**</span> mergers with the <span style="color: #3F7BC1;">**DNVP**</span>
+view-if: year >= 1931 and z_in_government and dnvp_in_government and cvp_merger_countdown < 0
+max-visits: 1
+tags: event
+priority: 3
+new-page: true
+
+= Consolidation of the Christian Right
+
+With the election of both Adam Stegerwald as chairman of the <span style="color: #000000;">**Center Party**</span> and Gottfried Treviranus to the <span style="color: #3F7BC1;">**DNVP**</span>, two of the greatest proponents of uniting the two Christian Right, a party merger has always been a possibility, that has now turned into reality
+
+- @congress: The newly formed <span style="color: #000000;">**Christian People's Party**</span> will now hold its first congress to determine their leader.
+
+@congress
+on-arrival:{!
+    Q.cvp_balance = 0;
+
+    Q.cvp_balance += Q.pro_republic/15;
+    Q.cvp_balance -= Q.nationalism/15;
+    Q.cvp_balance -= Q.socialism/20;
+
+    Q.cvp_balance += (Q.z_votes - Q.bvp_votes)/5;
+    Q.cvp_balance -= Q.dnvp_votes/5;
+
+    if (Q.spd_left < 0) Q.cvp_balance += 1;
+    if (Q.sapd_formed) Q.cvp_balance += 1;
+
+    if (Q.lvp_formed || Q.nfvp_formed) Q.cvp_balance += 1;
+!}
+go-to: cvp_menu
+
+@cvp_menu
+
+- @the_republic
+
+
+@the_republic
+title: The "National Questions".
+go-to: endorse_monarchy if cvp_balance < -2; no_official_republic if cvp_balance >= -2 and cvp_balance < 2; endorse_republic if cvp_balance >= 2
+
+The agrarian and authoritarian factions of the <span style="color: #3F7BC1;">**DNVP**</span> will try their hardest to edit a constitutional monarchy into the official platform of the new party, a proposal fiercely opposed by what remains of the <span style="color: #FF6B21;">**Catholic Left**</span>.
+
+@endorse_monarchy
+on-arrival: cvp_balance += 2; spd_relation += 5; z_relation -= 5; pro_republic -= 5; workers_z -= 5; new_middle_z -= 2; old_middle_z += 7; rural_z += 7; unemployed_z -= 2; catholics_z -= 5; old_middle_dnf -= 5; rural_dnf -= 5; rural_cnblp -= 2;
+
+The <span style="color: #000000;">**CVP**</span> will fully support a constitutional monarchy, along with the restoration of the other German royal houses, under Wilhelm II or the Crown Prince.
+
+- @foreign_relations
+
+@no_official_republic
+on-arrival: cvp_balance += 1; pro_republic -= 3; workers_z -= 1; old_middle_z -= 2; rural_z -= 2; old_middle_dnf += 2; rural_dnf += 2; rural_cnblp += 1;
+
+Talks eventually reach a standstill, with neither side able to sway a majority of members. The ensuing compromise is that the party will refrain from officially endorosing the return of the monarchy, while pushing for expanded presidential powers.
+
+- @foreign_relations
+
+@endorse_republic
+on-arrival: cvp_balance -= 2; z_relation += 5; pro_republic += 5; workers_z += 5; new_middle_z += 2; old_middle_z -= 5; rural_z -= 5; old_middle_dnf += 5; rural_dnf += 7; rural_cnblp += 2;
+
+The agrarian and authoritarian wings were soundly defeated in their efforts. The <span style="color: #000000;">**CVP**</span> will be a party committed to the Republic and parliamentarianism, with presidential decrees as a last resort.
+
+- @foreign_relations
+
+
+@foreign_relations
+title: On Foreign Relations.
+go-to: foreign_aggressive if cvp_balance < -2; foreign_pragmatic if cvp_balance >= -2 and cvp_balance < 2; foreign_less_angry if cvp_balance >= 2
+
+It is unlikely that the new party will ever fully accept Locarno or end secret rearmament. Nonetheless, the truth of the matter is that unilaterally ending reparations is simply not feasible, and the <span style="color: #000000;">**Center**</span>'s opposition to aggressive remilitarization remains fierce.
+
+@foreign_aggressive
+on-arrival: cvp_balance += 1; nationalism += 5; pro_republic -= 5; west_relation -= 1; east_relation -= 2; z_relation -= 5; new_middle_z -= 4; old_middle_z += 6; rural_z += 3; old_middle_dnf -= 5; rural_dnf -= 3;
+
+The <span style="color: #000000;">**CVP**</span>'s policy shall be continued rearmament and to recover Germany's lost territories, with force if necessary, as well as pursuing a union with Austria.
+
+- @economic_platform
+
+@foreign_pragmatic
+
+In the end, pragmatism wins the day. Reparations must, and will continue to, be paid, while the lost territories ought to be recovered through forceful diplomacy.
+
+- @economic_platform
+
+@foreign_less_angry
+on-arrival: cvp_balance -= 2; nationalism -= 5; pro_republic += 5; z_relation += 5; new_middle_z += 5; old_middle_z -= 8; rural_z -= 4; old_middle_dnf += 8;  rural_dnf += 4;
+
+Surprisingly, the <span style="color: #000000;">**CVP**</span> will pursue a diplomatic settlement over Germany's eastern borders and even scale down the secret rearmament effort.
+
+- @economic_platform
+
+
+@economic_platform
+title: On the economy, welfare and the depression.
+go-to: austerity if cvp_balance < -2; public_works if cvp_balance >= -2 and cvp_balance < 2; social_market if cvp_balance >= 2
+
+With such a broad electorate, finding an amenable economic platform will be one of the biggest first hurdles of the new party. Stegerwald and the Christian Unions will attempt to push the party away from Austerity.
+
+@austerity
+on-arrival: cvp_balance += 2; workers_z -= 3; new_middle_z -= 2; old_middle_z += 6; rural_z += 2; unemployed_z -= 3; old_middle_dnf -= 2; rural_dnf -= 2;
+
+The Christian Unions were completely defeated, as the new party vows to adhere to strong fiscal discipline, cutting welfare as necessary.
+
+- @cooperation_others
+
+@public_works
+on-arrival: cvp_balance += 1; workers_z -= 2; new_middle_z += 2; old_middle_z += 4; unemployed_z -= 2; old_middle_dnf -= 2;
+
+Even with Brüning's fiscal orthodoxy seemingly ahead, fierce opposition from their labor wing has forced a compromise. The <span style="color: #000000;">**CVP**</span> will experiment with limited works programs and expanded credit for business.
+
+- @cooperation_others
+
+@social_market
+on-arrival: cvp_balance -= 2; workers_z += 9; new_middle_z += 5; old_middle_z -= 6; rural_z -= 5; unemployed_z += 9; new_middle_dnf -= 2; old_middle_dnf += 2; rural_dnf += 2; unemployed_nsdap -= 3;
+
+An ascendant Christian Labor wing has forced its program against the Nationalists tide. In government, the <span style="color: #000000;">**CVP**</span> will implement a 'Social Market Economy', as a middle way between capitalism and <span style="color: var(--spd-color);">socialism</span>.
+
+- @cooperation_others
+
+
+@cooperation_others
+title: On coalitions and inter-party relations.
+go-to: support_bourgeois if cvp_balance < 2; support_weimar if cvp_balance >= 2
+
+Truthfully, the only question that matters on this topic is how opposed to the <span style="color: var(--spd-color);">**SPD**</span> will the new party be. Regardless, we can be certain of their cooperation with us.
+
+@support_bourgeois
+on-arrival: cvp_balance += 1; z_relation += 10; workers_spd += 3; unemployed_spd += 2; workers_z -= 3; new_middle_z += 2; old_middle_z += 10; rural_z += 8; unemployed_z -= 2; old_middle_dnf -= 5; rural_dnf -= 3; rural_cnblp -= 3; rural_nsdap -= 3;
+go-to: leader
+
+It would seem that the nationalists have gotten their way, as the <span style="color: #000000;">**CVP**</span> has outright rejected the possibility of any cooperation with the <span style="color: var(--spd-color);">Social Democrats</span>, turning to us and the other bourgeois parties instead.
+
+@support_weimar
+on-arrival: cvp_balance -= 1; workers_z += 2; new_middle_z -= 2; old_middle_z -= 5; rural_z -= 4; old_middle_dnf += 2; rural_dnf += 2; rural_cnblp += 4;
+go-to: leader
+
+Stegerwald and other members of the former <span style="color: #000000;">**Center Party**</span> have manages to keep the door open for a coalition with the <span style="color: var(--spd-color);">Social Democrats</span>, though the conditions to be met for such an agreement are unlikely to ever arise.
+
+
+@leader
+on-arrival: {!
+    Q.labor_cvp_points = 0;
+
+    Q.labor_cvp_points += Q.workers_z/5;
+    Q.labor_cvp_points += Q.workers_dnvp/5;
+
+    if (Q.welfare < 0) Q.labor_cvp_points += 1;
+    if (Q.dvp_leader == "Thiel" || Q.dvp_leader == "Lemmer") Q.labor_cvp_points += 1;
+    if (Q.works_program) Q.labor_cvp_points += 1;
+!}
+
+Finally, a leader for the new party will be chosen.
+
+- @stegerwald: Adam Stegerwald, the former <span style="color: #000000;">**Center**</span>'s labor leader has won the leadership.
+- @adenauer: Konrad Adenauer, the long-time mayor of Cologne.
+- @treviranus: Gottfried Treviranus, the leader of the the People's Conservative faction.
+- @westarp: Kuno von Westarp, the old patriarch of the <span style="color: var(--dnvp-color);">**DNVP**</span>.
+
+@stegerwald
+unavailable-subtitle: The labor faction within the <span style="color: #000000;">**CVP**</span> in not strong enough to propel Stegerwald to the leadership.
+choose-if: cvp_balance >= 0 and labor_cvp_points > 4
+on-arrival: z_leader = "Stegerwald"; pro_republic += 5; workers_z += 7; new_middle_z += 3; old_middle_z -= 2; rural_z -= 5; unemployed_z += 5; catholics_z -= 5; old_middle_dnf += 2; rural_dnf += 3; rural_cnblp += 2
+face-image: img/portraits/StegerwaldAdam.jpg
+go-to: cvp_formed
+
+With Stegerwald's election, it seems the new <span style="color: #000000;">**CVP**</span> will attempt to further its reach into the workers, to the disappointment of the agrarian and nationalists factions from the former <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span>
+
+
+@adenauer
+unavailable-subtitle: The party would rather elect someone from the nationalist side.
+choose-if: cvp_balance >= 0 and labor_cvp_points < 4
+on-arrival: z_leader = "Adenauer"; pro_republic += 5; new_middle_z += 5; old_middle_z += 5; rural_z += 2; catholics_z += 5; old_middle_dnf -= 5; rural_dnf -= 2;
+face-image: img/portraits/AdenauerKonrad.jpg
+go-to: cvp_formed
+
+Konrad Adenauer, as a member of the former <span style="color: #000000;">**Center Party**</span>, even if he was to the party's right, makes him more committed to democracy and the Republic than the median <span style="color: #000000;">**CVP**</span> member. His leadership is unlikely to shift the new party in any specific direction, keeping its broad appeal.
+
+
+@treviranus
+unavailable-subtitle: Treviranus has earned himself enemies on the Right and the catholics are hesitant to support him.
+choose-if: cvp_balance >= 2 and cvp_balance < 0
+on-arrival: z_leader = "Treviranus"; pro_republic -= 2; new_middle_z += 7; old_middle_z += 7; rural_z += 2; old_middle_dnf -= 7; rural_dnf -= 2;
+face-image: img/portraits/TreviranusGottfried.jpg
+go-to: cvp_formed
+
+Gottfried Treviranus, the most recent leader of the <span style="color: var(--dnvp-color);">**DNVP**</span>, has been able to fulfill his ambition of a Tory Democratic party. His many connections to German industry and figures like Brüning, Schleicher and [? if president == "Hindeburg": President ?] Hindeburg helped him secure the leadership.
+
+
+@westarp
+unavailable-subtitle: Westarp, while still widely respected, is seen as an Old Guard, with many better candidates for the new party.
+choose-if: cvp_balance < 2
+on-arrival: z_leader = "Westarp"; pro_republic -= 5; workers_z -= 3; new_middle_z += 2; old_middle_z += 7; rural_z += 7; old_middle_dnf -= 7; rural_dnf -= 4; rural_cnblp -= 3;
+face-image: img/portraits/WestarpKuno.jpg
+go-to: cvp_formed
+
+Westarp's election is a significant triumph for the nationalists and agrarian elements of the <span style="color: #000000;">**CVP**</span>. Despite this, he is highly skilled at managing internal dissent, and will avoid leaning too far into any specific faction of the party.

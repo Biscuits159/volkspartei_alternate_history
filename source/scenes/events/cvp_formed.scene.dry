@@ -1,0 +1,82 @@
+on-arrival: {!
+Q.cvp_formed = 1;
+Q.dnvp_exist = 0;
+
+Q.z_name = "CVP";
+Q.dnvp_in_government = 0;
+
+Q.workers_z += Q.workers_dnvp;
+Q.workers_dnvp = 0;
+Q.new_middle_z += Q.new_middle_dnvp;
+Q.new_middle_dnvp = 0;
+Q.old_middle_z += Q.old_middle_dnvp;
+Q.old_middle_dnvp = 0;
+Q.rural_z += Q.rural_dnvp;
+Q.rural_dnvp = 0;
+Q.unemployed_z += Q.unemployed_dnvp;
+Q.unemployed_dnvp = 0;
+Q.catholics_z += Q.catholics_dnvp;
+Q.catholics_dnvp = 0;
+
+
+if (Q.president_party == "DNVP" || Q.president_party == "Center") {
+  Q.president_party = Q.z_name
+}
+if (Q.chancellor_party == "DNVP" || Q.chancellor_party == "Center") {
+  Q.chancellor_party = Q.z_name
+}
+if (Q.labor_minister_party == "DNVP" || Q.labor_minister_party == "Center") {
+  Q.labor_minister_party = Q.z_name
+}
+if (Q.interior_minister_party == "DNVP" || Q.interior_minister_party == "Center") {
+  Q.interior_minister_party = Q.z_name
+}
+if (Q.finance_minister_party == "DNVP" || Q.finance_minister_party == "Center") {
+  Q.finance_minister_party = Q.z_name
+}
+if (Q.economic_minister_party == "DNVP" || Q.economic_minister_party == "Center") {
+  Q.economic_minister_party = Q.z_name
+}
+if (Q.justice_minister_party == "DNVP" || Q.justice_minister_party == "Center") {
+  Q.justice_minister_party = Q.z_name
+}
+if (Q.foreign_minister_party == "DNVP" || Q.foreign_minister_party == "Center") {
+  Q.foreign_minister_party = Q.z_name
+}
+if (Q.agriculture_minister_party == "DNVP" || Q.agriculture_minister_party == "Center") {
+  Q.agriculture_minister_party = Q.z_name
+}
+if (Q.reichswehr_minister_party == "DNVP" || Q.reichswehr_minister_party == "Center") {
+  Q.reichswehr_minister_party = Q.z_name
+}
+
+
+for (var state of Q.states) {
+    if (Q[state + '_leader_party'] == "Center" || Q[state + '_leader_party'] == "DNVP") {
+        Q[state + '_leader_party'] = Q.z_name
+    }
+}
+
+
+// update all records
+Q.z_seats = Math.round(Q.z_seats + Q.dnvp_seats);
+Q.dnvp_seats = 0;
+
+Q.z_r = parseFloat((Q.z_r + Q.dnvp_r).toFixed(1));
+Q.dnvp_r = 0;
+Q.z_pl = parseFloat((Q.z_pl + Q.dnvp_pl).toFixed(1));
+Q.dnvp_pl = 0;
+Q.z_hb = parseFloat((Q.z_hb + Q.dnvp_hb).toFixed(1));
+Q.dnvp_hb = 0;
+Q.z_bl = parseFloat((Q.z_bl + Q.dnvp_bl).toFixed(1));
+Q.dnvp_bl = 0;
+Q.z_wl = parseFloat((Q.z_wl + Q.dnvp_wl).toFixed(1));
+Q.dnvp_wl = 0;
+Q.z_sl = parseFloat((Q.z_sl + Q.dnvp_sl).toFixed(1));
+Q.dnvp_sl = 0;
+Q.z_hl = parseFloat((Q.z_hl + Q.dnvp_hl).toFixed(1));
+Q.dnvp_hl = 0;
+Q.z_al = parseFloat((Q.z_al + Q.dnvp_al).toFixed(1));
+Q.dnvp_al = 0;
+
+!}

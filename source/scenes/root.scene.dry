@@ -30,6 +30,13 @@ Q.week = 0;
 // how many actions have been taken this month?
 Q.month_actions = 0;
 
+// party resources
+Q.resources = 2;
+// party dues
+Q.dues = 1;
+// party dues
+Q.industrial_funds = 2;
+
 // 0 = normal difficulty, 1 = hard mode, 2 = hard mode no saves
 Q.difficulty = 0;
 Q.historical_mode = 0;
@@ -38,61 +45,6 @@ Q.old_demographics = 0;
 // use decimals for reichstag seats
 // TODO: not yet implemented
 Q.use_decimals = 0;
-
-// party resources
-Q.resources = 2;
-// party dues
-Q.dues = 1;
-// party dues
-Q.industrial_funds = 2;
-
-// the state of the party
-// overall dissent reduces every increase in party support.
-Q.dissent = 0.05;
-Q.dissent_percent = 5;
-
-Q.dvp_ideology = "Left";
-Q.dvp_left = 5;
-Q.dvp_right = 1;
-
-// factions
-Q.factions = ['nationalist', 'peoples_conservative', 'industrialist', 'labor', 'liberal', 'democratic', 'progressive', 'special_interest'];
-// should this be normalized to 100%?
-Q.nationalist_strength = 20;
-Q.nationalist_dissent = 15;
-Q.peoples_conservative_strength = 0;
-Q.peoples_conservative_dissent = 0;
-Q.industrialist_strength = 30;
-Q.industrialist_dissent = 0;
-Q.labor_strength = 10;
-Q.labor_dissent = 20;
-Q.liberal_strength = 35;
-Q.liberal_dissent = 5;
-Q.democratic_strength = 0;
-Q.democratic_dissent = 0;
-Q.progressive_strength = 0;
-Q.progressive_dissent = 0;
-Q.special_interest_strength = 0;
-
-// secret events...
-Q.labor_dvp = 1;
-Q.industrialists_dvp = 1;
-Q.nationalists_dvp = 1;
-Q.liberals_dvp = 1;
-
-// have we discovered neorevisionism?
-Q.peoples_conservatives_dvp = 0;
-Q.democrats_dvp = 0;
-Q.progressives_dvp = 0;
-Q.special_interest_dvp = 0;
-
-Q.dbp_dvp = 0;
-Q.social_catholics_dvp = 0;
-Q.christian_socials_dvp = 0;
-Q.vrp_dvp = 0;
-Q.wp_dvp = 0;
-Q.colosser_dvp = 0;
-Q.cnblp_dvp = 0;
 
 // crisis_urgency indicates how seriously the SPD is taking the economic crisis - scale from 0 to 10.
 Q.crisis_urgency = 0;
@@ -106,8 +58,6 @@ Q.wtb_support = 0;
 Q.pacifism = 0;
 // Support for democratic reform within the SPD relative to 1928
 Q.democratization = 0;
-// Support for a communist coalition relative to 1928
-Q.communist_coalition = 0;
 
 // economic_plan: have we adopted *any* economic plan?
 // 1 - Austerity, 2 - Lautenbach, 3 - Schacht
@@ -127,35 +77,6 @@ Q.spd_wtb_plan = 0;
 Q.spd_left_plan_implemented = 0;
 Q.spd_wtb_plan_implemented = 0;
 
-// organizations
-
-// inter-party relations
-Q.z_relation = 50;
-Q.ddp_relation = 60;
-Q.dvp_relation = 35;
-Q.wp_relation = 55;
-Q.cnblp_relation = 45;
-Q.dbp_relation = 45;
-Q.spd_relation = 40;
-Q.dnvp_relation = 40;
-Q.nsdap_relation = 10;
-// KPD is invariably hostile
-Q.kpd_relation = 0;
-
-
-Q.dvp_leader = "Stresemann";
-Q.z_leader = "Marx";
-Q.z_ideology = "Right";
-Q.bvp_leader = "Speck";
-Q.bvp_ideology = "Right";
-Q.dnvp_leader = "Westarp";
-Q.dnvp_ideology = "Radical";
-Q.spd_leader = "Wels";
-Q.kpd_leader = "Thälmann";
-Q.kpd_party_leader = "Thälmann";
-Q.nsdap_leader = "Hitler";
-
-Q.dnvp_tory_democracy = 0;
 
 // hmm... maybe we can play nice with Hindenburg???
 Q.hindenburg_relation = 25;
@@ -189,6 +110,7 @@ Q.next_election_month_prussia = 5;
 
 // old landtag seats PRUSSIA
 Q.kpd_pl = 9.8;
+Q.sapd_pl = 0.0;
 Q.spd_pl = 25.3;
 Q.aspd_pl = 0.0;
 Q.z_pl = 18.0;
@@ -207,6 +129,7 @@ Q.other_pl = 1.7;
 
 // old election votes PRUSSIA
 Q.old_kpd_votes_prussia = 9.6;
+Q.old_sapd_votes_prussia = 0.0;
 Q.old_spd_votes_prussia = 24.9;
 Q.old_aspd_votes_prussia = 0.0;
 Q.old_z_votes_prussia = 17.6;
@@ -224,8 +147,6 @@ Q.old_nsdap_votes_prussia = 2.5;
 Q.old_other_votes_prussia = 3.5;
 
 
-
-
 // other landtags
 // hamburg
 Q.dvp_hamburg = 1
@@ -235,9 +156,10 @@ Q.in_grand_coalition_hamburg = 1
 Q.next_election_year_hamburg = 1928;
 Q.next_election_month_hamburg = 2;
 
+Q.kpd_hb = 16.9;
+Q.sapd_hb = 0.0;
 Q.spd_hb = 39.3;
 Q.aspd_hb = 0.0;
-Q.kpd_hb = 16.9;
 Q.z_hb = 1.3;
 Q.ddp_hb = 10.0;
 Q.dvp_hb = 11.2;
@@ -249,9 +171,10 @@ Q.dnf_hb = 0.0;
 Q.nsdap_hb = 1.3;
 Q.other_hb = 0.6;
 
+Q.old_kpd_votes_hamburg = 17.0;
+Q.old_sapd_votes_hamburg = 0.0;
 Q.old_spd_votes_hamburg = 38.1;
 Q.old_aspd_votes_hamburg = 0.0;
-Q.old_kpd_votes_hamburg = 17.0;
 Q.old_z_votes_hamburg = 1.5;
 Q.old_ddp_votes_hamburg = 10.1;
 Q.old_dvp_votes_hamburg = 11.2;
@@ -272,9 +195,10 @@ Q.in_right_coalition_bavaria = 1
 Q.next_election_year_bavaria = 1928;
 Q.next_election_month_bavaria = 5;
 
+Q.kpd_bl = 7.0;
+Q.sapd_bl = 0.0;
 Q.spd_bl = 17.8;
 Q.aspd_bl = 0.0;
-Q.kpd_bl = 7.0;
 Q.z_bl = 36.5;
 Q.csrp_bl = 0.0;
 Q.dbp_bl = 7.8;
@@ -288,9 +212,10 @@ Q.dnf_bl = 0.0;
 Q.nsdap_bl = 17.8;
 Q.other_bl = 2.3;
 
+Q.old_kpd_votes_bavaria = 8.3;
+Q.old_sapd_votes_bavaria = 0.0;
 Q.old_spd_votes_bavaria = 17.2;
 Q.old_aspd_votes_bavaria = 0.0;
-Q.old_kpd_votes_bavaria = 8.3;
 Q.old_z_votes_bavaria = 34.0;
 Q.old_csrp_votes_bavaria = 0.0;
 Q.old_dbp_votes_bavaria = 7.1;
@@ -313,9 +238,10 @@ Q.in_bourgeois_coalition_wurttemberg = 1
 Q.next_election_year_wurttemberg = 1928;
 Q.next_election_month_wurttemberg = 5;
 
+Q.kpd_wl = 12.5;
+Q.sapd_wl = 0.0;
 Q.spd_wl = 16.3;
 Q.aspd_wl = 0.0;
-Q.kpd_wl = 12.5;
 Q.z_wl = 21.3;
 Q.csrp_wl = 0.0;
 Q.ddp_wl = 11.2;
@@ -328,9 +254,10 @@ Q.dnf_wl = 0.0;
 Q.nsdap_wl = 3.7;
 Q.other_wl = 0.0;
 
+Q.old_kpd_votes_wurttemberg = 11.7;
+Q.old_sapd_votes_wurttemberg = 0.0;
 Q.old_spd_votes_wurttemberg = 16.0;
 Q.old_aspd_votes_wurttemberg = 0.0;
-Q.old_kpd_votes_wurttemberg = 11.7;
 Q.old_z_votes_wurttemberg = 20.9;
 Q.old_csrp_votes_wurttemberg = 0.0;
 Q.old_ddp_votes_wurttemberg = 10.6;
@@ -352,9 +279,10 @@ Q.in_bourgeois_coalition_saxony = 1
 Q.next_election_year_saxony = 1929;
 Q.next_election_month_saxony = 5;
 
+Q.kpd_sl = 14.6;
+Q.sapd_sl = 0.0;
 Q.spd_sl = 32.3;
 Q.aspd_sl = 4.2;
-Q.kpd_sl = 14.6;
 Q.z_sl = 0.0;
 Q.ddp_sl = 5.2;
 Q.dvp_sl = 12.5;
@@ -373,9 +301,10 @@ Q.old_aspd_sl = 4.2;
 Q.old_vnr_sl = 0.0;
 Q.old_vrp_sl = 4.2;
 
+Q.old_kpd_votes_saxony = 14.5;
+Q.old_sapd_votes_saxony = 0.0;
 Q.old_spd_votes_saxony = 32.1;
 Q.old_aspd_votes_saxony = 4.2;
-Q.old_kpd_votes_saxony = 14.5;
 Q.old_z_votes_saxony = 1.0;
 Q.old_ddp_votes_saxony = 4.7;
 Q.old_dvp_votes_saxony = 12.4;
@@ -392,8 +321,9 @@ Q.old_other_votes_saxony = 0.7;
 
 
 // hanover
-Q.spd_hl = 0.0;
 Q.kpd_hl = 0.0;
+Q.sapd_hl = 0.0;
+Q.spd_hl = 0.0;
 Q.z_hl = 0.0;
 Q.dhp_hl = 0.0;
 Q.dbp_hl = 0.0;
@@ -410,8 +340,9 @@ Q.other_hl = 0.0;
 
 Q.old_dhp_hl = 0.0;
 
-Q.old_spd_votes_hanover = 0.0;
 Q.old_kpd_votes_hanover = 0.0;
+Q.old_sapd_votes_hanover = 0.0;
+Q.old_spd_votes_hanover = 0.0;
 Q.old_z_votes_hanover = 0.0;
 Q.old_dhp_votes_hanover = 0.0;
 Q.old_dbp_votes_hanover = 0.0;
@@ -429,6 +360,7 @@ Q.old_other_votes_hanover = 0.0;
 
 // austria
 Q.kpd_al = 0.0;
+Q.sapd_al = 0.0;
 Q.spd_al = 0.0;
 Q.ddp_al = 0.0;
 Q.csrp_al = 0.0;
@@ -445,6 +377,7 @@ Q.vb_al = 0.0;
 Q.old_vb_al = 0.0;
 
 Q.old_kpd_votes_austria = 0.0;
+Q.old_sapd_votes_austria = 0.0;
 Q.old_spd_votes_austria = 0.0;
 Q.old_ddp_votes_austria = 0.0;
 Q.old_csrp_votes_austria = 0.0;
@@ -568,49 +501,200 @@ Q.old_middle_qol = 100;
 Q.new_middle_qol = 100;
 
 Q.classes = ['workers', 'old_middle', 'new_middle', 'rural', 'unemployed', 'catholics'];
-Q.parties = ['spd', 'kpd', 'z', 'ddp', 'dvp', 'wp', 'dnvp', 'nsdap', 'other', 'dbp', 'cnblp'];
+Q.parties = ['kpd', 'spd', 'z', 'ddp', 'dvp', 'wp', 'dnvp', 'nsdap', 'other', 'dbp', 'cnblp'];
 Q.states = ['prussia', 'bavaria', 'hamburg', 'wurttemberg', 'saxony', 'hanover', 'austria'];
 
-// TODO: add 'sapd' later on
+
+
+// The State of the Party
+// overall dissent reduces every increase in party support.
+Q.dissent = 0.05;
+Q.dissent_percent = 5;
+
+Q.dvp_name = "DVP";
+Q.dvp_leader = "Stresemann";
+Q.dvp_ideology = "Conservative Liberalism";
+Q.dvp_color = "#C0A054";
+Q.dvp_ideologycolor = "#C0A054";
+Q.dvp_left = 4;
+
+Q.newspaper = 0;
+Q.radio = 0;
+
 Q.lvp_formed = 0;
 Q.nfvp_formed = 0;
 
+// If in government
+Q.demand_for_action_countdown = 6;
+
+// factions
+Q.factions = ['nationalist', 'peoples_conservative', 'industrialist', 'labor', 'liberal', 'democratic', 'progressive', 'special_interest'];
+// should this be normalized to 100%?
+Q.nationalist_strength = 20;
+Q.nationalist_dissent = 15;
+Q.peoples_conservative_strength = 0;
+Q.peoples_conservative_dissent = 0;
+Q.industrialist_strength = 30;
+Q.industrialist_dissent = 0;
+Q.labor_strength = 10;
+Q.labor_dissent = 20;
+Q.liberal_strength = 35;
+Q.liberal_dissent = 5;
+Q.democratic_strength = 0;
+Q.democratic_dissent = 0;
+Q.progressive_strength = 0;
+Q.progressive_dissent = 0;
+Q.special_interest_strength = 0;
+
+// Factions
+Q.labor_dvp = 1;
+Q.liberals_dvp = 1;
+Q.industrialists_dvp = 1;
+Q.nationalists_dvp = 1;
+
+Q.peoples_conservatives_dvp = 0;
+Q.democrats_dvp = 0;
+Q.progressives_dvp = 0;
+Q.special_interest_dvp = 0;
+Q.dbp_dvp = 0;
+Q.social_catholics_dvp = 0;
+Q.christian_socials_dvp = 0;
+Q.vrp_dvp = 0;
+Q.wp_dvp = 0;
+Q.colosser_dvp = 0;
+Q.cnblp_dvp = 0;
+
+
+// inter-party relations
+Q.z_relation = 50;
+Q.ddp_relation = 60;
+Q.dvp_relation = 35;
+Q.wp_relation = 55;
+Q.cnblp_relation = 45;
+Q.dbp_relation = 45;
+Q.spd_relation = 40;
+Q.dnvp_relation = 40;
+Q.nsdap_relation = 10;
+Q.kpd_relation = 0;
+
+
+// Other parties
+
+Q.kpd_exist = 1;
+Q.kpd_name = "KPD";
+Q.kpd_leader = "Thälmann";
+Q.kpd_ideology = "Marxism–Leninism";
+Q.kpd_color = "#8B0000";
+Q.kpd_conciliators = 0;
+
+Q.sapd_formed = 0;
+Q.sapd_leader = "Rosenfeld";
+Q.sapd_ideology = "Democratic Socialism";
+
+Q.spd_exist = 1;
+Q.spd_name = "SPD";
+Q.spd_leader = "Wels";
+Q.spd_ideology = "Social Democracy";
+Q.spd_color = "#E3000F";
+Q.spd_left = 1;
+Q.sed_formed = 0;
+
+Q.sapd_formed = 0;
+Q.aspd_leader = "Buck";
+Q.aspd_ideology = "Revisionist Socialism";
+Q.aspd_radical = 0;
+
+Q.ddp_exist = 1;
+Q.ddp_name = "DDP";
+Q.ddp_leader = "Koch-Weser";
+Q.ddp_ideology = "Left Liberalism";
+Q.ddp_color = "#DCCA4A";
+Q.dstp_formed = 0;
+Q.ddp_left = 0;
+Q.ddp_cohesion = 15;
+
+Q.dbp_exist = 1;
+Q.dbp_leader = "Gandorfer";
+Q.dbp_ideology = "Liberal Agrarianism";
+
+Q.csrp_formed = 0;
+Q.csrp_leader = "Wirth";
+Q.csrp_ideology = "Catholic Left";
+
+Q.z_exist = 1;
+Q.z_name = "Center";
+Q.z_leader = "Marx";
+Q.z_ideology = "Christian Democracy";
+Q.z_color = "#000000";
+Q.stegerwald_path = 0;
+Q.cvp_formed = 0;
+Q.cvp_merger_countdown = 8;
+Q.cvp_left = 0;
+
+Q.bvp_exist = 1;
+Q.bvp_leader = "Speck";
+Q.bvp_ideology = "Catholic Conservatism";
+
+Q.csvd_formed = 0;
+Q.csvd_leader = "Simpfendörfer";
+Q.csvd_ideology = "Christian Socialism";
+
+Q.vrp_exist = 1;
+
+Q.vnr_formed = 0;
+
+Q.wp_exist = 1;
+Q.wp_leader = "Drewitz";
+Q.wp_ideology = "Liberal Conservatism";
+Q.wp_radical = 0;
+
+Q.cnblp_exist = 1;
+Q.cnblp_leader = "Baum";
+Q.cnblp_ideology = "Agrarian Conservatism";
+
 Q.kvp_formed = 0;
+Q.kvp_leader = "Westarp";
+Q.kvp_ideology = "Christian Conservatism";
+
+Q.dnvp_exist = 1;
+Q.dnvp_name = "DNVP";
+Q.dnvp_leader = "Westarp";
+Q.dnvp_ideology = "National Conservatism";
+Q.dnvp_color = "#3F7BC1";
+Q.dnvp_left = 0; // 1 - Treviranus, 0 - Hergt, -1 - Westarp, -2 - Hugenberg
+
 Q.dnf_formed = 0;
+Q.dnf_leader = "Hugenberg";
+Q.dnf_ideology = "Authoritarian Conservatism";
 
-Q.dbp_exist = 1
-Q.csrp_exist = 0
-Q.wp_exist = 1
-Q.cnblp_exist = 1
-Q.csvd_exist = 0
-
-Q.spd_right = 3
-Q.spd_left = 0
-
-Q.aspd_exist = 0
-Q.aspd_ideology = "Moderate"
-
-Q.ddp_exist = 1
-Q.dstp_formed = 0
-Q.ddp_left = 0
-Q.ddp_right = 0
-Q.ddp_cohesion = 15
-Q.ddp_leader = "Koch-Weser"
-Q.ddp_ideology = "Moderate"
-
-Q.vrp_exist = 1
-Q.vnr_exist = 0
-
-Q.wp_ideology = "Moderate"
+Q.nsdap_exist = 1;
+Q.nsdap_leader = "Hitler";
+Q.nsdap_ideology = "National Socialism";
 
 
-Q.bourgeois_parliament_support = 0
-Q.bourgeois_parliament = 0
-Q.bourgeois_parliament_ddp = 0
-Q.bourgeois_parliament_wp = 0
+document.body.style.setProperty('--dvp-color', Q.dvp_color);
+document.body.style.setProperty('--dvp-ideologycolor', Q.dvp_ideologycolor);
+
+document.body.style.setProperty('--kpd-color', Q.kpd_color);
+document.body.style.setProperty('--spd-color', Q.spd_color);
+document.body.style.setProperty('--ddp-color', Q.ddp_color);
+document.body.style.setProperty('--z-color', Q.z_color);
+document.body.style.setProperty('--dnvp-color', Q.dnvp_color);
+
+
+Q.bourgeois_parliament_support = 0;
+Q.bourgeois_parliament = 0;
+Q.bourgeois_parliament_ddp = 0;
+Q.bourgeois_parliament_wp = 0;
 
 
 // sapd isn't formed yet, but it may be formed
+Q.sapd_seats = 0;
+Q.sapd_r = 0;
+Q.old_sapd_r = 0;
+Q.sapd_votes = 0;
+Q.old_sapd_votes = 0;
+
 Q.kvp_seats = 0;
 Q.kvp_r = 0;
 Q.old_kvp_r = 0;
@@ -789,11 +873,6 @@ Q.old_cnblp_votes = 1.7;
 Q.old_other_votes = 2.8;
 
 
-// for changing party names
-Q.ddp_name = "DDP";
-Q.dvp_name = "DVP";
-Q.dvp_color = "#C0A054";
-
 // array of objects of the form {date: Date(), spd: 10, kpd: 12, ...} for each election
 Q.election_records = [];
 // party support records for every month
@@ -807,7 +886,7 @@ Q.president = "Hindenburg";
 Q.president_party = 'I';
 // starting chancellor: Wilhelm Marx
 Q.chancellor = "Marx";
-Q.chancellor_party = 'Z';
+Q.chancellor_party = Q.z_name;
 Q.spd_in_government = 0;
 Q.z_in_government = 1;
 Q.ddp_in_government = 0;
@@ -816,17 +895,19 @@ Q.dnvp_in_government = 1;
 Q.kpd_in_government = 0;
 Q.nsdap_in_government = 0;
 
+Q.in_dvp_majority = 0;
+Q.in_liberal_coalition = 0;
+Q.in_social_liberal_coalition = 0;
 Q.in_weimar_coalition = 0;
-// Grand coalition = SPD + Z + BVP + DDP + DVP
-// also includes the "new grand coalition" of SPD + Z + BVP + DDP + DVP + Others
 Q.in_grand_coalition = 0;
-// emergency government containing the SPD: only president Braun can do this.
-Q.in_emergency_government = 0;
-Q.in_spd_majority = 0;
-Q.grand_coalition_failed = 0;
-// if the SPD is ruling as part of a minority government
+Q.in_bourgeois_coalition = 0;
+Q.in_center_right_coalition = 1;
+Q.in_hindenburg_coalition = 0;
 Q.in_minority_government = 0;
-// national unity governmet
+Q.in_unity_government = 0;
+Q.in_far_right_coalition = 0;
+Q.in_hitler_right_coalition = 0;
+Q.in_emergency_government = 0;
 
 // if you're in a coalition, this is an incremental counter for how many times dissent has happened from the right.
 Q.coalition_dissent = 0;
@@ -850,13 +931,13 @@ Q.interior_minister_party = 'DNVP';
 Q.justice_minister = 'Hergt';
 Q.justice_minister_party = 'DNVP';
 Q.labor_minister = 'Brauns';
-Q.labor_minister_party = 'Z';
+Q.labor_minister_party = Q.z_name;
 Q.reichswehr_minister = 'Groener';
 Q.reichswehr_minister_party = 'I';
 Q.economic_minister = 'Curtius';
 Q.economic_minister_party = 'DVP';
 Q.finance_minister = 'Köhler';
-Q.finance_minister_party = 'Z';
+Q.finance_minister_party = Q.z_name;
 Q.agriculture_minister = 'Schiele';
 Q.agriculture_minister_party = 'DNVP';
 
@@ -874,12 +955,14 @@ Q.unemployment_insurance_seen = 0;
 Q.unemployment_insurance_threshold = 10;
 Q.blutmai = 0;
 Q.wittorf_affair_published = 0;
+Q.young_plan_dnvp_promise = 0;
 
 // have we reformed these institutions to be more democratic?
 Q.judicial_reform = 0;
 Q.bureaucratic_reform = 0;
 Q.military_reform = 0;
 Q.womens_rights = 0;
+Q.lgbt_rights = 0;
 // level of welfare relative to 1928 (can go negative)
 Q.welfare = 0;
 // level of support for farmers
@@ -897,6 +980,7 @@ Q.soviet_relation = 0;
 // How much have we exposed the secret rearmament programs?
 Q.rearmament_exposed = 0;
 // reparations vs baseline: young plan is -1.
+Q.young_plan_ratified = 0;
 Q.reparations = 0;
 Q.reparations_negotiation = 0;
 // Our economic policy.
@@ -949,7 +1033,7 @@ Q.timers = ['advisor_action', 'crisis_program',
             'agricultural_policy', 'domestic_enemies', 'fiscal_policy', 'monetary_policy',
             'foreign_policy', 'judiciary', 'labor_affairs', 'military_policy',
             'police', 'prussian_affairs', 'landtag_policy', 'shuffle_cabinet', 'social_welfare',
-            'homosexual_rights', 'economic_policy', 'coalition_affairs',
+            'progressive_policies', 'economic_plan_implementation', 'economic_policy', 'coalition_affairs',
             'war_guilt', 'dealing_with_toleration',
             'constitutional_reform', 'labor_rights',
             'education_science', 'curriculum',
@@ -973,7 +1057,7 @@ Q.rubicon_timers = ['advisor_action', 'crisis_program',
             'agricultural_policy', 'domestic_enemies', 'fiscal_policy', 'monetary_policy',
             'foreign_policy', 'judiciary', 'labor_affairs', 'military_policy',
             'police', 'prussian_affairs', 'shuffle_cabinet', 'social_welfare',
-            'homosexual_rights', 'economic_policy', 'coalition_affairs',
+            'progressive_policies', 'economic_policy', 'coalition_affairs',
             'war_guilt', 'dealing_with_toleration',
             'constitutional_reform', 'labor_rights',
             'education_science', 'curriculum',
@@ -1035,7 +1119,7 @@ Q.police_timer = 0;
 Q.shuffle_cabinet_timer = 0;
 Q.social_welfare_timer = 0;
 Q.war_guilt_timer = 0;
-Q.womens_rights_timer = 0;
+Q.progressive_policies_timer = 0;
 Q.economic_democracy_timer = 0;
 Q.coalition_affairs_timer = 0;
 //landtags
@@ -1168,6 +1252,6 @@ go-to: main if difficulty >= 0; main.main_easy if difficulty < 0
 
 It is a hopeful moment for German democracy. The hyperinflation crisis that marked the republic’s early years has finally been quelled, and a sense of normalcy is returning. Our leader, Gustav Stresemann, has led the nation’s rapprochement between us and the Allied Powers, and the turmoil that the Great War had inflicted on Europe is slowly fading away.
 
-However, not all is well for us. The center-right coalition headed by Wilhelm Marx’s <span style="color: #000000;">**Zentrum**</span> has torn itself apart, and we have been caught in the crossfire. From the sidelines, the <span style="color: #E3000F;">**SPD**</span> awaits to pounce on this opportunity, eating away at the dominance of our fellow business-minded parties.
+However, not all is well for us. The center-right coalition headed by Wilhelm Marx’s <span style="color: #000000;">**Zentrum**</span> has torn itself apart, and we have been caught in the crossfire. From the sidelines, the <span style="color: var(--spd-color);">**SPD**</span> awaits to pounce on this opportunity, eating away at the dominance of our fellow business-minded parties.
 
 The coalition has collapsed, mainly due to disagreements with our partners regarding religious schools, and new elections have been called. The next elections are slated for May of this year.

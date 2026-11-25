@@ -165,7 +165,7 @@ Our educational curriculum should be focused on the humanities, including arts, 
 @vocational_major
 title: Vocational curriculum
 subtitle: Useful technical skills for future careers
-on-arrival: curriculum_timer = 50; major_curriculum = "vocational"; dvp_relation += 3*(1-dissent); ddp_relation += 3*(1-dissent); workers_dvp += 4*(1-dissent); rural_dvp += 2*(1-dissent); unemployed_dvp += 3*(1-dissent); new_middle_dvp -= 1; unemployed -= 0.1; education_science += 0.5
+on-arrival: curriculum_timer = 50; major_curriculum = "vocational"; ddp_relation += 3*(1-dissent); workers_dvp += 4*(1-dissent); rural_dvp += 2*(1-dissent); unemployed_dvp += 3*(1-dissent); new_middle_dvp -= 1; demand_for_action_countdown += 4; unemployed -= 0.1; education_science += 0.5
 go-to: curriculum_minor
 
 Education should be focused on providing a useful hands-on education, and teach the skills that will be most useful for students' future lives.

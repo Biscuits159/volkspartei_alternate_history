@@ -2,13 +2,14 @@ title: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> Party Co
 view-if: nfvp_formed and year == nfvp_next_congress_year and month == nfvp_next_congress_month
 on-arrival: nfvp_next_congress_year = year + 2
 tags: event
+priority: 3
 new-page: true
 
 = <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> Party Congress
 
 The <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> is a very mighty political beast, made as the political manifestation of the Middle Class and other minor bourgeois groups. While the size of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> has lent it influence far greater than its fractured predecessors, several factions have also begun to vie for control. 2 years have passed since [+ dvp_leader +] has taken charge of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>, and it is now time for another party congress to decide the course of the party.
 
-Hermann Dietrich represents the moderate elements of the <span style="color: #DCCA4A;">**[+ddp_name+]**</span>, and is generally supported by its former members; if only begrudgingly by its progressive wing due to his stern pro-democratic stance. The Liberals of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> seem to be keen on endorsing him, but have mainly stayed with Julius Curtius and Otto Thiel.
+Hermann Dietrich represents the moderate elements of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>, and is generally supported by its former members; if only begrudgingly by its progressive wing due to his stern pro-democratic stance. The Liberals of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> seem to be keen on endorsing him, but have mainly stayed with Julius Curtius and Otto Thiel.
 
 Julius Curtius, being Stresseman’s successor, has great sway over its Liberal and Middle Class groups[?if peoples_conservatives_dvp:; and has allied himself with the People’s Conservatives?], along with a tenative mutual endorsement agreement with Otto Thiel’s DHV connections.
 
@@ -16,7 +17,7 @@ Otto Thiel, widely regarded as one of the key figures of Stresseman’s reform e
 
 Hans Raumer’s base with the Industrialists has largely decayed after the <span style="color: #C0A054;">**DVP**</span>’s party reform with only a handful of Industrialists remaining in the party, although he has gotten the attention of the Anti-Hugenburg Right. Many in the party do not even consider him as a candidate, but rather as an outcry of a bygone era.
 
-Ernst Lemmer’s coalition is rather small; the former <span style="color: #DCCA4A;">**[+ddp_name+]**</span> progressives and democrats are willing to endorse him, along with the fringe left republican groups within Labor and minor factions, but he is not set to win this party congress. Unless the Progressives make a comeback, he is likely to endorse Dietrich; due to their mutual former <span style="color: #DCCA4A;">**[+ddp_name+]**</span> status.
+Ernst Lemmer’s coalition is rather small; the former <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> progressives and democrats are willing to endorse him, along with the fringe left republican groups within Labor and minor factions, but he is not set to win this party congress. Unless the Progressives make a comeback, he is likely to endorse Dietrich; due to their mutual former <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> status.
 
 [? if peoples_conservatives_dvp: Gottfried Treviranus is not set to command a large amount of influence, as the People’s Conservatives and Christian Socials are quite the small groups within the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. The Liberals may be preoccupied with Dietrich, Curtius and Thiel, but if the People’s Conservatives and Christian Socials manage to grow their influence, former <span style="color: #C0A054;">**DVP**</span> Liberals could see Treviranus as a potential ally. ?]
 
@@ -259,10 +260,10 @@ subtitle: Lemmer is a prominent labor leader. <span style="color: #E0B0FF;">**Pr
 unavailable-subtitle: Lemmer isn’t seen as a viable candidate, with the party viewing him as too left-wing. He has endorsed Dietrich or Thiel. <span style="color: #E0B0FF;">**Progressives**</span> + <span style="color: #DCCA4A;">**Democrats**</span> + <span style="color: #6D5298;">**Labor**</span> ([+ progressive_influence + democratic_influence + labor_influence +]%)
 view-if: progressives_dvp
 choose-if: progressive_influence + democratic_influence + labor_influence >= 50
-on-arrival: dvp_leader = "Lemmer"; progressive_strength += 10; democratization += 1; progressive_dissent -= 5; spd_relation += 5
+on-arrival: dvp_leader = "Lemmer"; dvp_ideology = "Social Liberalism"; dvp_ideologycolor = "#E0B0FF"; workers_dvp += 3*(1-dissent); democratization += 1; progressive_dissent -= 5; spd_relation += 5
 face-image: img/portraits/LemmerErnst.jpg
 
-Ernst Lemmer has managed to, with the backing of Thiel’s unions, and the former <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>, become leader of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. He is expected to cooperate closely with Thiel, and the socialists of the <span style="color: #E3000F;">**SPD**</span> will be watching his leadership closely. He will certainly be a divisive leader of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>, with his progressive stance sure to render any cooperation with the parties to our right difficult for the near future.
+Ernst Lemmer has managed to, with the backing of Thiel’s unions, and the former <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>, become leader of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. He is expected to cooperate closely with Thiel, and the socialists of the <span style="color: var(--spd-color);">**SPD**</span> will be watching his leadership closely. He will certainly be a divisive leader of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>, with his progressive stance sure to render any cooperation with the parties to our right difficult for the near future.
   
 
 @dietrich
@@ -270,7 +271,7 @@ subtitle: Dietrich was the former leader of the <span style="color: #DCCA4A;">**
 unavailable-subtitle: The party prefers a former <span style="color: #C0A054;">**DVP**</span> member than Dietrich, with the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> not holding enough sway. Dietrich has endorsed Curtius. <span style="color: #E0B0FF;">**Progressives**</span> + <span style="color: #DCCA4A;">**Democrats**</span> + <span style="color: #98C22C;">**Liberals**</span> ([+ progressive_influence + democratic_influence + liberal_influence +]%)
 view-if: democrats_dvp
 choose-if: progressive_influence + democratic_influence + liberal_influence >= 50
-on-arrival: dvp_leader = "Dietrich"; democratic_strength += 10; democratization += 1; democratic_dissent -= 5; z_relation += 5; kvp_relation += 3
+on-arrival: dvp_leader = "Dietrich"; dvp_ideology = "Classical Liberalism"; dvp_ideologycolor = "#DCCA4A"; new_middle_dvp += 4*(1-dissent); old_middle_dvp += 2*(1-dissent);  democratic_strength += 10; democratization += 1; democratic_dissent -= 5; z_relation += 5; kvp_relation += 3
 face-image: img/portraits/DietrichHermann.jpg
 
 Hermann Dietrich has been elected as the leader of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. Having a former <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> member at the helm of the party will shift it left, if only slightly due to Dietrich’s leanings to the right, and the fact the industrialist votes got him elected. He is, however, staunchly republican and this enables him to have a good hold over the party.
@@ -280,7 +281,7 @@ Hermann Dietrich has been elected as the leader of the <span style="color: var(-
 subtitle: The former Chancellor is always available as a compromise candidate.
 unavailable-subtitle: Luther sees no need to run, currently.
 #choose-if: 
-on-arrival: dvp_leader = "Luther"
+on-arrival: dvp_leader = "Luther"; dvp_ideology = "Classical Liberalism"; dvp_ideologycolor = "#DCCA4A";
 face-image: img/portraits/LutherHans.jpg
 
 Hans Luther, [? if not president = "Luther": president of the Reichsbank?][? if president = "Luther": President of the Republic?], has been elected, commanding great confidence amongst the party’s many factions. He is, however, as the [? if not president = "Luther": president of the Reichsbank?][? if president = "Luther": President of the Republic?], expected to take a hands-off approach, delegating the party’s day to day running to his former <span style="color: #C0A054;">**DVP**</span> allies Curtius and Thiel. All in all, many view him as simply a caretaker until their faction can seize power at the next congress. We shall see how accurate they are.
@@ -291,7 +292,7 @@ subtitle: Curtius belongs to the Stresemannite wing of our party. <span style="c
 unavailable-subtitle: Curtius prefers Thiel or Dietrich currently, with the former <span style="color: #C0A054;">**DVP**</span> too weak to push him, anyways. <span style="color: #98C22C;">**Liberals**</span> + <span style="color: #6D5298;">**Labor**</span> [? if peoples_conservatives_dvp: + <span style="color: #0087DC;">**People's Conservatives**</span> ?] ([+ liberal_influence + labor_influence + peoples_conservative_influence +]%)
 view-if: liberals_dvp
 choose-if: liberal_influence + labor_influence + peoples_conservative_influence >= 50
-on-arrival: dvp_leader = "Curtius"; liberal_strength += 10; democratization += 1; liberal_dissent -= 5;
+on-arrival: dvp_leader = "Curtius"; dvp_ideology = "Conservative Liberalism"; dvp_ideologycolor = "#C0A054"; new_middle_dvp += 3*(1-dissent); old_middle_dvp += 3*(1-dissent); liberal_strength += 10; democratization += 1; liberal_dissent -= 5;
 face-image: img/portraits/CurtiusJulius.jpg
 
 Julius Curtius, Stresemann’s successor, has been elected as the leader of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. Whilst he may alienate the extremes of the party, his foreign policy experience and the mantle of Stresemann’s successor will help him be a strong <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> leader. He is expected to be a similar leader to Stresemann, furthering his ‘party of reason’ ideals.
@@ -302,10 +303,10 @@ subtitle: Thiel is a prominent labor leader. <span style="color: #DCCA4A;">**Dem
 unavailable-subtitle: The unions aren’t willing to run Thiel, and he prefers to work behind the scenes at the moment, anyways. He has endorsed Curtius.  <span style="color: #DCCA4A;">**Democrats**</span> + <span style="color: #98C22C;">**Liberals**</span> + <span style="color: #6D5298;">**Labor**</span> ([+ democratic_influence + liberal_influence + labor_influence +]%)
 view-if: labor_dvp
 choose-if: democratic_influence + liberal_influence + labor_influence >= 50
-on-arrival: dvp_leader = "Thiel"; labor_strength += 10; labor_dissent -= 5;
+on-arrival: dvp_leader = "Thiel"; dvp_ideology = "Paternalistic Liberalism"; dvp_ideologycolor = "#C0A054"; workers_dvp += 3*(1-dissent); labor_strength += 10; labor_dissent -= 5;
 face-image: img/portraits/ThielOtto.jpg
 
-Otto Thiel, close ally of Stresemann and former <span style="color: #C0A054;">**DVP**</span> member, has managed to secure the chairmanship of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. He is expected to be a decisive leader, with his willingness to extend the party into the <span style="color: #E3000F;">**SPD**</span>-dominated working class. Already, he has made many enemies amongst the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>’s industrial backers - what’s left of them anyways. He will pursue his ideal of a nationalistic, democratic and progressive party. Only time will tell how sucessful he shall be.
+Otto Thiel, close ally of Stresemann and former <span style="color: #C0A054;">**DVP**</span> member, has managed to secure the chairmanship of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. He is expected to be a decisive leader, with his willingness to extend the party into the <span style="color: var(--spd-color);">**SPD**</span>-dominated working class. Already, he has made many enemies amongst the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>’s industrial backers - what’s left of them anyways. He will pursue his ideal of a nationalistic, democratic and progressive party. Only time will tell how sucessful he shall be.
   
 
 @raumer
@@ -313,10 +314,10 @@ subtitle: Raumer is backed by industrialists. <span style="color: #C0A054;">**In
 unavailable-subtitle: The party doesn’t view Raumer seriously, with what’s left of the industrialists being too scattered to push him, anyhow. <span style="color: #C0A054;">**Industrialists:**</span> [? if peoples_conservatives_dvp: + <span style="color: #0087DC;">**People's Conservatives**</span> ?] ([+ industrialist_influence + peoples_conservative_influence +]%)
 view-if: industrialists_dvp
 choose-if: industrialist_influence + peoples_conservative_influence >= 50
-on-arrival: dvp_leader = "Raumer"; industrialist_strength += 10; industrialist_dissent -= 10
+on-arrival: dvp_leader = "Raumer"; dvp_ideology = "National capitalism"; dvp_ideologycolor = "#C0A054"; old_middle_dvp += 5*(1-dissent); industrialist_strength += 10; industrialist_dissent -= 10
 face-image: img/portraits/RaumerHans.jpg
 
-In a shock upset, Hans Raumer has been elected as the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>’s leader. He shall shift the party to the right, hopefully drawing heavy industry away from the [? if kvp_formed: <span style="color: #455B95;">**KVP**</span>?][? if dnvp_ideology="Moderate": <span style="color: #3F7BC1;">**DNVP**</span>?], <span style="color: #954B00;">Nazis</span>[?if dnvp_ideology="Radical":, and what’s left of the <span style="color: #3F7BC1;">**DNVP**</span>?][?if dnf_formed: <span style="color: #003755;">**DNF**</span>?]. The left-wing elements of the party have already began to agitate for his removal, with Thiel in particular becoming an enemy of the chairman.
+In a shock upset, Hans Raumer has been elected as the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>’s leader. He shall shift the party to the right, hopefully drawing heavy industry away from the [? if kvp_formed: <span style="color: #455B95;">**KVP**</span>?][? if dnvp_ideology="Moderate": <span style="color: var(--dnvp-color);">**DNVP**</span>?], <span style="color: #954B00;">Nazis</span>[?if dnvp_ideology="Radical":, and what’s left of the <span style="color: var(--dnvp-color);">**DNVP**</span>?][?if dnf_formed: <span style="color: #003755;">**DNF**</span>?]. The left-wing elements of the party have already began to agitate for his removal, with Thiel in particular becoming an enemy of the chairman.
   
 
 @treviranus
@@ -324,7 +325,7 @@ subtitle: Treviranus is the leader of People's Conservatives. <span style="color
 unavailable-subtitle: Trevarinus prefers Curtius or Luther. <span style="color: #98C22C;">**Liberals**</span> + <span style="color: #0087DC;">**People's Conservatives**</span> ([+ peoples_conservative_influence + liberal_influence +]%)
 view-if: peoples_conservatives_dvp
 choose-if: liberal_influence + peoples_conservative_influence >= 50
-on-arrival: dvp_leader = "Treviranus"; peoples_conservative_strength += 10; peoples_conservative_dissent -= 5
+on-arrival: dvp_leader = "Treviranus"; dvp_ideology = "Liberal Conservatism"; dvp_ideologycolor = "#0087DC"; old_middle_dvp += 3*(1-dissent); rural_dvp += 3*(1-dissent); peoples_conservative_strength += 10; peoples_conservative_dissent -= 5
 face-image: img/portraits/TreviranusGottfried.jpg
 
-Gottfried Treviranus, dissenting <span style="color: #3F7BC1;">**DNVP**</span> member, has somehow been elected as <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> leader. This possibly signifies a rightward turn, with the industrialists being pleased at his leadership. However, he is not set to shift the party forward the <span style="color: #3F7BC1;">**DNVP**</span> [? if kvp_formed: and <span style="color: #455B95;">**KVP**</span> ?] too drastically. The left-wing of the party are somewhat discontented, but seemingly taking a wait-and-see approach for now.
+Gottfried Treviranus, dissenting <span style="color: var(--dnvp-color);">**DNVP**</span> member, has somehow been elected as <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> leader. This possibly signifies a rightward turn, with the industrialists being pleased at his leadership. However, he is not set to shift the party forward the <span style="color: var(--dnvp-color);">**DNVP**</span> [? if kvp_formed: and <span style="color: #455B95;">**KVP**</span> ?] too drastically. The left-wing of the party are somewhat discontented, but seemingly taking a wait-and-see approach for now.

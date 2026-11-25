@@ -1,0 +1,11 @@
+title: The <span style="color: var(--spd-color);">**SPD**</span>'s Left and Center form their own party.
+subtitle: The <span style="color: #C40000;">**SAPD**</span> rises!
+view-if: spd_volkspartei
+max-visits: 1
+tags: event
+new-page: true
+go-to: sapd_formed
+
+= The <span style="color: #C40000;">**SAPD**</span> rises!
+
+Stuck between the anti-constitutional <span style="color: var(--kpd-color);">**KPD**</span> and a revisionist <span style="color: var(--spd-color);">**SPD**</span>, Center Marxists struggled to find a party to call home and so, a new party will be created following their ideals, the *Sozialistische Arbeiterpartei Deutschlands*. While they remain committed to marxism, they'll likely be willing to offer their toleration to the <span style="color: var(--spd-color);">**SPD**</span>, should a coalition including them fall short of a majority, instead of forcing a new set of elections or allowing a right-wing cabinet to take power.

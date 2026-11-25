@@ -4,9 +4,9 @@ Q.aspd_exist = 1;
 Q.parties.push('aspd');
 
 if (Q.aspd_leader == "Heldt") {
-    Q.aspd_ideology = "Moderate"
+    Q.aspd_ideology = "Revisionist Socialism"
 } else if (Q.aspd_leader == "Niekisch") {
-    Q.aspd_ideology = "Radical"
+    Q.aspd_ideology = "National Bolshevism"
 }
   
 
@@ -22,12 +22,12 @@ Q.rural_aspd = 0;
 Q.catholics_aspd = 0;
 
 
-if (Q.dvp_ideology == "Right") {
+if (Q.dvp_left < 0) {
     Q.aspd_relation = 25
-} else if (Q.dvp_ideology == "Left" && Q.aspd_ideology == "Moderate") {
-    Q.aspd_relation = 45
-} else if (Q.dvp_ideology == "Left" && Q.aspd_ideology == "Radical") {
+} else if (Q.aspd_radical = 1) {
     Q.aspd_relation = 15
+} else {
+    Q.aspd_relation = 45
 }
 
 

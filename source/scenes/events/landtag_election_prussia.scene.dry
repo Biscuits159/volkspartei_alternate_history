@@ -3,7 +3,7 @@ view-if: year = next_election_year_prussia and month >= next_election_month_prus
 new-page: true
 tags: event
 priority: 3
-on-arrival: next_election_year_prussia = next_election_year_prussia + 4; next_election_time_prussia = time + 48; was_in_weimar_coalition_prussia = 0; was_in_grand_coalition_prussia = 0; was_in_bourgeois_coalition_prussia = 0; was_in_far_right_coalition_prussia = 0; was_in_weimar_coalition_prussia = 1 if (in_weimar_coalition_prussia == 1 or in_minority_weimar_coalition_prussia == 1); was_in_grand_coalition_prussia = 1 if (in_grand_coalition_prussia == 1 or in_minority_grand_coalition_prussia == 1); was_in_bourgeois_coalition_prussia = 1 if (in_bourgeois_coalition_prussia == 1); was_in_far_right_coalition_prussia = 1 if (in_far_right_coalition_prussia == 1); 
+on-arrival: next_election_year_prussia = next_election_year_prussia + 4; next_election_time_prussia = time + 48; was_dvp_prussia = 0; was_in_popular_front_prussia = 0; was_in_weimar_coalition_prussia = 0; was_in_grand_coalition_prussia = 0; was_in_bourgeois_coalition_prussia = 0; was_in_far_right_coalition_prussia = 0; was_dvp_prussia = 1 if dvp_prussia; was_in_popular_front_prussia = 1 if in_popular_front_prussia; was_in_weimar_coalition_prussia = 1 if in_weimar_coalition_prussia; was_in_grand_coalition_prussia = 1 if in_grand_coalition_prussia; was_in_bourgeois_coalition_prussia = 1 if in_bourgeois_coalition_prussia; was_in_far_right_coalition_prussia = 1 if in_far_right_coalition_prussia; 
 set-jump: new_elections
 
 = Prussian Elections, [+ month : month +] [+ year +]
@@ -29,9 +29,10 @@ for (var c of Q.classes) {
 
 // Define adjustment factors
 if (Q.year == 1928) {
+    Q.adjustmentFactors_kpd_prussia = 1.1;
+    Q.adjustmentFactors_sapd_prussia = 1.0;
     Q.adjustmentFactors_spd_prussia = 0.98;
     Q.adjustmentFactors_aspd_prussia = 0.6;
-    Q.adjustmentFactors_kpd_prussia = 1.1;
     Q.adjustmentFactors_ddp_prussia = 0.95;
     Q.adjustmentFactors_dbp_prussia = 0.67;
     Q.adjustmentFactors_csrp_prussia = 0.7;
@@ -46,9 +47,10 @@ if (Q.year == 1928) {
     Q.adjustmentFactors_nsdap_prussia = 0.66;
     Q.adjustmentFactors_other_prussia = 0.88;
 } else if (Q.year == 1929) {
+    Q.adjustmentFactors_kpd_prussia = 1.08;
+    Q.adjustmentFactors_sapd_prussia = 1.0;
     Q.adjustmentFactors_spd_prussia = 0.97;
     Q.adjustmentFactors_aspd_prussia = 0.8;
-    Q.adjustmentFactors_kpd_prussia = 1.08;
     Q.adjustmentFactors_ddp_prussia = 0.95;
     Q.adjustmentFactors_dbp_prussia = 0.66;
     Q.adjustmentFactors_csrp_prussia = 0.7;
@@ -63,9 +65,10 @@ if (Q.year == 1928) {
     Q.adjustmentFactors_nsdap_prussia = 1.0;
     Q.adjustmentFactors_other_prussia = 0.85;
 } else if (Q.year == 1930 && Q.kvp_formed == 1) {
+    Q.adjustmentFactors_kpd_prussia = 1.05;
+    Q.adjustmentFactors_sapd_prussia = 1.0;
     Q.adjustmentFactors_spd_prussia = 0.95;
     Q.adjustmentFactors_aspd_prussia = 1.0;
-    Q.adjustmentFactors_kpd_prussia = 1.05;
     Q.adjustmentFactors_ddp_prussia = 0.95;
     Q.adjustmentFactors_dbp_prussia = 0.65;
     Q.adjustmentFactors_csrp_prussia = 0.7;
@@ -80,9 +83,10 @@ if (Q.year == 1928) {
     Q.adjustmentFactors_nsdap_prussia = 1.0;
     Q.adjustmentFactors_other_prussia = 0.8;
 } else if (Q.year == 1930 && Q.kvp_formed == 0) {
+    Q.adjustmentFactors_kpd_prussia = 1.05;
+    Q.adjustmentFactors_sapd_prussia = 1.0;
     Q.adjustmentFactors_spd_prussia = 0.95;
     Q.adjustmentFactors_aspd_prussia = 1.0;
-    Q.adjustmentFactors_kpd_prussia = 1.05;
     Q.adjustmentFactors_ddp_prussia = 0.95;
     Q.adjustmentFactors_dbp_prussia = 0.65;
     Q.adjustmentFactors_csrp_prussia = 0.7;
@@ -97,9 +101,10 @@ if (Q.year == 1928) {
     Q.adjustmentFactors_nsdap_prussia = 1.0;
     Q.adjustmentFactors_other_prussia = 0.75;
 } else if (Q.year == 1931) {
+    Q.adjustmentFactors_kpd_prussia = 1.0;
+    Q.adjustmentFactors_sapd_prussia = 1.0;
     Q.adjustmentFactors_spd_prussia = 0.95;
     Q.adjustmentFactors_aspd_prussia = 1.15;
-    Q.adjustmentFactors_kpd_prussia = 1.0;
     Q.adjustmentFactors_ddp_prussia = 0.95;
     Q.adjustmentFactors_dbp_prussia = 0.7;
     Q.adjustmentFactors_csrp_prussia = 0.7;
@@ -114,9 +119,10 @@ if (Q.year == 1928) {
     Q.adjustmentFactors_nsdap_prussia = 1.0;
     Q.adjustmentFactors_other_prussia = 0.7;
 } else if (Q.year >= 1932) {
+    Q.adjustmentFactors_kpd_prussia = 1.0;
+    Q.adjustmentFactors_sapd_prussia = 1.0;
     Q.adjustmentFactors_spd_prussia = 0.95;
     Q.adjustmentFactors_aspd_prussia = 1.1;
-    Q.adjustmentFactors_kpd_prussia = 1.0;
     Q.adjustmentFactors_ddp_prussia = 0.95;
     Q.adjustmentFactors_dbp_prussia = 0.7;
     Q.adjustmentFactors_csrp_prussia = 0.73;
@@ -225,25 +231,27 @@ if (Q.dvp_pl >= Q.spd_pl && Q.dvp_pl >= Q.nsdap_pl && Q.dvp_pl >= Q.kpd_pl) {
 
 
 
-if (!Q.lvp_formed && !Q.nfvp_formed) Q.weimar_coalition_prussia = parseFloat((Q.spd_pl + Q.ddp_pl + Q.csrp_pl + Q.z_pl).toFixed(1));
-if (Q.lvp_formed || Q.nfvp_formed) Q.weimar_coalition_prussia = parseFloat((Q.spd_pl + Q.dvp_pl + Q.csrp_pl + Q.z_pl).toFixed(1));
-if (Q.aspd_exist && Q.aspd_ideology == "Moderate") Q.weimar_coalition_prussia = parseFloat((Q.weimar_coalition_prussia + Q.aspd_pl).toFixed(1));
+Q.popular_front_prussia = parseFloat((Q.kpd_pl + Q.sapd_pl + Q.spd_pl + Q.ddp_pl + Q.csrp_pl).toFixed(1));
 
-Q.grand_coalition_prussia = parseFloat((Q.spd_pl + Q.ddp_pl + Q.csrp_pl + Q.z_pl + Q.dvp_pl).toFixed(1));
-if (Q.aspd_exist && Q.aspd_ideology == "Moderate") Q.grand_coalition_prussia = parseFloat((Q.grand_coalition_prussia + Q.aspd_pl).toFixed(1));
+if (!Q.lvp_formed && !Q.nfvp_formed) Q.weimar_coalition_prussia = parseFloat((Q.sapd_pl + Q.spd_pl + Q.ddp_pl + Q.csrp_pl + Q.z_pl).toFixed(1));
+if (Q.lvp_formed || Q.nfvp_formed) Q.weimar_coalition_prussia = parseFloat((Q.sapd_pl + Q.spd_pl + Q.dvp_pl + Q.csrp_pl + Q.z_pl).toFixed(1));
+if (Q.aspd_exist && Q.aspd_radical == 0) Q.weimar_coalition_prussia = parseFloat((Q.weimar_coalition_prussia + Q.aspd_pl).toFixed(1));
+
+Q.grand_coalition_prussia = parseFloat((Q.sapd_pl + Q.spd_pl + Q.ddp_pl + Q.csrp_pl + Q.dvp_pl).toFixed(1));
+if (Q.cvp_formed == 0) Q.grand_coalition_prussia = parseFloat((Q.grand_coalition_prussia + Q.z_pl).toFixed(1));
+if (Q.aspd_exist && Q.aspd_radical == 0) Q.grand_coalition_prussia = parseFloat((Q.grand_coalition_prussia + Q.aspd_pl).toFixed(1));
 
 Q.bourgeois_coalition_prussia = parseFloat((Q.ddp_pl + Q.csrp_pl + Q.z_pl + Q.dvp_pl + Q.other_pl + Q.kvp_pl + Q.wp_pl + Q.dbp_pl + Q.cnblp_pl + Q.csvd_pl).toFixed(1));
-if (Q.aspd_exist && Q.aspd_ideology == "Moderate") Q.bourgeois_coalition_prussia = parseFloat((Q.bourgeois_coalition_prussia + Q.aspd_pl).toFixed(1));
+if (Q.aspd_exist && Q.aspd_radical == 0) Q.bourgeois_coalition_prussia = parseFloat((Q.bourgeois_coalition_prussia + Q.aspd_pl).toFixed(1));
 
-if (Q.dnvp_ideology === "Radical") Q.far_right_coalition_prussia = parseFloat((Q.dnvp_pl + Q.nsdap_pl).toFixed(1));
+if (!Q.dnf_formed) Q.far_right_coalition_prussia = parseFloat((Q.dnvp_pl + Q.nsdap_pl).toFixed(1));
 if (Q.dnf_formed) Q.far_right_coalition_prussia = parseFloat((Q.dnf_pl + Q.nsdap_pl).toFixed(1));
 
 
 Q.in_dvp_majority_prussia = 0;
+Q.in_popular_front_prussia = 0;
 Q.in_weimar_coalition_prussia = 0;
-Q.in_minority_weimar_coalition_prussia = 0;
 Q.in_grand_coalition_prussia = 0;
-Q.in_minority_grand_coalition_prussia = 0;
 Q.in_bourgeois_coalition_prussia = 0;
 Q.in_far_right_coalition_prussia = 0;
 
@@ -252,27 +260,38 @@ Q.dvp_prussia = 0;
 Q.grand_coalition_prussia_failed = 0;
 !}
 on-display: {!
-data = [
-    {
+data = []
+if (Q.kpd_exist && Q.kpd_pl) {
+    data.push({
         "id": "kpd",
-        "legend": "KPD",
-        "name": "KPD",
+        "legend": Q.kpd_name,
+        "name": Q.kpd_name,
         "seats": Math.round(Q.kpd_pl*4.5),
-    },
-    {
+    });
+}
+if (Q.sapd_formed && Q.sapd_pl) {
+    data.push({
+        "id": "sapd",
+        "legend": "SAPD",
+        "name": "SAPD",
+        "seats": Math.round(Q.sapd_pl*4.5),
+    });
+}
+if (Q.spd_pl) {
+    data.push({
         "id": "spd",
-        "legend": "SPD",
-        "name": "SPD",
+        "legend": Q.spd_name,
+        "name": Q.spd_name,
         "seats": Math.round(Q.spd_pl*4.5),
-    }
-];
+    });
+}
 if (Q.aspd_exist && Q.aspd_pl) {
     data.push({
-            "id": "aspd",
-            "legend": "ASPD",
-            "name": "ASPD",
-            "seats": Math.round(Q.aspd_pl*4.5),
-            });
+        "id": "aspd",
+        "legend": "ASPD",
+        "name": "ASPD",
+        "seats": Math.round(Q.aspd_pl*4.5),
+        });
 }
 if (Q.ddp_exist && Q.ddp_pl) {
     data.push({
@@ -298,22 +317,22 @@ if (Q.lvp_formed && Q.dvp_pl) {
         "seats": Math.round(Q.dvp_pl*4.5),
     });
 }
-if (Q.csrp_exist && Q.csrp_pl) {
+if (Q.csrp_formed && Q.csrp_pl) {
     data.push({
-            "id": "csrp",
-            "legend": "CSRP",
-            "name": "CSRP",
-            "seats": Math.round(Q.csrp_pl*4.5),
-            });
+        "id": "csrp",
+        "legend": "CSRP",
+        "name": "CSRP",
+        "seats": Math.round(Q.csrp_pl*4.5),
+        });
 }
-data = data.concat([
-    {
+if (Q.z_pl) {
+    data.push({
         "id": "z",
-        "legend": "Center",
-        "name": "Center",
+        "legend": Q.z_name,
+        "name": Q.z_name,
         "seats": Math.round(Q.z_pl*4.5),
-    },
-]);
+    });
+}
 if (Q.nfvp_formed && Q.dvp_pl) {
     data.push({
         "id": "nfvp",
@@ -373,11 +392,11 @@ if (Q.kvp_formed && Q.kvp_pl) {
         "seats": Math.round(Q.kvp_pl*4.5),
     });
 }
-if (Q.dnvp_pl) {
+if (Q.dnvp_exist && Q.dnvp_pl) {
     data.push({
         "id": "dnvp",
-        "legend": "DNVP",
-        "name": "DNVP",
+        "legend": Q.dnvp_exist,
+        "name": Q.dnvp_exist,
         "seats": Math.round(Q.dnvp_pl*4.5),
     });
 }
@@ -389,14 +408,14 @@ if (Q.dnf_formed && Q.dnf_pl) {
         "seats": Math.round(Q.dnf_pl*4.5),
     });
 }
-data = data.concat([
-    {
+if (Q.nsdap_exist && Q.nsdap_pl) {
+    data.push({
         "id": "nsdap",
         "legend": "NSDAP",
         "name": "NSDAP",
         "seats": Math.round(Q.nsdap_pl*4.5),
-    },
-]);
+    });
+};
 
 if (window && d3) {
     var width = 500;
@@ -425,19 +444,21 @@ go-to: coalition_menu
 {!<tr><td>Party</td><td>Vote Share</td><td>% Change</td><td>Landtag Seats</td><td>% Change</td></tr>!}
 {!<tr><td><div class="box" style='background-color: var(--dvp-color); outline: 2px; outline-style: solid;'> </div> !} **[+ dvp_name +]**: {!</td><td>!} **[+ dvp_votes_prussia +]%** {!</td><td>!} **[+ votes_change_dvp_prussia +]** {!</td><td>!} **[+ dvp_pl +]%** {!</td><td>!} **[+ change_dvp_pl +]** {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !} KPD: {!</td><td>!} [+ kpd_votes_prussia +]% {!</td><td>!} [+ votes_change_kpd_prussia +] {!</td><td>!} [+ kpd_pl +]% {!</td><td>!} [+ change_kpd_pl +] {!</td></tr>!}
+[? if kpd_exist: {!<tr><td><div class="box" style='background-color:var(--kpd-color)'> </div> !} [+ kpd_name +]: {!</td><td>!} [+ kpd_votes_prussia +]% {!</td><td>!} [+ votes_change_kpd_prussia +] {!</td><td>!} [+ kpd_pl +]% {!</td><td>!} [+ change_kpd_pl +] {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#E3000F'> </div> !} SPD: {!</td><td>!} [+ spd_votes_prussia +]% {!</td><td>!} [+ votes_change_spd_prussia +] {!</td><td>!} [+ spd_pl +]% {!</td><td>!} [+ change_spd_pl +] {!</td></tr>!}
+[? if sapd_formed: {!<tr><td><div class="box" style='background-color:#C40000'> </div> !} SAPD: {!</td><td>!} [+ sapd_votes_prussia +]% {!</td><td>!} [+ votes_change_sapd_prussia +] {!</td><td>!} [+ spd_pl +]% {!</td><td>!} [+ change_sapd_pl +] {!</td></tr>!} ?]
+
+{!<tr><td><div class="box" style='background-color:var(--spd-color)'> </div> !} [+ spd_name +]: {!</td><td>!} [+ spd_votes_prussia +]% {!</td><td>!} [+ votes_change_spd_prussia +] {!</td><td>!} [+ spd_pl +]% {!</td><td>!} [+ change_spd_pl +] {!</td></tr>!}
 
 [? if aspd_exist: {!<tr><td><div class="box" style='background-color:#FE9E00'> </div> !} ASPD: {!</td><td>!} [+ aspd_votes_prussia +]% {!</td><td>!} [+ votes_change_aspd_prussia +] {!</td><td>!} [+ aspd_pl +]% {!</td><td>!} [+ change_aspd_pl +] {!</td><td>!} ?]
 
-[? if ddp_exist: {!<tr><td><div class="box" style='background-color:#DCCA4A'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_votes_prussia +]% {!</td><td>!} [+ votes_change_ddp_prussia +] {!</td><td>!} [+ ddp_pl +]% {!</td><td>!} [+ change_ddp_pl +] {!</td></tr>!} ?]
+[? if ddp_exist: {!<tr><td><div class="box" style='background-color:var(--ddp-color)'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_votes_prussia +]% {!</td><td>!} [+ votes_change_ddp_prussia +] {!</td><td>!} [+ ddp_pl +]% {!</td><td>!} [+ change_ddp_pl +] {!</td></tr>!} ?]
 
 [? if dbp_exist: {!<tr><td><div class="box" style='background-color:#38C538'> </div> !} DBP: {!</td><td>!} [+ dbp_votes_prussia +]% {!</td><td>!} [+ votes_change_dbp_prussia +] {!</td><td>!} [+ dbp_pl +]% {!</td><td>!} [+ change_dbp_pl +] {!</td></tr>!} ?]
 
-[? if csrp_exist: {!<tr><td><div class="box" style='background-color:#FF6B21'> </div> !} CSRP: {!</td><td>!} [+ csrp_votes_prussia +]% {!</td><td>!} [+ votes_change_csrp_prussia +] {!</td><td>!} [+ csrp_pl +]% {!</td><td>!} [+ change_csrp_pl +] {!</td><td>!} ?]
+[? if csrp_formed: {!<tr><td><div class="box" style='background-color:#FF6B21'> </div> !} CSRP: {!</td><td>!} [+ csrp_votes_prussia +]% {!</td><td>!} [+ votes_change_csrp_prussia +] {!</td><td>!} [+ csrp_pl +]% {!</td><td>!} [+ change_csrp_pl +] {!</td><td>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#000'> </div> !} Z: {!</td><td>!} [+ z_votes_prussia +]% {!</td><td>!} [+ votes_change_z_prussia +] {!</td><td>!} [+ z_pl +]% {!</td><td>!} [+ change_z_pl +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#000'> </div> !} [+ z_name +]: {!</td><td>!} [+ z_votes_prussia +]% {!</td><td>!} [+ votes_change_z_prussia +] {!</td><td>!} [+ z_pl +]% {!</td><td>!} [+ change_z_pl +] {!</td></tr>!}
 
 [? if csvd_exist: {!<tr><td><div class="box" style='background-color:#8ED8E4'> </div> !} CSVD: {!</td><td>!} [+ csvd_votes_prussia +]% {!</td><td>!} [+ votes_change_csvd_prussia +] {!</td><td>!} [+ csvd_pl +]% {!</td><td>!} [+ change_csvd_pl +] {!</td><td>!} ?]
 
@@ -447,40 +468,52 @@ go-to: coalition_menu
 
 [? if kvp_formed: {!<tr><td><div class="box" style='background-color:#455B95'> </div> !} KVP: {!</td><td>!} [+ kvp_votes_prussia +]% {!</td><td>!} [+ votes_change_kvp_prussia +] {!</td><td>!} [+ kvp_pl +]% {!</td><td>!} [+ change_kvp_pl +] {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} DNVP: {!</td><td>!} [+ dnvp_votes_prussia +]% {!</td><td>!} [+ votes_change_dnvp_prussia +] {!</td><td>!} [+ dnvp_pl +]% {!</td><td>!} [+ change_dnvp_pl +] {!</td></tr>!}
+[? if dnvp_exist: {!<tr><td><div class="box" style='background-color:var(--dnvp-color)'> </div> !} [+ dnvp_name +]: {!</td><td>!} [+ dnvp_votes_prussia +]% {!</td><td>!} [+ votes_change_dnvp_prussia +] {!</td><td>!} [+ dnvp_pl +]% {!</td><td>!} [+ change_dnvp_pl +] {!</td></tr>!} ?]
 
 [? if dnf_formed: {!<tr><td><div class="box" style='background-color:#003755'> </div> !} DNF: {!</td><td>!} [+ dnf_votes_prussia +]% {!</td><td>!} [+ votes_change_dnf_prussia +] {!</td><td>!} [+ dnf_pl +]% {!</td><td>!} [+ change_dnf_pl +] {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_votes_prussia +]% {!</td><td>!} [+ votes_change_nsdap_prussia +] {!</td><td>!} [+ nsdap_pl +]% {!</td><td>!} [+ change_nsdap_pl +] {!</td></tr>!}
+[? if nsdap_exist: {!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_votes_prussia +]% {!</td><td>!} [+ votes_change_nsdap_prussia +] {!</td><td>!} [+ nsdap_pl +]% {!</td><td>!} [+ change_nsdap_pl +] {!</td></tr>!} ?]
 
 {!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Others: {!</td><td>!} [+ other_votes_prussia +]% {!</td><td>!} [+ votes_change_other_prussia +] {!</td><td>!} [+ other_pl +]% {!</td><td>!} [+ change_other_pl +] {!</td></tr>!}
 {!</table>!}
 
 **Potential coalitions:**
 
-Weimar Coalition (<span style="color: #E3000F;">**SPD**</span> + <span style="color: #000000;">**Z**</span> + [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>?][? if lvp_formed or nfvp_formed: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>?][? if aspd_exist and aspd_ideology = "Moderate": + <span style="color: #FE9E00;">**ASPD**</span>?][? if csrp_exist:  + <span style="color: #FF6B21;">**CSRP**</span>?]): [+ weimar_coalition_prussia +]%
+[? if cvp_formed == 0: Weimar Coalition ([? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?] <span style="color: var(--spd-color);">**[+ spd_name +]**</span> + <span style="color: var(--z-color);">**[+ z_name +]**</span> + [? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span>?][? if lvp_formed or nfvp_formed: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>?][? if aspd_exist and aspd_radical == 0: + <span style="color: #FE9E00;">**ASPD**</span>?][? if csrp_formed: + <span style="color: #FF6B21;">**CSRP**</span>?]): [+ weimar_coalition_prussia +]% ?]
 
-Grand Coalition (<span style="color: #E3000F;">**SPD**</span> + <span style="color: #000000;">**Z**</span> + [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>[? if aspd_exist and aspd_ideology = "Moderate":  + <span style="color: #FE9E00;">**ASPD**</span>?][? if csrp_exist:  + <span style="color: #FF6B21;">**CSRP**</span>?]): [+ grand_coalition_prussia +]%
+Grand Coalition ([? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?] <span style="color: var(--spd-color);">**[+ spd_name +]**</span> [? if cvp_formed == 0: + <span style="color: var(--z-color);">**[+ z_name +]**</span> ?][? if ddp_exist: + <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> ?] + <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> [? if aspd_exist and aspd_radical == 0: + <span style="color: #FE9E00;">**ASPD**</span>?][? if csrp_formed: + <span style="color: #FF6B21;">**CSRP**</span>?]): [+ grand_coalition_prussia +]%
 
-Bourgeois Coalition (<span style="color: #000000;">**Z**</span> [? if ddp_exist: + <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?]+ <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + [? if kvp_formed: <span style="color: #455B95;">**KVP**</span> +  ?][? if wp_exist: <span style="color: #B8996F;">**WP**</span> +  ?][? if dbp_exist: <span style="color: #38C538;">**DBP**</span> +  ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span> +  ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span> +  ?][? if csrp_exist: <span style="color: #FF6B21;">**CSRP**</span> +  ?][? if aspd_exist and aspd_ideology = "Moderate": <span style="color: #FE9E00;">**ASPD**</span> +  ?] <span style="color: #909090;">**Others**</span>): [+ bourgeois_coalition_prussia +]%
+Bourgeois Coalition (<span style="color: var(--z-color);">**[+ z_name +]**</span> [? if ddp_exist: + <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> ?]+ <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + [? if kvp_formed: <span style="color: #455B95;">**KVP**</span> +  ?][? if wp_exist: <span style="color: #B8996F;">**WP**</span> +  ?][? if dbp_exist: <span style="color: #38C538;">**DBP**</span> +  ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span> +  ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span> +  ?][? if csrp_formed: <span style="color: #FF6B21;">**CSRP**</span> +  ?][? if aspd_exist and aspd_radical == 0: <span style="color: #FE9E00;">**ASPD**</span> + ?] <span style="color: #909090;">**Others**</span>): [+ bourgeois_coalition_prussia +]%
 
-Far-Right Coalition (<span style="color: #954B00;">**NSDAP**</span> + [? if dnvp_ideology = "Radical": <span style="color: #3F7BC1;">**DNVP**</span>?][? if dnf_formed: <span style="color: #003755;">**DNF**</span>?]): [+ far_right_coalition_prussia +]%
+Far-Right Coalition (<span style="color: #954B00;">**NSDAP**</span> + [? if dnf_formed == 0: <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span>?][? if dnf_formed: <span style="color: #003755;">**DNF**</span>?]): [+ far_right_coalition_prussia +]%
 
 There are some potential coalition arrangements.
 
 @coalition_menu
 
+- @popular_front_prussia
 - @weimar_coalition_prussia
 - @grand_coalition_prussia
 - @bourgeois_coalition_prussia
+- @far_right_coalition_prussia
 - @no_majority
+
+@popular_front_prussia
+title: A Popular Front forms.
+view-if: popular_front_prussia >= 50
+subtitle: [? if kpd_exist: <span style="color: var(--kpd-name);">**[+ kpd_name +]**</span> + ?][? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?] <span style="color: var(--spd-color);">**[+ spd_name +]**</span> [? if ddp_exist: + <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> ?][? if csrp_formed: + <span style="color: #FF6B21;">**CSRP**</span>?] ([+ popular_front_prussia +]%)
+on-arrival: in_popular_front_prussia = 1;
+
+A Popular Front forms.
+
+- @prussia_mp
 
 @weimar_coalition_prussia
 title: [? if not lvp_formed and not nfvp_formed: Refuse to participate in a government, so that a Weimar Coalition may be formed. ?][? if lvp_formed or nfvp_formed: We can form a Weimar Coalition. ?]
-subtitle: <span style="color: #E3000F;">**SPD**</span> + <span style="color: #000000;">**Z**</span> + [? if not lvp_formed and not nfvp_formed: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>?][? if lvp_formed or nfvp_formed: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>?][? if aspd_exist and aspd_ideology = "Moderate":  + <span style="color: #FE9E00;">**ASPD**</span>?][? if csrp_exist:  + <span style="color: #FF6B21;">**CSRP**</span>?] ([+ weimar_coalition_prussia +]%)
-view-if: weimar_coalition_prussia >= 50
+subtitle: [? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?] <span style="color: var(--spd-color);">**[+ spd_name +]**</span> + <span style="color: var(--z-color);">**[+ z_name +]**</span> + [? if not lvp_formed and not nfvp_formed: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span>?][? if lvp_formed or nfvp_formed: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>?][? if aspd_exist and aspd_radical == 0:  + <span style="color: #FE9E00;">**ASPD**</span>?][? if csrp_formed:  + <span style="color: #FF6B21;">**CSRP**</span>?] ([+ weimar_coalition_prussia +]%)
+view-if: weimar_coalition_prussia >= 50 and cvp_formed == 0
 
-There are enough votes for a majority Weimar Coalition of the <span style="color: #000000;">**Center**</span>, <span style="color: #E3000F;">**SPD**</span> and [? if not lvp_formed and not nfvp_formed: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>?][? if lvp_formed or nfvp_formed: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>?]. [? if largest_party_prussia == dvp_name and not lvp_formed and not nfvp_formed: However, this will be seen as abdicating responsibility for government, as we are the largest party. ?]
+There are enough votes for a majority Weimar Coalition of the <span style="color: var(--z-color);">**[+ z_name +]**</span>, <span style="color: var(--spd-color);">**[+ spd_name +]**</span> and [? if not lvp_formed and not nfvp_formed: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span>?][? if lvp_formed or nfvp_formed: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>?]. [? if largest_party_prussia == dvp_name and not lvp_formed and not nfvp_formed: However, this will be seen as abdicating responsibility for government, as we are the largest party. ?]
 
 - @weimar_coalition_prussia_sure: A center-left coalition takes power.
 - @weimar_coalition_prussia_dvp: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> forms coalition with Center Party and SPD.
@@ -490,7 +523,7 @@ There are enough votes for a majority Weimar Coalition of the <span style="color
 view-if: not lvp_formed and not nfvp_formed
 on-arrival: spd_prussia = 1; in_weimar_coalition_prussia = 1; pro_republic += 2; industrialist_dissent += 5; nationalist_dissent += 5;
 
-A majority Weimar coalition is formed, with Braun as Minister-President.
+A majority Weimar coalition is formed.
 
 - @prussia_mp
 
@@ -498,23 +531,22 @@ A majority Weimar coalition is formed, with Braun as Minister-President.
 view-if: lvp_formed or nfvp_formed
 on-arrival: spd_prussia = 1; dvp_prussia = 1; in_weimar_coalition_prussia = 1;
 
-A majority Weimar coalition is formed, with Braun as Minister-President.
+A majority Weimar coalition is formed.
 
 - @prussia_mp
 
-
 @grand_coalition_prussia
 title: We can form a Grand Coalition.
-view-if: grand_coalition_prussia >= 50 and grand_coalition_prussia_failed == 0 and not (lvp_formed or nfvp_formed)
-subtitle: <span style="color: #E3000F;">**SPD**</span> + <span style="color: #000000;">**Z**</span> + [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>[? if aspd_exist and aspd_ideology = "Moderate":  + <span style="color: #FE9E00;">**ASPD**</span>?][? if csrp_exist:  + <span style="color: #FF6B21;">**CSRP**</span>?] ([+ grand_coalition_prussia +]%)
-go-to: grand_coalition_prussia_success if (spd_relation >= 45 and dvp_ideology = "Left") or weimar_coalition_prussia < 50; grand_coalition_prussia_failed if (spd_relation < 45 or dvp_ideology = "Right") and weimar_coalition_prussia >= 50
+view-if: grand_coalition_prussia >= 50 and grand_coalition_prussia_failed == 0 and (cvp_formed or (lvp_formed == 0 and nfvp_formed == 0))
+subtitle: [? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?]<span style="color: var(--spd-color);">**[+ spd_name +]**</span> + [? if cvp_formed == 0: <span style="color: var(--z-color);">**[+ z_name +]**</span> + ?][? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>[? if aspd_exist and aspd_radical == 0:  + <span style="color: #FE9E00;">**ASPD**</span>?][? if csrp_formed:  + <span style="color: #FF6B21;">**CSRP**</span>?] ([+ grand_coalition_prussia +]%)
+go-to: grand_coalition_prussia_success if (spd_relation >= 45 and dvp_left >= 0) or weimar_coalition_prussia < 50; grand_coalition_prussia_failed if (spd_relation < 45 or dvp_left < 0) and weimar_coalition_prussia >= 50
 
-We will ask the <span style="color: #E3000F;">**SPD**</span> to include us in Prussian Government.
+We will ask the <span style="color: var(--spd-color);">**[+ spd_name +]**</span> to include us in Prussian Government.
 
 @grand_coalition_prussia_success
 on-arrival: in_grand_coalition_prussia = 1; spd_prussia = 1; dvp_prussia = 1; liberal_strength += 5;
 
-The <span style="color: #E3000F;">**SPD**</span> has agreed to form a Grand Coalition!
+The <span style="color: var(--spd-color);">**[+ spd_name +]**</span> has agreed to form a Grand Coalition!
 
 - @prussia_mp
 
@@ -522,20 +554,27 @@ The <span style="color: #E3000F;">**SPD**</span> has agreed to form a Grand Coal
 on-arrival: in_grand_coalition_prussia = 0; grand_coalition_prussia_failed = 1;
 go-to: coalition_menu
 
-The <span style="color: #E3000F;">**SPD**</span> has refused to form a Grand Coalition.
-
-
+The <span style="color: var(--spd-color);">**[+ spd_name +]**</span> has refused to form a Grand Coalition.
 
 @bourgeois_coalition_prussia
 title: We can form a Bourgeois Coalition.
 view-if: bourgeois_coalition_prussia >= 50
-subtitle: <span style="color: #000000;">**Z**</span> [? if ddp_exist: + <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?]+ <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + [? if kvp_formed: <span style="color: #455B95;">**KVP**</span> +  ?][? if wp_exist: <span style="color: #B8996F;">**WP**</span> +  ?][? if dbp_exist: <span style="color: #38C538;">**DBP**</span> +  ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span> +  ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span> +  ?][? if csrp_exist: <span style="color: #FF6B21;">**CSRP**</span> +  ?][? if aspd_exist and aspd_ideology = "Moderate": <span style="color: #FE9E00;">**ASPD**</span> +  ?] <span style="color: #909090;">**Others**</span> ([+ bourgeois_coalition_prussia +]%)
+subtitle: <span style="color: var(--z-color);">**[+ z_name +]**</span> [? if ddp_exist: + <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> ?]+ <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + [? if kvp_formed: <span style="color: #455B95;">**KVP**</span> +  ?][? if wp_exist: <span style="color: #B8996F;">**WP**</span> +  ?][? if dbp_exist: <span style="color: #38C538;">**DBP**</span> +  ?][? if cnblp_exist: <span style="color: #7FCEB1;">**CNBLP**</span> +  ?][? if csvd_exist: <span style="color: #8ED8E4;">**CSVD**</span> +  ?][? if csrp_formed: <span style="color: #FF6B21;">**CSRP**</span> +  ?][? if aspd_exist and aspd_radical == 0: <span style="color: #FE9E00;">**ASPD**</span> + ?] <span style="color: #909090;">**Others**</span> ([+ bourgeois_coalition_prussia +]%)
 on-arrival: in_bourgeois_coalition_prussia = 1; dvp_prussia = 1;
 
 A Bourgeois Coalition is formed.
 
 - @prussia_mp
 
+@far_right_coalition_prussia
+title: Far-right Coalition is formed!
+view-if: far_right_coalition_prussia >= 50
+subtitle: <span style="color: #954B00;">**NSDAP**</span> + [? if dnf_formed == 0: <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span>?][? if dnf_formed: <span style="color: #003755;">**DNF**</span>?] ([+ far_right_coalition_prussia +]%)
+on-arrival: in_far_right_coalition_prussia = 1;
+
+A Far-right Coalition is formed.
+
+- @prussia_mp
 
 
 
@@ -547,43 +586,53 @@ WIP
 - @braun
 - @fischbeck
 - @stegerwald
+- @papen
 
 @fischbeck
-title: Ernst Stendel, the [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?][? if ddp_exist == 0: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> ?] candidate.
-subtitle: A member of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> who briefly served as Prussian Minister of Trade.
+title: Otto Fischbeck, the [? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> ?][? if ddp_exist == 0: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> ?] candidate.
+subtitle: A member of the <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> who briefly served as Prussian Minister of Trade.
 view-if: (dvp_prussia and (lvp_formed or nfvp_formed)) or in_grand_coalition_prussia or in_weimar_coalition_prussia or in_bourgeois_coalition_prussia
-choose-if: in_dvp_majority_prussia or in_bourgeois_coalition_prussia or (in_grand_coalition_prussia and (dvp_pl + ddp_pl) > spd_pl) or (in_weimar_coalition_prussia and dvp_prussia and (dvp_pl + ddp_pl) > spd_pl) or (in_weimar_coalition_prussia and not dvp_prussia and ddp_pl > spd_pl)
-unavailable-subtitle: The <span style="color: #E3000F;">**SPD**</span> can prevent him from becoming the Minister-President.
+choose-if: in_dvp_majority_prussia or in_bourgeois_coalition_prussia or (in_weimar_coalition_prussia or in_grand_coalition_prussia and (dvp_pl > spd_pl))
+unavailable-subtitle: The <span style="color: var(--spd-color);">**[+ spd_name +]**</span> can prevent him from becoming the Minister-President.
 on-arrival: prussia_leader = "Fischbeck"; prussia_leader_party = ddp_name if ddp_exist; prussia_leader_party = dvp_name if lvp_formed or nfvp_formed; old_middle_dvp += 2*(1-dissent); new_middle_dvp += 4*(1-dissent); pro_republic += 2*(1-dissent)
 face-image: img/portraits/FischbeckOtto.jpg
 
 Otto Fischbeck was chosen.
 
 @stegerwald
-title: Adam Stegerwald, the <span style="color: #000000;">**Center**</span> candidate.
-subtitle: He is a very high-profile member of the <span style="color: #000000;">**Center**</span> and giving him the position might tip the scales in his favor within the party.
+title: Adam Stegerwald, the <span style="color: var(--z-color);">**[+ z_name +]**</span> candidate.
+subtitle: He is a very high-profile member of the <span style="color: var(--z-color);">**[+ z_name +]**</span> and giving him the position might tip the scales in his favor within the party.
 view-if: in_grand_coalition_prussia or in_bourgeois_coalition_prussia or in_weimar_coalition_prussia
-choose-if: in_bourgeois_coalition_prussia or (in_grand_coalition_prussia and (ddp_pl + dvp_pl + z_pl) > spd_pl) or (in_weimar_coalition_prussia and dvp_prussia and (ddp_pl + dvp_pl + z_pl) > spd_pl) or (in_weimar_coalition_prussia and not dvp_prussia and z_pl > spd_pl)
-unavailable-subtitle: The <span style="color: #E3000F;">**SPD**</span> can prevent him from becoming the Minister-President.
-on-arrival: prussia_leader = "Stegerwald"; prussia_leader_party = "Z"; catholics_z += 4; pro_republic += 2
+choose-if: in_bourgeois_coalition_prussia or (in_grand_coalition_prussia and (ddp_pl + dvp_pl + z_pl) > spd_pl) or (in_weimar_coalition_prussia and dvp_prussia and (ddp_pl + dvp_pl + z_pl) > spd_pl)
+unavailable-subtitle: The <span style="color: var(--spd-color);">**[+ spd_name +]**</span> can prevent him from becoming the Minister-President.
+on-arrival: prussia_leader = "Stegerwald"; prussia_leader_party = z_name; catholics_z += 4; pro_republic += 2
 face-image: img/portraits/StegerwaldAdam.jpg
 
 Adam Stegerwald was chosen.
 
 @braun
-title: Otto Braun, the <span style="color: #E3000F;">**SPD**</span> candidate.
+title: Otto Braun, the <span style="color: var(--spd-color);">**[+ spd_name +]**</span> candidate.
 subtitle: The "Red Tsar" of Prussia is the expected choice.
-view-if: in_grand_coalition_prussia or in_weimar_coalition_prussia
-on-arrival: prussia_leader = "Braun"; prussia_leader_party = "SPD"; workers_spd += 4; unemployed_spd += 2; socialism += 2; pro_republic += 2
+view-if: in_grand_coalition_prussia or in_weimar_coalition_prussia or in_popular_front_prussia
+on-arrival: prussia_leader = "Braun"; prussia_leader_party = spd_name; workers_spd += 4; unemployed_spd += 2; socialism += 2; pro_republic += 2
 face-image: img/portraits/BraunOtto.jpg
 
 Otto Braun was chosen.
+
+@papen
+title: Franz von Papen, an <span style="color: #909090;">**Independent**</span> candidate.
+subtitle: A former <span style="color: var(--z-color);">**[+ z_name +]**</span> member, the <span style="color: #954B00;">**NSDAP**</span> is willing to support him to appease the Conservative establishment.
+view-if: in_far_right_coalition_prussia
+on-arrival: prussia_leader = "Papen"; prussia_leader_party = "I"; rural_nsdap += 4; old_middle_nsdap += 2; nationalism += 2; pro_republic -= 3
+face-image: img/portraits/PapenFranz.jpg
+
+Franz von Papen was chosen.
 
 
 
 @no_majority
 title: There is no clear governing majority.
-view-if: weimar_coalition_prussia < 50 and bourgeois_coalition_prussia < 50 and (grand_coalition_prussia < 50 or grand_coalition_prussia_failed == 1)
-on-arrival: next_election_time_prussia = time+3; next_election_month_prussia = month + 3; next_election_year_prussia = year; next_election_year_prussia += 1 if next_election_month_prussia > 12; next_election_month_prussia -= 12 if next_election_month_prussia > 12; workers_nsdap += 2; unemployed_nsdap += 2; old_middle_nsdap += 1; new_middle_nsdap += 1; rural_nsdap += 1; pro_republic -= 2;
+view-if: weimar_coalition_prussia < 50 and bourgeois_coalition_prussia < 50 and (grand_coalition_prussia < 50 or grand_coalition_prussia_failed == 1) and far_right_coalition_prussia < 50
+on-arrival: next_election_time_prussia = time + 3; next_election_month_prussia = month + 3; next_election_year_prussia = year; next_election_year_prussia += 1 if next_election_month_prussia > 12; next_election_month_prussia -= 12 if next_election_month_prussia > 12; workers_nsdap += 2; unemployed_nsdap += 2; old_middle_nsdap += 1; new_middle_nsdap += 1; rural_nsdap += 1; pro_republic -= 2; dvp_prussia = 1 if was_dvp_prussia; in_popular_front_prussia = 1 if was_in_popular_front_prussia; in_weimar_coalition_prussia = 1 if was_in_weimar_coalition_prussia; in_grand_coalition_prussia = 1 if was_in_grand_coalition_prussia; in_bourgeois_coalition_prussia = 1 if was_in_bourgeois_coalition_prussia; in_far_right_coalition_prussia = 1 if was_in_far_right_coalition_prussia
 
 There is no path to a majority government for now. New elections have been set for [+ next_election_month_prussia : month +] [+ next_election_year_prussia +].

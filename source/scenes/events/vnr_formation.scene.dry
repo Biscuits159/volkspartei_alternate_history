@@ -1,8 +1,8 @@
 title: <span style="color: #D3D3A9;">**VNR**</span> formed!
 subtitle: A new nationalist organization emerges.
 on-arrival: {!
-Q.vnr_exist = 1;
-Q.ddp_right += 1;
+Q.vnr_formed = 1;
+Q.ddp_left -= 1;
 Q.new_middle_other += 2;
 Q.old_middle_other += 1;
 !}

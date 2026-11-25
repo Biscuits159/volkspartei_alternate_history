@@ -14,9 +14,9 @@ if (Q.economic_minister == "Curtius") Q.economic_minister = "Krohne";
 Q.stresemann_survive_points = 0;
 if (Q.lvp_formed || Q.nfvp_formed) Q.stresemann_survive_points += 1;
 if (Q.dvp_reform) Q.stresemann_survive_points += 1;
-if (Q.dvp_ideology == "Left") Q.stresemann_survive_points += 1;
+if (Q.dvp_left >= 0) Q.stresemann_survive_points += 1;
 if (Q.pro_republic >= 60) Q.stresemann_survive_points += 1;
-if (Q.dnvp_ideology == "Moderate") Q.stresemann_survive_points += 1;
+if (Q.dnvp_leader == "Hergt") Q.stresemann_survive_points += 1;
 if (Q.medical_research >= 1) Q.stresemann_survive_points += 1;
 !}
 

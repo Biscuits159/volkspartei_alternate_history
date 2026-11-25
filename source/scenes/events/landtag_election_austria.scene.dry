@@ -3,7 +3,7 @@ view-if: year = next_election_year_austria and month >= next_election_month_aust
 new-page: true
 tags: event
 priority: 3
-on-arrival: next_election_year_austria = next_election_year_austria + 4; next_election_time_austria = time + 48; was_dvp_austria = 0; was_in_dvp_majority_austria = 0; was_in_grand_coalition_austria = 0; was_in_bourgeois_coalition_austria = 0; was_in_far_right_coalition_austria = 0;
+on-arrival: next_election_year_austria = next_election_year_austria + 4; next_election_time_austria = time + 48; was_dvp_austria = 0; was_in_popular_front_austria = 0; was_in_dvp_majority_austria = 0; was_in_grand_coalition_austria = 0; was_in_bourgeois_coalition_austria = 0; was_in_far_right_coalition_austria = 0;
 
 = Austrian Elections, [+ month : month +] [+ year +]
 
@@ -162,10 +162,14 @@ Q.old_nsdap_votes_austria = Q.nsdap_votes_austria;
 Q.old_nsdap_al = Q.nsdap_al;
 
 
+Q.popular_front_austria = parseFloat((Q.kpd_al + Q.spd_al + Q.ddp_al + Q.csrp_al).toFixed(1));
 
-Q.grand_coalition_austria = parseFloat((Q.spd_al + Q.ddp_al + Q.dvp_al + Q.z_al + Q.csrp_al).toFixed(1));
+Q.grand_coalition_austria = parseFloat((Q.spd_al + Q.ddp_al + Q.dvp_al + Q.csrp_al).toFixed(1));
+if (Q.cvp_formed == 0) Q.grand_coalition_austria = parseFloat((Q.grand_coalition_austria + Q.z_al).toFixed(1));
+
 Q.bourgeois_coalition_austria = parseFloat((Q.ddp_al + Q.z_al + Q.dvp_al + Q.kvp_al + Q.cnblp_al + Q.csrp_al + Q.other_al).toFixed(1));
-if (Q.dnvp_ideology === "Radical") Q.far_right_coalition_austria = parseFloat((Q.dnvp_al + Q.nsdap_al).toFixed(1));
+
+if (!Q.dnf_formed) Q.far_right_coalition_austria = parseFloat((Q.dnvp_al + Q.nsdap_al).toFixed(1));
 if (Q.dnf_formed) Q.far_right_coalition_austria = parseFloat((Q.dnf_al + Q.nsdap_al).toFixed(1));
 
 
@@ -175,6 +179,8 @@ if (Q.dvp_austria) {
 }
 if (Q.in_dvp_majority_austria) {
     Q.was_in_dvp_majority_austria = 1
+} else if (Q.in_popular_front_austria) {
+    Q.was_in_popular_front_austria = 1
 } else if (Q.in_grand_coalition_austria) {
     Q.was_in_grand_coalition_austria = 1
 } else if (Q.in_bourgeois_coalition_austria) {
@@ -185,6 +191,7 @@ if (Q.in_dvp_majority_austria) {
 
 
 Q.dvp_austria = 0;
+Q.in_popular_front_austria = 0;
 Q.in_dvp_majority_austria = 0;
 Q.in_grand_coalition_austria = 0;
 Q.in_bourgeois_coalition_austria = 0;
@@ -192,19 +199,19 @@ Q.in_far_right_coalition_austria = 0;
 !}
 on-display: {!
 data = []
-if (Q.kpd_al) {
+if (Q.kpd_exist && Q.kpd_al) {
     data.push({
         "id": "kpd",
-        "legend": "KPD",
-        "name": "KPD",
+        "legend": Q.kpd_name,
+        "name": Q.kpd_name,
         "seats": Math.round(Q.kpd_al*1.65),
     });
 }
 if (Q.spd_al) {
     data.push({
         "id": "spd",
-        "legend": "SPD",
-        "name": "SPD",
+        "legend": Q.spd_name,
+        "name": Q.spd_name,
         "seats": Math.round(Q.spd_al*1.65),
     });
 }
@@ -224,7 +231,7 @@ if (Q.lvp_formed && Q.dvp_al) {
         "seats": Math.round(Q.dvp_al*1.65),
     });
 }
-if (Q.csrp_exist && Q.csrp_al) {
+if (Q.csrp_formed && Q.csrp_al) {
     data.push({
         "id": "csrp",
         "legend": "CSRP",
@@ -280,11 +287,11 @@ if (Q.kvp_formed && Q.kvp_al) {
         "seats": Math.round(Q.kvp_al*1.65),
     });
 }
-if (Q.dnvp_al) {
+if (Q.dnvp_exist && Q.dnvp_al) {
     data.push({
         "id": "dnvp",
-        "legend": "DNVP",
-        "name": "DNVP",
+        "legend": Q.dnvp_name,
+        "name": Q.dnvp_name,
         "seats": Math.round(Q.dnvp_al*1.65),
     });
 }
@@ -304,7 +311,7 @@ if (Q.vb_al) {
         "seats": Math.round(Q.vb_al*1.65),
     });
 }
-if (Q.nsdap_al) {
+if (Q.nsdap_exist && Q.nsdap_al) {
     data.push({
         "id": "nsdap",
         "legend": "NSDAP",
@@ -340,13 +347,13 @@ go-to: coalition_menu
 {!<tr><td>Party</td><td>Vote Share</td><td>% Change</td><td>Landtag Seats</td><td>% Change</td></tr>!}
 {!<tr><td><div class="box" style='background-color: var(--dvp-color); outline: 2px; outline-style: solid;'> </div> !} **[+ dvp_name +]**: {!</td><td>!} **[+ dvp_votes_austria +]%** {!</td><td>!} **[+ votes_change_dvp_austria +]** {!</td><td>!} **[+ dvp_al +]%** {!</td><td>!} **[+ change_dvp_al +]** {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !} KPD: {!</td><td>!} [+ kpd_votes_austria +]% {!</td><td>!} [+ votes_change_kpd_austria +] {!</td><td>!} [+ kpd_al +]% {!</td><td>!} [+ change_kpd_al +] {!</td></tr>!}
+[? if kpd_exist: {!<tr><td><div class="box" style='background-color:#8B0000'> </div> !} KPD: {!</td><td>!} [+ kpd_votes_austria +]% {!</td><td>!} [+ votes_change_kpd_austria +] {!</td><td>!} [+ kpd_al +]% {!</td><td>!} [+ change_kpd_al +] {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#E3000F'> </div> !} SPD: {!</td><td>!} [+ spd_votes_austria +]% {!</td><td>!} [+ votes_change_spd_austria +] {!</td><td>!} [+ spd_al +]% {!</td><td>!} [+ change_spd_al +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:var(--spd-color)'> </div> !} SPD: {!</td><td>!} [+ spd_votes_austria +]% {!</td><td>!} [+ votes_change_spd_austria +] {!</td><td>!} [+ spd_al +]% {!</td><td>!} [+ change_spd_al +] {!</td></tr>!}
 
-[? if ddp_exist: {!<tr><td><div class="box" style='background-color:#DCCA4A'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_votes_austria +]% {!</td><td>!} [+ votes_change_ddp_austria +] {!</td><td>!} [+ ddp_al +]% {!</td><td>!} [+ change_ddp_al +] {!</td></tr>!} ?]
+[? if ddp_exist: {!<tr><td><div class="box" style='background-color:var(--ddp-color)'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_votes_austria +]% {!</td><td>!} [+ votes_change_ddp_austria +] {!</td><td>!} [+ ddp_al +]% {!</td><td>!} [+ change_ddp_al +] {!</td></tr>!} ?]
 
-[? if csrp_exist: {!<tr><td><div class="box" style='background-color:#FF6B21'> </div> !} CSRP: {!</td><td>!} [+ csrp_votes_austria +]% {!</td><td>!} [+ votes_change_csrp_austria +] {!</td><td>!} [+ csrp_al +]% {!</td><td>!} [+ change_csrp_al +] {!</td></tr>!} ?]
+[? if csrp_formed: {!<tr><td><div class="box" style='background-color:#FF6B21'> </div> !} CSRP: {!</td><td>!} [+ csrp_votes_austria +]% {!</td><td>!} [+ votes_change_csrp_austria +] {!</td><td>!} [+ csrp_al +]% {!</td><td>!} [+ change_csrp_al +] {!</td></tr>!} ?]
 
 {!<tr><td><div class="box" style='background-color:#000'> </div> !} CSP: {!</td><td>!} [+ z_votes_austria +]% {!</td><td>!} [+ votes_change_z_austria +] {!</td><td>!} [+ z_al +]% {!</td><td>!} [+ change_z_al +] {!</td></tr>!}
 
@@ -354,39 +361,50 @@ go-to: coalition_menu
 
 [? if kvp_formed: {!<tr><td><div class="box" style='background-color:#455B95'> </div> !} KVP: {!</td><td>!} [+ kvp_votes_austria +]% {!</td><td>!} [+ votes_change_kvp_austria +] {!</td><td>!} [+ kvp_al +]% {!</td><td>!} [+ change_kvp_al +] {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} DNVP: {!</td><td>!} [+ dnvp_votes_austria +]% {!</td><td>!} [+ votes_change_dnvp_austria +] {!</td><td>!} [+ dnvp_al +]% {!</td><td>!} [+ change_dnvp_al +] {!</td></tr>!}
+[? if dnvp_exist: {!<tr><td><div class="box" style='background-color:var(--dnvp-color)'> </div> !} [+ dnvp_name +]: {!</td><td>!} [+ dnvp_votes_austria +]% {!</td><td>!} [+ votes_change_dnvp_austria +] {!</td><td>!} [+ dnvp_al +]% {!</td><td>!} [+ change_dnvp_al +] {!</td></tr>!} ?]
 
 [? if dnf_formed: {!<tr><td><div class="box" style='background-color:#003755'> </div> !} DNF: {!</td><td>!} [+ dnf_votes_austria +]% {!</td><td>!} [+ votes_change_dnf_austria +] {!</td><td>!} [+ dnf_al +]% {!</td><td>!} [+ change_dnf_al +] {!</td></tr>!} ?]
 
 {!<tr><td><div class="box" style='background-color:#ABDDA4'> </div> !} VB: {!</td><td>!} [+ vb_votes_austria +]% {!</td><td>!} [+ votes_change_vb_austria +] {!</td><td>!} [+ vb_al +]% {!</td><td>!} [+ change_vb_al +] {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_votes_austria +]% {!</td><td>!} [+ votes_change_nsdap_austria +] {!</td><td>!} [+ nsdap_al +]% {!</td><td>!} [+ change_nsdap_al +] {!</td></tr>!}
+[? if nsdap_exist: {!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_votes_austria +]% {!</td><td>!} [+ votes_change_nsdap_austria +] {!</td><td>!} [+ nsdap_al +]% {!</td><td>!} [+ change_nsdap_al +] {!</td></tr>!} ?]
 
 {!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Others: {!</td><td>!} [+ other_votes_austria +]% {!</td><td>!} [+ votes_change_other_austria +] {!</td><td>!} [+ other_al +]% {!</td><td>!} [+ change_other_al +] {!</td></tr>!}
 {!</table>!}
 
 **Potential coalitions:**
 
-Grand Coalition (<span style="color: #E3000F;">**SPD**</span> + [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: #000000;">**CSP**</span>[? if csrp_exist: + <span style="color: #FF6B21;">**CSRP**</span>?]): [+ grand_coalition_austria +]%
+Grand Coalition (<span style="color: var(--spd-color);">**[+ spd_name +]**</span> + [? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> [? if cvp_formed == 0: + <span style="color: var(--z-color);">**CSP**</span>?][? if csrp_formed: + <span style="color: #FF6B21;">**CSRP**</span>?]): [+ grand_coalition_austria +]%
 
-Bourgeois Coalition (<span style="color: #000000;">**CSP**</span> + <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>[? if ddp_exist: + <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?][? if kvp_formed: + <span style="color: #455B95;">**KVP**</span> ?][? if cnblp_exist: + <span style="color: #385A38;">**LB**</span> ?][? if csrp_exist: + <span style="color: #FF6B21;">**CSRP**</span>?] + <span style="color: #909090;">**Others**</span>): [+ bourgeois_coalition_austria +]%
+Bourgeois Coalition (<span style="color: var(--z-color);">**CSP**</span> + <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>[? if ddp_exist: + <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> ?][? if kvp_formed: + <span style="color: #455B95;">**KVP**</span> ?][? if cnblp_exist: + <span style="color: #385A38;">**LB**</span> ?][? if csrp_formed: + <span style="color: #FF6B21;">**CSRP**</span>?] + <span style="color: #909090;">**Others**</span>): [+ bourgeois_coalition_austria +]%
 
-Far-Right Coalition (<span style="color: #954B00;">**NSDAP**</span> + [? if dnvp_ideology = "Radical": <span style="color: #3F7BC1;">**DNVP**</span>?][? if dnf_formed: <span style="color: #003755;">**DNF**</span>?]): [+ far_right_coalition_austria +]%
+Far-Right Coalition (<span style="color: #954B00;">**NSDAP**</span> + [? if dnf_formed == 0: <span style="color: var(--dnvp-color);">**DNVP**</span>?][? if dnf_formed: <span style="color: #003755;">**DNF**</span>?]): [+ far_right_coalition_austria +]%
 
 There are some potential coalition arrangements.
 
 @coalition_menu
 
 - @dvp_majority_austria
+- @popular_front_austria
 - @grand_coalition_austria
 - @bourgeois_coalition_austria
 - @far_right_coalition_austria
 - @no_majority
 
+@popular_front_austria
+title: A Popular Front Forms.
+view-if: popular_front_austria >= 50
+subtitle: <span style="[? if kpd_exist: <span style="color: var(--kpd-color);">**[+ kpd_name +]**</span> + ?]<span style="color: var(--spd-color);">**[+ spd_name +]**</span> + [? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span>?][? if csrp_formed: + <span style="color: #FF6B21;">**CSRP**</span>?] ([+ grand_coalition_austria +]%)
+on-arrival: in_popular_front_austria = 1;
+
+A Popular Front Forms.
+
+- @austria_mp
+
 @grand_coalition_austria
 title: We can form a Grand Coalition.
-view-if: grand_coalition_austria >= 50
-subtitle: <span style="color: #E3000F;">**SPD**</span> + [? if ddp_exist: <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: #000000;">**CSP**</span>[? if csrp_exist: + <span style="color: #FF6B21;">**CSRP**</span>?] ([+ grand_coalition_austria +]%)
+view-if: grand_coalition_austria >= 50 and cvp_formed == 0
+subtitle: <span style="color: var(--spd-color);">**[+ spd_name +]**</span> + [? if ddp_exist: <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> + ?] <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> [? if cvp_formed == 0: + <span style="color: var(--z-color);">**CSP**</span> ?][? if csrp_formed: + <span style="color: #FF6B21;">**CSRP**</span>?] ([+ grand_coalition_austria +]%)
 on-arrival: in_grand_coalition_austria = 1; dvp_austria = 1;
 
 We will form a Grand Coalition.
@@ -396,7 +414,7 @@ We will form a Grand Coalition.
 @bourgeois_coalition_austria
 title: We can form a Bourgeois Coalition.
 view-if: bourgeois_coalition_austria >= 50
-subtitle: <span style="color: #000000;">**CSP**</span> + <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>[? if ddp_exist: + <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?][? if kvp_formed: + <span style="color: #455B95;">**KVP**</span> ?][? if cnblp_exist: + <span style="color: #385A38;">**LB**</span> ?][? if csrp_exist: + <span style="color: #FF6B21;">**CSRP**</span>?] + <span style="color: #909090;">**Others**</span> ([+ bourgeois_coalition_austria +]%)
+subtitle: <span style="color: var(--z-color);">**CSP**</span> + <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>[? if ddp_exist: + <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> ?][? if kvp_formed: + <span style="color: #455B95;">**KVP**</span> ?][? if cnblp_exist: + <span style="color: #385A38;">**LB**</span> ?][? if csrp_formed: + <span style="color: #FF6B21;">**CSRP**</span>?] + <span style="color: #909090;">**Others**</span> ([+ bourgeois_coalition_austria +]%)
 on-arrival: in_bourgeois_coalition_austria = 1; dvp_austria = 1;
 
 A Bourgeois Coalition is formed.
@@ -404,9 +422,9 @@ A Bourgeois Coalition is formed.
 - @austria_mp
 
 @far_right_coalition_austria
-title: Far-right Coalition is formed!
+title: A Far-Right Coalition is formed!
 view-if: far_right_coalition_austria >= 50
-subtitle: <span style="color: #954B00;">**NSDAP**</span> + [? if dnvp_ideology = "Radical": <span style="color: #3F7BC1;">**DNVP**</span>?][? if dnf_formed: <span style="color: #003755;">**DNF**</span>?] ([+ far_right_coalition_austria +]%)
+subtitle: <span style="color: #954B00;">**NSDAP**</span> + [? if dnf_formed == 0: <span style="color: var(--dnvp-color);">**DNVP**</span>?][? if dnf_formed: <span style="color: #003755;">**DNF**</span>?] ([+ far_right_coalition_austria +]%)
 on-arrival: in_far_right_coalition_austria = 1;
 
 A Far-right Coalition is formed.
@@ -435,7 +453,7 @@ WIP
 
 @straffner
 title: Sepp Straffner, the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> candidate.
-subtitle: He is a former member of the National Council and a politician in the pan-German and National Liberal <span style="color: #3F7BC1;">**Greater German People's Party**</span>.
+subtitle: He is a former member of the National Council and a politician in the pan-German and National Liberal <span style="color: var(--dnvp-color);">**Greater German People's Party**</span>.
 view-if: dvp_austria
 choose-if: in_dvp_majority_austria or (in_grand_coalition_austria and (dvp_al + ddp_al > spd_al) and (dvp_al + ddp_al > z_al)) or (in_bourgeois_coalition_austria and (dvp_al + ddp_al > z_al))
 unavailable-subtitle: We lack enough influence to appoint our Minister-President.
@@ -447,17 +465,17 @@ Sepp Straffner was elected.
 @miklas
 title: Wilhelm Miklas, the <span style="color: #69A2BE;">**CSP**</span> candidate.
 subtitle: He was the President of Austria since 1928 and is an opponent of German nationalism.
-view-if: in_grand_coalition_austria or in_bourgeois_coalition_austria
+view-if: (in_grand_coalition_austria and cvp_formed == 0) or in_bourgeois_coalition_austria
 on-arrival: austria_leader = "Miklas"; austria_leader_party = "CSP"; catholics_z += 4; pro_republic += 1
 face-image: img/portraits/MiklasWilhelm.jpg
 
 Wilhelm Miklas was elected.
 
 @renner
-title: Karl Renner, the <span style="color: #E3000F;">**SPD**</span> candidate.
-subtitle: He is a longtime member of the <span style="color: #E3000F;">**SPO**</span> and was briefly Chancellor from 1918 to 1920.
-view-if: in_grand_coalition_austria
-on-arrival: austria_leader = "Renner"; austria_leader_party = "SPD"; workers_spd += 4; unemployed_spd += 2; socialism += 2; pro_republic += 1
+title: Karl Renner, the <span style="color: var(--spd-color);">**[+ spd_name +]**</span> candidate.
+subtitle: He is a longtime member of the <span style="color: var(--spd-color);">**SPO**</span> and was briefly Chancellor from 1918 to 1920.
+view-if: in_grand_coalition_austria or in_popular_front_austria
+on-arrival: austria_leader = "Renner"; austria_leader_party = spd_name; workers_spd += 4; unemployed_spd += 2; socialism += 2; pro_republic += 1
 face-image: img/portraits/RennerKarl.jpg
 
 Karl Renner was elected.
@@ -473,7 +491,7 @@ Josef Leopold was elected.
 
 @no_majority
 title: There is no clear governing majority.
-view-if: grand_coalition_austria < 50 and bourgeois_coalition_austria < 50 and far_right_coalition_austria < 50
-on-arrival: workers_nsdap += 1; unemployed_nsdap += 1; rural_nsdap += 2; dvp_austria = 1 if was_dvp_austria; in_dvp_majority_austria = 1 if was_in_dvp_majority_austria; in_grand_coalition_austria = 1 if was_in_grand_coalition_austria; in_bourgeois_coalition_austria = 1 if was_in_bourgeois_coalition_austria; in_far_right_coalition_austria = 1 if was_in_far_right_coalition_austria;
+view-if: popular_front_austria < 50 and grand_coalition_austria < 50 and bourgeois_coalition_austria < 50 and far_right_coalition_austria < 50
+on-arrival: workers_nsdap += 1; unemployed_nsdap += 1; rural_nsdap += 2; dvp_austria = 1 if was_dvp_austria; in_dvp_majority_austria = 1 if was_in_dvp_majority_austria; in_popular_front_austria = 1 if was_in_popular_front_austria; in_grand_coalition_austria = 1 if was_in_grand_coalition_austria; in_bourgeois_coalition_austria = 1 if was_in_bourgeois_coalition_austria; in_far_right_coalition_austria = 1 if was_in_far_right_coalition_austria;
 
 There is no path to a majority government for now. The current government will stay in power as a minority coalition.

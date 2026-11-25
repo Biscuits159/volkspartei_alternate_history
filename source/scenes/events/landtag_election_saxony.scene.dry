@@ -3,7 +3,7 @@ view-if: year = next_election_year_saxony and month >= next_election_month_saxon
 new-page: true
 tags: event
 priority: 3
-on-arrival: next_election_year_saxony = next_election_year_saxony + 4; next_election_time_saxony = time + 48; was_dvp_saxony = 0; was_in_dvp_majority_saxony = 0; was_in_grand_coalition_saxony = 0; was_in_bourgeois_coalition_saxony = 0; was_in_far_right_coalition_saxony = 0;
+on-arrival: next_election_year_saxony = next_election_year_saxony + 4; next_election_time_saxony = time + 48; was_dvp_saxony = 0; was_in_dvp_majority_saxony = 0; was_in_left_front_saxony = 0; was_in_grand_coalition_saxony = 0; was_in_bourgeois_coalition_saxony = 0; was_in_far_right_coalition_saxony = 0;
 
 = Saxon Elections, [+ month : month +] [+ year +]
 
@@ -27,9 +27,10 @@ for (var c of Q.classes) {
 }
 
 // Define adjustment factors
+Q.adjustmentFactors_kpd_saxony = 1.25;
+Q.adjustmentFactors_sapd_saxony = 1.25;
 Q.adjustmentFactors_spd_saxony = 1.25;
 Q.adjustmentFactors_aspd_saxony = 1.5;
-Q.adjustmentFactors_kpd_saxony = 1.25;
 Q.adjustmentFactors_ddp_saxony = 1.0;
 Q.adjustmentFactors_dbp_saxony = 0.0;
 Q.adjustmentFactors_csrp_saxony = 0.0;
@@ -250,10 +251,15 @@ if (!Q.aspd_exist) {
 
 
 
-Q.grand_coalition_saxony = parseFloat((Q.spd_sl + Q.aspd_sl + Q.ddp_sl + Q.z_sl + Q.dvp_sl).toFixed(1));
+Q.left_front_saxony = parseFloat((Q.kpd_sl + Q.sapd_sl + Q.spd_sl).toFixed(1));
+
+Q.grand_coalition_saxony = parseFloat((Q.sapd_sl + Q.spd_sl + Q.aspd_sl + Q.ddp_sl + Q.dvp_sl).toFixed(1));
+if (Q.cvp_formed == 0) Q.grand_coalition_saxony = parseFloat((Q.grand_coalition_saxony + Q.z_sl).toFixed(1));
+
 Q.bourgeois_coalition_saxony = parseFloat((Q.aspd_sl + Q.ddp_sl + Q.z_sl + Q.dvp_sl + Q.vnr_sl + Q.vrp_sl + Q.wp_sl + Q.other_sl + Q.cnblp_sl + Q.kvp_sl + Q.csvd_sl).toFixed(1));
-if (Q.dnvp_ideology === "Moderate") Q.bourgeois_coalition_saxony = parseFloat((Q.bourgeois_coalition_saxony + Q.dnvp_sl).toFixed(1));
-if (Q.dnvp_ideology === "Radical") Q.far_right_coalition_saxony = parseFloat((Q.dnvp_sl + Q.nsdap_sl).toFixed(1));
+if (Q.dnvp_left >= 0) Q.bourgeois_coalition_saxony = parseFloat((Q.bourgeois_coalition_saxony + Q.dnvp_sl).toFixed(1));
+
+if (!Q.dnf_formed) Q.far_right_coalition_saxony = parseFloat((Q.dnvp_sl + Q.nsdap_sl).toFixed(1));
 if (Q.dnf_formed) Q.far_right_coalition_saxony = parseFloat((Q.dnf_sl + Q.nsdap_sl).toFixed(1));
 
 
@@ -263,6 +269,8 @@ if (Q.dvp_saxony) {
 }
 if (Q.in_dvp_majority_saxony) {
     Q.was_in_dvp_majority_saxony = 1
+} else if (Q.in_left_front_saxony) {
+    Q.was_in_left_front_saxony = 1
 } else if (Q.in_grand_coalition_saxony) {
     Q.was_in_grand_coalition_saxony = 1
 } else if (Q.in_bourgeois_coalition_saxony) {
@@ -274,6 +282,7 @@ if (Q.in_dvp_majority_saxony) {
 
 Q.dvp_saxony = 0;
 Q.in_dvp_majority_saxony = 0;
+Q.in_left_front_saxony = 0;
 Q.in_grand_coalition_saxony = 0;
 Q.in_bourgeois_coalition_saxony = 0;
 Q.in_far_right_coalition_saxony = 0;
@@ -283,19 +292,27 @@ Q.far_right_toleration_saxony = 0;
 !}
 on-display: {!
 data = []
-if (Q.kpd_sl) {
+if (Q.kpd_exist && Q.kpd_sl) {
     data.push({
         "id": "kpd",
-        "legend": "KPD",
-        "name": "KPD",
+        "legend": Q.kpd_name,
+        "name": Q.kpd_name,
         "seats": Math.round(Q.kpd_sl*0.96),
+    });
+}
+if (Q.sapd_formed && Q.sapd_sl) {
+    data.push({
+        "id": "sapd",
+        "legend": "SAPD",
+        "name": "SAPD",
+        "seats": Math.round(Q.sapd_sl*0.96),
     });
 }
 if (Q.spd_sl) {
     data.push({
         "id": "spd",
-        "legend": "SPD",
-        "name": "SPD",
+        "legend": Q.spd_name,
+        "name": Q.spd_name,
         "seats": Math.round(Q.spd_sl*0.96),
     });
 }
@@ -310,8 +327,8 @@ if (Q.aspd_sl) {
 if (Q.ddp_exist && Q.ddp_sl) {
     data.push({
         "id": "ddp",
-        "legend": "DDP",
-        "name": "DDP",
+        "legend": Q.ddp_name,
+        "name": Q.ddp_name,
         "seats": Math.round(Q.ddp_sl*0.96),
     });
 }
@@ -326,8 +343,8 @@ if (Q.lvp_formed && Q.dvp_sl) {
 if (Q.z_sl) {
     data.push({
         "id": "z",
-        "legend": "Center",
-        "name": "Center",
+        "legend": Q.z_name,
+        "name": Q.z_name,
         "seats": Math.round(Q.z_sl*0.96),
     });
 }
@@ -403,11 +420,11 @@ if (Q.kvp_formed && Q.kvp_sl) {
         "seats": Math.round(Q.kvp_sl*0.96),
     });
 }
-if (Q.dnvp_sl) {
+if (Q.dnvp_exist && Q.dnvp_sl) {
     data.push({
         "id": "dnvp",
-        "legend": "DNVP",
-        "name": "DNVP",
+        "legend": Q.dnvp_name,
+        "name": Q.dnvp_name,
         "seats": Math.round(Q.dnvp_sl*0.96),
     });
 }
@@ -419,7 +436,7 @@ if (Q.dnf_formed && Q.dnf_sl) {
         "seats": Math.round(Q.dnf_sl*0.96),
     });
 }
-if (Q.nsdap_sl) {
+if (Q.nsdap_exist && Q.nsdap_sl) {
     data.push({
         "id": "nsdap",
         "legend": "NSDAP",
@@ -455,15 +472,17 @@ go-to: coalition_menu
 {!<tr><td>Party</td><td>Vote Share</td><td>% Change</td><td>Landtag Seats</td><td>% Change</td></tr>!}
 {!<tr><td><div class="box" style='background-color: var(--dvp-color); outline: 2px; outline-style: solid;'> </div> !} **[+ dvp_name +]**: {!</td><td>!} **[+ dvp_votes_saxony +]%** {!</td><td>!} **[+ votes_change_dvp_saxony +]** {!</td><td>!} **[+ dvp_sl +]%** {!</td><td>!} **[+ change_dvp_sl +]** {!</td></tr>!}
 
-{!<tr><td><div class="box" style='background-color:#8B0000'> </div> !} KPD: {!</td><td>!} [+ kpd_votes_saxony +]% {!</td><td>!} [+ votes_change_kpd_saxony +] {!</td><td>!} [+ kpd_sl +]% {!</td><td>!} [+ change_kpd_sl +] {!</td></tr>!}
+[? if kpd_exist: {!<tr><td><div class="box" style='background-color:#8B0000'> </div> !} [+ kpd_name +]: {!</td><td>!} [+ kpd_votes_saxony +]% {!</td><td>!} [+ votes_change_kpd_saxony +] {!</td><td>!} [+ kpd_sl +]% {!</td><td>!} [+ change_kpd_sl +] {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#E3000F'> </div> !} SPD: {!</td><td>!} [+ spd_votes_saxony +]% {!</td><td>!} [+ votes_change_spd_saxony +] {!</td><td>!} [+ spd_sl +]% {!</td><td>!} [+ change_spd_sl +] {!</td></tr>!}
+[? if sapd_formed: {!<tr><td><div class="box" style='background-color:#C40000'> </div> !} SAPD: {!</td><td>!} [+ sapd_votes_saxony +]% {!</td><td>!} [+ votes_change_sapd_saxony +] {!</td><td>!} [+ sapd_sl +]% {!</td><td>!} [+ change_sapd_sl +] {!</td></tr>!} ?]
+
+{!<tr><td><div class="box" style='background-color:var(--spd-color)'> </div> !} [+ spd_name +]: {!</td><td>!} [+ spd_votes_saxony +]% {!</td><td>!} [+ votes_change_spd_saxony +] {!</td><td>!} [+ spd_sl +]% {!</td><td>!} [+ change_spd_sl +] {!</td></tr>!}
 
 {!<tr><td><div class="box" style='background-color:#FE9E00'> </div> !} ASPD: {!</td><td>!} [+ aspd_votes_saxony +]% {!</td><td>!} [+ votes_change_aspd_saxony +] {!</td><td>!} [+ aspd_sl +]% {!</td><td>!} [+ change_aspd_sl +] {!</td><td>!}
 
-[? if ddp_exist: {!<tr><td><div class="box" style='background-color:#DCCA4A'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_votes_saxony +]% {!</td><td>!} [+ votes_change_ddp_saxony +] {!</td><td>!} [+ ddp_sl +]% {!</td><td>!} [+ change_ddp_sl +] {!</td></tr>!} ?]
+[? if ddp_exist: {!<tr><td><div class="box" style='background-color:var(--ddp-color)'> </div> !} [+ ddp_name +]: {!</td><td>!} [+ ddp_votes_saxony +]% {!</td><td>!} [+ votes_change_ddp_saxony +] {!</td><td>!} [+ ddp_sl +]% {!</td><td>!} [+ change_ddp_sl +] {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#000'> </div> !} Z: {!</td><td>!} [+ z_votes_saxony +]% {!</td><td>!} [+ votes_change_z_saxony +] {!</td><td>!} [+ z_sl +]% {!</td><td>!} [+ change_z_sl +] {!</td></tr>!}
+{!<tr><td><div class="box" style='background-color:#000'> </div> !} [+ z_name +]: {!</td><td>!} [+ z_votes_saxony +]% {!</td><td>!} [+ votes_change_z_saxony +] {!</td><td>!} [+ z_sl +]% {!</td><td>!} [+ change_z_sl +] {!</td></tr>!}
 
 [? if vnr_exist: {!<tr><td><div class="box" style='background-color:#D3D3A9'> </div> !} VNR: {!</td><td>!} [+ vnr_votes_saxony +]% {!</td><td>!} [+ votes_change_vnr_saxony +] {!</td><td>!} [+ vnr_sl +]% {!</td><td>!} [+ change_vnr_sl +] {!</td><td>!} ?]
 
@@ -477,39 +496,49 @@ go-to: coalition_menu
 
 [? if kvp_formed: {!<tr><td><div class="box" style='background-color:#455B95'> </div> !} KVP: {!</td><td>!} [+ kvp_votes_saxony +]% {!</td><td>!} [+ votes_change_kvp_saxony +] {!</td><td>!} [+ kvp_sl +]% {!</td><td>!} [+ change_kvp_sl +] {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#3f7bc1'> </div> !} DNVP: {!</td><td>!} [+ dnvp_votes_saxony +]% {!</td><td>!} [+ votes_change_dnvp_saxony +] {!</td><td>!} [+ dnvp_sl +]% {!</td><td>!} [+ change_dnvp_sl +] {!</td></tr>!}
+[? if dnvp_exist: {!<tr><td><div class="box" style='background-color:var(--dnvp-color)'> </div> !} [+ dnvp_name +]: {!</td><td>!} [+ dnvp_votes_saxony +]% {!</td><td>!} [+ votes_change_dnvp_saxony +] {!</td><td>!} [+ dnvp_sl +]% {!</td><td>!} [+ change_dnvp_sl +] {!</td></tr>!} ?]
 
 [? if dnf_formed: {!<tr><td><div class="box" style='background-color:#003755'> </div> !} DNF: {!</td><td>!} [+ dnf_votes_saxony +]% {!</td><td>!} [+ votes_change_dnf_saxony +] {!</td><td>!} [+ dnf_sl +]% {!</td><td>!} [+ change_dnf_sl +] {!</td></tr>!} ?]
 
-{!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_votes_saxony +]% {!</td><td>!} [+ votes_change_nsdap_saxony +] {!</td><td>!} [+ nsdap_sl +]% {!</td><td>!} [+ change_nsdap_sl +] {!</td></tr>!}
+[? if nsdap_exist: {!<tr><td><div class="box" style='background-color:#954B00'> </div> !} NSDAP: {!</td><td>!} [+ nsdap_votes_saxony +]% {!</td><td>!} [+ votes_change_nsdap_saxony +] {!</td><td>!} [+ nsdap_sl +]% {!</td><td>!} [+ change_nsdap_sl +] {!</td></tr>!} ?]
 
 {!<tr><td><div class="box" style='background-color:#a0a0a0'> </div> !} Others: {!</td><td>!} [+ other_votes_saxony +]% {!</td><td>!} [+ votes_change_other_saxony +] {!</td><td>!} [+ other_sl +]% {!</td><td>!} [+ change_other_sl +] {!</td></tr>!}
 {!</table>!}
 
 **Potential coalitions:**
 
-Grand Coalition (<span style="color: #E3000F;">**SPD**</span> + <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: #000000;">**Z**</span> [? if ddp_exist: + <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?] + <span style="color: #FE9E00;">**ASPD**</span>): [+ grand_coalition_saxony +]%
+Grand Coalition ([? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?] <span style="color: var(--spd-color);">**[+ spd_name +]**</span> + <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> [? if cvp_formed == 0: + <span style="color: var(--z-color);">**[+ z_name +]**</span> ?][? if ddp_exist: + <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> ?] + <span style="color: #FE9E00;">**ASPD**</span>): [+ grand_coalition_saxony +]%
 
-Bourgeois Coalition (<span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> [? if ddp_exist: + <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?] [? if kvp_formed: + <span style="color: #455B95;">**KVP**</span> ?][? if dnvp_ideology = "Moderate": + <span style="color: #3F7BC1;">**DNVP**</span> ?][? if wp_exist: + <span style="color: #B8996F;">**WP**</span> ?][? if vrp_exist: + <span style="color: #0075EB;">**VRP**</span> ?][? if vnr_exist: + <span style="color: #D3D3A9;">**VNR**</span> ?][? if cnblp_exist: + <span style="color: #7FCEB1;">**SLV**</span> ?][? if csvd_exist: + <span style="color: #8ED8E4;">**CSVD**</span> ?] + <span style="color: #FE9E00;">**ASPD**</span> + <span style="color: #000000;">**Z**</span> + <span style="color: #909090;">**Others**</span>): [+ bourgeois_coalition_saxony +]%
+Bourgeois Coalition (<span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> [? if ddp_exist: + <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> ?] [? if kvp_formed: + <span style="color: #455B95;">**KVP**</span> ?][? if dnvp_left >= 0 and dnvp_exist: + <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> ?][? if wp_exist: + <span style="color: #B8996F;">**WP**</span> ?][? if vrp_exist: + <span style="color: #0075EB;">**VRP**</span> ?][? if vnr_exist: + <span style="color: #D3D3A9;">**VNR**</span> ?][? if cnblp_exist: + <span style="color: #7FCEB1;">**SLV**</span> ?][? if csvd_exist: + <span style="color: #8ED8E4;">**CSVD**</span> ?] + <span style="color: #FE9E00;">**ASPD**</span> + <span style="color: var(--z-color);">**[+ z_name +]**</span> + <span style="color: #909090;">**Others**</span>): [+ bourgeois_coalition_saxony +]%
 
-Far-Right Coalition (<span style="color: #954B00;">**NSDAP**</span> + [? if dnvp_ideology = "Radical": <span style="color: #3F7BC1;">**DNVP**</span>?][? if dnf_formed: <span style="color: #003755;">**DNF**</span>?]): [+ far_right_coalition_saxony +]%
+Far-Right Coalition (<span style="color: #954B00;">**NSDAP**</span> + [? if dnf_formed == 0: <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span>?][? if dnf_formed: <span style="color: #003755;">**DNF**</span>?]): [+ far_right_coalition_saxony +]%
 
 There are some potential coalition arrangements.
 
 @coalition_menu
 
 - @dvp_majority_saxony
+- @left_front_saxony
 - @grand_coalition_saxony
 - @minority_bourgeois_coalition_saxony
 - @bourgeois_coalition_saxony
 - @far_right_coalition_saxony
 - @no_majority
 
+@left_front_saxony
+title: A Left Front forms.
+view-if: left_front_saxony >= 50
+subtitle: [? if kpd_exist: <span style="color: var(--kpd-color);">**[+ kpd_name +]**</span> + ?][? if sapd_formed: <span style="color: #C40000;">**SAPD**</span> + ?] <span style="color: var(--spd-color);">**[+ spd_name +]**</span> ([+ left_front_saxony +]%)
+on-arrival: in_left_front_saxony = 1;
+
+A Left Front forms.
+
+- @saxony_mp
 
 @grand_coalition_saxony
 title: We can form a Grand Coalition.
 view-if: grand_coalition_saxony >= 50
-subtitle: <span style="color: #E3000F;">**SPD**</span> + <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: #000000;">**Z**</span> [? if ddp_exist: + <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?] + <span style="color: #FE9E00;">**ASPD**</span> ([+ grand_coalition_saxony +]%)
+subtitle: <span style="color: var(--spd-color);">**[+ spd_name +]**</span> + <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> + <span style="color: var(--z-color);">**[+ z_name +]**</span> [? if ddp_exist: + <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> ?] + <span style="color: #FE9E00;">**ASPD**</span> ([+ grand_coalition_saxony +]%)
 on-arrival: in_grand_coalition_saxony = 1; dvp_saxony = 1;
 
 We will form a Grand Coalition.
@@ -519,7 +548,7 @@ We will form a Grand Coalition.
 @bourgeois_coalition_saxony
 title: We can form a Bourgeois Coalition.
 view-if: bourgeois_coalition_saxony >= 50
-subtitle: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> [? if ddp_exist: + <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?] [? if kvp_formed: + <span style="color: #455B95;">**KVP**</span> ?][? if dnvp_ideology = "Moderate": + <span style="color: #3F7BC1;">**DNVP**</span> ?][? if wp_exist: + <span style="color: #B8996F;">**WP**</span> ?][? if vrp_exist: + <span style="color: #0075EB;">**VRP**</span> ?][? if vnr_exist: + <span style="color: #D3D3A9;">**VNR**</span> ?][? if cnblp_exist: + <span style="color: #7FCEB1;">**SLV**</span> ?][? if csvd_exist: + <span style="color: #8ED8E4;">**CSVD**</span> ?] + <span style="color: #FE9E00;">**ASPD**</span> + <span style="color: #000000;">**Z**</span> + <span style="color: #909090;">**Others**</span> ([+ bourgeois_coalition_saxony +]%)
+subtitle: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> [? if ddp_exist: + <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> ?] [? if kvp_formed: + <span style="color: #455B95;">**KVP**</span> ?][? if dnvp_left >= 0 and dnvp_exist: + <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> ?][? if wp_exist: + <span style="color: #B8996F;">**WP**</span> ?][? if vrp_exist: + <span style="color: #0075EB;">**VRP**</span> ?][? if vnr_exist: + <span style="color: #D3D3A9;">**VNR**</span> ?][? if cnblp_exist: + <span style="color: #7FCEB1;">**SLV**</span> ?][? if csvd_exist: + <span style="color: #8ED8E4;">**CSVD**</span> ?] + <span style="color: #FE9E00;">**ASPD**</span> + <span style="color: var(--z-color);">**[+ z_name +]**</span> + <span style="color: #909090;">**Others**</span> ([+ bourgeois_coalition_saxony +]%)
 on-arrival: in_bourgeois_coalition_saxony = 1; dvp_saxony = 1;
 
 A Bourgeois Coalition is formed.
@@ -527,28 +556,28 @@ A Bourgeois Coalition is formed.
 - @saxony_mp
 
 @minority_bourgeois_coalition_saxony
-title: Can we form a minority Bourgeois Coalition, tolerated by <span style="color: #E3000F;">**SPD**</span> or the Far-Right?
-view-if: bourgeois_coalition_saxony < 50 and (((bourgeois_coalition_saxony + spd_sl) >= 50) or ((bourgeois_coalition_saxony + dnf_sl + nsdap_sl) >= 50 and dnvp_ideology = "Moderate") or ((bourgeois_coalition_saxony + dnvp_sl + nsdap_sl) >= 50 and dnvp_ideology = "Radical"))
-subtitle: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> [? if ddp_exist: + <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> ?] [? if kvp_formed: + <span style="color: #455B95;">**KVP**</span> ?][? if dnvp_ideology = "Moderate": + <span style="color: #3F7BC1;">**DNVP**</span> ?][? if wp_exist: + <span style="color: #B8996F;">**WP**</span> ?][? if vrp_exist: + <span style="color: #0075EB;">**VRP**</span> ?][? if vnr_exist: + <span style="color: #D3D3A9;">**VNR**</span> ?][? if cnblp_exist: + <span style="color: #7FCEB1;">**SLV**</span> ?][? if csvd_exist: + <span style="color: #8ED8E4;">**CSVD**</span> ?] + <span style="color: #FE9E00;">**ASPD**</span> + <span style="color: #000000;">**Z**</span> + <span style="color: #909090;">**Others**</span> ([+ bourgeois_coalition_saxony +]%)
+title: Can we form a minority Bourgeois Coalition, tolerated by <span style="color: var(--spd-color);">**[+ spd_name +]**</span> or the Far-Right?
+view-if: bourgeois_coalition_saxony < 50 and (((bourgeois_coalition_saxony + spd_sl) >= 50) or ((bourgeois_coalition_saxony + dnf_sl + nsdap_sl) >= 50 and dnvp_left >= 0) or ((bourgeois_coalition_saxony + dnvp_sl + nsdap_sl) >= 50 and dnvp_left < 0))
+subtitle: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> [? if ddp_exist: + <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> ?] [? if kvp_formed: + <span style="color: #455B95;">**KVP**</span> ?][? if dnvp_left >= 0 and dnvp_exist: + <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> ?][? if wp_exist: + <span style="color: #B8996F;">**WP**</span> ?][? if vrp_exist: + <span style="color: #0075EB;">**VRP**</span> ?][? if vnr_exist: + <span style="color: #D3D3A9;">**VNR**</span> ?][? if cnblp_exist: + <span style="color: #7FCEB1;">**SLV**</span> ?][? if csvd_exist: + <span style="color: #8ED8E4;">**CSVD**</span> ?] + <span style="color: #FE9E00;">**ASPD**</span> + <span style="color: var(--z-color);">**[+ z_name +]**</span> + <span style="color: #909090;">**Others**</span> ([+ bourgeois_coalition_saxony +]%)
 
 We can try to form a Bourgeois Coalition. For this, we need to get toleration from a party outside.
 
-- @ask_spd: Maybe the <span style="color: #E3000F;">**SPD**</span> can tolerate us?
+- @ask_spd: Maybe the <span style="color: var(--spd-color);">**[+ spd_name +]**</span> can tolerate us?
 - @ask_far_right: Is the Far-Right going to offer us toleration?
 - @coalition_menu: Try a different governing arrangement.
 
 @ask_spd
-choose-if: dvp_ideology = "Left" and ((bourgeois_coalition_saxony + spd_sl) >= 50)
-unavailable-subtitle: [? if dvp_ideology != "Left": The <span style="color: #E3000F;">**Social Democrats**</span> are unwilling to support us. ?][? if not ((bourgeois_coalition_saxony + spd_sl) >= 50): They don't have enough seats for a majority. ?]
+choose-if: dvp_left >= 0 and ((bourgeois_coalition_saxony + spd_sl) >= 50)
+unavailable-subtitle: [? if dvp_left < 0: The <span style="color: var(--spd-color);">**Social Democrats**</span> are unwilling to support us. ?][? if not ((bourgeois_coalition_saxony + spd_sl) >= 50): They don't have enough seats for a majority. ?]
 on-arrival: in_bourgeois_coalition_saxony = 1; dvp_saxony = 1; spd_toleration_saxony = 1;
 
-We have formed a Bourgeois Coalition with toleration from the <span style="color: #E3000F;">**SPD**</span>.
+We have formed a Bourgeois Coalition with toleration from the <span style="color: var(--spd-color);">**[+ spd_name +]**</span>.
 
 - @saxony_mp
 
 @ask_far_right
-choose-if: dvp_ideology = "Right" and (((bourgeois_coalition_saxony + dnf_sl + nsdap_sl) >= 50 and dnvp_ideology = "Moderate") or ((bourgeois_coalition_saxony + dnvp_sl + nsdap_sl) >= 50 and dnvp_ideology = "Radical"))
-unavailable-subtitle: [? if dvp_ideology != "Right": The Far-Right will not support us. ?][? if not (((bourgeois_coalition_saxony + dnf_sl + nsdap_sl) >= 50 and dnvp_ideology = "Moderate") or ((bourgeois_coalition_saxony + dnvp_sl + nsdap_sl) >= 50 and dnvp_ideology = "Radical")): They don't have enough seats for a majority. ?]
+choose-if: dvp_left < 0 and (((bourgeois_coalition_saxony + dnf_sl + nsdap_sl) >= 50 and dnvp_left >= 0) or ((bourgeois_coalition_saxony + dnvp_sl + nsdap_sl) >= 50 and dnvp_left < 0))
+unavailable-subtitle: [? if dvp_left >= 0: The Far-Right will not support us. ?][? if not (((bourgeois_coalition_saxony + dnf_sl + nsdap_sl) >= 50 and dnvp_left >= 0) or ((bourgeois_coalition_saxony + dnvp_sl + nsdap_sl) >= 50 and dnvp_left < 0)): They don't have enough seats for a majority. ?]
 on-arrival: in_bourgeois_coalition_saxony = 1; dvp_saxony = 1; far_right_toleration_saxony = 1;
 
 We have formed a Bourgeois Coalition with toleration from the Far-Right.
@@ -558,13 +587,12 @@ We have formed a Bourgeois Coalition with toleration from the Far-Right.
 @far_right_coalition_saxony
 title: Far-right Coalition is formed!
 view-if: far_right_coalition_saxony >= 50
-subtitle: <span style="color: #954B00;">**NSDAP**</span> + [? if dnvp_ideology = "Radical": <span style="color: #3F7BC1;">**DNVP**</span>?][? if dnf_formed: <span style="color: #003755;">**DNF**</span>?] ([+ far_right_coalition_saxony +]%)
+subtitle: <span style="color: #954B00;">**NSDAP**</span> + [? if dnf_formed == 0: <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span>?][? if dnf_formed: <span style="color: #003755;">**DNF**</span>?] ([+ far_right_coalition_saxony +]%)
 on-arrival: in_far_right_coalition_saxony = 1;
 
 A Far-right Coalition is formed.
 
 - @saxony_mp
-
 
 @dvp_majority_saxony
 title: We can rule alone!
@@ -584,14 +612,15 @@ WIP
 - @blucher
 - @bunger
 - @heldt
+- @zeigner
 - @killinger
 
 @blucher
 title: Bernhard Blüher, the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> candidate.
-subtitle: He has been the mayor of Dresde since the Great War and advocates for cooperation with the <span style="color: #E3000F;">**SPD**</span>.
+subtitle: He has been the mayor of Dresde since the Great War and advocates for cooperation with the <span style="color: var(--spd-color);">**[+ spd_name +]**</span>.
 view-if: dvp_saxony
 choose-if: in_dvp_majority_saxony or (in_bourgeois_coalition_saxony and not far_right_toleration_saxony) or (in_grand_coalition_saxony and (dvp_sl + ddp_sl + aspd_sl) > spd_sl)
-unavailable-subtitle: [? if in_grand_coalition_saxony: The <span style="color: #E3000F;">**SPD**</span> can prevent him from becoming the Minister-President. ?][? if far_right_toleration_saxony: The far-right will never support him. ?]
+unavailable-subtitle: [? if in_grand_coalition_saxony: The <span style="color: var(--spd-color);">**[+ spd_name +]**</span> can prevent him from becoming the Minister-President. ?][? if far_right_toleration_saxony: The far-right will never support him. ?]
 on-arrival: saxony_leader = "Blüher"; saxony_leader_party = dvp_name; old_middle_dvp += 4*(1-dissent); new_middle_dvp += 2*(1-dissent); pro_republic += 1*(1-dissent)
 face-image: img/portraits/BlüherBernhard.jpg
 
@@ -602,7 +631,7 @@ title: Wilhelm Bünger, the <span style="color: var(--dvp-color);">**[+ dvp_name
 subtitle: Situated to the right of our party, he'd prefer <span style="color: #954B00;">**far-right**</span> toleration to avoid dependence on the socialists.
 view-if: dvp_saxony
 choose-if: in_dvp_majority_saxony or (in_bourgeois_coalition_saxony and not spd_toleration_saxony)
-unavailable-subtitle: The <span style="color: #E3000F;">**SPD**</span> will never support him.
+unavailable-subtitle: The <span style="color: var(--spd-color);">**[+ spd_name +]**</span> will never support him.
 on-arrival: saxony_leader = "Bünger"; saxony_leader_party = dvp_name; old_middle_dvp += 4*(1-dissent); new_middle_dvp += 2*(1-dissent); nationalism += 3*(1-dissent)
 face-image: img/portraits/BüngerWilhelm.jpg
 
@@ -610,14 +639,23 @@ Wilhelm Bünger was elected.
 
 @heldt
 title: Max Heldt, the <span style="color: #FE9E00;">**ASPD**</span> candidate.
-subtitle: The nationalist splinter of the <span style="color: #E3000F;">**SPD**</span> is willing to work with us once more.
+subtitle: The nationalist splinter of the <span style="color: var(--spd-color);">**[+ spd_name +]**</span> is willing to work with us once more.
 view-if: in_grand_coalition_saxony or in_bourgeois_coalition_saxony
-choose-if: not far_right_toleration_saxony
+choose-if: in_grand_coalition_saxony or in_bourgeois_coalition_saxony
 unavailable-subtitle: The far-right will never support him.
 on-arrival: saxony_leader = "Heldt"; saxony_leader_party = "ASPD"; nationalism += 1; pro_republic -= 1
 face-image: img/portraits/HeldtMax.jpg
 
 Max Heldt was elected.
+
+@zeigner
+title: Erich Zeigner, the <span style="color: var(--spd-color);">**[+ spd_name +]**</span> candidate.
+subtitle: Briefly Minister-President before the German October, he shall return to office once more. Hopefully it will go better this time.
+view-if: in_left_front_saxony
+on-arrival: saxony_leader = "Heldt"; saxony_leader_party = spd_name; workers_spd += 2; unemployed_spd += 2; socialism += 2; pro_republic += 1
+face-image: img/portraits/ZeignerErich.jpg
+
+Erich Zeigner was elected.
 
 @killinger
 title: Manfred Killinger, <span style="color: #954B00;">**NSDAP**</span> candidate.
@@ -631,7 +669,7 @@ Manfred Killinger was elected.
 
 @no_majority
 title: There is no clear governing majority.
-view-if: bourgeois_coalition_saxony < 50 and grand_coalition_saxony < 50 and far_right_coalition_saxony < 50
-on-arrival: workers_nsdap += 2; unemployed_nsdap += 2; old_middle_nsdap += 1; new_middle_nsdap += 1; rural_nsdap += 1; dvp_saxony = 1 if was_dvp_saxony; in_dvp_majority_saxony = 1 if was_in_dvp_majority_saxony; in_grand_coalition_saxony = 1 if was_in_grand_coalition_saxony; in_bourgeois_coalition_saxony = 1 if was_in_bourgeois_coalition_saxony; in_far_right_coalition_saxony = 1 if was_in_far_right_coalition_saxony; 
+view-if: left_front_saxony < 50 and bourgeois_coalition_saxony < 50 and grand_coalition_saxony < 50 and far_right_coalition_saxony < 50
+on-arrival: workers_nsdap += 2; unemployed_nsdap += 2; old_middle_nsdap += 1; new_middle_nsdap += 1; rural_nsdap += 1; dvp_saxony = 1 if was_dvp_saxony; in_dvp_majority_saxony = 1 if was_in_dvp_majority_saxony; in_left_front_saxony = 1 if was_in_left_front_saxony; in_grand_coalition_saxony = 1 if was_in_grand_coalition_saxony; in_bourgeois_coalition_saxony = 1 if was_in_bourgeois_coalition_saxony; in_far_right_coalition_saxony = 1 if was_in_far_right_coalition_saxony; 
 
 There is no path to a majority government for now. The current government will stay in power as a minority coalition.

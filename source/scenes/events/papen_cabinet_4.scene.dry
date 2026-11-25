@@ -17,18 +17,18 @@ However, it does help draw bourgeois sympathies into the cabinet, as many upper-
 @left
 title: At least *something* is being done to fix the economy.
 on-arrival: pro_republic += 4; workers_spd += 2; workers_z += 2; workers_kpd += 2; unemployed -= 1; economic_growth += 1; inflation += 1; papen_economy_time = rubicon_time + 24; budget -= 1
-view-if: dvp_ideology = "Left"
+view-if: dvp_left >= 0
 
 We’ve seen a slight decrease in unemployment—small, but in a depression this deep, any break from Brüning’s deflationary orthodoxy is a welcome change.
 
-The following day, however, Papen issues a decree allowing employers to undercut wages set by collective bargaining agreements when hiring new workers, instantly sparking outrage among the <span style="color: #E3000F;">socialist</span> and <span style="color: #000000;">Christian</span> trade unions.  
+The following day, however, Papen issues a decree allowing employers to undercut wages set by collective bargaining agreements when hiring new workers, instantly sparking outrage among the <span style="color: var(--spd-color);">socialist</span> and <span style="color: #000000;">Christian</span> trade unions.  
 
   
 @right
 title: Is the economy finally recovering?
 on-arrival: pro_republic += 4; workers_spd += 2; workers_z += 2; workers_kpd += 2; unemployed -= 1; economic_growth += 1; inflation += 1; papen_economy_time = rubicon_time + 24; budget -= 1
-view-if: dvp_ideology = "Right"
+view-if: dvp_left < 0
 
 We’ve seen a slight decrease in unemployment—small, but in a depression this deep, any break from Brüning’s deflationary orthodoxy is a welcome change.
 
-The following day, however, Papen issues a decree allowing employers to undercut wages set by collective bargaining agreements when hiring new workers, instantly sparking outrage among the <span style="color: #E3000F;">socialist</span> and <span style="color: #000000;">Christian</span> trade unions.
+The following day, however, Papen issues a decree allowing employers to undercut wages set by collective bargaining agreements when hiring new workers, instantly sparking outrage among the <span style="color: var(--spd-color);">socialist</span> and <span style="color: #000000;">Christian</span> trade unions.

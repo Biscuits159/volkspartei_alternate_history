@@ -1,0 +1,194 @@
+title: <span style="color: #FFCC00;">**LVP**</span> formed
+view-if: never
+max-visits: 1
+tags: event
+priority: 3
+new-page: true
+
+= <span style="color: #FFCC00;">**Liberale Volkspartei**</span> formed
+
+With the results of the 1928 federal election still fresh on our minds, it is clear tha Germany can no longer afford the luxury of two liberal parties. Fortunately, over the past few months, the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> and the <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> have grown closer together, with many local liberal organizations already enjoying further cooperation and some even merging together. After a successful round of preliminary negotiations between [+ dvp_leader +] and [+ ddp_leader +], the unification of the German liberal movement, a goal since the days of the Empire, is now at hand.
+
+- @negotiations: Negotiations begin in earnest to decide the Party's platform.
+
+@negotiations
+on-arrival: {!
+Q.lvp_left = Q.ddp_left + Q.dvp_left;
+Q.lvp_left += Q.pro_republic / 20;
+Q.lvp_left -= Q.nationalism / 20;
+
+Q.lvp_left += Q.ddp_votes / 2;
+Q.lvp_left -= Q.dvp_votes / 2;
+
+if (Q.spd_in_government && Q.dvp_in_government) Q.lvp_left += 2;
+if (Q.dnvp_in_government && Q.dvp_in_government) Q.lvp_left -= 2;
+!}
+go-to: lvp_menu
+
+@lvp_menu
+
+Many concessions have been made from both sides to reach a formal agreement, now we must decide on the "National Questions".
+
+- @the_republic
+
+
+@the_republic
+title: On the topic of the Presidency and the Reichstag.
+
+Unlike the Nationalists, the <span style="color: #FFCC00;">**LVP**</span> will be a party committed to the republican and democratic order, but there is much to be discussed on the future of the Republic. President <span style="color: #909090;">**Hindenburg**</span>, and even <span style="color: var(--spd-color);">**Friedrich Ebert**</span> before him, used the broad powers of the Presidency to bypass the Reichstag, while controversial and undemocratic for some, others claim it was necessary to save the Republic. The party decides...
+
+- @presidential
+- @status_quo_republic
+- @parliamentary
+
+@presidential
+title: We will try to reform the Weimar Constitution into a presidential Republic.
+unavailable-subtitle: The party won't support this.
+choose-if: lvp_left < 0 and pro_republic < 70
+on-arrival: lvp_left -= 2; pro_republic -= 5; spd_relation -= 5; dnvp_relation += 5*(1-dissent); workers_dvp -= 3; new_middle_dvp -= 3; old_middle_dvp += 5*(1-dissent); rural_dvp += 7*(1-dissent); dvp_left -= 1; spd_left += 1; democratic_dissent += 5;
+
+The republican experiment has proven too unstable, too susceptible to crisis and instability. A strong President, who chooses their own ministers, is needed, leaving the Reichstag only the duty to legislate, unable to bring down a government even with a majority.
+
+- @foreign_relations
+
+@status_quo_republic
+title: Maintain a semi-presidential Republic.
+on-arrival: lvp_left -= 1; pro_republic += 2*(1-dissent); z_relation += 5*(1-dissent); new_middle_dvp += 2*(1-dissent); rural_dvp -= 2; democratic_strength += 5;
+
+We shall maintain the status quo, but the Constitution must be amended to make governance more stable. Perhaps by introducing a constructive vote of no confidence or an electoral threshold.
+
+- @foreign_relations
+
+@parliamentary
+title: Adopt a fully parliamentary Republic, reducing the president to a figurehead.
+unavailable-subtitle: The party won't support this.
+choose-if: lvp_left >= 0
+on-arrival: lvp_left += 2; pro_republic += 5*(1-dissent); spd_relation += 5*(1-dissent); dnvp_relation -= 5; workers_dvp += 3*(1-dissent); new_middle_dvp += 7*(1-dissent); old_middle_dvp -= 5; rural_dvp -= 7; dvp_left += 1; spd_left -= 1; progressive_strength += 5; democratic_strength += 10;
+
+President <span style="color: #909090;">**Hindenburg**</span> has repeatedly used the powers of his office to undermine democracy and the will of the German people, it must go. Governing should be a task given exclusively to the representatives of the people, the Reichstag.
+
+- @foreign_relations
+
+
+@foreign_relations
+title: On foreign relations.
+
+Naturally, no one is proposing to break with the Stresemannite doctrine, beginning an agressive rearmament project or ending our adherence to the Treaty of Versailles. However, there is discussion on what should come after the issue of reparations has been solved, and what should be our relations to Germany's neighbors.
+
+- @pro_europabund
+- @neutrality
+
+@pro_europabund
+title: We will draw closer to the Western Powers and seek the formation of an Europabund.
+on-arrival: lvp_left += 1; west_relation += 1; eb_progress += 1; spd_relation += 5*(1-dissent); workers_dvp += 2*(1-dissent); new_middle_dvp += 3*(1-dissent); old_middle_dvp -= 2; rural_dvp -= 3; progressive_strength += 5;
+
+Our future lies with Europe, and further integration with western economies, diplomacy and culture. The <span style="color: var(--spd-color);">**[+ spd_name +]**</span> approves of our ideas, as it helps them achieve one of their goals from the Heidelberger Programm.
+
+- @economic_platform
+
+@neutrality
+title: Maintain a flexible foreign policy, while keeping a neutral stance in the world stage.
+on-arrival: lvp_left -= 1; austria_annexation_progress += 1; west_relation -= 1; workers_dvp -= 3; new_middle_dvp += 2*(1-dissent); old_middle_dvp += 3*(1-dissent); rural_dvp += 2*(1-dissent)
+
+Neutrality will keep us away from another catastrophic conflict, however, as tensions between the <span style="color: #8B0000;">**Soviet Union**</span> and the West are on the rise, the former Entente would much rather have Germany on their side.
+
+- @economic_platform
+
+
+@economic_platform
+title: In regards to our Economic policy.
+
+We must now decide our economic platform. While the members of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> and our coalition partners are hesitant on interventionism, the <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span> argues that we should be open to governmental action in the economy.
+
+- @laissez_faire
+- @limited_intervention
+
+@laissez_faire
+title: Keep our strict adherence to laissez-faire capitalism.
+unavailable-subtitle: [? if works_program != 0: An economic plan has already implemented, to great efficacy. ?]
+choose-if: works_program == 0
+on-arrival: lvp_left -= 1; dnvp_relation += 5*(1-dissent); wp_relation += 5*(1-dissent); spd_relation -= 5; dvp_left -= 1; workers_dvp -= 2; new_middle_dvp += 4*(1-dissent); old_middle_dvp += 4*(1-dissent); rural_dvp -= 2; labor_dissent += 10; progressive_dissent += 10;
+
+These are difficult times which require hard solutions. Austerity, fiscal discipline and avoiding interfering with the economy shall be our official policy, to the dismay of our labor faction.
+
+- @cooperation_others
+
+@limited_intervention
+title: Limited government intervention is necessary.
+on-arrival: lvp_left += 1; lautenbach_plan_support += 1; schacht_plan_support += 1; spd_relation += 2*(1-dissent); wp_relation -= 5; dvp_left += 1; workers_dvp += 2*(1-dissent); new_middle_dvp += 2*(1-dissent); old_middle_dvp -= 4; labor_strength += 10; progressive_strength += 5;
+
+The economy will not recover without government intervention, we will endorse fiscal stimuli and public works programs, focused on expanding credit availability and liquidity.
+
+- @cooperation_others
+
+
+@cooperation_others
+title: On our relationship with other parties.
+
+As it stands, it is unlikely that a <span style="color: #FFCC00;">**liberal**</span> party will ever achieve a majority on its own. We must, therefore, seek cooperation with other parties. Naturally, the <span style="color: var(--ddp-color);">**[+ ddp_name +]**</span>'s preferred choice are the Weimar parties, while our party's right would rather form bourgeois coalitions.
+
+- @cooperation_spd
+- @pragmatism_interparty
+- @cooperation_right
+
+@cooperation_spd
+title: Draw closer to the <span style="color: var(--spd-color);">**[+ spd_name +]**</span>.
+on-arrival: lvp_left += 2; spd_relation += 5*(1-dissent); dbp_relation -= 5; cnblp_relation -= 5; wp_relation -= 5; dnvp_relation -= 10; workers_dvp += 4*(1-dissent); new_middle_dvp += 2*(1-dissent); old_middle_dvp -= 4; rural_dvp -= 4; spd_left -= 1; dvp_left += 1; progressive_strength += 5; democratic_strength += 10; liberal_dissent += 5;
+
+The <span style="color: var(--spd-color);">**[+ spd_name +]**</span> is, arguably, the party most committed to democracy and the Republic. Strengthening our ties with them should be our priority.
+
+- @interim_leader
+
+@pragmatism_interparty
+title: We will work with whoever necessary for our interests.
+on-arrival: lvp_left -= 1; spd_relation -= 2; dbp_relation -= 2; cnblp_relation -= 2; wp_relation -= 2; dnvp_relation -= 5; new_middle_dvp -= 2; old_middle_dvp -= 2; rural_dvp -= 2; progressive_dissent += 5;
+
+We must remain flexible, working with left and right, as long as their policy isn't to destroy the Republic.
+
+- @interim_leader
+
+@cooperation_right
+title: Foster better relations with right-wing parties.
+on-arrival: lvp_left -= 2; spd_relation -= 10; dbp_relation += 5; cnblp_relation += 5*(1-dissent); wp_relation += 5*(1-dissent); dnvp_relation += 5*(1-dissent); workers_dvp -= 2; new_middle_dvp -= 2; old_middle_dvp += 4*(1-dissent); rural_dvp += 2*(1-dissent); spd_left += 1; dvp_left -= 1; liberal_strength += 5; progressive_dissent += 10; democratic_dissent += 5;
+
+The bourgeois parties are our natural allies, and we should continue treating them as such.
+
+- @interim_leader
+
+
+@interim_leader
+title: Finally, we must select an interim leader to lead our party until our first congress, in 2 years’ time.
+
+- @dietrich: Hermann Dietrich, a prominent economist and former leader of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>'s right.
+- @curtius: Julius Curtius will lead our party.
+- @thiel: Otto Thiel will lead our party.
+
+@dietrich
+subtitle: Dietrich was the former leader of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>'s business wing.
+view-if: lvp_left >= 0
+on-arrival: dvp_leader = "Dietrich"; workers_dvp += 1*(1-dissent); new_middle_dvp += 4*(1-dissent); democratic_strength += 10; democratization += 1; democratic_dissent -= 5
+face-image: img/portraits/DietrichHermann.jpg
+go-to: lvp_formed
+
+Supported by the party’s newly integrated Democrats and Progressives, along with a portion of our own liberals, Hermann Dietrich is set to lead our party towards a more generally liberal direction, holding little emphasis on nationalism and instead pursuing a more cooperative approach to democracy. Naturally, the party’s remaining Nationalists have already collectively agreed to abandon the party, with the Industrialists harbouring heavy skepticism in their role within the new <span style="color: #FFCC00;">**LVP**</span>.
+
+
+@curtius
+subtitle: Curtius belongs to the Stresemannite wing of our party.
+view-if: lvp_left < 4
+on-arrival: dvp_leader = "Curtius"; new_middle_dvp += 4*(1-dissent); old_middle_dvp += 4*(1-dissent); liberal_strength += 10; democratization += 1; liberal_dissent -= 5
+face-image: img/portraits/CurtiusJulius.jpg
+go-to: lvp_formed
+
+With assistance from our Liberal Wing, Julius Curtius retains Stresemann's path within the previous <span style="color: #C0A054;">**DVP**</span> as the party of sensibility, the middle class, and the alliance of the moderate right. His nationalistic tendencies do still rub the Progressives the wrong way, but he is generally acceptable to most factions in the party. Of course, his continued rivalry with the nationalists has caused a fatal rift with their remnants in the party, and the rest of the parliamentarian factions have actively denounced their continued presence.
+
+
+@thiel
+subtitle: Thiel is a prominent labor leader.
+view-if: lvp_left < 2
+on-arrival: dvp_leader = "Thiel"; workers_dvp += 4*(1-dissent); new_middle_dvp += 2*(1-dissent); labor_strength += 10; labor_dissent -= 5
+face-image: img/portraits/ThielOtto.jpg
+go-to: lvp_formed
+
+Surprisingly, Otto Thiel, his candidacy being supported by sympathetic liberals, accompanied by the unified national labour front of the DHV, has taken leadership status within the <span style="color: #FFCC00;">**LVP**</span>. Otto Thiel has already been noted as a significant influence to the <span style="color: #C0A054;">**DVP**</span>'s efforts to infiltrate the <span style="color: var(--spd-color);">**SPD**</span>-dominated working class, and his ascension into leadership further solidifies this position. Already, he has begun to collaborate with Walther Lambach on matters of the economy, promising to create a more harmonious society between the various classes, while also maintaining the nationalist zeal of the <span style="color: #C0A054;">**DVP**</span>. It is to be noted, however, that the nationalist remnants bear no sympathy for Otto Thiel's leadership; their constant hostility towards his policies to turn the <span style="color: #C0A054;">**DVP**</span> into an Arbeiterpartei and unwillingness to accept the republican system has permanently alienated them from the rest of the party's parliamentarian leanings.
+

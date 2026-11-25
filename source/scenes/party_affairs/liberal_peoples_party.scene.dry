@@ -2,53 +2,52 @@ title: Building a Unified Liberal Party
 new-page: true
 is-card: true
 card-image: img/poster_0.jpg
-view-if: dvp_ideology == "Left" and lvp_formed == 0 and nfvp_formed == 0 and liberal_peoples_party_timer == 0
+view-if: dvp_left >= 0 and lvp_formed == 0 and nfvp_formed == 0 and liberal_peoples_party_timer == 0
 on-arrival: month_actions += 1; liberal_peoples_party_timer = 6
 tags: party_affairs
 #subtitle: Can the <span style="color: var(--dvp-color);">**DVP**</span> unite with [+ ddp_name +]?
 
 = Building a Liberal People's Party
 
-WIP
+It has long been the dream of many liberals to have a single, unified party dedicated to our values. We came close to this in the earliest days of the Republic, but personal crises and disagreements led to the stagnation of the idea. Is it time to revisit the question of liberal unity? 
 
 - @support_liberal_peoples_party: Yes, we must unite with [+ ddp_name +]!
 - @build_support: We must build additional support before uniting with [+ ddp_name +].
 - @support_liberal_peoples_party_hard: Despite strong opposition from the Industrialist and Nationalist factions, we will unite with [+ ddp_name +].
-- @no_new_ideas: No, we will not do this.
+- @no_new_ideas: We are separate from the DDP for a reason. There is little to gain trying to unite with them. 
 - @root: Perhaps we can discuss this at a later time.
 - @easy_discard
 - @cancel_advisor_action
 
 @build_support
-view-if: dvp_ideology = "Left" or liberal_peoples_party_progress <= 6 or ddp_relation < 65
-on-arrival: liberal_peoples_party_progress += 1; liberal_strength += 5; nationalist_strength -= 5; nationalist_dissent += 5; dvp_left += 1; ddp_relation += 7*(1-dissent); dnvp_relation -= 2; dnvp_relation -= 5 if dnvp_leader = "Hugenberg"
+view-if: dvp_left >= 0 or liberal_peoples_party_progress <= 6 or ddp_relation < 65
+on-arrival: liberal_peoples_party_progress += 1; liberal_strength += 5; nationalist_strength -= 5; nationalist_dissent += 5; dvp_left += 1; ddp_relation += 7*(1-dissent); ddp_left -= 0.5; dnvp_relation -= 2; dnvp_relation -= 5 if dnvp_leader = "Hugenberg"
 
 We are pushing forward proposals for a united liberal party against the nationalists within our party. We are also building ties with [+ ddp_name +] organizations.
 
 
 @support_liberal_peoples_party
-choose-if: dvp_ideology = "Left" and liberal_peoples_party_progress >= 6 and ddp_relation >= 65
-unavailable-subtitle: [? if dvp_ideology != "Left" or liberal_peoples_party_progress < 6: The opposition is too strong. ?] [? if ddp_relation < 65: Our relations with [+ ddp_name +] are not good enough ?]
+choose-if: dvp_left >= 0 and liberal_peoples_party_progress >= 6 and ddp_relation >= 65
+unavailable-subtitle: [? if dvp_left < 0 or liberal_peoples_party_progress < 6: The opposition is too strong. ?] [? if ddp_relation < 65: Our relations with [+ ddp_name +] are not good enough ?]
 on-arrival: liberal_strength += 15; liberal_dissent -= 10; lvp_formed = 1; nationalist_dissent += 100; industrialist_dissent += 10; dnvp_relation -= 10; coalition_dissent -= 1; z_relation += 5*(1-dissent); spd_relation += 5*(1-dissent); dvp_left += 5
-go-to: lvp_formed
-achievement: volkspartei
+go-to: lvp_formation
 
 In a joint emergency conference with [+ ddp_name +], we have decided to unite our parties to become a liberal people's party.
 
 
 @support_liberal_peoples_party_hard
 subtitle: This will increase dissent.
-unavailable-subtitle: [? if ddp_relation < 60: Our relations with [+ ddp_name +] are not good enough. ?] [? if dvp_ideology != "Left": The opposition is too strong. ?]
+unavailable-subtitle: [? if ddp_relation < 60: Our relations with [+ ddp_name +] are not good enough. ?] [? if dvp_left < 0: The opposition is too strong. ?]
 view-if: liberal_peoples_party_progress = 5
-choose-if: dvp_ideology = "Left" and ddp_relation >= 60
+choose-if: dvp_left >= 0 and ddp_relation >= 60
 on-arrival: liberal_strength += 8; lvp_formed = 1; nationalist_dissent += 100; industrialist_dissent += 20; dnvp_relation -= 10; coalition_dissent -= 1; dvp_left += 5
-go-to: lvp_formed
+go-to: lvp_formation
 achievement: volkspartei
 
 In a joint emergency conference with [+ ddp_name +], we have decided to unite our parties to become a liberal people's party.
 
 
 @no_new_ideas
-on-arrival: industrialist_strength += 2; nationalist_strength += 3; lvp_formed = 0; liberal_peoples_party_progress -= 3; dvp_right += 1
+on-arrival: industrialist_strength += 2; nationalist_strength += 3; lvp_formed = 0; liberal_peoples_party_progress -= 3; dvp_left += 1
 
 We do not need to unite with [+ ddp_name +]

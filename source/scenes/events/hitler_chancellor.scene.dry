@@ -11,5 +11,5 @@ Internal scheming by the camarilla surrounding the president has caused Presiden
 
 He has promised a campaign of revenge against the socialists, and the Nazis have already spilled blood. In his published manifesto, he promises a campaign of unspeakable horror against Jews, and endless wars of violent expansion that will ruin all of Europe.
 
-[? if dvp_ideology = "Left": Is Germany lost? ?]
-[? if dvp_ideology = "Right": The question is, can he be tamed? ?]
+[? if dvp_left >= 0: Is Germany lost? ?]
+[? if dvp_left < 0: The question is, can he be tamed? ?]

@@ -1,6 +1,6 @@
 on-arrival: {!
 // set up the infrastructure
-Q.csrp_exist = 1;
+Q.csrp_formed = 1;
 Q.parties.push('csrp');
   
 
@@ -18,9 +18,9 @@ Q.rural_csrp = 0;
 Q.unemployed_csrp = 0;
 
 
-if (Q.dvp_ideology == "Left") {
+if (dvp_left >= 0) {
     Q.csrp_relation = 45
-} else if (Q.dvp_ideology == "Right") {
+} else {
     Q.csrp_relation = 15
 }
 

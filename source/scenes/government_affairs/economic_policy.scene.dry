@@ -2,14 +2,14 @@ title: Economic Policy
 new-page: true
 is-card: true
 tags: govt_affairs, cabinet
-on-arrival: economic_policy_timer += 12; month_actions += 1
+on-arrival: economic_policy_timer += 10; month_actions += 1
 view-if: dvp_in_government and (economic_minister_party == dvp_name or finance_minister_party == dvp_name) and economic_policy_timer <= 0
 card-image: img/portraits/KrohneRudolf.jpg
 #subtitle: Deregulation and privatization.
 
 = Economic Policy
 
-For us, economic policy involves deregulation and privatization.
+[? if dvp_left < 0: Our economic agenda involves responsible policy such as deregulation and privatisation. However, it may bring us into conflict with statist coalition partners. ?][? if dvp_left >= 0: Despite our shift in rhetoric, our economic agenda remains skeptical of state intervention and heavy regulation. Thus, our purpose in the Economic Ministry is still one of laissez-faire reforms, though this may alienate those drawn to our new positions. ?]
 
 - @deregulate_businesses
 - @targeted_privatizations
@@ -18,26 +18,29 @@ For us, economic policy involves deregulation and privatization.
 - @easy_discard
 - @cancel_advisor_action
 
+
 @deregulate_businesses
 title: Deregulate businesses.
 subtitle: Reduce state regulations over enterprises.
-on-arrival: business_deregulation += 1; coalition_dissent += 1 if spd_in_government; new_middle_dvp += 5*(1-dissent); old_middle_dvp += 7*(1-dissent); workers_dvp -= 2; capital_strike_progress -= 1; labor_dissent += 5; industrialist_dissent -= 8; liberal_dissent -= 4; spd_relation -= 5; ddp_relation += 3; ddp_cohesion -= 1; economic_growth += 0.2 if economic_growth < 3
+on-arrival: business_deregulation += 1; coalition_dissent += 1 if spd_in_government; new_middle_dvp += 5*(1-dissent); old_middle_dvp += 7*(1-dissent); workers_dvp -= 2; capital_strike_progress -= 1; labor_dissent += 5; industrialist_dissent -= 8; liberal_dissent -= 4; spd_relation -= 5; ddp_relation += 3; spd_relation -= 5; ddp_relation += 5*(1-dissent); spd_left += 1; ddp_left -= 1; ddp_cohesion -= 1; demand_for_action_countdown += 6; economic_growth += 0.2 if economic_growth < 3
 max-visits: 3
 
 We have reduced regulations on strategic businesses, saving some from failure and encouraging growth on others. The economy benefits from this slightly, at the expense of our support among workers.
 
+
 @targeted_privatizations
 title: Targeted privatizations.
 subtitle: Privatize nonessential services and unprofitable state-owned enterprises. [? if small_privatizations = 2: +1 budget ?]
-on-arrival: small_privatizations += 1; coalition_dissent += 1 if spd_in_government; new_middle_dvp -= 2; old_middle_dvp += 9*(1-dissent); workers_dvp -= 3; labor_dissent += 7; industrialist_dissent -= 12; ddp_cohesion -= 1; economic_growth += 0.2 if economic_growth < 5; unemployed += 0.5; budget += 1 if small_privatizations = 3
+on-arrival: small_privatizations += 1; coalition_dissent += 1 if spd_in_government; new_middle_dvp -= 2; old_middle_dvp += 9*(1-dissent); workers_dvp -= 3; labor_dissent += 7; industrialist_dissent -= 12; ddp_cohesion -= 1; demand_for_action_countdown += 8; economic_growth += 0.2 if economic_growth < 5; unemployed += 0.5; spd_relation -= 5; ddp_relation -= 5; wp_relation += 5*(1-dissent); spd_left += 1; ddp_left += 1; budget += 1 if small_privatizations = 3
 max-visits: 3
 
 Transportation, prison service, parts of healthcare, small state-owned enterprises and others are transfered or sold to private investors. Our new middle class base, of which many are public servants, worry about losing their jobs, and we've noticed an uptick in unemployement.
 
+
 @sweeping_privatizations
 title: Make sweeping privatizations.
 subtitle: Privatize as many things as possible. +1 budget
-on-arrival: big_privatizations += 1; coalition_dissent += 1 if dvp_majority == 0; new_middle_dvp -= 10; old_middle_dvp += 12*(1-dissent); workers_dvp -= 10; labor_dissent += 10; industrialist_dissent -= 18; industrialist_strength += 5; ddp_cohesion -= 1; new_middle -= 2; economic_growth += 0.1 if economic_growth < 5; unemployed += 2; budget += 1
+on-arrival: big_privatizations += 1; coalition_dissent += 1 if dvp_majority == 0; new_middle_dvp -= 10; old_middle_dvp += 12*(1-dissent); workers_dvp -= 10; labor_dissent += 10; industrialist_dissent -= 18; industrialist_strength += 5; ddp_cohesion -= 1; new_middle -= 2; demand_for_action_countdown += 8; economic_growth += 0.1 if economic_growth < 5; unemployed += 2; budget += 1; spd_relation -= 15; ddp_relation -= 5; wp_relation += 5*(1-dissent); spd_left += 2; ddp_left += 2;
 max-visits: 2
 
 We have pushed through as much legislation as possible to sell our public services and enterprises. The new middle class leaves us in droves, and many of them, having lost their employment, are even ejected from their social class. Unemployment is also rising.

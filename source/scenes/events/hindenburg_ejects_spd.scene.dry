@@ -1,0 +1,69 @@
+title: President Hindenburg ejects <span style="color: var(--spd-color);">**SPD**</span> ministers!
+new-page: true
+subtitle: Let the presidential cabinets begin...
+tags: event
+view-if: young_plan_ratified and spd_in_government and hindenburg_angry > 120 and President == "Hindenburg"
+on-arrival: {! 
+Q.hindenburg_angry -= 70;
+
+Q.spd_left += 3;
+Q.spd_in_government = 0;
+Q.spd_toleration = 1;
+Q.spd_patience = 50 + Q.spd_relation/5;
+
+if (Q.chancellor_party != Q.dvp_name) {
+    Q.chancellor = "Brüning";
+    Q.chancellor_party = Q.z_name;
+}
+if (Q.foreign_minister_party != Q.dvp_name) {
+    Q.foreign_minister = "Brüning";
+    Q.foreign_minister_party = Q.z_name;
+}
+if (Q.interior_minister_party != Q.dvp_name) {
+    Q.interior_minister = "Wirth";
+    Q.interior_minister_party = Q.z_name;
+    if (Q.csrp_formed) Q.interior_minister_party = "CSRP";
+    if (Q.social_catholics_dvp) Q.interior_minister = "Bolz";
+}
+if (Q.justice_minister_party != Q.dvp_name) {
+    Q.justice_minister = "Guérard";
+    Q.justice_minister_party = Q.z_name;
+    if (Q.ddp_exist) {
+        Q.justice_minister = "Koch-Weser";
+        Q.justice_minister_party = Q.ddp_name;
+    }
+}
+if (Q.labor_minister_party != Q.dvp_name) {
+    Q.labor_minister = "Stegerwald";
+    Q.labor_minister_party = Q.z_name;
+}
+if (Q.reichswehr_minister_party != Q.dvp_name) {
+    Q.reichswehr_minister = "Groener";
+    Q.reichswehr_minister_party = "I";
+}
+if (Q.economic_minister_party != Q.dvp_name) {
+    Q.economic_minister = "Hermes";
+    Q.economic_minister_party = Q.z_name;
+}
+if (Q.finance_minister_party != Q.dvp_name) {
+    Q.finance_minister = "Köhler";
+    Q.finance_minister_party = Q.z_name;
+}
+if (Q.agriculture_minister_party != Q.dvp_name) {
+    Q.agriculture_minister = "Hermes";
+    Q.agriculture_minister_party = Q.z_name;
+    if (Q.dbp_exist) {
+        Q.agriculture_minister = "Fehr";
+        Q.agriculture_minister_party = "DBP"
+    }
+}
+!}
+
+
+= President Hindenburg ejects <span style="color: var(--spd-color);">**SPD**</span> ministers!
+
+The cabinet has been reshuffled, we shall remain in government as a minority coalition, tolerated by the <span style="color: var(--spd-color);">**SPD**</span>. We now have the unenviable task of managing the crisis, keeping our coalition together, avoiding a vote of no confidence by the <span style="color: var(--spd-color);">**SPD**</span> and trying to stay in President Hindenburg's good graces.
+
+- @continue: Continue...
+
+@continue

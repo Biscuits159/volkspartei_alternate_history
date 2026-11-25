@@ -1,4 +1,4 @@
-title: The <span style="color: #E3000F;">**SPD**</span> implements their economic plan
+title: The <span style="color: var(--spd-color);">**SPD**</span> implements their economic plan
 new-page: true
 is-card: true
 max-visits: 1
@@ -6,21 +6,21 @@ view-if: (spd_wtb_plan or spd_left_plan) and unemployed >= 10 and spd_in_governm
 tags: event
 face-image: img/spd.jpg
 
-= The <span style="color: #E3000F;">**SPD**</span> implements their economic plan
+= The <span style="color: var(--spd-color);">**SPD**</span> implements their economic plan
 
-With control of the [? if economic_minister_party == "SPD": Economic Ministry?][? if economic_minister_party != "SPD" and finance_minister_party == "SPD": Finance Ministry ?], the <span style="color: #E3000F;">**SPD**</span> has begun implementing their plan.
+With control of the [? if economic_minister_party == "SPD": Economic Ministry?][? if economic_minister_party != "SPD" and finance_minister_party == "SPD": Finance Ministry ?], the <span style="color: var(--spd-color);">**SPD**</span> has begun implementing their plan.
 
 - @nationalization_implementation: The transformation of the economy begins.
 - @wtp_implementation: Mass public works are started.
 
 @nationalization_implementation
 view-if: spd_left_plan
-on-arrival: spd_left_plan_implemented = 1; capital_strike_progress += 3; unemployed -= 3 if unemployed >= 6; budget -= 3; workers_spd += 8; unemployed_spd += 5; coalition_dissent += 1 if (in_spd_majority == 0 and in_left_front == 0); inflation += 3; socialism += 2; economic_growth += 2 if economic_growth < 5;
+on-arrival: spd_left_plan_implemented = 1; works_program += 1; capital_strike_progress += 3; unemployed -= 3 if unemployed >= 6; budget -= 3; socialism += 2; workers_spd += 5; unemployed_spd += 5; coalition_dissent += 1; dvp_left -= 2; inflation += 3; economic_growth += 2 if economic_growth < 5;
 
 Industries are nationalized, most are compensated, but a few are illegally seized by workers. Nonetheless, this does reduce unemployement.
 
 @wtp_implementation
 view-if: spd_wtb_plan
-on-arrival: spd_wtb_plan_implemented = 1; budget -= 3; unemployed -= 4; workers_spd += 8; unemployed_spd += 8; inflation += 2; pro_republic += 3; economic_growth += 2.8
+on-arrival: spd_wtb_plan_implemented = 1; works_program += 1; budget -= 3; pro_republic += 3; unemployed -= 4; workers_spd += 5; unemployed_spd += 5; inflation += 2; economic_growth += 2.8
 
 Money is once more flowing through the economy, unemployement has fallen sharply and inflation has noticeably ticked up.

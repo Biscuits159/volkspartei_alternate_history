@@ -7,18 +7,18 @@ tags: event
 
 = Streetfighting
 
-Over the last year, paramilitary organizations have become increasingly active, with sporadic confrontations giving way to daily clashes between the *Reichsbanner* <span style="color: #000000;"><b><i>Schwarz</i></b></span>-<span style="color: #E3000F;"><b><i>Rot</i></b></span>-<span style="color: #DCCA4A;"><b><i>Gold</i></b></span>, the <span style="color: #3F7BC1;">**Stahlhelm**</span>, the police and the radical <span style="color: #8B0000;">**RFB**</span> and <span style="color: #954B00;">**SA**</span>. And yet, we are the only major party without an associated paramilitary, even if some of our right-leaning members were also members of the <span style="color: #3F7BC1;">**Stahlhelm**</span>, there was no official arrangement. Now, many of our members feel threatened by the violence and they may even jump ship to other right-wing parties to receive protection from their paramilitaries.
+Over the last year, paramilitary organizations have become increasingly active, with sporadic confrontations giving way to daily clashes between the *Reichsbanner* <span style="color: #000000;"><b><i>Schwarz</i></b></span>-<span style="color: var(--spd-color);"><b><i>Rot</i></b></span>-<span style="color: #DCCA4A;"><b><i>Gold</i></b></span>, the <span style="color: #3F7BC1;">**Stahlhelm**</span>, the police and the radical <span style="color: #8B0000;">**RFB**</span> and <span style="color: #954B00;">**SA**</span>. And yet, we are the only major party without an associated paramilitary, even if some of our right-leaning members were also members of the <span style="color: #3F7BC1;">**Stahlhelm**</span>, there was no official arrangement. Now, many of our members feel threatened by the violence and they may even jump ship to other right-wing parties to receive protection from their paramilitaries.
 
-We must defend ourselves somehow. We could ask to formally join with the <span style="color: #3F7BC1;">**Stahlhelm**</span>, owing to our history, this seems to be the natural choice, but it would be met with great resistance from our left-wing. Another possibility is to strengthen the state police enough to subdue the violence, since the <span style="color: #8B0000;">**RFB**</span> and the <span style="color: #954B00;">**SA**</span> are the main perpetrators, this may be feasible. [? if ddp_exist == 0: Or we could leverage the previous connections from the <span style="color: #DCCA4A;">**DDP**</span>, and ask to rejoin the <span style="color: #E3000F;">**Reichsbanner**</span>. ?]
+We must defend ourselves somehow. We could ask to formally join with the <span style="color: #3F7BC1;">**Stahlhelm**</span>, owing to our history, this seems to be the natural choice, but it would be met with great resistance from our left-wing. Another possibility is to strengthen the state police enough to subdue the violence, since the <span style="color: #8B0000;">**RFB**</span> and the <span style="color: #954B00;">**SA**</span> are the main perpetrators, this may be feasible. [? if lvp_formed or nfvp_formed: Or we could leverage the previous connections from the <span style="color: #DCCA4A;">**DDP**</span>, and ask to rejoin the <span style="color: var(--spd-color);">**Reichsbanner**</span>. ?]
 
 - @join_stahlhelm: Let us join in with the <span style="color: #3F7BC1;">**DNVP**</span>.
 - @use_police: We shall increase our cooperation with the police.
-- @join_reichsbanner: Let's reach out to the <span style="color: #E3000F;">**SPD**</span>.
+- @join_reichsbanner: Let's reach out to the <span style="color: var(--spd-color);">**SPD**</span>.
 
 @join_stahlhelm
 subtitle: This will raise dissent within the party. The liberals will likely split.
-unavailable-subtitle: [? if dvp_ideology == "Left" or liberal_strength > nationalist_strength: The party will not allow this. ?][? if dnvp_relation < 50: Our relations with the <span style="color: #3F7BC1;">**DNVP**</span> aren't high enough. ?]
-choose-if: nationalist_strength > liberal_strength and dvp_ideology == "Right" and dnvp_relation >= 50
+unavailable-subtitle: [? if dvp_left >= 0 or liberal_strength > nationalist_strength: The party will not allow this. ?][? if dnvp_relation < 50: Our relations with the <span style="color: #3F7BC1;">**DNVP**</span> aren't high enough. ?]
+choose-if: nationalist_strength > liberal_strength and dvp_left < 0 and dnvp_relation >= 50
 on-arrival: dvp_in_stahlhelm = 1; liberal_dissent += 20; industrialist_strength += 5; nationalist_strength += 10; dnvp_relation += 8*(1-dissent); pro_republic -= 5; nationalism -= 5*(1-dissent)
 
 The <span style="color: #3F7BC1;">**Stahlhelm**</span> will now protect our rallies, and we can fund them through various means.
@@ -34,4 +34,4 @@ subtitle: Our preferred course of action.
 view-if: ddp_exist == 0
 on-arrival: dvp_in_reichsbanner = 1; progressive_strength += 5; democratic_strength += 10; labor_strength += 5; liberal_strength += 10; industrialist_dissent += 20; spd_relation += 8*(1-dissent); z_relation += 8*(1-dissent); pro_republic += 5*(1-dissent)
 
-The *Reichsbanner* <span style="color: #000000;"><b><i>Schwarz</i></b></span>-<span style="color: #E3000F;"><b><i>Rot</i></b></span>-<span style="color: #DCCA4A;"><b><i>Gold</i></b></span> will now protect our rallies, and we can fund them through various means.
+The *Reichsbanner* <span style="color: #000000;"><b><i>Schwarz</i></b></span>-<span style="color: var(--spd-color);"><b><i>Rot</i></b></span>-<span style="color: #DCCA4A;"><b><i>Gold</i></b></span> will now protect our rallies, and we can fund them through various means.

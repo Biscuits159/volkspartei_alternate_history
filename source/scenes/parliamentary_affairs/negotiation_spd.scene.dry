@@ -6,9 +6,9 @@ view-if: negotiation_spd_timer = 0
 on-arrival: negotiation_spd_timer = 6; month_actions += 1
 tags: parliamentary_affairs
 
-= Negotiations with the <span style="color: #E3000F;">**SPD**</span>
+= Negotiations with the <span style="color: var(--spd-color);">**SPD**</span>
 
-Though they are radically different in ideology compared to us, cooperation with the <span style="color: #E3000F;">**SPD**</span> is still crucial in order to better navigate the Weimar democratic system. What should we do to strengthen our ties?
+Though they are radically different in ideology compared to us, cooperation with the <span style="color: var(--spd-color);">**SPD**</span> is still crucial in order to better navigate the Weimar democratic system. What should we do to strengthen our ties?
 
 - @spd: Strengthen our bonds with the Social Democratic Party.
 - @cut_poor_spd: Cut consumption taxes for the poor.
@@ -25,17 +25,17 @@ on-arrival: resources -= 1
 go-to: dvp_op if spd_in_government = 1 and dvp_in_government = 0; spd_coalition if spd_in_government = 1 and dvp_in_government = 1; spd_op if spd_in_government = 0 and dvp_in_government = 1
 
 @dvp_op 
-on-arrival: spd_relation += 5*(1-dissent)
+on-arrival: spd_relation += 5*(1-dissent); spd_left -= 0.5;
 
 We are currently in opposition to the SPD-led government, but that does not preclude the general building of feelings of good will.
 
 @spd_coalition
-on-arrival: spd_relation += 8*(1-dissent)
+on-arrival: spd_relation += 8*(1-dissent); spd_left -= 1;
 
 We are currently coalition partners with them, so improving relations comes naturally.
 
 @spd_op
-on-arrival: spd_relation += 5*(1-dissent)
+on-arrival: spd_relation += 5*(1-dissent); spd_left -= 0.5;
 
 They are currently in opposition to our government, but that does not preclude the general building of feelings of good will.
 
@@ -43,18 +43,18 @@ They are currently in opposition to our government, but that does not preclude t
 subtitle: -2 budget
 unavailable-subtitle: -2 budget - [? if finance_minister_party != dvp_name: The <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> does not have the Finance Ministry ?][? if lower_tax_rates < -5: Tax rates are already too low. ?]
 choose-if: finance_minister_party = dvp_name and budget >= 2 and lower_tax_rates >= -5
-on-arrival: spd_patience += 25 if spd_toleration; spd_relation += 5*(1-dissent)
+on-arrival: spd_patience += 25 if spd_toleration; spd_relation += 5*(1-dissent); spd_left -= 1;
 go-to: fiscal_policy.cut_poor
 
 @safety_spd
 unavailable-subtitle: The <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> does not have the Labor Ministry
 choose-if: labor_minister_party = dvp_name
-on-arrival: workers_safety += 1; labor_dissent -= 5; progressive_dissent -= 3; labor_strength += 2; progressive_strength += 1; spd_patience += 25 if spd_toleration; spd_relation += 5*(1-dissent); workers_spd += 5; workers_dvp += 3*(1-dissent); capital_strike_progress += 1 if workers_safety >= 3
+on-arrival: workers_safety += 1; labor_dissent -= 5; progressive_dissent -= 3; labor_strength += 2; progressive_strength += 1; spd_patience += 25 if spd_toleration; spd_relation += 5*(1-dissent); workers_spd += 5; workers_dvp += 3*(1-dissent); spd_left -= 1; capital_strike_progress += 1 if workers_safety >= 3
 
 The Labor Ministry works on developing and enforcing safety regulations, in order to ensure healty working conditions for the proletariat. [? if workers_safety >= 3 : Businesses have begun to argue that our focus on safety is overbearing and unnecessary, interfering with the economy. ?]
 
 @lautenbach_wtb
-unavailable-subtitle: The <span style="color: #E3000F;">**Social Democrats**</span> haven't fully formulated their plan yet.
+unavailable-subtitle: The <span style="color: var(--spd-color);">**Social Democrats**</span> haven't fully formulated their plan yet.
 choose-if: year >= 1932 and spd_wtb_plan
 view-if: year >= 1930 and not return_to_normalcy and lautenbach_plan_adopted and not lautenbach_wtb_adopted
 on-arrival: lautenbach_wtb_adopted = 1; spd_relation += 3; labor_strength += 5; progressive_strength += 5;

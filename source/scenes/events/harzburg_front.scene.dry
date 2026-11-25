@@ -8,7 +8,7 @@ max-visits: 1
 
 = The Harzburg Front
 
-The far-right parties and paramilitaries - the NSDAP (and its paramilitary the SA), the Stahlhelm paramilitary group, and the [? if dnvp_ideology = "Radical": DNVP ?][? if dnvp_ideology = "Moderate": DNF ?] - have united to form the Harzburg Front, as a force dedicated to the overthrow of the current government.
+The far-right parties and paramilitaries - the <span style="color: #954B00;">**NSDAP**</span> (and its paramilitary the <span style="color: #954B00;">**SA**</span>), the Stahlhelm paramilitary group, and the [? if dnvp_leader == "Hugenberg": <span style="color: var(--dnvp-color);">**[+ dnvp_name +]**</span> ?][? if dnf_formed: <span style="color: #003755;">**DNF**</span> ?] - have united to form the Harzburg Front, as a force dedicated to the overthrow of the current government.
 
 - @denounce_harzburg: We must denounce the far-right parties.
 - @stay_silent: Stay relatively silent.
@@ -27,8 +27,8 @@ on-arrival: liberal_dissent += 5; nationalist_dissent += 5;
 This makes nobody happier.
 
 @attend_harzburg
-choose-if: not lvp_formed and not dvp_ideology = "Left"
+choose-if: not lvp_formed and dvp_left < 0
 unavailable-subtitle: We are a liberal party!
-on-arrival: nationalist_strength += 7; liberal_dissent += 15; dvp_right += 3
+on-arrival: nationalist_strength += 7; liberal_dissent += 15; dvp_left -= 3
 
 We attend the meeting. WIP!

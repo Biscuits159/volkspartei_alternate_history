@@ -9,11 +9,11 @@ card-image: img/muller_cabinet.jpg
 
 = Coalition Affairs
 
-Our coalition is in trouble. [? if in_weimar_coalition or in_grand_coalition: The left-leaning members of the <span style="color: #E3000F;">**SPD**</span> and the <span style="color: #000000;">**Center**</span> ?][? if in_bourgeois_coalition: Members of the <span style="color: #000000;">**Center**</span> ?][? if in_center_right_coalition or in_hindenburg_coalition: The right-leaning members of the <span style="color: #000000;">**Center**</span> and the <span style="color: #3F7BC1;">**DNVP**</span> ?] are constantly criticizing us for our policies, and are threatening to call a vote of no confidence to collapse this government.
+Our coalition is in trouble. [? if in_weimar_coalition or in_grand_coalition: The left-leaning members of the <span style="color: var(--spd-color);">**SPD**</span> and the <span style="color: #000000;">**Center**</span> ?][? if in_bourgeois_coalition: Members of the <span style="color: #000000;">**Center**</span> ?][? if in_center_right_coalition or in_hindenburg_coalition: The right-leaning members of the <span style="color: #000000;">**Center**</span> and the <span style="color: #3F7BC1;">**DNVP**</span> ?] are constantly criticizing us for our policies, and are threatening to call a vote of no confidence to collapse this government.
 
 How do we reduce tensions with the coalition?
 
-- @raise_spending: Agree to the <span style="color: #E3000F;">**SPD**</span>'s plans to raise welfare spending.
+- @raise_spending: Agree to the <span style="color: var(--spd-color);">**SPD**</span>'s plans to raise welfare spending.
 - @cut_taxes: We will cut taxes to reduce dissent.
 - @resources: Use our party resources to support our allies.
 - @bring_down: Instead, we will bring down the government with a no-confidence vote, and call for new elections.

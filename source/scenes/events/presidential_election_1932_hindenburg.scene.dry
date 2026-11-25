@@ -3,25 +3,24 @@ subtitle: The President is to announce whether or not he will run again.
 new-page: true
 on-arrival: {!
 Q.hindenburg_run_points = 0;
-if (Q.nsdap_votes + Q.dnf_votes > 25 && Q.dnvp_ideology == "Moderate") {
+if (Q.nsdap_votes + Q.dnf_votes > 25 && Q.dnf_formed) {
     Q.hindenburg_run_points += 5;
-} else if (Q.nsdap_votes + Q.dnvp_votes > 25 && Q.dnvp_ideology == "Radical") {
+} else if (Q.nsdap_votes + Q.dnvp_votes > 25 && Q.dnvp_left < 0) {
     Q.hindenburg_run_points += 5;
 }
-if (Q.dnvp_ideology == "Radical") {
+if (Q.dnvp_left < 0) {
     Q.hindenburg_run_points += 1;
-} else if (Q.dnvp_ideology == "Moderate") {
+} else if (Q.dnvp_left >= 0) {
     Q.hindenburg_run_points += 3;
 }
-if (Q.in_center_right_coalition || Q.in_right_coalition) Q.hindenburg_run_points -= 1;
-if (Q.spd_votes >= 23) Q.hindenburg_run_points += 1;
-if (Q.spd_votes >= 26) Q.hindenburg_run_points += 1;
-if (Q.spd_votes >= 29) Q.hindenburg_run_points += 1;
+if (Q.in_bourgeois_coalition || Q.in_center_right_coalition) Q.hindenburg_run_points -= 1;
+if (Q.kpd_votes + Q.sapd_votes + Q.spd_votes >= 37) Q.hindenburg_run_points += 1;
+if (Q.kpd_votes + Q.sapd_votes + Q.spd_votes >= 40) Q.hindenburg_run_points += 1;
+if (Q.kpd_votes + Q.sapd_votes + Q.spd_votes >= 43) Q.hindenburg_run_points += 1;
 if (Q.pro_republic >= 70) Q.hindenburg_run_points -= 1;
 if (Q.unemployed < 15) Q.hindenburg_run_points -= 1;
 if (Q.unemployed >= 30) Q.hindenburg_run_points += 1;
-if (Q.bruning_toleration_time) Q.hindenburg_run_points += 3;
-if (Q.hindenburg_run_points >= 7) Q.hindenburg_run = 1;
+if (Q.chancellor ==  "Brüning") Q.hindenburg_run_points += 3;
 
 Q.hindenburg_signatures = Math.round(Q.hindenburg_run_points * 0.445 * 100) / 100;
 !}
@@ -39,12 +38,26 @@ Heinrich Sahm, the Mayor of Berlin, has formed a re-election committee to persua
 
 Impressed by the public support, Hindenburg is reconsidering his decision but insists that his candidacy must be backed by the German Right and veteran organizations rather than the German Left and Center. [? if not hitler_deported: Hitler?][? if hitler_deported: Goebbels?], Hugenberg, their parties, and the Stahlhelm—aligned with the national opposition—have demanded concessions in exchange for their support, despite the Stahlhelm's general friendliness toward Hindenburg and its belief that he is one of their own. However, Hindenburg sees these demands as an affront to his personal honor and refuses to tie his candidacy to the dismissal of the current government or the appointment of Hugenberg and Hitler.
 
-- @hindenburg_drop_out
-- @hindenburg_running
+- @campaign_hindenburg
+- @hindenburg_choose
+
+@campaign_hindenburg
+title: Hold a campaign for President Hindenburg
+subtitle: -1 resource
+unavailable-subtitle: Not enough resources.
+choose-if: resources >= 1
+on-arrival: hindenburg_run_points += 6; resources -= 1; dnvp_relation += 5*(1-dissent) if dnvp_left >= 0; cnblp_relation += 3*(1-dissent); wp_relation += 5*(1-dissent); dbp_relation += 5*(1-dissent); spd_relation -= 5; ddp_relation -= 3 if ddp_exist
+
+We hold rallies around Prussia, hoping to convince the aging Field Marshall to run for President once more. Our campaign grants us some goodwill among moderate and right-wing parties, whereas the <span style="color: var(--spd-color);">**[+ spd_name +]**</span> is upset at us for supporting a reactionary for the second time. 
+
+- @hindenburg_choose
+
+@hindenburg_choose
+title: We await his decision.
+go-to: hindenburg_drop_out if hindenburg_run_points < 7; hindenburg_running if hindenburg_run_points >= 7
 
 @hindenburg_drop_out
-title: We await his decision.
-view-if: not hindenburg_run
+on-arrival: hindenburg_run = 0;
 
 President Hindenburg has decided not to run for re-election, citing his health problems and old age as the primary reasons. He feels that the current national situation doesn't warrant a reelection campaign.
 
@@ -52,24 +65,11 @@ This development could be either beneficial or detrimental to us. If we wanted t
 
 The absence of a candidate for the German middle and moderate right to rally behind creates a vacuum, which will likely be filled as other parties announce their candidates in the near future.
 
-- @convince_hindenburg: The country needs him!
 - @presidential_election_1932_candidate: Who will the candidates be now that Hindenburg is retiring?
 
 @hindenburg_running
-title: We await his decision.
-view-if: hindenburg_run
-on-arrival: new_middle_kvp += 4; old_middle_kvp += 4; rural_kvp += 2; new_middle_dnvp += 4 if dnvp_ideology = "Moderate"; old_middle_dnvp += 4 if dnvp_ideology = "Moderate"; rural_dnvp += 2 if dnvp_ideology = "Moderate"
+on-arrival: hindenburg_run = 1; new_middle_kvp += 4; old_middle_kvp += 4; rural_kvp += 2; new_middle_dnvp += 4 if dnvp_left >= 0; old_middle_dnvp += 4 if dnvp_left >= 0; rural_dnvp += 2 if dnvp_left >= 0
 
 The Sahm committee for Hindenburg's re-election has been dissolved and replaced by a much larger, national "United Hindenburg Committees" organization, which will work in coordination with the various local Hindenburg committees across the country. With the appointment of Westarp and Gereke to top positions, and the exclusion of socialist and Center politicians, they are attempting to position Hindenburg as the candidate of the moderate right.
 
 - @presidential_election_1932_candidate: Who will the candidates be now that Hindenburg has decided to run for re-election?
-
-
-@convince_hindenburg
-subtitle: -1 resources
-choose-if: resources >= 1
-unavailable-subtitle: -1 resources. Not enough resources.
-on-arrival: hindenburg_run = 1
-go-to: hindenburg_running
-
-We have convinced Hindenburg to run! Uh, yes, by gifting him an estate. That's not corruption if you are trying to save the country!

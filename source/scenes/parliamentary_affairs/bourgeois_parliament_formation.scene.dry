@@ -23,12 +23,12 @@ choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
 on-arrival: resources -= 1; bourgeois_parliament_support += 1;
 
-We are negotiating with [? if dnvp_ideology = "Moderate": <span style="color: #3F7BC1;">**DNVP**</span>?][? if kvp_formed: <span style="color: #455B95;">**KVP**</span>?] and other parties to form a united bourgeois group in the Reichstag.
+We are negotiating with [? if dnvp_ideology != "Treviranus": <span style="color: #3F7BC1;">**DNVP**</span>?][? if kvp_formed: <span style="color: #455B95;">**KVP**</span>?] and other parties to form a united bourgeois group in the Reichstag.
 
 
 @form_bourgeois_parliament
 view-if: bourgeois_parliament_support >= 1
-on-arrival: bourgeois_parliament = 1; bourgeois_parliament_wp = 1 if wp_exist and wp_ideology = "Moderate"; bourgeois_parliament_ddp = 1 if ddp_exist and ddp_ideology != "Left";
+on-arrival: bourgeois_parliament = 1; bourgeois_parliament_wp = 1 if wp_exist and wp_ideology != "Corporatism"; bourgeois_parliament_ddp = 1 if ddp_exist and ddp_left < 0;
 
 After talks with other bourgeois parties a unified bourgeoisie parliamentary group has been formed in the Reichstag! This will strengthen ties between our parties and bring the long sought liberal unity closer then ever.
 

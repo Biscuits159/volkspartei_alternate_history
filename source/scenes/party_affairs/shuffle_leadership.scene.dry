@@ -405,7 +405,7 @@ view-if: n_advisors < 4
 
 @add_scholz
 title: Ernst Scholz
-subtitle: Ernst Scholz is the leader of our faction in Reichstag. {!<br><br>!} Actions - Rally Against Socialism, Against the <span style="color: #E3000F;">**SPD**</span> and the <span style="color: #8B0000;">**KPD**</span>, Against Toleration
+subtitle: Ernst Scholz is the leader of our faction in Reichstag. {!<br><br>!} Actions - Rally Against Socialism, Against the <span style="color: var(--spd-color);">**SPD**</span> and the <span style="color: #8B0000;">**KPD**</span>, Against Toleration
 is-card: true
 card-image: img/portraits/ScholzErnst.jpg
 tags: industrialist_advisor
@@ -608,7 +608,7 @@ Hans Bechly is now an advisor.
 
 @add_thiel
 title: Otto Thiel
-subtitle: Otto Thiel is a politician and unionist affiliated with the DHV, the right-wing trade union federation. {!<br><br>!} Actions - Labor Affairs, Organizing White-Collar Workers, Union-Party Coordination, Grassroots Fundraising
+subtitle: Otto Thiel is a politician and unionist affiliated with the DHV, the right-wing trade union federation. {!<br><br>!} Actions - Labor Affaris, Organizing White-Collar Workers, Union-Party Coordination, Grassroots Fundraising
 is-card: true
 card-image: img/portraits/ThielOtto.jpg
 tags: labor_advisor
@@ -690,7 +690,7 @@ Otto Gessler is now an advisor.
 
 @add_erkelenz
 title: Anton Erkelenz
-subtitle: Anton Erkelenz is a member of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> situated firmly in the party's left. {!<br><br>!} Actions - Rally the Progressives, Campaign Among Workers, <span style="color: #E3000F;">**SPD**</span> Relations
+subtitle: Anton Erkelenz is a member of the <span style="color: #DCCA4A;">**[+ ddp_name +]**</span> situated firmly in the party's left. {!<br><br>!} Actions - Rally the Progressives, Campaign Among Workers, <span style="color: var(--spd-color);">**SPD**</span> Relations
 is-card: true
 card-image: img/portraits/ErkelenzAnton.jpg
 tags: progressive_advisor
@@ -703,7 +703,7 @@ Anton Erkelenz is now an advisor.
 
 @add_wirth
 title: Joseph Wirth
-subtitle: Wirth is a former Chancellor and figure of the <span style="color: #000000;">Center</span>'s left. {!<br><br>!} Actions - Organizing Catholics, Rally for the Republic, <span style="color: #E3000F;">**SPD**</span> Relations
+subtitle: Wirth is a former Chancellor and figure of the <span style="color: #000000;">Center</span>'s left. {!<br><br>!} Actions - Organizing Catholics, Rally for the Republic, <span style="color: var(--spd-color);">**SPD**</span> Relations
 is-card: true
 card-image: img/portraits/WirthJoseph.jpg
 tags: progressive_advisor
