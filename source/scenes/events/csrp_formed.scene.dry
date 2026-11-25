@@ -18,7 +18,7 @@ Q.rural_csrp = 0;
 Q.unemployed_csrp = 0;
 
 
-if (dvp_left >= 0) {
+if (Q.dvp_left >= 0) {
     Q.csrp_relation = 45
 } else {
     Q.csrp_relation = 15
