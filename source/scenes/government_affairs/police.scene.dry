@@ -65,7 +65,7 @@ Unfortunately, our investigations have failed to turn up anything. Rumors are th
 @ban_nsdap
 view-if: investigate_far_right >= 3 and return_to_normalcy and dvp_left >= 0
 choose-if: judicial_reform >= 4 and nsdap_votes <= 7
-unavailable-subtitle: [ if judicial_reform < 4: The judiciary is too reactionary for that to happen. ?][? if nsdap_votes > 7: The <span style="color: #954B00;">**NSDAP**</span> is too popular. ?]
+unavailable-subtitle: [? if judicial_reform < 4: The judiciary is too reactionary for that to happen. ?][? if nsdap_votes > 7: The <span style="color: #954B00;">**NSDAP**</span> is too popular. ?]
 on-arrival: nsdap_banned = 1; workers_nsdap -= 10; new_middle_nsdap -= 10; old_middle_nsdap -= 10; nsdap_relation -= 50;
 
 We have banned the <span style="color: #954B00;">**NSDAP**</span>!

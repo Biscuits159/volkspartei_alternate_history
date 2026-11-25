@@ -467,7 +467,7 @@ Alfred Hugenberg was somehow chosen.
 
 @no_majority
 title: There is no clear governing majority.
-view-if: left_front_hamburg < 50 and grand_coalition_hamburg < 50 and bourgeois_coalition_hamburg < 50 and far_right_coalition_hamburg < 50
+view-if: left_front_hamburg < 50 and (grand_coalition_hamburg < 50 or cvp_formed) and bourgeois_coalition_hamburg < 50 and far_right_coalition_hamburg < 50
 on-arrival: workers_kpd += 2; workers_nsdap += 1; unemployed_nsdap += 2; old_middle_nsdap += 1; new_middle_nsdap += 1; dvp_hamburg = 1 if was_dvp_hamburg; in_dvp_majority_hamburg = 1 if was_in_dvp_majority_hamburg; in_left_front_hamburg = 1 if was_in_left_front_hamburg; in_grand_coalition_hamburg = 1 if was_in_grand_coalition_hamburg; in_bourgeois_coalition_hamburg = 1 if was_in_bourgeois_coalition_hamburg; in_far_right_coalition_hamburg = 1 if was_in_far_right_coalition_hamburg;
 
 There is no path to a majority government for now. The current government will stay in power as a minority coalition.

@@ -22,7 +22,7 @@ The Republic maintains an extensive social welfare program, including unemployme
 subtitle: This will hurt our small labor wing. +1 Budget
 unavailable-subtitle: There is nothing left to cut.
 choose-if: welfare >= -5
-on-arrival: budget += 1; workers_dvp -= 6; unemployed_dvp -= 6; workers_kpd += 3; welfare -= 1; industrialist_dissent -= 5; labor_dissent += 5; progressive_dissent += 5; coalition_dissent += 1 if spd_in_government; spd_patience -= 25 if spd_toleration; spd_relation -= 3; spd_left += 2; pro_republic -= 3; demand_for_action_countdown += 6; inflation -= 0.3; unemployed += 0.4; economic_growth -= 0.2;
+on-arrival: budget += 1; workers_dvp -= 6; unemployed_dvp -= 6; workers_kpd += 3; welfare -= 1; industrialist_dissent -= 5; labor_dissent += 5; progressive_dissent += 5; coalition_dissent += 1 if spd_in_government; spd_patience -= 25 if spd_toleration; spd_relation -= 3; spd_left += 1; pro_republic -= 3; demand_for_action_countdown += 6; inflation -= 0.3; unemployed += 0.4; economic_growth -= 0.2;
 
 We have reduced levels of social welfare spending. This means more poverty and suffering for the working class.
 

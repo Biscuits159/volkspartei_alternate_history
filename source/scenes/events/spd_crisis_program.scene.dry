@@ -14,13 +14,13 @@ Since the onset of the economic crisis, the <span style="color: var(--spd-color)
 - @wtp_plan: Woytinsky and his supporters manage to sway the party.
 
 @nationalization_plan
-view-if: spd_left > spd_right
+view-if: spd_left >= -2
 on-arrival: spd_left_plan = 1; workers_spd += 5; unemployed_spd += 5; socialism += 1; spd_relation -= 5;
 
 With nationalizations being the preferred alternative for the center marxists, the party's left has come out on top of this congress, solidifying their <span style="color: var(--spd-color);">**socialist**</span> roots. [? if unemployed >= 10: They will begin implementing the plan as soon as possible, even if it requires deficit spending or seizing factories. ?]
 
 @wtp_plan
-view-if: spd_left <= spd_right
+view-if: spd_left < 2
 on-arrival: spd_wtb_plan = 1; workers_spd += 3; new_middle_spd += 2; old_middle_spd += 2; rural_spd += 2; unemployed_spd += 3;
 
 With broad support within the ADGB, mass public works will now become the platform for the <span style="color: var(--spd-color);">**SPD**</span>, broadening their appeal to all strata of society. [? if unemployed >= 10: They will begin implementing the plan as soon as possible, likely requiring deficit spending. ?]

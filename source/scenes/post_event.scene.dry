@@ -1246,6 +1246,9 @@ if ((!Q.rubicon && Q.month_actions >= 1) || (Q.rubicon && Q.month_actions >= 4))
         Q.labor_dissent += 15;
         Q.demand_for_action_countdown = 8;
     }
+
+    if (Q.spd_in_government) Q.spd_left -= 0.1;
+    Q.spd_left -= (Q.spd_relation - 50)/200;
     
     if (Q.spd_toleration) Q.spd_patience -= (5 - Q.spd_relation/50);
 

@@ -509,7 +509,7 @@ Eugen Bolz was chosen.
 
 @no_majority
 title: There is no clear governing majority.
-view-if: popular_front_wurttemberg < 50 and weimar_coalition_wurttemberg < 50 and bourgeois_coalition_wurttemberg < 50 and grand_coalition_wurttemberg < 50 and far_right_coalition_wurttemberg < 50
+view-if: popular_front_wurttemberg < 50 and ((weimar_coalition_wurttemberg < 50 and bourgeois_coalition_wurttemberg < 50) or cvp_formed) and grand_coalition_wurttemberg < 50 and far_right_coalition_wurttemberg < 50
 on-arrival: workers_nsdap += 2; unemployed_nsdap += 2; old_middle_nsdap += 1; new_middle_nsdap += 1; rural_nsdap += 1; dvp_wurttemberg = 1 if was_dvp_wurttemberg; in_dvp_majority_wurttemberg = 1 if was_in_dvp_majority_wurttemberg; in_popular_front_wurttemberg = 1 if was_in_popular_front_wurttemberg; in_weimar_coalition_wurttemberg = 1 if was_in_weimar_coalition_wurttemberg; in_grand_coalition_wurttemberg = 1 if was_in_grand_coalition_wurttemberg; in_bourgeois_coalition_wurttemberg = 1 if was_in_bourgeois_coalition_wurttemberg; in_far_right_coalition_wurttemberg = 1 if was_in_far_right_coalition_wurttemberg;
 
 There is no path to a majority government for now. The current government will stay in power as a minority coalition.

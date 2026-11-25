@@ -1,5 +1,5 @@
 title: <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> Party Congress
-view-if: nfvp_formed and year == nfvp_next_congress_year and month == nfvp_next_congress_month
+view-if: nfvp_formed and year >= nfvp_next_congress_year and month >= nfvp_next_congress_month
 on-arrival: nfvp_next_congress_year = year + 2
 tags: event
 priority: 3
@@ -260,7 +260,7 @@ subtitle: Lemmer is a prominent labor leader. <span style="color: #E0B0FF;">**Pr
 unavailable-subtitle: Lemmer isn’t seen as a viable candidate, with the party viewing him as too left-wing. He has endorsed Dietrich or Thiel. <span style="color: #E0B0FF;">**Progressives**</span> + <span style="color: #DCCA4A;">**Democrats**</span> + <span style="color: #6D5298;">**Labor**</span> ([+ progressive_influence + democratic_influence + labor_influence +]%)
 view-if: progressives_dvp
 choose-if: progressive_influence + democratic_influence + labor_influence >= 50
-on-arrival: dvp_leader = "Lemmer"; dvp_ideology = "Social Liberalism"; dvp_ideologycolor = "#E0B0FF"; workers_dvp += 3*(1-dissent); democratization += 1; progressive_dissent -= 5; spd_relation += 5
+on-arrival: dvp_leader = "Lemmer"; dvp_ideology = "Social Liberalism"; dvp_ideologycolor = "#E0B0FF"; workers_dvp += 3*(1-dissent); democratization += 1; progressive_dissent -= 5; spd_relation += 5; spd_left -= 0.5;
 face-image: img/portraits/LemmerErnst.jpg
 
 Ernst Lemmer has managed to, with the backing of Thiel’s unions, and the former <span style="color: #DCCA4A;">**[+ ddp_name +]**</span>, become leader of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>. He is expected to cooperate closely with Thiel, and the socialists of the <span style="color: var(--spd-color);">**SPD**</span> will be watching his leadership closely. He will certainly be a divisive leader of the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span>, with his progressive stance sure to render any cooperation with the parties to our right difficult for the near future.

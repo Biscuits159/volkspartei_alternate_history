@@ -16,7 +16,7 @@ tags: party_affairs
 
 First thing we have done is merging more liberal parts of DHV with Hirsch-Duncker Unions.
 
-[? if csvd_exist: The <span style="color: #8ED8E4;">**CSVD**</span> have decided to join our party! ?]
+[? if csvd_formed: The <span style="color: #8ED8E4;">**CSVD**</span> have decided to join our party! ?]
 
 - @dgb: Negotiate with the Deutscher Gewerkschaftsbund
 
@@ -43,7 +43,7 @@ We have failed to convince Christian Unionists to join us.
 
 @election
 on-arrival: {!
-if (Q.csvd_exist) {
+if (Q.csvd_formed) {
     Q.csvd_influence = (Q.workers_csvd + Q.new_middle_csvd)*20
 }
 
@@ -58,13 +58,13 @@ if (Q.dgb_success) {
 }
 
 Q.total_influence = Q.dvp_influence + Q.ddp_influence
-if (Q.csvd_exist) {
+if (Q.csvd_formed) {
     Q.total_influence = Q.total_influence + Q.csvd_influence
 }
 if (Q.dgb_success) {
     Q.total_influence = Q.total_influence + Q.dgb_influence
 }
-if (Q.csvd_exist) {
+if (Q.csvd_formed) {
     Q.csvd_influence = parseFloat((Q.csvd_influence/Q.total_influence*100).toFixed(1));
 }
 if (Q.dgb_success) {
@@ -75,8 +75,8 @@ Q.dvp_influence = parseFloat((Q.dvp_influence/Q.total_influence*100).toFixed(1))
 !}
 on-departure: {!
 Q.dfgb_formed = 1;
-if (Q.csvd_exist) {
-    Q.csvd_exist = 0;
+if (Q.csvd_formed) {
+    Q.csvd_formed = 0;
 
     Q.workers_dvp += Q.workers_csvd;
     Q.workers_csvd = 0;

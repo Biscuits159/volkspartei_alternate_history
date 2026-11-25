@@ -68,7 +68,7 @@ if (Q.hindenburg_run) {
 } else {
     Q.reactionary_candidate = 0;
 
-    if (Q.z_candidate != "Braun"){
+    if (Q.z_candidate != "Braun" && !Q.cvp_formed){
         if (Q.stegerwald_path) Q.adenauer_candidacy = 1;
         if (!Q.stegerwald_path && Q.chancellor != "Brüning" && Q.bourgeois_votes >= 40) Q.bruning_candidacy = 1;
         if (!Q.stegerwald_path && Q.adenauer_candidacy == 0 && Q.bruning_candidacy == 0) Q.stegerwald_candidacy = 1;
@@ -79,7 +79,7 @@ if (Q.hindenburg_run) {
     if (Q.westarp_candidacy && Q.vorbeck_candidacy) Q.westarp_candidacy = 0;
 
     if (Q.vorbeck_candidacy && Q.cvp_formed) {
-        Q.vorbeck_candidacy = 0;
+        Q.westarp_candidacy = 0;
         Q.adenauer_candidacy = 0;
         Q.bruning_candidacy = 0;
         Q.stegerwald_candidacy = 0;

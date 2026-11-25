@@ -956,6 +956,7 @@ Q.unemployment_insurance_threshold = 10;
 Q.blutmai = 0;
 Q.wittorf_affair_published = 0;
 Q.young_plan_dnvp_promise = 0;
+Q.dnvp_congress_1929_seen = 0;
 
 // have we reformed these institutions to be more democratic?
 Q.judicial_reform = 0;

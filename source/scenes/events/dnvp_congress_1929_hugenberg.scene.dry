@@ -1,6 +1,7 @@
 title: <span style="color: var(--dnvp-color);">**DNVP**</span> Leadership Vote
 subtitle: Hugenberg has angered his party.
-view-if: dnvp_leader = "Hugenberg" and year = 1929 and month = 11
+view-if: dnvp_leader = "Hugenberg" and year = 1929 and month = 11 and dnvp_congress_1929_seen == 0
+on-arrival: dnvp_congress_1929_seen = 1
 max-visits: 1
 tags: event
 face-image: img/portraits/KVP_logo.jpg
