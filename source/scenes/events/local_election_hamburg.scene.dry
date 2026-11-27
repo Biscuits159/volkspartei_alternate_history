@@ -432,7 +432,7 @@ WIP
 title: Walther Dauch, the <span style="color: var(--dvp-color);">**[+ dvp_name +]**</span> candidate.
 subtitle: He is a businessman and was a member of the Reichstag for our party from 1920 to 1924.
 view-if: dvp_hamburg
-choose-if: lvp_formed or nfvp_formed or in_bourgeois_coalition_hamburg or (in_grand_coalition_hamburg and dvp_hb > spd_hb)
+choose-if: lvp_formed or nfvp_formed or in_bourgeois_coalition_hamburg or (in_grand_coalition_hamburg and dvp_hb > spd_hb) or in_dvp_majority_hamburg
 unavailable-subtitle: The <span style="color: var(--spd-color);">**[+ spd_name +]**</span> can prevent a member of our party from becoming mayor.
 on-arrival: hamburg_leader = "Dauch"; hamburg_leader_party = dvp_name
 face-image: img/portraits/DauchWalther.jpg
